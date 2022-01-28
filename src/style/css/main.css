@@ -1,0 +1,29 @@
+.button-asik-border-white {
+  background: none !important; }
+
+.hero-element {
+  padding-top: 80px;
+  width: 100%;
+  min-height: 697px;
+  background-image: url("../../assets/img/hero.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff; }
+  .hero-element .welcome-text {
+    padding: 17% 10% 10% 10%;
+    color: #fff;
+    text-align: center; }
+    .hero-element .welcome-text .welcome-heading {
+      font-size: 28px;
+      font-weight: 500; }
+  .hero-element .counter-layanan {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+    top: 70px; }
+    .hero-element .counter-layanan h4 {
+      font-size: 60px; }
+
+/*# sourceMappingURL=main.css.map */
