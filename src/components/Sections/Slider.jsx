@@ -1,16 +1,7 @@
 import React from "react";
 
 import styled from "styled-components";
-// Components
 
-
-
-
-
-// import Swiper core and required modules
-
-
-// install Swiper modules
 
 import { Swiper, SwiperSlide } from 'swiper/react/swiper-react.js';
 import 'swiper/swiper.min.css'; // core Swiper
