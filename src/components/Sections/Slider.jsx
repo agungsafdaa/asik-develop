@@ -3,9 +3,12 @@ import React from "react";
 import styled from "styled-components";
 
 
-import { Swiper, SwiperSlide } from 'swiper/react/swiper-react.js';
-import 'swiper/swiper.min.css'; // core Swiper
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+
+import 'swiper/css/pagination';
 
 export default function SliderArea(props) {
   
@@ -30,6 +33,8 @@ export default function SliderArea(props) {
             <SwiperSlide>
             <img src="/assets/images/Media.png" alt="test" style={{width:'100%'}}/>
             </SwiperSlide>
+            <SwiperSlide>    <img src="/assets/images/Media.png" alt="test" style={{width:'100%'}}/></SwiperSlide>
+            <SwiperSlide>    <img src="/assets/images/Media.png" alt="test" style={{width:'100%'}}/></SwiperSlide>
             <SwiperSlide>    <img src="/assets/images/Media.png" alt="test" style={{width:'100%'}}/></SwiperSlide>
         
             
