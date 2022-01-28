@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 // Components
 import FullButton from "../Buttons/FullButton";
-// Assets
+
 
 
 export default function Header(props) {
