@@ -1,3 +1,12 @@
+/*font Variables*/
+/*=================== fonts ====================*/
+@font-face {
+  font-family: 'Inter';
+  src: url("../../assets/fonts/fonts/Manrope-Regular.ttf"); }
+body {
+  font-family: "Inter", sans-serif !important;
+  background: #fafafa; }
+
 .button-asik-border-white {
   background: none !important;
   border: 1px solid #FFFFFF !important;
@@ -7,9 +16,32 @@
   .button-asik-border-white:hover {
     background: #1588DB !important;
     border: 1px solid #1588DA !important; }
+  @media screen and (max-width: 599px) {
+    .button-asik-border-white {
+      font-size: 8px !important; } }
 
 .test {
   width: 33%; }
+
+.card-asik {
+  background: #FFFFFF;
+  border-radius: 16px !important; }
+  .card-asik .tittle-card {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    color: #000000; }
+  .card-asik .card-posting {
+    display: flex;
+    font-size: 16px;
+    line-height: 19px;
+    display: flex;
+    align-items: center;
+    color: #8A8A8A;
+    gap: 6px; }
 
 .button-asik {
   color: #fff !important;
@@ -21,6 +53,41 @@
     background: none !important;
     border: 1px solid #FFFFFF !important;
     color: #fff !important; }
+  @media screen and (max-width: 599px) {
+    .button-asik {
+      font-size: 8px !important; } }
+
+.tag-button {
+  background: #605D5D !important;
+  border-radius: 100px !important;
+  padding: 10px 15px 10px 15px !important;
+  text-transform: capitalize !important;
+  color: #fff !important;
+  border: 1px solid #605D5D !important; }
+
+.hamberger-menu {
+  background: #1588DA !important;
+  border-radius: 100px !important; }
+  .hamberger-menu svg {
+    color: #fff !important; }
+
+.see-all-button {
+  color: #1588DA !important;
+  background: transparent !important;
+  border: 1px solid #1588DA !important;
+  text-transform: capitalize !important;
+  padding: 10px !important;
+  border-radius: 14px !important; }
+  .see-all-button:hover {
+    background: #1588DA !important;
+    border: 1px solid #1588DA !important;
+    color: #fff !important; }
+
+.p-10 {
+  padding: 15px !important; }
+
+.footer-bg {
+  background: #010E36; }
 
 .hero-element {
   padding-top: 80px;
@@ -37,6 +104,12 @@
     .hero-element .welcome-text .welcome-heading {
       font-size: 28px;
       font-weight: 500; }
+    @media screen and (max-width: 599px) {
+      .hero-element .welcome-text .welcome-heading {
+        font-size: 14px;
+        height: 350px;
+        display: flex;
+        align-items: flex-end; } }
   .hero-element .counter-layanan {
     display: flex;
     gap: 12px;
@@ -46,6 +119,10 @@
     top: 70px; }
     .hero-element .counter-layanan h4 {
       font-size: 60px; }
+      @media screen and (max-width: 599px) {
+        .hero-element .counter-layanan h4 {
+          font-size: 16px;
+          padding: 0 0 10px 0 !important; } }
 
 .widget-center {
   display: flex;
@@ -92,5 +169,46 @@
         .widget-center .widget-area .widget-button img {
           width: 20px;
           padding: 0 0 10px 0; } }
+
+.berita {
+  margin: 60px 0 0 0; }
+  .berita .desc-heading {
+    font-size: 28px; }
+  .berita .see-all {
+    padding: 50px 0 70px 0;
+    display: flex;
+    justify-content: flex-end; }
+
+.footer-section {
+  padding: 30px 0 30px 0; }
+  .footer-section .heading-footer {
+    background: #040C25;
+    border-radius: 14px;
+    padding: 16px; }
+    .footer-section .heading-footer h5 {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 19px;
+      color: #1FA2FF; }
+  .footer-section .content-footer {
+    padding: 20px 0 20px 0;
+    color: #FFFFFF;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 19px;
+    color: #FFFFFF; }
+  .footer-section .copyright {
+    display: flex;
+    justify-content: flex-end; }
+    .footer-section .copyright .bappeda-litbang-copyright {
+      background: #040C25;
+      border-radius: 14px;
+      padding: 24px;
+      color: #FFFFFF;
+      width: 50%; }
+      @media screen and (max-width: 599px) {
+        .footer-section .copyright .bappeda-litbang-copyright {
+          width: 100%; } }
 
 /*# sourceMappingURL=main.css.map */

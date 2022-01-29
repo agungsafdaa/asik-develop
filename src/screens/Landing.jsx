@@ -22,7 +22,7 @@ export default function Landing(props) {
       <WidgetArea />
       <Blog />
    
-      {/* <Footer />  */}
+      <Footer /> 
     </>
   );
 }

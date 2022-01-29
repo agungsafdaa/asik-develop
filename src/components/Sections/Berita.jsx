@@ -14,7 +14,7 @@ export default function  Berita(props) {
 
     return (
         <Wrapper id="services">
-            <div className="lightBg" style={{ padding: "50px 0" }}>
+            <div className="berita" style={{ padding: "50px 0" }}>
 
                 <div className="container">
                     <Grid container spacing={10}>
