@@ -67,5 +67,19 @@
       padding: 32px;
       width: 141px;
       height: 150px; }
+    @media screen and (max-width: 599px) {
+      .widget-center .widget-area .widget-button {
+        height: 0 !important;
+        padding: 40px !important;
+        margin: 0;
+        width: 75px;
+        margin: 0 5px 10px 5px;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 15px; }
+        .widget-center .widget-area .widget-button img {
+          width: 30px;
+          padding: 0 0 10px 0; } }
 
 /*# sourceMappingURL=main.css.map */
