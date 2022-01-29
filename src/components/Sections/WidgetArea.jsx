@@ -19,7 +19,7 @@ export default function SliderArea(props) {
                 <div className="container">
                     <Grid container spacing={10}>
 
-                        <Grid item xs={4}>
+                        <Grid item lg={4} xs={12} md={12}>
                             <Swiper
                                 // install Swiper modules
                                 modules={[Autoplay, Navigation, Pagination, Scrollbar, A11y]}
@@ -47,7 +47,7 @@ export default function SliderArea(props) {
 
                             </Swiper>
                         </Grid>
-                        <Grid item xs={8} className="widget-center">
+                        <Grid item  lg={8} xs={12} md={12}  className="widget-center">
                           
                             <div className="widget-area">
                                 <Button className="widget-button">
