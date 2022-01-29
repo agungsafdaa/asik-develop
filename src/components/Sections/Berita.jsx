@@ -10,7 +10,7 @@ import { Autoplay, Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import Button from '@mui/material/Button';
 import 'swiper/css/pagination';
 
-export default function WidgetArea(props) {
+export default function  Berita(props) {
 
     return (
         <Wrapper id="services">

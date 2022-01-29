@@ -37,13 +37,17 @@
     justify-content: space-between;
     /* gap: 12px; */
     align-items: center;
-
+    @include lt-sm{
+        display:inline-block
+    }
     .widget-area{
         display: grid;
         grid-gap: 10px;
         grid-template-columns: 20% 20% 20% 20% ;
     
-    
+        @include lt-sm{
+            grid-template-columns: 23% 23% 23% 23% ;
+        }
         .widget-button{
             display: flex;
             background: #1FA2FF;
@@ -54,22 +58,30 @@
             color: #fff;
             padding: 32px;
             width: 141px;
+            font-size:16px;
            height: 150px;
+           img{
+            width:20px;
+            padding:0 0 10px 0;
+        }
           
         }
         @include lt-sm{
             .widget-button {
-                height: 0 !important;
-                padding: 40px !important;
-                margin: 0;
-                width: 75px;
+              
+              
+                width: 70px;
+                padding: 35px !important;
                 margin: 0 5px 10px 5px;
+                height: 80px !important;
                 font-style: normal;
                 font-weight: 500;
+                border-radius: 10px;
                 font-size: 12px;
                 line-height: 15px;
+                text-transform: capitalize!important;
                 img{
-                    width:30px;
+                    width:20px;
                     padding:0 0 10px 0;
                 }
             }
