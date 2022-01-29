@@ -2,43 +2,43 @@ import React from "react";
 import styled from "styled-components";
 // Components
 import FullButton from "../Buttons/FullButton";
-
+import Button from '@mui/material/Button';
 
 
 export default function Header(props) {
   console.log(props)
   return (
     <Wrapper id="home" className="hero-element">
-      
-        <div className="container">
-            <div className="welcome-text">
-                <div className="welcome-heading">
-                  <h3 className="welcome-heading ">Memahami dan memecahkan masalah Kota Palembang secara ilmiah</h3>
-                  
-                </div>
-              
-            
-            </div>
-            <div className="counter-layanan">
-                      <BtnWrapper>
-                      <h4>265</h4>
-                        <FullButton title="Inovasi Daerah" />
-                        
-                      </BtnWrapper>
-                      <BtnWrapper >
-                      <h4>33</h4>
-                        <FullButton className="button-asik-border-white"  title="Kajian" />
-                        
-                      </BtnWrapper>
-                      <BtnWrapper>
-                      <h4>25</h4>
-                        <FullButton title="Regulasi" />
-                        
-                      </BtnWrapper>
-                    </div>
+
+      <div className="container">
+        <div className="welcome-text">
+          <div className="welcome-heading">
+            <h3 className="welcome-heading ">Memahami dan memecahkan masalah Kota Palembang secara ilmiah</h3>
+
+          </div>
+
+
         </div>
-   
-      
+        <div className="counter-layanan">
+          <BtnWrapper className="test">
+            <h4>265</h4>
+
+            <Button className="button-asik">Inovasi Daerah</Button>
+          </BtnWrapper>
+          <BtnWrapper className="test">
+            <h4>33</h4>
+
+            <Button className="button-asik-border-white">Kajian</Button>
+          </BtnWrapper>
+          <BtnWrapper className="test">
+            <h4>25</h4>
+
+            <Button className="button-asik-border-white">Regulasi</Button>
+          </BtnWrapper>
+        </div>
+      </div>
+
+
     </Wrapper>
   );
 }

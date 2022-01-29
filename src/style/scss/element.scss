@@ -1,3 +1,28 @@
 .button-asik-border-white{
     background:none!important;
+    border: 1px solid #FFFFFF!important;
+    color:#fff!important; 
+border-radius: 14px!important;
+width:100%!important;
+    &:hover{
+        background: #1588DB!important;
+        border: 1px solid #1588DA!important;  
+    }
+}
+
+.test{
+  width:33%
+}
+
+.button-asik{
+    color:#fff!important; 
+    background: #1588DB!important;
+    border: 1px solid #1588DA!important;
+    width:100%!important;  
+    border-radius: 14px!important;
+    &:hover{
+        background:none!important;
+    border: 1px solid #FFFFFF!important;
+    color:#fff!important; 
+    }
 }

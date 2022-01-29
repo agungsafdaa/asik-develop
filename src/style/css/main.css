@@ -1,5 +1,26 @@
 .button-asik-border-white {
-  background: none !important; }
+  background: none !important;
+  border: 1px solid #FFFFFF !important;
+  color: #fff !important;
+  border-radius: 14px !important;
+  width: 100% !important; }
+  .button-asik-border-white:hover {
+    background: #1588DB !important;
+    border: 1px solid #1588DA !important; }
+
+.test {
+  width: 33%; }
+
+.button-asik {
+  color: #fff !important;
+  background: #1588DB !important;
+  border: 1px solid #1588DA !important;
+  width: 100% !important;
+  border-radius: 14px !important; }
+  .button-asik:hover {
+    background: none !important;
+    border: 1px solid #FFFFFF !important;
+    color: #fff !important; }
 
 .hero-element {
   padding-top: 80px;
@@ -25,5 +46,26 @@
     top: 70px; }
     .hero-element .counter-layanan h4 {
       font-size: 60px; }
+
+.widget-center {
+  display: flex;
+  justify-content: space-between;
+  /* gap: 12px; */
+  align-items: center; }
+  .widget-center .widget-area {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 20% 20% 20% 20%; }
+    .widget-center .widget-area .widget-button {
+      display: flex;
+      background: #1FA2FF;
+      flex-direction: column;
+      /* background: blue; */
+      margin: 10px 30px 10px 30px;
+      border-radius: 32px;
+      color: #fff;
+      padding: 32px;
+      width: 141px;
+      height: 150px; }
 
 /*# sourceMappingURL=main.css.map */

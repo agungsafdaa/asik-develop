@@ -2,8 +2,9 @@ import React from "react";
 // Sections
 import TopNavbar from "../components/Nav/TopNavbar";
 import Header from "../components/Sections/Header";
-import Services from "../components/Sections/Services";
 import SliderArea from "../components/Sections/Slider";
+import WidgetArea from "../components/Sections/WidgetArea";
+
 // import Projects from "../components/Sections/Projects";
 // import Blog from "../components/Sections/Blog";
 // import Pricing from "../components/Sections/Pricing";
@@ -18,8 +19,8 @@ export default function Landing(props) {
       <TopNavbar />
       <Header />
        <SliderArea />
-      {/* <Projects />
-      <Blog />
+      <WidgetArea />
+      {/* <Blog />
       <Pricing />
       <Contact />
       <Footer />  */}
