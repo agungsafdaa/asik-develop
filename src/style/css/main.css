@@ -20,8 +20,26 @@ body {
     .button-asik-border-white {
       font-size: 8px !important; } }
 
+.asik-breadcrumbs {
+  margin: 13% 0 5% 0; }
+  @media screen and (max-width: 599px) {
+    .asik-breadcrumbs {
+      margin: 40% 0 15% 0 !important; } }
+  .asik-breadcrumbs .no-button {
+    background: transparent; }
+  .asik-breadcrumbs .active-page {
+    background: #DBF0FF;
+    border-radius: 14px;
+    color: #1588DA; }
+
+.text-capitalize {
+  text-transform: capitalize; }
+
 .test {
   width: 33%; }
+
+.list-alfabet {
+  list-style-type: upper-alpha; }
 
 .card-asik {
   background: #FFFFFF;
@@ -88,6 +106,15 @@ body {
 
 .footer-bg {
   background: #010E36; }
+
+.hero-element-media {
+  padding-top: 80px;
+  width: 100%;
+  min-height: 697px;
+  background: #A3D9FF;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff; }
 
 .hero-element {
   padding-top: 80px;
@@ -178,6 +205,18 @@ body {
     padding: 50px 0 70px 0;
     display: flex;
     justify-content: flex-end; }
+
+.profil {
+  padding: 10px 0 10px  0; }
+
+.tentang-lembaga {
+  margin: 50px 0 50px 0;
+  font-family: Inter;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 34px; }
+  .tentang-lembaga .tugas {
+    padding: 10px 0 0 30px; }
 
 .footer-section {
   padding: 30px 0 30px 0; }

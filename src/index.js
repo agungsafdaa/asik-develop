@@ -6,10 +6,13 @@ import "./style/flexboxgrid.min.css";
 import './style/index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
+import { BrowserRouter } from 'react-router-dom';
 ReactDOM.render(
   <>
+    <BrowserRouter>
     <App />
+    </BrowserRouter>
+   
   </>,
   document.getElementById('root')
 );

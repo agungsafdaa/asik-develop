@@ -16,13 +16,13 @@ export default function Landing(props) {
  
   return (
     <>
-      <TopNavbar />
+      {/* <TopNavbar /> */}
       <Header />
        <SliderArea />
       <WidgetArea />
       <Blog />
    
-      <Footer /> 
+     
     </>
   );
 }
