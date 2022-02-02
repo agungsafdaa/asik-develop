@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
 // Components
 import Card from "@mui/material/Card";
@@ -7,8 +7,13 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
+import { Link } from 'react-router-dom'
+
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 export default function Blog() {
+
+
+
   return (
     <Wrapper id="blog">
       <div className="whiteBg berita">
@@ -89,7 +94,10 @@ export default function Blog() {
             </Grid>
           </Grid>
           <div className="see-all">
-          <Button className="see-all-button" size="small">Selengkapnya <NavigateNextIcon/> </Button>
+          <Link to={{pathname: `/Event`, state: ''}}>
+            <Button className="see-all-button" size="small">Selengkapnya <NavigateNextIcon/> </Button>
+          </Link>
+         
           </div>
         </div>
 

@@ -1,19 +1,25 @@
-import React from "react";
+import React, {useState} from "react";
 import { Helmet } from "react-helmet";
 import { Routes, Route, Outlet, Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom'
 import Profile from "./screens/Profile.jsx";
+import Event from "./screens/Event.jsx";
 import Landing from "./screens/Landing.jsx";
+import Kajian from "./screens/Kajian.jsx";
 import TopNavbar from "./components/Nav/TopNavbar";
 import Footer from "./components/Sections/Footer";
 
 export default function tree() {
+
+
   return (
     <>
       <Routes>
         <Route path="/" element={<App />}>
      
         <Route path="/Profil" element={<Profile />}></Route>
+        <Route path="/Event" element={<Event />}></Route>
+        <Route path="/Litbang" element={<Kajian />}></Route>
         </Route>
       </Routes>
     </>

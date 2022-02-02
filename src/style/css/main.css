@@ -43,7 +43,8 @@ body {
 
 .card-asik {
   background: #FFFFFF;
-  border-radius: 16px !important; }
+  border-radius: 16px !important;
+  box-shadow: 0px 16px 24px #f8F8F8, 0px 2px 6px #f8F8F8, 0px 0rgba #f8F8F8 !important; }
   .card-asik .tittle-card {
     font-weight: 500;
     font-size: 16px;
@@ -106,6 +107,121 @@ body {
 
 .footer-bg {
   background: #010E36; }
+
+.pagination-area {
+  margin: 30px 0 30px 0; }
+  .pagination-area .pagination-asik {
+    display: flex;
+    /* align-items: baseline; */
+    justify-content: center;
+    -webkit-box-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    list-style: none; }
+    .pagination-area .pagination-asik button {
+      display: -webkit-inline-box;
+      display: -webkit-inline-flex;
+      display: -ms-inline-flexbox;
+      display: inline-flex;
+      -webkit-align-items: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      position: relative;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      background-color: transparent;
+      outline: 0;
+      border: 0;
+      margin: 0;
+      border-radius: 0;
+      padding: 0;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      vertical-align: middle;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      -webkit-text-decoration: none;
+      text-decoration: none;
+      color: inherit;
+      font-family: "Roboto","Helvetica","Arial",sans-serif;
+      font-weight: 400;
+      font-size: 0.875rem;
+      line-height: 1.43;
+      letter-spacing: 0.01071em;
+      border-radius: 16px;
+      text-align: center;
+      box-sizing: border-box;
+      min-width: 32px;
+      height: 32px;
+      padding: 0 6px;
+      margin: 0 3px;
+      color: rgba(0, 0, 0, 0.87); }
+    .pagination-area .pagination-asik .disabled {
+      opacity: 0.38;
+      pointer-events: none;
+      cursor: default; }
+    .pagination-area .pagination-asik .active {
+      color: #fff;
+      background-color: #1976d2; }
+    .pagination-area .pagination-asik .not-active {
+      color: #1588DB;
+      background: #DBF0FF; }
+    .pagination-area .pagination-asik svg {
+      font-size: 16px; }
+
+.search-area {
+  margin: 20px 0 50px 0;
+  display: flex;
+  justify-content: space-around; }
+  .search-area .card-search {
+    width: 70%;
+    border-radius: 15px; }
+    .search-area .card-search .heading-search {
+      padding: 30px 30px 10px 30px; }
+    .search-area .card-search .search-bar {
+      padding: 10px 20px 20px 20px;
+      display: flex;
+      grid-gap: 10px; }
+      .search-area .card-search .search-bar button {
+        width: 30%; }
+    .search-area .card-search .filter-area {
+      padding: 10px 20px 20px 20px; }
+      .search-area .card-search .filter-area button {
+        width: 30%;
+        background: #040C25;
+        border: 1px solid #1588DA !important;
+        text-transform: capitalize !important;
+        padding: 10px !important;
+        border-radius: 14px !important;
+        color: #fff;
+        margin: 9px; }
+      .search-area .card-search .filter-area .button-inactive {
+        background: #F1F5FF;
+        border: 1px solid #F1F5FF !important;
+        color: #000; }
+    @media screen and (max-width: 599px) {
+      .search-area .card-search {
+        width: 100%; } }
+
+.table-head {
+  background: #1588DA; }
+  .table-head th {
+    color: #fff !important; }
 
 .hero-element-media {
   padding-top: 80px;

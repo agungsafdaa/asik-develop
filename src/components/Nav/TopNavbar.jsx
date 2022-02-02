@@ -13,12 +13,20 @@ export default function TopNavbar() {
   const [y, setY] = useState(window.scrollY);
   const [sidebarOpen, toggleSidebar] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [litbang, setLitbang] = React.useState(null);
   const open = Boolean(anchorEl);
+  const openLitbang = Boolean(litbang);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+  const handleClickLitbang = (event) => {
+    setLitbang(event.currentTarget);
+  };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+  const handleCloseLitbang = () => {
+    setLitbang(null);
   };
   useEffect(() => {
     window.addEventListener("scroll", () => setY(window.scrollY));
@@ -34,7 +42,7 @@ export default function TopNavbar() {
     <>
       <Sidebar sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
       {sidebarOpen && <Backdrop toggleSidebar={toggleSidebar} />}
-      <Wrapper className="flexCenter animate whiteBg" style={y > 100 ? { height: "60px", background: '#1FA2FF' } : location.pathname === '/Profil' ? { height: "80px", background: '#1FA2FF' } : { height: "80px" }}>
+      <Wrapper className="flexCenter animate whiteBg" style={y > 100 ? { height: "60px", background: '#1FA2FF' } : location.pathname === '/Profil' || location.pathname === '/Event' || location.pathname === '/Litbang' ? { height: "80px", background: '#1FA2FF' } : { height: "80px" }}>
         <NavInner className="container flexSpaceCenter">
           <Link to="/" className="pointer flexNullCenter" >
             {/* <LogoIcon /> */}
@@ -68,15 +76,43 @@ export default function TopNavbar() {
                 <MenuItem onClick={handleClose}>Logout</MenuItem> */}
               </Menu>
               <Button
-              className="text-capitalize"
+                className="text-capitalize"
                 activeClass="active"
                 aria-controls={open ? 'basic-menu' : undefined}
                 aria-haspopup="true"
                 aria-expanded={open ? 'true' : undefined}
                 onClick={handleClick}
-                style={{ padding: "10px 15px", color: "#fff",}} offset={-80}
+                style={{ padding: "10px 15px", color: "#fff", }} offset={-80}
               >
                 Profil
+              </Button>
+
+            </li>
+            <li className="semiBold font15 pointer">
+              <Menu
+
+                anchorEl={litbang}
+                open={openLitbang}
+                onClose={handleCloseLitbang}
+                MenuListProps={{
+                  'aria-labelledby': 'basic-button',
+                }}
+              >
+                <MenuItem >  <Link activeClass="active" to="/Litbang" style={{ padding: "10px 15px", color: "#000" }} offset={-80}>
+                  Litbang
+                </Link></MenuItem>
+
+              </Menu>
+              <Button
+                className="text-capitalize"
+                activeClass="active"
+                aria-controls={openLitbang ? 'basic-menu' : undefined}
+                aria-haspopup="true"
+                aria-expanded={openLitbang ? 'true' : undefined}
+                onClick={handleClickLitbang}
+                style={{ padding: "10px 15px", color: "#fff", }} offset={-80}
+              >
+                Litbang
               </Button>
 
             </li>

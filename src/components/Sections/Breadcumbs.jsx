@@ -13,9 +13,9 @@ const StyledBreadcrumb = styled(Chip)(({ theme }) => {
 });
 
 
-export default function Breadcumbs() {
+export default function Breadcumbs(page) {
   const location = useLocation();
-  console.log(location.pathname);
+  console.log(location);
   return (
     <div className="container">
       <div role="presentation" className="asik-breadcrumbs">
@@ -29,7 +29,7 @@ export default function Breadcumbs() {
           />
           <StyledBreadcrumb component="a" className="no-button" href="#" label="Profil" />
           <StyledBreadcrumb
-            label={"Tentang Lembaga"}
+            label={location.pathname}
             className="active-page"
             deleteIcon={<ExpandMoreIcon />}
 
