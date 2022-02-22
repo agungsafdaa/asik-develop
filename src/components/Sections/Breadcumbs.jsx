@@ -15,7 +15,7 @@ const StyledBreadcrumb = styled(Chip)(({ theme }) => {
 
 export default function Breadcumbs(page) {
   const location = useLocation();
-  console.log(location);
+
   return (
     <div className="container">
       <div role="presentation" className="asik-breadcrumbs">

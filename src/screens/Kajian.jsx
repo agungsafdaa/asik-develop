@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
 // import Projects from "../components/Sections/Projects";
 import Breadcumbs from "../components/Sections/Breadcumbs";
 import TextField from '@mui/material/TextField';
 import { Link } from 'react-router-dom'
-
+import axios from 'axios';
 import styled from "styled-components";
 import DateAdapter from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
@@ -16,12 +16,15 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-import Button from "@mui/material/Button";
+
 import Typography from "@mui/material/Typography";
-import Grid from "@mui/material/Grid";
+import { CircularProgress } from '@mui/material';
+
 function createData(Judul, Kategori, Opd, Tahun, Tags, Notes) {
     return { Judul, Kategori, Opd, Tahun, Tags, Notes };
 }
+
+
 
 const rows = [
     createData('Palembang Digital', 'Palembang Digital', 'BAPPEDA LITBANG', 2021, 'Digital, Media', 'Kemajuan dunia teknologi'),
@@ -31,17 +34,53 @@ const rows = [
 
 
 export default function Event(props) {
-    const [value, setValue] = React.useState(null);
+    const [value, setValue] = useState(null);
     const [namaPage, setNamaPage] = useState(
         'Event & Kegiatan'
     );
+
+    const [inovasi, setInovasi] = useState([])
+    const [loading, setLoading] = useState(false)
+
+    const getKajian = async () => {
+        setLoading(true)
+        try {
+            let url = "https://asik.palembang.go.id/api/inovasis"
+            const response = await axios.get(url, {
+            });
+            if(response.status === 200){
+                setInovasi(response.data)
+                setLoading(false)
+            }
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    const getFilterKajian = async () => {
+        setLoading(true)
+        try {
+            let url = "https://asik.palembang.go.id/api/inovasis?filters[Nama_opd][$contains]=Dinas%20Pariwisata"
+            const response = await axios.get(url, {
+            });
+            if(response.status === 200){
+                setInovasi(response.data)
+                setLoading(false)
+            }
+        } catch (error) {
+            throw error;
+        }
+     
+    }
+    console.log(rows)
+    console.log(inovasi.data)
+    useEffect(() => {
+        getKajian()
+    })
+ 
     return (
         <>
-
-
-
             <Breadcumbs page={namaPage} />
-
 
 
             <Wrapper id="blog">
@@ -88,7 +127,7 @@ export default function Event(props) {
                             </Card>
                         </div>
 
-                        <TableContainer component={Paper}>
+                        {loading === true ? <CircularProgress /> : <TableContainer component={Paper}>
                             <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                                 <TableHead className="table-head">
                                     <TableRow>
@@ -101,25 +140,26 @@ export default function Event(props) {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {rows.map((row) => (
+                                    {inovasi.data.map((row) => (
+
                                         <TableRow
-                                            key={row.judul}
+                                            key={row.id}
                                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                         >
                                             <TableCell component="th" scope="row">
-                                              <Link to="/">  {row.Judul}</Link>
+                                                <Link to="/">  {row.attributes.Bentuk_inovasi}</Link>
                                             </TableCell>
-                                            <TableCell align="right">{row.Kategori}</TableCell>
-                                            <TableCell align="right">{row.Opd}</TableCell>
-                                            <TableCell align="right">{row.Tahun}</TableCell>
-                                            <TableCell align="right">{row.Tags}</TableCell>
-                                            <TableCell align="right">{row.Notes}</TableCell>
+                                            <TableCell align="right">{row.attributes.Nama_opd}</TableCell>
+                                            <TableCell align="right">{row.attributes.Hasil_inovasi}</TableCell>
+                                            <TableCell align="right">{row.attributes.Inisiator_inovasi}</TableCell>
+                                            <TableCell align="right">{row.attributes.Jenis_inovasi}</TableCell>
+                                            <TableCell align="right">{row.attributes.Manfaat_inovasi}</TableCell>
                                         </TableRow>
                                     ))}
                                 </TableBody>
                             </Table>
                         </TableContainer>
-
+                        }
                         <nav className="pagination-area">
                             <ul className='pagination-asik'>
                                 <button name="subject" className="see-all-button disabled" value="Sebelumnya" type="submit" disabled>
