@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
-// import Projects from "../components/Sections/Projects";
+
 import Breadcumbs from "../components/Sections/Breadcumbs";
 import TextField from '@mui/material/TextField';
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 import styled from "styled-components";
-import DateAdapter from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import DatePicker from '@mui/lab/DatePicker';
 import Card from "@mui/material/Card";
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
@@ -16,32 +13,26 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
-
 import Typography from "@mui/material/Typography";
 import { CircularProgress } from '@mui/material';
 
-function createData(Judul, Kategori, Opd, Tahun, Tags, Notes) {
-    return { Judul, Kategori, Opd, Tahun, Tags, Notes };
-}
-
-
-
-const rows = [
-    createData('Palembang Digital', 'Palembang Digital', 'BAPPEDA LITBANG', 2021, 'Digital, Media', 'Kemajuan dunia teknologi'),
-    createData('Konsep Pengembangan dan Pengelolaan Taman', 'Konsep Pengembangan dan Pengelolaan Taman', 'BAPPEDA LITBANG', 2018, 'Digital, Media', 'Kemajuan dunia teknologi'),
-
-];
-
-
 export default function Event(props) {
-    const [value, setValue] = useState(null);
+  
+    const [state, setState] = useState({});
+    // eslint-disable-next-line no-unused-vars
     const [namaPage, setNamaPage] = useState(
         'Event & Kegiatan'
     );
 
     const [inovasi, setInovasi] = useState([])
     const [loading, setLoading] = useState(false)
+    const handleChange = async ({ target: { name, value } }) => {
 
+        setState({
+          ...state,
+          [name]: value,
+        });
+    }
     const getKajian = async () => {
         setLoading(true)
         try {
@@ -49,7 +40,7 @@ export default function Event(props) {
             const response = await axios.get(url, {
             });
             if(response.status === 200){
-                setInovasi(response.data)
+                setInovasi(response.data.data)
                 setLoading(false)
             }
         } catch (error) {
@@ -60,11 +51,12 @@ export default function Event(props) {
     const getFilterKajian = async () => {
         setLoading(true)
         try {
-            let url = "https://asik.palembang.go.id/api/inovasis?filters[Nama_opd][$contains]=Dinas%20Pariwisata"
+            let url = "https://asik.palembang.go.id/api/inovasis?filters[Nama_opd][$contains]=" + state.opd + "&filters[Waktu_uji_coba][$contains]=" + state.tanggal_kegiatan + "&filters[Nama_inovasi][$contains]=" + state.nama_inovasi
+            // http://103.138.143.35:1337/api/inovasis?filters[Nama_opd][$contains]=Kecamatan%20Sematang%20Borang&filters[Waktu_uji_coba][$contains]=2022-02-15
             const response = await axios.get(url, {
             });
             if(response.status === 200){
-                setInovasi(response.data)
+                setInovasi(response.data.data)
                 setLoading(false)
             }
         } catch (error) {
@@ -72,12 +64,11 @@ export default function Event(props) {
         }
      
     }
-    console.log(rows)
-    console.log(inovasi.data)
+
     useEffect(() => {
         getKajian()
-    })
- 
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
     return (
         <>
             <Breadcumbs page={namaPage} />
@@ -107,20 +98,10 @@ export default function Event(props) {
                                     <Typography>Cari Berdasarkan</Typography>
                                 </div>
                                 <div className="search-bar">
-                                    <TextField id="outlined-basic" label="OPD" variant="outlined" />
-                                    <LocalizationProvider dateAdapter={DateAdapter}>
-                                        <DatePicker
-                                            label="Tahun"
-                                            value={value}
-                                            inputFormat="dd/MM/yyyy"
-                                            onChange={(newValue) => {
-                                                setValue(newValue);
-                                            }}
-                                            renderInput={(params) => <TextField {...params} />}
-                                        />
-                                    </LocalizationProvider>
-                                    <TextField id="outlined-basic" label="Temukan Kegiatan & Event" variant="outlined" />
-                                    <button name="subject" className="see-all-button">
+                                    <TextField id="outlined-basic" name="opd" label="OPD" variant="outlined"  onChange={handleChange} value={state.opd || ''} />
+                                    <TextField id="outlined-basic" type="date" InputLabelProps={{ shrink: true }}  name="tanggal_kegiatan" label="Tanggal Kegiatan" variant="outlined"  onChange={handleChange} value={state.tanggal_kegiatan || ''} />
+                                    <TextField id="outlined-basic" name="nama_inovasi" label="Temukan Kegiatan & Event" variant="outlined"  onChange={handleChange} value={state.nama_inovasi || ' '}/>
+                                    <button onClick={getFilterKajian} name="subject" className="see-all-button">
                                         Cari
                                     </button>
                                 </div>
@@ -131,16 +112,17 @@ export default function Event(props) {
                             <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                                 <TableHead className="table-head">
                                     <TableRow>
-                                        <TableCell>Judul</TableCell>
-                                        <TableCell align="right">Kategori</TableCell>
-                                        <TableCell align="right">OPD</TableCell>
-                                        <TableCell align="right">Tahun</TableCell>
-                                        <TableCell align="right">Tags</TableCell>
-                                        <TableCell align="right">Notes</TableCell>
+                                        <TableCell>Bentuk Inovasi</TableCell>
+                                        <TableCell>Nama Inovasi</TableCell>
+                                        <TableCell>Nama OPD</TableCell>
+                                        <TableCell>Hasil Inovasi</TableCell>
+                                        <TableCell>Inisiator Inovasi</TableCell>
+                                        <TableCell>Jenis Inovasi</TableCell>
+                                        <TableCell>Manfaat Inovasi</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {inovasi.data.map((row) => (
+                                    {inovasi.map((row) => (
 
                                         <TableRow
                                             key={row.id}
@@ -149,11 +131,14 @@ export default function Event(props) {
                                             <TableCell component="th" scope="row">
                                                 <Link to="/">  {row.attributes.Bentuk_inovasi}</Link>
                                             </TableCell>
-                                            <TableCell align="right">{row.attributes.Nama_opd}</TableCell>
-                                            <TableCell align="right">{row.attributes.Hasil_inovasi}</TableCell>
-                                            <TableCell align="right">{row.attributes.Inisiator_inovasi}</TableCell>
-                                            <TableCell align="right">{row.attributes.Jenis_inovasi}</TableCell>
-                                            <TableCell align="right">{row.attributes.Manfaat_inovasi}</TableCell>
+                                            <TableCell component="th" scope="row">
+                                                <Link to="/">  {row.attributes.Nama_inovasi}</Link>
+                                            </TableCell>
+                                            <TableCell>{row.attributes.Nama_opd}</TableCell>
+                                            <TableCell >{row.attributes.Hasil_inovasi}</TableCell>
+                                            <TableCell>{row.attributes.Inisiator_inovasi}</TableCell>
+                                            <TableCell>{row.attributes.Jenis_inovasi}</TableCell>
+                                            <TableCell>{row.attributes.Manfaat_inovasi}</TableCell>
                                         </TableRow>
                                     ))}
                                 </TableBody>
@@ -212,10 +197,5 @@ const Wrapper = styled.section`
   padding-top: 20px;
   padding-bottom:20px;
 `;
-const HeaderInfo = styled.div`
-  margin-bottom: 30px;
-  @media (max-width: 860px) {
-    text-align: center;
-  }
-`;
+
 
