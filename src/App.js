@@ -14,7 +14,7 @@ export default function tree() {
 
   return (
     <>
-  <CircularProgress />
+  {/* <CircularProgress /> */}
       <Routes>
         
         <Route path="/" element={<App />}>

@@ -10,8 +10,8 @@ body{
 border-radius: 14px!important;
 width:100%!important;
     &:hover{
-        background: #1588DB!important;
-        border: 1px solid #1588DA!important;  
+        background:#D94148!important;
+    border: 1px solid #D94148!important;
     }
     @include lt-sm{
         font-size:8px!important;
@@ -77,8 +77,8 @@ width:100%!important;
 
 .button-asik{
     color:#fff!important; 
-    background: #1588DB!important;
-    border: 1px solid #1588DA!important;
+    background:#D94148!important;
+    border: 1px solid #D94148!important;
     width:100%!important;  
     border-radius: 14px!important;
     &:hover{
@@ -112,15 +112,15 @@ svg{
 }
 
 .see-all-button{
-    color:#1588DA!important; 
+    color:$asik-color2!important; 
     background: transparent!important;
-    border: 1px solid #1588DA!important;
+    border: 1px solid $border-asik!important;
     text-transform: capitalize!important;
     padding:10px!important;
     border-radius: 14px!important;
     &:hover{
-        background:#1588DA!important;
-    border: 1px solid #1588DA!important;
+        background:$asik-bg!important;
+    border: 1px solid $border-asik!important;
     color:#fff!important; 
     }
 }
@@ -130,7 +130,7 @@ svg{
 }
 
 .footer-bg{
-    background:#010E36;
+    background: $asik-bg;
 }
 
 

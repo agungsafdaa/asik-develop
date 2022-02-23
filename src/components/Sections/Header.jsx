@@ -9,21 +9,18 @@ export default function Header(props) {
   console.log(props)
   return (
     <Wrapper id="home" className="hero-element">
+      <video  loop="true" autoplay="autoplay"  muted   id="myVideo"   className="video-asik">
+        <source src="https://palembang.go.id/asset/video/Profil_Kota_Palembang_2019.mp4" type="video/mp4"/>
+        Your browser does not support HTML5 video.
+      </video>
 
-      <div className="container">
-        <div className="welcome-text">
-          <div className="welcome-heading">
-            <h3 className="welcome-heading ">Memahami dan memecahkan masalah Kota Palembang secara ilmiah</h3>
-
-          </div>
-
-
-        </div>
+    <div className="hero-content">
+    <div className="container">
         <div className="counter-layanan">
           <BtnWrapper className="test">
             <h4>265</h4>
 
-            <Button className="button-asik">Inovasi Daerah</Button>
+            <Button className="button-asik-border-white">Inovasi Daerah</Button>
           </BtnWrapper>
           <BtnWrapper className="test">
             <h4>33</h4>
@@ -35,10 +32,19 @@ export default function Header(props) {
 
             <Button className="button-asik-border-white">Regulasi</Button>
           </BtnWrapper>
+
         </div>
       </div>
+      <div className="welcome-text">
+        <div className="container">
+          <div className="welcome-heading">
+            <h3 className="welcome-heading ">Memahami dan memecahkan masalah Kota Palembang secara ilmiah</h3>
 
+          </div>
 
+        </div>
+      </div>
+    </div>
     </Wrapper>
   );
 }

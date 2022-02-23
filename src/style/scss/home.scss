@@ -9,18 +9,44 @@ background: #A3D9FF;
   background-size: cover;
   color:#fff;
 }
+
+.video-asik{
+    
+    z-index: -1;
+    max-width: 100%;
+    max-height: 100%;
+
+}
 .hero-element{
-    padding-top: 80px;
+ 
     width: 100%;
     min-height: 697px;
-   background-image:url('../../assets/img/hero.png');
+  
    background-repeat: no-repeat;
   background-size: cover;
   color:#fff;
+  display: flex;
+  
+  flex-direction: column;
+  justify-content: flex-end;
+ 
+     @include lt-sm{
+        min-height: 0;
+     }
+  .hero-content{
+    position: absolute;
+    top: 64%;
+    width: 100%;
+    @include lt-sm{
+        top: 11%;
+ 
+    background: #00000069;
+    }
     .welcome-text{
-        padding: 17% 10% 10% 10%;
+        z-index: 999;
         color:#fff;
         text-align: center;
+        margin: 3%;
        .welcome-heading{
             font-size:28px;
             font-weight:500;
@@ -29,7 +55,7 @@ background: #A3D9FF;
        @include lt-sm{
            .welcome-heading{
                font-size:14px;
-               height: 350px;
+            
                display: flex;
            
                align-items: flex-end;
@@ -39,12 +65,13 @@ background: #A3D9FF;
     }
     .counter-layanan{
         display: flex;
+        z-index: 999;
         gap: 12px;
         justify-content: center;
-        position: relative;
+       
         text-align: center;
-        top: 70px;
-
+     
+        margin:10px;
         h4{
             font-size:60px;
             @include lt-sm{
@@ -53,6 +80,8 @@ background: #A3D9FF;
             }
         }
        }
+  }
+ 
 }
 
 
@@ -74,20 +103,53 @@ background: #A3D9FF;
         }
         .widget-button{
             display: flex;
-            background: #1FA2FF;
+            background:#E32922;
             flex-direction: column;
-            /* background: blue; */
             margin: 10px 30px 10px 30px;
             border-radius: 32px;
             color: #fff;
             padding: 32px;
-            width: 141px;
+            width: 157px;
+            height: 190px;
             font-size:16px;
-           height: 150px;
+          
+           .border-widget{
+                background: #FD4D26;
+                border: 4px solid #FFFFFF;
+                border-radius: 100px;
+                padding: 13px;
+                @include lt-sm{
+                    padding:2px;
+                 }
+           }
            img{
-            width:20px;
-            padding:0 0 10px 0;
-        }
+            width: 20px;
+        
+            display: flex;
+            @include lt-sm{
+                padding: 3px;
+            }
+             }
+             p{
+                margin:5px;
+                 padding:10px;
+                 background: #DC3A3D;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            border-radius: 100px;
+            width: 100%;
+                 &:hover{
+                    background: rgba(217, 184, 65, 0.71);
+                   
+                  
+                 }
+
+                 @include lt-sm{
+                    font-size: 12px;
+                    margin: 7px;
+                    padding:0;
+                    width: 56px
+                 }
+             }
           
         }
         @include lt-sm{
@@ -106,7 +168,7 @@ background: #A3D9FF;
                 text-transform: capitalize!important;
                 img{
                     width:20px;
-                    padding:0 0 10px 0;
+                  
                 }
             }
         }

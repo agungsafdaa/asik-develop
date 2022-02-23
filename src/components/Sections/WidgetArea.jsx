@@ -1,8 +1,6 @@
 import React from "react";
-
 import styled from "styled-components";
-
-
+import Typography from "@mui/material/Typography";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import Grid from '@mui/material/Grid';
@@ -47,43 +45,68 @@ export default function WidgetArea(props) {
 
                             </Swiper>
                         </Grid>
-                        <Grid item  lg={8} xs={12} md={12}  className="widget-center">
-                          
+                        <Grid item lg={8} xs={12} md={12} className="widget-center">
+
                             <div className="widget-area">
                                 <Button className="widget-button">
-                                <img src="/assets/images/widget/galeri.svg" alt="galeri icon" />
-                                    galeri
+                                    <div className="border-widget">
+                                        <img src="/assets/images/widget/galeri.svg" alt="galeri icon" />
+                                    </div>
+                                    <Typography>galeri</Typography>
                                 </Button>
                                 <Button className="widget-button">
-                                <img src="/assets/images/widget/biotech.svg" alt="Kajian" />
-                                     Kajian
+                                    <div className="border-widget">
+                                        <img src="/assets/images/widget/biotech.svg" alt="Kajian" />
+                                    </div>
+                                    <Typography>Kajian</Typography>
                                 </Button>
                                 <Button className="widget-button">
-                                <img src="/assets/images/widget/inovasi.svg" alt="inovasi" />
-                                inovasi
+                                    <div className="border-widget">
+                                        <img src="/assets/images/widget/inovasi.svg" alt="inovasi" />
+                                    </div>
+                                    <Typography>inovasi</Typography>
                                 </Button>
                                 <Button className="widget-button">
-                                <img src="/assets/images/widget/kontak.svg" alt="kontak" />
-                                kontak
+                                    <div className="border-widget">
+                                        <img src="/assets/images/widget/kontak.svg" alt="kontak" />
+                                    </div>
+                                    <Typography>kontak</Typography>
                                 </Button>
                                 <Button className="widget-button">
-                                <img src="/assets/images/widget/idsd.svg" alt="idsd" />
-                                    IDSD
+                                    <div className="border-widget">
+                                        <img src="/assets/images/widget/idsd.svg" alt="idsd" />
+                                    </div>
+                                    <Typography>IDSD</Typography>
+
+
                                 </Button>
                                 <Button className="widget-button">
-                                <img src="/assets/images/widget/ipkd.svg" alt="ipkd" />
-                                    IPKD
+                                    <div className="border-widget">
+                                        <img src="/assets/images/widget/ipkd.svg" alt="ipkd" />
+                                    </div>
+                                    <Typography>IPKD</Typography>
+
+
                                 </Button>
                                 <Button className="widget-button">
-                                <img src="/assets/images/widget/iga.svg" alt="iga" />
-                                    IGA
+                                    <div className="border-widget">
+                                        <img src="/assets/images/widget/iga.svg" alt="iga" />
+                                    </div>
+                                    <Typography>IGA</Typography>
+
+
                                 </Button>
                                 <Button className="widget-button">
-                                <img src="/assets/images/widget/rinduk.svg" alt="rinduk" />
-                                    RINDUK
+                                    <div className="border-widget">
+                                        <img src="/assets/images/widget/rinduk.svg" alt="rinduk" />
+                                    </div>
+                                    <Typography>RINDUK</Typography>
+
+
+
                                 </Button>
                             </div>
-                          
+
                         </Grid>
                     </Grid>
 
