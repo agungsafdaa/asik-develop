@@ -3,15 +3,16 @@ import styled from "styled-components";
 
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
-
+import { useLocation } from 'react-router-dom'
 export default function Contact() {
 
   const getCurrentYear = () => {
     return new Date().getFullYear();
   }
+  const location = useLocation();
 
   return (
-    <Wrapper>
+    <Wrapper className={location.pathname === '/login' || location.pathname === '/dashboard' || location.pathname === '/tambahInovasi' ? 'display-none' : ''}>
       <div className="footer-bg">
         <div className="container">
           <div className="footer-section">

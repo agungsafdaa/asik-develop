@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-
 import Breadcumbs from "../components/Sections/Breadcumbs";
 import TextField from '@mui/material/TextField';
 import { Link } from 'react-router-dom'
@@ -36,7 +35,7 @@ export default function Event(props) {
     const getKajian = async () => {
         setLoading(true)
         try {
-            let url = "https://asik.palembang.go.id/api/inovasis"
+            let url = "https://asik.palembang.go.id/api/inovasis?filters[Publish][$ne]=false"
             const response = await axios.get(url, {
             });
             if(response.status === 200){
@@ -51,7 +50,7 @@ export default function Event(props) {
     const getFilterKajian = async () => {
         setLoading(true)
         try {
-            let url = "https://asik.palembang.go.id/api/inovasis?filters[Nama_opd][$contains]=" + state.opd + "&filters[Waktu_uji_coba][$contains]=" + state.tanggal_kegiatan + "&filters[Nama_inovasi][$contains]=" + state.nama_inovasi
+            let url = "https://asik.palembang.go.id/api/inovasis?filters[Publish][$ne]=false&filters[Inisiator_inovasi][$contains]=" + state.opd + "&filters[Waktu_uji_coba][$contains]=" + state.tanggal_kegiatan + "&filters[Nama_inovasi][$contains]=" + state.nama_inovasi
             // http://103.138.143.35:1337/api/inovasis?filters[Nama_opd][$contains]=Kecamatan%20Sematang%20Borang&filters[Waktu_uji_coba][$contains]=2022-02-15
             const response = await axios.get(url, {
             });
@@ -109,8 +108,8 @@ export default function Event(props) {
                         </div>
 
                         {loading === true ? <CircularProgress /> : <TableContainer component={Paper}>
-                            <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-                                <TableHead className="table-head">
+                            <Table sx={{ minWidth: 650 }} size="small"  aria-label="a dense table">
+                                <TableHead className="table-inovasi">
                                     <TableRow>
                                         <TableCell>Bentuk Inovasi</TableCell>
                                         <TableCell>Nama Inovasi</TableCell>

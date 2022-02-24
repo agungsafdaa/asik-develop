@@ -1,0 +1,177 @@
+.dashboard{
+    .dashboard-menu{
+        position:fixed;
+        background: #333333;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to bottom, #dd1818, #333333);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to bottom, #dd1818, #333333); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+        width: 17%;
+        max-width: 17%;
+        height:100%;
+        max-height: 100%;
+        color:#fff;
+
+        .logo{
+            img{
+                max-width:100%;
+                width:50%;
+            }
+            text-transform: uppercase;
+            text-align: center;
+            margin:50px;
+        }
+    }
+
+    .dashboard-navbar{
+        background:#fff;
+        .navbar{
+            justify-content: space-between;
+        }
+    }
+
+    .info-home{
+       h1{
+        font-weight: 500;
+        font-size: 1.5rem;
+       }
+       padding: 0 0 20px 0;
+       border-bottom: 1px solid rgb(160, 160, 160);;
+    }
+
+    .overview-menu{
+     
+        display:flex;
+        margin:50px 0 20px 0;
+        grid-gap:35px;
+        .card-overview{
+            border-radius:15px;
+            width:25%;
+           
+            box-shadow: 2px 2px 2px rgba(0,0,0,.15);
+           .content{
+            display:flex!important;
+            align-items: center;
+            justify-content: space-around;
+            .icon{
+              font-size:60px;
+              color:#ebebeb;
+            }
+            .infografis{
+                display: flex;
+                flex-direction: column;
+                font-size:18px;
+            }
+           }
+           
+        }
+    }
+
+    .information{
+        margin:20px 0 20px 0;
+    }
+
+    .content-dashboard{
+        // height: 630px;
+        // overflow: scroll;
+        // overflow-x: hidden;
+        color:#000;
+        padding: 10px;
+        margin:5%;
+    }
+
+
+    .list-inovasi{
+        margin:70px 0 20px 0;
+        .card-inovasi{
+            border-radius:10px;
+            box-shadow: 2px 2px 2px rgba(0,0,0,.15);
+         
+           
+           .heading-card{
+            p{
+            
+                font-weight: 700;
+                font-size: 120%;
+               }
+               display:flex;
+               justify-content: space-between;
+               margin: 20px 0 20px 0;
+               align-items: baseline;
+               .search-area{
+                display:flex;
+                grid-gap:10px;
+               }
+         
+           }
+           
+        }
+
+
+        .form-inovasi{
+            .form-opd{
+              
+               
+                margin:20px 10px  20px 10px;
+
+                .select-asik{
+                    background: #E7EBF0;
+             
+                    border-radius: 8px;
+                    border-color: #B2BAC2;
+                }
+
+                input{
+                    width: 1040px;
+                font-size: 0.875rem;
+                font-family: IBM Plex Sans,sans-serif;
+                font-weight: 400;
+                line-height: 1.5;
+                color: #1A2027;
+                background: #F3F6F9;
+                border: 1px solid #CDD2D7;
+                border-radius: 8px;
+                padding: 12px 12px;
+                }
+            }
+            .form-opd-grid{
+                margin:9px;
+                display:flex;
+                grid-gap:10px;
+                .select-asik{
+                    background: #E7EBF0;
+             
+                    border-radius: 8px;
+                    border-color: #B2BAC2;
+                }
+               .tanggal{
+                
+                   input{
+                       width:100%;
+                   }
+               }
+            }
+
+            .form-opd-grid-tanggal{
+                margin:9px;
+                display:grid;
+                grid-template-columns:50% 50%;
+                grid-gap:10px;
+                .select-asik{
+                    background: #E7EBF0;
+                    border-radius: 8px;
+                    border-color: #B2BAC2;
+                }
+               .tanggal{
+                   input{
+                       width:93%;
+                   }
+               }
+            }
+        }
+
+        .table-inovasi{
+            background:none!important;
+        }
+    }
+
+}

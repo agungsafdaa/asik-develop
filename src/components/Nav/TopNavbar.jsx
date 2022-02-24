@@ -42,7 +42,7 @@ export default function TopNavbar() {
     <>
       <Sidebar sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
       {sidebarOpen && <Backdrop toggleSidebar={toggleSidebar} />}
-      <Wrapper className="flexCenter animate whiteBg" style={y > 100 ? { height: "60px", background: '#A70000' } : location.pathname === '/Profil' || location.pathname === '/Event' || location.pathname === '/Litbang' ? { height: "80px", background: '#A70000' } : { height: "80px" }}>
+      <Wrapper className={location.pathname === '/login' || location.pathname === '/dashboard' || location.pathname === '/tambahInovasi' ? 'display-none' : "flexCenter animate whiteBg"} style={y > 100 ? { height: "60px", background: '#A70000' } : location.pathname === '/Profil' || location.pathname === '/Event' || location.pathname === '/Litbang' ? { height: "80px", background: '#A70000' } : { display: "80px" }}>
         <NavInner className="container flexSpaceCenter">
           <Link to="/" className="pointer flexNullCenter" >
             {/* <LogoIcon /> */}

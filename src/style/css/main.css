@@ -223,6 +223,13 @@ body {
   .table-head th {
     color: #fff !important; }
 
+input:-webkit-autofill {
+  box-shadow: transparent;
+  -webkit-text-fill-color: #303030 !important; }
+
+.display-none {
+  display: none; }
+
 .hero-element-media {
   padding-top: 80px;
   width: 100%;
@@ -375,6 +382,41 @@ body {
   .tentang-lembaga .tugas {
     padding: 10px 0 0 30px; }
 
+.login-area {
+  width: 100%;
+  min-height: 697px;
+  background-image: url("../../assets/img/hero.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff; }
+  .login-area .login-page {
+    display: flex;
+    min-height: 697px;
+    justify-content: flex-end;
+    align-content: flex-end;
+    align-items: stretch; }
+    .login-area .login-page .login-card {
+      background-image: url("../../assets/img/login.png");
+      background-size: cover;
+      background-repeat: no-repeat;
+      height: 760px;
+      width: 50%;
+      padding: 10%; }
+      @media screen and (max-width: 599px) {
+        .login-area .login-page .login-card {
+          width: 100%;
+          display: flex;
+          align-items: center; } }
+      .login-area .login-page .login-card .card-login {
+        border-radius: 26px !important;
+        padding: 5%; }
+        .login-area .login-page .login-card .card-login .form-login {
+          display: flex;
+          flex-direction: column; }
+          .login-area .login-page .login-card .card-login .form-login button {
+            background: #DC3A3D !important;
+            color: #FFFFFF !important; }
+
 .footer-section {
   padding: 30px 0 30px 0; }
   .footer-section .heading-footer {
@@ -406,5 +448,117 @@ body {
       @media screen and (max-width: 599px) {
         .footer-section .copyright .bappeda-litbang-copyright {
           width: 100%; } }
+
+.dashboard .dashboard-menu {
+  position: fixed;
+  background: #333333;
+  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #dd1818, #333333);
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #dd1818, #333333);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  width: 17%;
+  max-width: 17%;
+  height: 100%;
+  max-height: 100%;
+  color: #fff; }
+  .dashboard .dashboard-menu .logo {
+    text-transform: uppercase;
+    text-align: center;
+    margin: 50px; }
+    .dashboard .dashboard-menu .logo img {
+      max-width: 100%;
+      width: 50%; }
+.dashboard .dashboard-navbar {
+  background: #fff; }
+  .dashboard .dashboard-navbar .navbar {
+    justify-content: space-between; }
+.dashboard .info-home {
+  padding: 0 0 20px 0;
+  border-bottom: 1px solid #a0a0a0; }
+  .dashboard .info-home h1 {
+    font-weight: 500;
+    font-size: 1.5rem; }
+.dashboard .overview-menu {
+  display: flex;
+  margin: 50px 0 20px 0;
+  grid-gap: 35px; }
+  .dashboard .overview-menu .card-overview {
+    border-radius: 15px;
+    width: 25%;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.15); }
+    .dashboard .overview-menu .card-overview .content {
+      display: flex !important;
+      align-items: center;
+      justify-content: space-around; }
+      .dashboard .overview-menu .card-overview .content .icon {
+        font-size: 60px;
+        color: #ebebeb; }
+      .dashboard .overview-menu .card-overview .content .infografis {
+        display: flex;
+        flex-direction: column;
+        font-size: 18px; }
+.dashboard .information {
+  margin: 20px 0 20px 0; }
+.dashboard .content-dashboard {
+  color: #000;
+  padding: 10px;
+  margin: 5%; }
+.dashboard .list-inovasi {
+  margin: 70px 0 20px 0; }
+  .dashboard .list-inovasi .card-inovasi {
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.15); }
+    .dashboard .list-inovasi .card-inovasi .heading-card {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px 0 20px 0;
+      align-items: baseline; }
+      .dashboard .list-inovasi .card-inovasi .heading-card p {
+        font-weight: 700;
+        font-size: 120%; }
+      .dashboard .list-inovasi .card-inovasi .heading-card .search-area {
+        display: flex;
+        grid-gap: 10px; }
+  .dashboard .list-inovasi .form-inovasi .form-opd {
+    margin: 20px 10px  20px 10px; }
+    .dashboard .list-inovasi .form-inovasi .form-opd .select-asik {
+      background: #E7EBF0;
+      border-radius: 8px;
+      border-color: #B2BAC2; }
+    .dashboard .list-inovasi .form-inovasi .form-opd input {
+      width: 1040px;
+      font-size: 0.875rem;
+      font-family: IBM Plex Sans,sans-serif;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #1A2027;
+      background: #F3F6F9;
+      border: 1px solid #CDD2D7;
+      border-radius: 8px;
+      padding: 12px 12px; }
+  .dashboard .list-inovasi .form-inovasi .form-opd-grid {
+    margin: 9px;
+    display: flex;
+    grid-gap: 10px; }
+    .dashboard .list-inovasi .form-inovasi .form-opd-grid .select-asik {
+      background: #E7EBF0;
+      border-radius: 8px;
+      border-color: #B2BAC2; }
+    .dashboard .list-inovasi .form-inovasi .form-opd-grid .tanggal input {
+      width: 100%; }
+  .dashboard .list-inovasi .form-inovasi .form-opd-grid-tanggal {
+    margin: 9px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-gap: 10px; }
+    .dashboard .list-inovasi .form-inovasi .form-opd-grid-tanggal .select-asik {
+      background: #E7EBF0;
+      border-radius: 8px;
+      border-color: #B2BAC2; }
+    .dashboard .list-inovasi .form-inovasi .form-opd-grid-tanggal .tanggal input {
+      width: 93%; }
+  .dashboard .list-inovasi .table-inovasi {
+    background: none !important; }
 
 /*# sourceMappingURL=main.css.map */

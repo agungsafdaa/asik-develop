@@ -9,7 +9,7 @@ export default function Header(props) {
   console.log(props)
   return (
     <Wrapper id="home" className="hero-element">
-      <video  loop="true" autoplay="autoplay"  muted   id="myVideo"   className="video-asik">
+      <video  loop="true" autoplay="autoplay" controls muted   id="myVideo"   className="video-asik">
         <source src="https://palembang.go.id/asset/video/Profil_Kota_Palembang_2019.mp4" type="video/mp4"/>
         Your browser does not support HTML5 video.
       </video>

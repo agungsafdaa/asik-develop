@@ -283,3 +283,13 @@ svg{
     color:#fff!important;
   }
 }
+
+input:-webkit-autofill {
+    box-shadow: transparent;
+    -webkit-text-fill-color: #303030!important;
+}
+
+
+.display-none{
+    display:none;
+}
