@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import Card from '@mui/material/Card';
-import TextField from '@mui/material/TextField';
-import { Link } from 'react-router-dom'
+
+import { ToastContainer, toast } from 'react-toastify';
+import LoadingButton from '@mui/lab/LoadingButton';
+import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import Button from '@mui/material/Button';
 import axios from 'axios';
 import Typography from '@mui/material/Typography';
@@ -35,13 +37,24 @@ export default function Login(props) {
             if (response.status === 200) {
                 console.log(response.data)
                 localStorage.setItem("token", response.data.jwt);
-            
+                localStorage.setItem("nama_opd", response.data.user.Nama_opd);
                 return navigate("/dashboard");
             }
         } catch (error) {
-            throw error;
+         console.log(error.response.data.error.message)
+         const messageError = error.response.data.error.message === 'Invalid identifier or password'  ? 'Username/Password Salah' : error.response.data.error.message
+            toast.error(messageError, {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            setLoading(false)
         }
-    }   
+    }
 
     return (
         <>
@@ -50,25 +63,51 @@ export default function Login(props) {
                     <div className="login-card">
                         <Card className="card-login">
                             <CardContent>
+                                <ToastContainer
+                                    position="top-right"
+                                    autoClose={5000}
+                                    hideProgressBar={false}
+                                    newestOnTop={false}
+                                    closeOnClick
+                                    rtl={false}
+                                    pauseOnFocusLoss
+                                    draggable
+                                    pauseOnHover
+                                />
 
-                               
                                 <Typography sx={{ fontSize: 14 }} color="text.secondary" >
-                                   
+
                                     Selamat Datang
                                 </Typography>
                                 <Typography variant="h6" component="div" gutterBottom>
-                                Silahkan Login
+                                    Silahkan Login
                                 </Typography>
-                                <div className="form-login">
-                                    <TextField  label="Username" variant="outlined" onChange={handleChange}
-                                        type="text"
-                                        name="username"
-                                        value={state.username || ''}
-                                        placeholder='username' helperText="Harap disi." required />
-                                    <TextField  type="password" onChange={handleChange} name="password"
-                                        value={state.password || ''} label="Password" variant="outlined" helperText="Harap disi." required />
-                                    <Button onClick={getKajian} variant="contained">Login</Button>
-                                </div>
+                                <ValidatorForm
+
+                                    onSubmit={getKajian}
+
+                                >
+                                    <div className="form-login">
+                                        <div className="form">
+                                            <TextValidator label="Username" variant="outlined" onChange={handleChange}
+                                                type="text"
+                                                name="username"
+                                                value={state.username || ''}
+                                                validators={['required']}
+                                                errorMessages={['Harap di isi']}
+                                                placeholder='username' />
+                                        </div>
+                                        <div className="form">
+                                            <TextValidator type="password" onChange={handleChange} name="password"
+                                                validators={['required']}
+                                                errorMessages={['Harap di isi']}
+                                                value={state.password || ''} label="Password" variant="outlined" />
+                                        </div>
+                                        {loading === true ? <LoadingButton className="disabled-button" loading variant="outlined">
+                                            Loading
+                                        </LoadingButton> : <Button className="login-button" variant="contained" type="submit">Login</Button>}
+                                    </div>
+                                </ValidatorForm>
                             </CardContent>
 
                         </Card>

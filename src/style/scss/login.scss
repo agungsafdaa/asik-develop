@@ -30,9 +30,20 @@ color:#fff;
          .form-login{
              display: flex;
              flex-direction: column;
-            button{
+             .form{
+                margin:10px 0 10px 0;
+                input{
+                    width:330px;
+                }
+             }
+            .login-button{
                 background:$asik-color2!important;
                 color: #FFFFFF!important;
+                border-radius: 14px;
+            }
+            
+            .disabled-button{
+                color:#000;
             }
          }
         }

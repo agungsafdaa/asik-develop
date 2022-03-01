@@ -17,6 +17,7 @@ export default function Breadcumbs(page) {
   const location = useLocation();
 
   return (
+    <>
     <div className="container">
       <div role="presentation" className="asik-breadcrumbs">
         <Breadcrumbs aria-label="breadcrumb" >
@@ -37,6 +38,11 @@ export default function Breadcumbs(page) {
         </Breadcrumbs>
       </div>
     </div>
+      <div className="hero-element-media">
+      <div className="bg-gradient"></div>
+  </div>
+    </>
+
   );
 }
 

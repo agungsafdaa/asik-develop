@@ -6,11 +6,11 @@ import styled from "styled-components";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import Grid from '@mui/material/Grid';
-import { Autoplay, Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import {  Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import Button from '@mui/material/Button';
 import 'swiper/css/pagination';
 
-export default function  Berita(props) {
+export default function  Berita() {
 
     return (
         <Wrapper id="services">
@@ -22,7 +22,7 @@ export default function  Berita(props) {
                         <Grid item lg={4} xs={12} md={12}>
                             <Swiper
                                 // install Swiper modules
-                                modules={[Autoplay, Navigation, Pagination, Scrollbar, A11y]}
+                                modules={[Navigation, Pagination, Scrollbar, A11y]}
                                 spaceBetween={50}
                                 slidesPerView={1}
                                 navigation

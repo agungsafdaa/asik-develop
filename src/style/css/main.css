@@ -28,9 +28,9 @@ body {
   .asik-breadcrumbs .no-button {
     background: transparent; }
   .asik-breadcrumbs .active-page {
-    background: #DBF0FF;
+    background: #ffdbdb;
     border-radius: 14px;
-    color: #1588DA; }
+    color: #a70000; }
 
 .text-capitalize {
   text-transform: capitalize; }
@@ -189,14 +189,17 @@ body {
   display: flex;
   justify-content: space-around; }
   .search-area .card-search {
-    width: 70%;
+    width: 100%;
     border-radius: 15px; }
     .search-area .card-search .heading-search {
       padding: 30px 30px 10px 30px; }
     .search-area .card-search .search-bar {
       padding: 10px 20px 20px 20px;
       display: flex;
-      grid-gap: 10px; }
+      grid-gap: 10px;
+      justify-content: space-between; }
+      .search-area .card-search .search-bar input {
+        width: 330px !important; }
       .search-area .card-search .search-bar button {
         width: 30%; }
     .search-area .card-search .filter-area {
@@ -230,14 +233,103 @@ input:-webkit-autofill {
 .display-none {
   display: none; }
 
+.pagination-user {
+  display: flex;
+  justify-content: flex-end; }
+  .pagination-user .pagination-sidemang {
+    display: flex;
+    /* align-items: baseline; */
+    justify-content: center;
+    -webkit-box-flex-wrap: wrap;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-align-items: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    list-style: none; }
+    .pagination-user .pagination-sidemang button {
+      display: -webkit-inline-box;
+      display: -webkit-inline-flex;
+      display: -ms-inline-flexbox;
+      display: inline-flex;
+      -webkit-align-items: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      position: relative;
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+      background-color: transparent;
+      outline: 0;
+      border: 0;
+      margin: 0;
+      border-radius: 0;
+      padding: 0;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      vertical-align: middle;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      -webkit-text-decoration: none;
+      text-decoration: none;
+      color: inherit;
+      font-family: "Roboto","Helvetica","Arial",sans-serif;
+      font-weight: 400;
+      font-size: 0.875rem;
+      line-height: 1.43;
+      letter-spacing: 0.01071em;
+      border-radius: 16px;
+      text-align: center;
+      box-sizing: border-box;
+      min-width: 32px;
+      height: 32px;
+      padding: 0 6px;
+      margin: 0 3px;
+      color: rgba(0, 0, 0, 0.87); }
+    .pagination-user .pagination-sidemang .disabled {
+      opacity: 0.38;
+      pointer-events: none;
+      cursor: default; }
+    .pagination-user .pagination-sidemang .active {
+      color: #fff;
+      background-color: #1976d2; }
+    .pagination-user .pagination-sidemang svg {
+      font-size: 16px; }
+
 .hero-element-media {
-  padding-top: 80px;
   width: 100%;
-  min-height: 697px;
-  background: #A3D9FF;
+  min-height: 330px;
+  background-image: url("../../assets/img/songket2.jpg");
   background-repeat: no-repeat;
-  background-size: cover;
-  color: #fff; }
+  color: #fff;
+  background-size: 100%;
+  background-position: 0 -197px; }
+  @media screen and (max-width: 599px) {
+    .hero-element-media {
+      background-size: cover;
+      background-position: -139px -5px; } }
+  .hero-element-media .bg-gradient {
+    background: #870000;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #621a01, #870000);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #621a01, #870000);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    width: 100%;
+    min-height: 330px;
+    position: relative;
+    opacity: 0.5; }
 
 .video-asik {
   z-index: -1;
@@ -370,6 +462,37 @@ input:-webkit-autofill {
     display: flex;
     justify-content: flex-end; }
 
+.tentang-lembaga .list-pegawai {
+  display: flex !important;
+  align-items: flex-start; }
+  @media screen and (max-width: 599px) {
+    .tentang-lembaga .list-pegawai {
+      flex-direction: column; } }
+
+.daftar-peneliti .heading {
+  margin: 20px; }
+
+.pagination-card {
+  margin: 20px 0 20px 0; }
+
+.detail-inovasi {
+  margin: 20px 0 20px; }
+  .detail-inovasi .judul-inovasi {
+    font-weight: 500;
+    text-transform: capitalize;
+    margin: 20px 0 20px; }
+  .detail-inovasi .hasil-inovasi {
+    margin: 10px 0 10px;
+    display: grid;
+    grid-template-columns: 15% 1% 84%;
+    grid-gap: 10px; }
+  .detail-inovasi .lampiran {
+    margin: 20px 0 20px; }
+    .detail-inovasi .lampiran .lampiran-file {
+      margin: 40px 0 20px; }
+      .detail-inovasi .lampiran .lampiran-file .label {
+        margin: 20px 0 20px; }
+
 .profil {
   padding: 10px 0 10px  0; }
 
@@ -413,9 +536,16 @@ input:-webkit-autofill {
         .login-area .login-page .login-card .card-login .form-login {
           display: flex;
           flex-direction: column; }
-          .login-area .login-page .login-card .card-login .form-login button {
+          .login-area .login-page .login-card .card-login .form-login .form {
+            margin: 10px 0 10px 0; }
+            .login-area .login-page .login-card .card-login .form-login .form input {
+              width: 330px; }
+          .login-area .login-page .login-card .card-login .form-login .login-button {
             background: #DC3A3D !important;
-            color: #FFFFFF !important; }
+            color: #FFFFFF !important;
+            border-radius: 14px; }
+          .login-area .login-page .login-card .card-login .form-login .disabled-button {
+            color: #000; }
 
 .footer-section {
   padding: 30px 0 30px 0; }
@@ -545,6 +675,17 @@ input:-webkit-autofill {
       background: #E7EBF0;
       border-radius: 8px;
       border-color: #B2BAC2; }
+    .dashboard .list-inovasi .form-inovasi .form-opd-grid input {
+      width: 500px;
+      font-size: 0.875rem;
+      font-family: IBM Plex Sans,sans-serif;
+      font-weight: 400;
+      line-height: 1.5;
+      color: #1A2027;
+      background: #F3F6F9;
+      border: 1px solid #CDD2D7;
+      border-radius: 8px;
+      padding: 12px 12px; }
     .dashboard .list-inovasi .form-inovasi .form-opd-grid .tanggal input {
       width: 100%; }
   .dashboard .list-inovasi .form-inovasi .form-opd-grid-tanggal {

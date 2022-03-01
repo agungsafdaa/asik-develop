@@ -14,10 +14,15 @@ export default function TopNavbar() {
   const [sidebarOpen, toggleSidebar] = useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [litbang, setLitbang] = React.useState(null);
+  const [informasi, setInformasi] = React.useState(null);
   const open = Boolean(anchorEl);
+  const openInformasi = Boolean(informasi);
   const openLitbang = Boolean(litbang);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
+  };
+  const handleClickInformasi = (event) => {
+    setInformasi(event.currentTarget);
   };
   const handleClickLitbang = (event) => {
     setLitbang(event.currentTarget);
@@ -25,6 +30,14 @@ export default function TopNavbar() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleCloseInformasi = () => {
+    setInformasi(null);
+  };
+
+
+  
+
   const handleCloseLitbang = () => {
     setLitbang(null);
   };
@@ -36,13 +49,13 @@ export default function TopNavbar() {
   }, [y]);
 
   const location = useLocation();
-  console.log(location.pathname);
+
 
   return (
     <>
       <Sidebar sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
       {sidebarOpen && <Backdrop toggleSidebar={toggleSidebar} />}
-      <Wrapper className={location.pathname === '/login' || location.pathname === '/dashboard' || location.pathname === '/tambahInovasi' ? 'display-none' : "flexCenter animate whiteBg"} style={y > 100 ? { height: "60px", background: '#A70000' } : location.pathname === '/Profil' || location.pathname === '/Event' || location.pathname === '/Litbang' ? { height: "80px", background: '#A70000' } : { display: "80px" }}>
+      <Wrapper className={location.pathname === '/login' || location.pathname === '/dashboard' || location.pathname === '/tambahInovasi' || location.pathname === '/editInovasi'  ? 'display-none' : "flexCenter animate whiteBg"} style={y > 100 ? { height: "60px", background: '#A70000' } : location.pathname !== '/'  ? { height: "80px", background: '#A70000' } : { display: "80px" }}>
         <NavInner className="container flexSpaceCenter">
           <Link to="/" className="pointer flexNullCenter" >
             {/* <LogoIcon /> */}
@@ -69,11 +82,17 @@ export default function TopNavbar() {
                   'aria-labelledby': 'basic-button',
                 }}
               >
-                <MenuItem >  <Link activeClass="active" to="/Profil" style={{ padding: "10px 15px", color: "#000" }} offset={-80}>
-                  Profil
+               
+                <MenuItem >  <Link activeClass="active" to="/Definisi" style={{ padding: "10px 15px", color: "#000" }} offset={-80}>
+                  Definisi
                 </Link></MenuItem>
-                {/* <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem onClick={handleClose}>Logout</MenuItem> */}
+                <MenuItem >  <Link activeClass="active" to="/Selayang-pandang" style={{ padding: "10px 15px", color: "#000" }} offset={-80}>
+                  Selayang Pandang
+                </Link></MenuItem>
+                <MenuItem >  <Link activeClass="active" to="/Struktur-organisasi" style={{ padding: "10px 15px", color: "#000" }} offset={-80}>
+                  Struktur Organisasi
+                </Link></MenuItem>
+           
               </Menu>
               <Button
                 className="text-capitalize"
@@ -116,21 +135,41 @@ export default function TopNavbar() {
               </Button>
 
             </li>
-            {/* <li className="semiBold font15 pointer">
-              <Link activeClass="active" style={{ padding: "10px 15px" , color: "#fff"}} to="services" spy={true} smooth={true} offset={-80}>
-              Informasi
-              </Link>
-            </li>
             <li className="semiBold font15 pointer">
-              <Link activeClass="active" style={{ padding: "10px 15px" , color: "#fff"}} to="projects" spy={true} smooth={true} offset={-80}>
-              Litbang
-              </Link>
+            <Menu
+                id="basic-menu"
+                anchorEl={informasi}
+                open={openInformasi}
+                onClose={handleCloseInformasi}
+                MenuListProps={{
+                  'aria-labelledby': 'basic-button',
+                }}
+              >
+               
+                <MenuItem >  <Link activeClass="active" to="/Data-peneliti" style={{ padding: "10px 15px", color: "#000" }} offset={-80}>
+                 Data Peneliti
+                </Link></MenuItem>
+             
+             
+              </Menu>
+              <Button
+                className="text-capitalize"
+                activeClass="active"
+                aria-controls={openInformasi ? 'basic-menu' : undefined}
+                aria-haspopup="true"
+                aria-expanded={openInformasi ? 'true' : undefined}
+                onClick={handleClickInformasi}
+                style={{ padding: "10px 15px", color: "#fff", }} offset={-80}
+              >
+                Informasi
+              </Button>
             </li>
+        
             <li className="semiBold font15 pointer">
-              <Link activeClass="active" style={{ padding: "10px 15px", color: "#fff" }} to="blog" spy={true} smooth={true} offset={-80}>
+              <Link activeClass="active" style={{ padding: "10px 15px", color: "#fff" }} to="blog" offset={-80}>
                 Forum
               </Link>
-            </li> */}
+            </li>
 
           </UlWrapper>
           {/* <UlWrapperRight className="flexNullCenter">

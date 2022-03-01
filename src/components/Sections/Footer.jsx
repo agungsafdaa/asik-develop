@@ -12,7 +12,7 @@ export default function Contact() {
   const location = useLocation();
 
   return (
-    <Wrapper className={location.pathname === '/login' || location.pathname === '/dashboard' || location.pathname === '/tambahInovasi' ? 'display-none' : ''}>
+    <Wrapper className={location.pathname === '/login' || location.pathname === '/dashboard' || location.pathname === '/tambahInovasi'  || location.pathname === '/editInovasi'  ? 'display-none' : ''}>
       <div className="footer-bg">
         <div className="container">
           <div className="footer-section">

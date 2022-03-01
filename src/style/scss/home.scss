@@ -1,13 +1,29 @@
 
 .hero-element-media{
-    padding-top: 80px;
-    width: 100%;
-    min-height: 697px;
  
-background: #A3D9FF; 
+    width: 100%;
+    min-height: 330px;
+ 
+    background-image:url('../../assets/img/songket2.jpg'); 
    background-repeat: no-repeat;
-  background-size: cover;
+
   color:#fff;
+  background-size: 100%;
+    background-position: 0 -197px;
+    @include lt-sm{
+        background-size: cover;
+        background-position: -139px -5px;
+    }
+  .bg-gradient{
+    background: #870000;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #621a01, #870000);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #621a01, #870000); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+    width: 100%;
+    min-height: 330px;
+    position:relative;
+    opacity: 0.5;
+  }
 }
 
 .video-asik{
@@ -188,5 +204,54 @@ background: #A3D9FF;
         padding: 50px 0 70px 0;
         display: flex;
         justify-content: flex-end;
+    }
+}
+
+
+.tentang-lembaga{
+    .list-pegawai{
+        display:flex!important;
+        align-items: flex-start;
+        @include lt-sm{
+            flex-direction: column;
+        }
+    }
+   
+}
+
+.daftar-peneliti{
+    .heading{
+        margin:20px;
+    }
+}
+
+.pagination-card{
+    margin:20px 0 20px 0;
+}
+
+
+.detail-inovasi{
+    margin:20px 0 20px;
+    .judul-inovasi{
+        font-weight: 500;
+        text-transform: capitalize;
+        margin:20px 0 20px;
+    }
+    .hasil-inovasi{
+        margin:10px 0 10px;
+        display:grid;
+        grid-template-columns: 15% 1% 84%;
+        grid-gap:10px;
+    }
+
+    .lampiran{
+        margin:20px 0 20px;
+        .lampiran-file{
+            margin:40px 0 20px;
+
+            .label{
+                margin:20px 0 20px;
+            }
+        }
     }
 }

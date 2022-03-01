@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React from "react";
 import { Helmet } from "react-helmet";
 import { Routes, Route, Outlet, Navigate, } from 'react-router-dom';
 import { useLocation } from 'react-router-dom'
 import Profile from "./screens/Profile.jsx";
+import SelayangPandang from "./screens/SelayangPandang.jsx";
+import DetailInovasi from "./screens/DetailInovasi.jsx";
+import StrukturOrganisasi from "./screens/StrukturOrganisasi.jsx";
+import Definisi from "./screens/Definisi.jsx";
 import Event from "./screens/Event.jsx";
 import Landing from "./screens/Landing.jsx";
 import Dashboard from "./screens/Dashboard.jsx";
 // import CircularProgress from '@mui/material/CircularProgress';
 import Kajian from "./screens/Kajian.jsx";
+import DataPeneliti from "./screens/DataPeneliti.jsx";
 import Login from "./screens/Login.jsx";
 import TopNavbar from "./components/Nav/TopNavbar";
 import Footer from "./components/Sections/Footer";
@@ -22,6 +27,13 @@ export default function tree() {
           <Route path="/Profil" element={<Profile />}></Route>
           <Route path="/Event" element={<Event />}></Route>
           <Route path="/Litbang" element={<Kajian />}></Route>
+          <Route path="/Detail" element={<Kajian />}></Route>
+          <Route path="/data-peneliti" element={<DataPeneliti />}></Route>
+          <Route path="/detail-inovasi" element={<DetailInovasi />}></Route>
+          <Route path="/Definisi" element={<Definisi />}></Route>
+          <Route path="/Selayang-pandang" element={<SelayangPandang/>}></Route>
+          <Route path="/Struktur-organisasi" element={<StrukturOrganisasi/>}></Route>
+          
           <Route path="/Dashboard" element={
             <PrivateRoute>
               <Dashboard />
@@ -29,6 +41,12 @@ export default function tree() {
           }>
           </Route>
           <Route path="/tambahInovasi" element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          } token={isAuthenticated}>
+          </Route>
+          <Route path="/editInovasi" element={
             <PrivateRoute>
               <Dashboard />
             </PrivateRoute>
@@ -73,6 +91,8 @@ function App() {
     </>
   );
 }
+
+
 
 function useAuth() {
   const isAuthenticated = localStorage.getItem("token")

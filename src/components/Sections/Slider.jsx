@@ -7,11 +7,11 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
-
+import SwiperCore, { Autoplay } from 'swiper';
 import 'swiper/css/pagination';
 
 export default function SliderArea(props) {
-  
+  SwiperCore.use([Autoplay]);
   return (
     <Wrapper id="services">
     <div  style={{ padding: "50px 0" }}>
@@ -22,6 +22,7 @@ export default function SliderArea(props) {
             spaceBetween={50}
             slidesPerView={3}
             navigation
+            autoplay={{ delay: 3000 }}
             pagination={{ clickable: true }}
             scrollbar={{ draggable: true }}
             onSwiper={(swiper) => console.log(swiper)}

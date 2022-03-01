@@ -4,12 +4,12 @@ import Typography from "@mui/material/Typography";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import Grid from '@mui/material/Grid';
-import { Autoplay, Navigation, Pagination, Scrollbar, A11y } from 'swiper';
+import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import Button from '@mui/material/Button';
 import 'swiper/css/pagination';
-
+import SwiperCore, { Autoplay } from 'swiper';
 export default function WidgetArea(props) {
-
+    SwiperCore.use([Autoplay]);
     return (
         <Wrapper id="services">
             <div style={{ padding: "50px 0" }}>
@@ -20,17 +20,14 @@ export default function WidgetArea(props) {
                         <Grid item lg={4} xs={12} md={12}>
                             <Swiper
                                 // install Swiper modules
-                                modules={[Autoplay, Navigation, Pagination, Scrollbar, A11y]}
+                                modules={[Navigation, Pagination, Scrollbar, A11y]}
                                 spaceBetween={50}
                                 slidesPerView={1}
                                 navigation
-                                Autoplay={{
-                                    delay: 5000
-                                }}
+                                autoplay={{ delay: 3000 }}
                                 pagination={{ clickable: true }}
                                 scrollbar={{ draggable: true }}
-                                onSwiper={(swiper) => console.log(swiper)}
-                                onSlideChange={() => console.log('slide change')}
+                               
                             >
                                 <SwiperSlide>
                                     <img src="/assets/images/carousel/kadin.svg" alt="test" style={{ width: '100%' }} />

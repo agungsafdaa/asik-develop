@@ -12,9 +12,10 @@ import { useLocation } from 'react-router-dom'
 import DashboardNavbar from '../components/Dashboard/Navbar'
 import Home from '../components/Dashboard/Page/home'
 import AddInovasi from '../components/Dashboard/Page/addInovasi'
-export default function Dashboard(props) {
+import EditInovasi from '../components/Dashboard/Page/editInovasi'
+export default function Dashboard() {
     const location = useLocation();
-  
+
     return (
         <>
             <div className="dashboard">
@@ -24,7 +25,7 @@ export default function Dashboard(props) {
 
                         <nav className="dashboard-menu" aria-label="main mailbox folders">
                             <div className="logo">
-                                 <img src="/assets/images/palembang.png" alt="Pemkot Palembang" />
+                                <img src="/assets/images/palembang.png" alt="Pemkot Palembang" />
                                 <h6>Asik Bapeda Palembang</h6>
                             </div>
                             <List>
@@ -36,7 +37,7 @@ export default function Dashboard(props) {
                                         <ListItemText primary="Dashboard" />
                                     </ListItemButton>
                                 </ListItem>
-                              
+
                             </List>
                         </nav>
                         <Divider />
@@ -44,8 +45,10 @@ export default function Dashboard(props) {
                     </Grid>
                     <Grid item lg={10}>
                         <DashboardNavbar />
+
+                       
                         <div className="content-dashboard">
-                            {location.pathname === '/dashboard' ? <Home/> : <AddInovasi/>}
+                            {location.pathname === '/dashboard' ? <Home /> : location.pathname === '/editInovasi' ? <EditInovasi /> : location.pathname === '/tambahInovasi' ? <AddInovasi /> : ""}
                         </div>
                     </Grid>
                 </Grid>
