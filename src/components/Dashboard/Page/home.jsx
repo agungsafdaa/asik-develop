@@ -327,7 +327,7 @@ export default function Home() {
                                             <TableCell>{row.attributes.Jenis_inovasi}</TableCell>
                                             <TableCell>{convertToPlain(row.attributes.Manfaat_inovasi)}</TableCell>
                                             <TableCell>{row.attributes.Publish === false ? 'Belum disetujui' : 'disetujui'}</TableCell>
-                                            <TableCell>{row.attributes.catatan === null ? 'Belum ada tanggapan' : 'disetujui'}</TableCell>
+                                            <TableCell>{row.attributes.Catatan === null ? 'Belum ada tanggapan' : row.attributes.Catatan}</TableCell>
                                             <TableCell>
                                                 {row.attributes.Publish === false ? <Link to={`/editInovasi`} state={{ idInovasi: row }}>
                                                     <EditIcon />
