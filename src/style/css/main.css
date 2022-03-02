@@ -547,6 +547,11 @@ input:-webkit-autofill {
           .login-area .login-page .login-card .card-login .form-login .disabled-button {
             color: #000; }
 
+.navbar-menu {
+  text-transform: capitalize !important; }
+  .navbar-menu button {
+    text-transform: capitalize !important; }
+
 .footer-section {
   padding: 30px 0 30px 0; }
   .footer-section .heading-footer {

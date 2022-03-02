@@ -49,8 +49,7 @@ export default function SelayangPandang() {
                                     __html: selayangPandang.Deskripsi
                                 }}></div>
                             <div className="list-pegawai">
-                                <img src="https://asik.palembang.go.id/uploads/Komposisi_pegawai_20b59c7e55.png" alt="komposisi pegawai" />
-                                <img src="https://asik.palembang.go.id/uploads/Komposisi_pegawai2_6ab02ee03e.png" alt="komposisi pegawai" />
+                              
                             </div>
 
                         </>

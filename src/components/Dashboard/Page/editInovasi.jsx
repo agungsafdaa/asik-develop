@@ -2264,21 +2264,25 @@ export default function EditInovasi() {
                                             Visi & Misi
 
                                         </InputLabel>
-                                        <a href={urlAsik + pathnameUpload.Visi_dan_misi_Pemda.data.attributes.url} target="_blank" rel="noreferrer">
+                                        {pathnameUpload.Visi_dan_misi_Pemda.data !== null ?  <> <a href={urlAsik + pathnameUpload.Visi_dan_misi_Pemda.data.attributes.url} target="_blank" rel="noreferrer">
                                             Lihat File
                                         </a>
                                         <Button  onClick={DeleteVisi}     value={pathnameUpload.Visi_dan_misi_Pemda.data.id}>Edit File</Button>
-                                        <input type="file" id="file" className={show === true ? "file" : "display-none"} onChange={uploadVisiMisi} accept="image/*,.pdf" />
+                                        <input type="file" id="file" className={show === true ? "file" : "display-none"} onChange={uploadVisiMisi} accept="image/*,.pdf" /> </> : <input type="file" id="file" className={show === true ? "file" : "display-none"} onChange={uploadVisiMisi} accept="image/*,.pdf" /> }
+                                       
                                     </div>
                                     <div className="upload">
                                         <InputLabel shrink htmlFor="Nama_opd">
                                             Tingkat lembaga kelitbangan
                                         </InputLabel>
-                                        <a href={pathnameUpload.Tingkat_lembaga_kelitbangan.data.attributes.url ?  urlAsik + pathnameUpload.Tingkat_lembaga_kelitbangan.data.attributes.url : ""} target="_blank" rel="noreferrer">
+                                        {pathnameUpload.Tingkat_lembaga_kelitbangan.data !== null ?   <>
+                                            <a href={pathnameUpload.Tingkat_lembaga_kelitbangan.data.attributes.url ?  urlAsik + pathnameUpload.Tingkat_lembaga_kelitbangan.data.attributes.url : ""} target="_blank" rel="noreferrer">
                                             Lihat File
                                         </a>
-                                        <Button  onClick={DeletetingkatLembaga}     value={pathnameUpload.Visi_dan_misi_Pemda.data.id ? location.state.idInovasi.attributes.Visi_dan_misi_Pemda.data.id : ""}>Edit File</Button>
-                                        <input type="file"   id="file" className={show === true ? "file" : "display-none"}   onChange={uploadtingkatLembaga} accept="image/*,.pdf"/>
+                                        <Button  onClick={DeletetingkatLembaga}     value={pathnameUpload.Tingkat_lembaga_kelitbangan.data.id ? location.state.idInovasi.attributes.Tingkat_lembaga_kelitbangan.data.id : ""}>Edit File</Button>
+                                        <input type="file"   id="file" className={show === true ? "file" : "display-none"}   onChange={uploadtingkatLembaga} accept="image/*,.pdf"/> 
+                                        </>:   <input type="file"   id="file" className={show === true ? "file" : "display-none"}   onChange={uploadtingkatLembaga} accept="image/*,.pdf"/>}
+                                     
                                     </div>
                                 </div>
 
@@ -2286,24 +2290,28 @@ export default function EditInovasi() {
                                     <div className="upload">
                                         <InputLabel shrink htmlFor="Nama_opd">
                                             Apbd tepat waktu
-
                                         </InputLabel>
-                                        <a href={"https://asik.palembang.go.id" +location.state.idInovasi.attributes.Apbd_tepat_waktu.data.attributes.url} target="_blank" rel="noreferrer">
+                                        {pathnameUpload.Apbd_tepat_waktu.data !== null ? <>
+                                            <a href={"https://asik.palembang.go.id" +location.state.idInovasi.attributes.Apbd_tepat_waktu.data.attributes.url} target="_blank" rel="noreferrer">
                                             Lihat File
                                         </a>
                                         <Button  onClick={DeleteAPBD}     value={location.state.idInovasi.attributes.Apbd_tepat_waktu.data.id}>Edit File</Button>
                                         <input type="file"  id="file" className={show === true ? "file" : "display-none"}  onChange={uploadAPBD} accept="image/*,.pdf"/>
+                                        </> : <input type="file"  id="file" className={show === true ? "file" : "display-none"}  onChange={uploadAPBD} accept="image/*,.pdf"/> }
+                                       
                                     </div>
                                     <div className="upload">
                                         <InputLabel shrink htmlFor="Nama_opd">
                                             Kualitas peningkatan perizinan
-
                                         </InputLabel>
-                                        <a href={urlAsik + pathnameUpload.Kualitas_peningkatan_perizinan.data.attributes.url} target="_blank" rel="noreferrer">
+                                        {pathnameUpload.Kualitas_peningkatan_perizinan.data !== null ?  <>
+                                            <a href={urlAsik + pathnameUpload.Kualitas_peningkatan_perizinan.data.attributes.url} target="_blank" rel="noreferrer">
                                             Lihat File
                                         </a>
                                         <Button  onClick={DeletekualitasPerizinan}     value={pathnameUpload.Kualitas_peningkatan_perizinan.data.id}>Edit File</Button>
-                                        <input type="file"  id="file"  className={show === true ? "file" : "display-none"}  onChange={uploadkualitasPerizinan} accept="image/*,.pdf"/>
+                                        <input type="file"  id="file"  className={show === true ? "file" : "display-none"}  onChange={uploadkualitasPerizinan} accept="image/*,.pdf"/> 
+                                        </>:   <input type="file"  id="file"  className={show === true ? "file" : "display-none"}  onChange={uploadkualitasPerizinan} accept="image/*,.pdf"/>}
+                                      
                                     </div>
 
                                 </div>
@@ -2312,21 +2320,23 @@ export default function EditInovasi() {
                                         <InputLabel shrink htmlFor="Nama_opd">
                                             Jumlah peningkatan perkapita
                                         </InputLabel>
+                                        {pathnameUpload.Jumlah_peningkatan_perkapita.data !== null ? <>
                                         <a href={urlAsik + pathnameUpload.Jumlah_peningkatan_perkapita.data.attributes.url} target="_blank" rel="noreferrer">
                                             Lihat File
                                         </a>
                                         <Button  onClick={DeletejumlahPeningkatanKapita}     value={pathnameUpload.Jumlah_peningkatan_perkapita.data.id}>Edit File</Button>
-                                        <input type="file"  id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf" onChange={uploadjumlahPeningkatanKapita} />
+                                        <input type="file"  id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf" onChange={uploadjumlahPeningkatanKapita} />  </> : <input type="file"  id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf" onChange={uploadjumlahPeningkatanKapita} />}
                                     </div>
                                     <div className="upload">
                                         <InputLabel shrink htmlFor="Nama_opd">
                                             Tingkat pengangguran terbuka
                                         </InputLabel>
+                                        {pathnameUpload.Tingkat_pengangguran_terbuka.data !== null ? <> 
                                         <a href={urlAsik + pathnameUpload.Tingkat_pengangguran_terbuka.data.attributes.url} target="_blank" rel="noreferrer">
                                             Lihat File
                                         </a>
                                         <Button  onClick={DeletetingkatPengangguran}     value={pathnameUpload.Tingkat_pengangguran_terbuka.data.id}>Edit File</Button>
-                                        <input type="file" id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf" onChange={uploadtingkatPengangguran} />
+                                        <input type="file" id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf" onChange={uploadtingkatPengangguran} /> </> :  <input type="file" id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf" onChange={uploadtingkatPengangguran} /> }
                                     </div>
 
                                 </div>
@@ -2335,22 +2345,28 @@ export default function EditInovasi() {
                                         <InputLabel shrink htmlFor="Nama_opd">
                                             Jumlah peningkatan investasi
                                         </InputLabel>
-                                        <a href={urlAsik + pathnameUpload.Jumlah_peningkatan_investasi.data.attributes.url} target="_blank" rel="noreferrer">
+                                        {pathnameUpload.Jumlah_peningkatan_investasi.data !== null ? <>
+                                            <a href={urlAsik + pathnameUpload.Jumlah_peningkatan_investasi.data.attributes.url} target="_blank" rel="noreferrer">
                                             Lihat File
                                         </a>
                                         <Button  onClick={Deletejumlah_peningkatan_investasi}     value={pathnameUpload.Jumlah_peningkatan_investasi.data.id}>Edit File</Button>
                                         <input type="file" id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf"  onChange={uploadjumlah_peningkatan_investasi} />
+                                        </> :    <input type="file" id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf"  onChange={uploadjumlah_peningkatan_investasi} /> }
+                                     
                                     </div>
                                     <div className="upload">
                                         <InputLabel shrink htmlFor="Nama_opd">
                                             Jumlah peningkatan PAD
 
                                         </InputLabel>
-                                        <a href={urlAsik + pathnameUpload.Jumlah_peningkatan_PAD.data.attributes.url} target="_blank" rel="noreferrer">
+                                        {pathnameUpload.Jumlah_peningkatan_PAD.data !== null ?    <>
+                                            <a href={urlAsik + pathnameUpload.Jumlah_peningkatan_PAD.data.attributes.url} target="_blank" rel="noreferrer">
                                             Lihat File
                                         </a>
                                         <Button  onClick={Deletejumlah_peningkatan_PAD}     value={pathnameUpload.Jumlah_peningkatan_PAD.data.id}>Edit File</Button>
-                                        <input type="file" id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf"  onChange={uploadjumlah_peningkatan_PAD} />
+                                        <input type="file" id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf"  onChange={uploadjumlah_peningkatan_PAD} /> 
+                                        </>: <input type="file" id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf"  onChange={uploadjumlah_peningkatan_PAD} />}
+                                    
                                     </div>
 
                                 </div>

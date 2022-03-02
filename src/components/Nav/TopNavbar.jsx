@@ -66,7 +66,7 @@ export default function TopNavbar() {
           <BurderWrapper className="pointer" onClick={() => toggleSidebar(!sidebarOpen)}>
             <img src="/assets/images/menu.svg" alt="test" style={{ width: '100%' }} />
           </BurderWrapper>
-          <UlWrapper className="flexNullCenter">
+          <UlWrapper className="flexNullCenter navbar-menu">
             <li className="semiBold font15 pointer">
               <Link to="/" activeClass="active" style={{ padding: "10px 15px", color: "#fff" }} offset={-80}>
                 Beranda
@@ -131,7 +131,7 @@ export default function TopNavbar() {
                 onClick={handleClickLitbang}
                 style={{ padding: "10px 15px", color: "#fff", }} offset={-80}
               >
-                Litbang
+                Kajian
               </Button>
 
             </li>
@@ -166,8 +166,14 @@ export default function TopNavbar() {
             </li>
         
             <li className="semiBold font15 pointer">
-              <Link activeClass="active" style={{ padding: "10px 15px", color: "#fff" }} to="blog" offset={-80}>
+              <Link activeClass="active" style={{ padding: "10px 15px", color: "#fff" }} to="/Litbang" offset={-80}>
                 Forum
+              </Link>
+            </li>
+
+            <li className="semiBold font15 pointer">
+              <Link activeClass="active" style={{ padding: "10px 15px", color: "#fff" }} to="/Login" offset={-80}>
+                Login
               </Link>
             </li>
 
