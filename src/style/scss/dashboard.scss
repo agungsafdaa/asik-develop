@@ -108,27 +108,28 @@
 
 
         .form-inovasi{
+            .label{
+                font-weight: 400;
+                line-height: 1.5;
+                color: #1A2027;
+                font-size:20px;
+            }
             .form-opd{
-              
-               
                 margin:20px 10px  20px 10px;
-
                 .select-asik{
-                    background: #E7EBF0;
-             
+                  
                     border-radius: 8px;
-                    border-color: #B2BAC2;
+                   
                 }
 
                 input{
-                    width: 1040px;
+                    width: 1010px;
                 font-size: 0.875rem;
                 font-family: IBM Plex Sans,sans-serif;
                 font-weight: 400;
                 line-height: 1.5;
                 color: #1A2027;
-                background: #F3F6F9;
-                border: 1px solid #CDD2D7;
+              
                 border-radius: 8px;
                 padding: 12px 12px;
                 }
@@ -138,11 +139,12 @@
                 display:flex;
                 grid-gap:10px;
                 .select-asik{
-                    background: #E7EBF0;
+                   
              
                     border-radius: 8px;
-                    border-color: #B2BAC2;
+                 
                 }
+            
                 input{
                     width: 500px;
                 font-size: 0.875rem;
@@ -173,6 +175,7 @@
                     border-radius: 8px;
                     border-color: #B2BAC2;
                 }
+               
                .tanggal{
                    input{
                        width:93%;
@@ -186,4 +189,14 @@
         }
     }
 
+  
+
+}
+
+a, svg{
+    color:#fff;
+}
+
+.submit-form{
+    margin:20px 0 20px 0;
 }

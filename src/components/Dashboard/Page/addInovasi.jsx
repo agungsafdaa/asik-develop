@@ -22,7 +22,13 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper'
 export default function AddInovasi() {
     const isAuthenticated = localStorage.getItem("token")
     const ITEM_HEIGHT = 48;
@@ -75,7 +81,7 @@ export default function AddInovasi() {
         font-weight: 400;
         line-height: 1.5;
         color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-        background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
+       
         border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[300]};
         border-radius: 8px;
         padding: 12px 12px;
@@ -96,6 +102,8 @@ export default function AddInovasi() {
             <InputUnstyled components={{ Input: StyledInputElement }} {...props} ref={ref} />
         );
     });
+
+
     const theme = useTheme();
     let navigate = useNavigate();
     const [urusanInovasi, setUrusanInovasi] = useState([]);
@@ -106,21 +114,9 @@ export default function AddInovasi() {
     const [tujuanInvoasi, setTujuanInovasi] = useState({});
     const [manfaat, setManfaat] = useState({});
     const [hasil, setHasil] = useState({});
-    const [visi, setVisi] = useState([]);
-    const [tingkat_lembaga, setTingkat_Lembaga] = useState([]);
-    const [apbd_tepatwaktu, setApbd_tepatwaktu] = useState([]);
-    const [kualitasPerizinan, setKualitasPerizinan] = useState([]);
-    const [jumlahPeningkatanKapita, setJumlahPeningkatanKapita] = useState([]);
-    const [tingkatPengangguran, setTingkatPengangguran] = useState([]);
-    const [jumlah_peningkatan_investasi, setJumlah_peningkatan_investasi] = useState([]);
-    const [jumlah_peningkatan_PAD, setJumlah_peningkatan_PAD] = useState([]);
-    const [opini, setOpini] = useState([]);
-    const [capaianLAKIP, setCapaianLAKIP] = useState([]);
-    const [penurunanAngkaMiskin, setPenurunanAngkaMiskin] = useState([]);
-    const [nilaiIPM, setNilaiIPM] = useState([]);
-    const [penghargaanInovator, setPenghargaanInovator] = useState([]);
+
     const [regulasiInovasi, setRegulasiInovasi] = useState([]);
-    const [ketersediaanSDM, setKetersediaanSDM] = useState([]);
+
     const [jumlahKajian, setJumlahKajian] = useState([]);
     const [roadmapSIDA, setRoadmapSIDA] = useState([]);
     const [dukunganAnggaran, setDukunganAnggaran] = useState([]);
@@ -151,331 +147,15 @@ export default function AddInovasi() {
         console.log(state.nama_inovasi)
     }
 
-    const uploadVisiMisi = async (event) => {
-        const fileInput =
-            document.querySelector('.file');
-        const target = (event.target.files[0]);
-        const cekExtensions = (event.target.value);
-        // Allowing file type
-        const allowedExtensions =
-            /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-        if (!allowedExtensions.exec(cekExtensions)) {
-            toast.warn('Hanya JPEG dan PDF yang bisa di upload', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            fileInput.value = '';
-            return false;
-        } else {
-            setVisi(target)
-        }
-    };
 
-   
-    const uploadtingkatLembaga = async (event) => {
-        const fileInput =
-            document.querySelector('.file');
-        const target = (event.target.files[0]);
-        const cekExtensions = (event.target.value);
-        // Allowing file type
-        const allowedExtensions =
-            /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-        if (!allowedExtensions.exec(cekExtensions)) {
-            toast.warn('Hanya JPEG dan PDF yang bisa di upload', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            fileInput.value = '';
-            return false;
-        } else {
-            setTingkat_Lembaga(target)
-        }
-    };
 
-     const uploadAPBD = async (event) => {
-        const fileInput =
-            document.querySelector('.file');
-        const target = (event.target.files[0]);
-        const cekExtensions = (event.target.value);
-        // Allowing file type
-        const allowedExtensions =
-            /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-        if (!allowedExtensions.exec(cekExtensions)) {
-            toast.warn('Hanya JPEG dan PDF yang bisa di upload', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            fileInput.value = '';
-            return false;
-        } else {
-            setApbd_tepatwaktu(target)
-        }
-    };
 
-    const uploadkualitasPerizinan = async (event) => {
-        const fileInput =
-            document.querySelector('.file');
-        const target = (event.target.files[0]);
-        const cekExtensions = (event.target.value);
-        // Allowing file type
-        const allowedExtensions =
-            /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-        if (!allowedExtensions.exec(cekExtensions)) {
-            toast.warn('Hanya JPEG dan PDF yang bisa di upload', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            fileInput.value = '';
-            return false;
-        } else {
-            setKualitasPerizinan(target)
-        }
-    };
 
-    const uploadjumlahPeningkatanKapita = async (event) => {
-        const fileInput =
-            document.querySelector('.file');
-        const target = (event.target.files[0]);
-        const cekExtensions = (event.target.value);
-        // Allowing file type
-        const allowedExtensions =
-            /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-        if (!allowedExtensions.exec(cekExtensions)) {
-            toast.warn('Hanya JPEG dan PDF yang bisa di upload', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            fileInput.value = '';
-            return false;
-        } else {
-            setJumlahPeningkatanKapita(target)
-        }
-    };
 
-    const uploadtingkatPengangguran = async (event) => {
-        const fileInput =
-            document.querySelector('.file');
-        const target = (event.target.files[0]);
-        const cekExtensions = (event.target.value);
-        // Allowing file type
-        const allowedExtensions =
-            /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-        if (!allowedExtensions.exec(cekExtensions)) {
-            toast.warn('Hanya JPEG dan PDF yang bisa di upload', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            fileInput.value = '';
-            return false;
-        } else {
-            setTingkatPengangguran(target)
-        }
-    };
 
-    const uploadjumlah_peningkatan_investasi = async (event) => {
-        const fileInput =
-            document.querySelector('.file');
-        const target = (event.target.files[0]);
-        const cekExtensions = (event.target.value);
-        // Allowing file type
-        const allowedExtensions =
-            /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-        if (!allowedExtensions.exec(cekExtensions)) {
-            toast.warn('Hanya JPEG dan PDF yang bisa di upload', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            fileInput.value = '';
-            return false;
-        } else {
-            setJumlah_peningkatan_investasi(target)
-        }
-    };
 
-    const uploadjumlah_peningkatan_PAD = async (event) => {
-        const fileInput =
-            document.querySelector('.file');
-        const target = (event.target.files[0]);
-        const cekExtensions = (event.target.value);
-        // Allowing file type
-        const allowedExtensions =
-            /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-        if (!allowedExtensions.exec(cekExtensions)) {
-            toast.warn('Hanya JPEG dan PDF yang bisa di upload', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            fileInput.value = '';
-            return false;
-        } else {
-            setJumlah_peningkatan_PAD(target)
-        }
-    };
 
-    const uploadopini = async (event) => {
-        const fileInput =
-            document.querySelector('.file');
-        const target = (event.target.files[0]);
-        const cekExtensions = (event.target.value);
-        // Allowing file type
-        const allowedExtensions =
-            /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-        if (!allowedExtensions.exec(cekExtensions)) {
-            toast.warn('Hanya JPEG dan PDF yang bisa di upload', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            fileInput.value = '';
-            return false;
-        } else {
-            setOpini(target)
-        }
-    };
 
-    const uploadcapaianLAKIP = async (event) => {
-        const fileInput =
-            document.querySelector('.file');
-        const target = (event.target.files[0]);
-        const cekExtensions = (event.target.value);
-        // Allowing file type
-        const allowedExtensions =
-            /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-        if (!allowedExtensions.exec(cekExtensions)) {
-            toast.warn('Hanya JPEG dan PDF yang bisa di upload', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            fileInput.value = '';
-            return false;
-        } else {
-            setCapaianLAKIP(target)
-        }
-    };
-
-    const uploadpenurunanAngkaMiskin = async (event) => {
-        const fileInput =
-            document.querySelector('.file');
-        const target = (event.target.files[0]);
-        const cekExtensions = (event.target.value);
-        // Allowing file type
-        const allowedExtensions =
-            /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-        if (!allowedExtensions.exec(cekExtensions)) {
-            toast.warn('Hanya JPEG dan PDF yang bisa di upload', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            fileInput.value = '';
-            return false;
-        } else {
-            setPenurunanAngkaMiskin(target)
-        }
-    };
-
-    const uploadnilaiIPM = async (event) => {
-        const fileInput =
-            document.querySelector('.file');
-        const target = (event.target.files[0]);
-        const cekExtensions = (event.target.value);
-        // Allowing file type
-        const allowedExtensions =
-            /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-        if (!allowedExtensions.exec(cekExtensions)) {
-            toast.warn('Hanya JPEG dan PDF yang bisa di upload', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            fileInput.value = '';
-            return false;
-        } else {
-            setNilaiIPM(target)
-        }
-    };
-
-    const uploadpenghargaanInovator = async (event) => {
-        const fileInput =
-            document.querySelector('.file');
-        const target = (event.target.files[0]);
-        const cekExtensions = (event.target.value);
-        // Allowing file type
-        const allowedExtensions =
-            /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-        if (!allowedExtensions.exec(cekExtensions)) {
-            toast.warn('Hanya JPEG dan PDF yang bisa di upload', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            fileInput.value = '';
-            return false;
-        } else {
-            setPenghargaanInovator(target)
-        }
-    };
 
 
     const uploadregulasiInovasi = async (event) => {
@@ -504,30 +184,7 @@ export default function AddInovasi() {
     };
 
 
-    const uploadketersediaanSDM = async (event) => {
-        const fileInput =
-            document.querySelector('.file');
-        const target = (event.target.files[0]);
-        const cekExtensions = (event.target.value);
-        // Allowing file type
-        const allowedExtensions =
-            /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-        if (!allowedExtensions.exec(cekExtensions)) {
-            toast.warn('Hanya JPEG dan PDF yang bisa di upload', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            fileInput.value = '';
-            return false;
-        } else {
-            setKetersediaanSDM(target)
-        }
-    };
+
 
     const uploadjumlahKajian = async (event) => {
         const fileInput =
@@ -1005,7 +662,7 @@ export default function AddInovasi() {
         }
     };
 
-     const uploadkualitasInovasi = async (event) => {
+    const uploadkualitasInovasi = async (event) => {
         const fileInput =
             document.querySelector('.file');
         const target = (event.target.files[0]);
@@ -1030,32 +687,8 @@ export default function AddInovasi() {
         }
     };
 
-     const uploadinovasiUrusan = async (event) => {
-        const fileInput =
-            document.querySelector('.file');
-        const target = (event.target.files[0]);
-        const cekExtensions = (event.target.value);
-        // Allowing file type
-        const allowedExtensions =
-            /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-        if (!allowedExtensions.exec(cekExtensions)) {
-            toast.warn('Hanya JPEG dan PDF yang bisa di upload', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            fileInput.value = '';
-            return false;
-        } else {
-            setinovasiUrusan(target)
-        }
-    };
 
-  
+
     const handleinovasi = (event) => {
         const {
             target: { value },
@@ -1084,27 +717,14 @@ export default function AddInovasi() {
 
 
 
+
     const addKajian = async (event) => {
 
         setLoading(true)
         let url = "https://asik.palembang.go.id/api/inovasis"
 
         let formData = new FormData();
-        formData.append('files.Visi_dan_misi_Pemda', visi);
-        formData.append('files.Tingkat_lembaga_kelitbangan', tingkat_lembaga);
-        formData.append('files.Apbd_tepat_waktu', apbd_tepatwaktu);
-        formData.append('files.Kualitas_peningkatan_perizinan', kualitasPerizinan);
-        formData.append('files.Jumlah_peningkatan_perkapita', jumlahPeningkatanKapita);
-        formData.append('files.Tingkat_pengangguran_terbuka', tingkatPengangguran);
-        formData.append('files.Jumlah_peningkatan_investasi', jumlah_peningkatan_investasi);
-        formData.append('files.Jumlah_peningkatan_PAD', jumlah_peningkatan_PAD);
-        formData.append('files.Opini_BPK', opini);
-        formData.append('files.Nilai_Capaian_LAKIP', capaianLAKIP);
-        formData.append('files.Penurunan_angka_kemiskinan', penurunanAngkaMiskin);
-        formData.append('files.Nilai_IPM', nilaiIPM);
-        formData.append('files.Penghargaan_bagi_inovator', penghargaanInovator);
         formData.append('files.Regulasi_Inovasi_daerah', regulasiInovasi);
-        formData.append('files.Ketersediaan_SDM_inovasi_daerah', ketersediaanSDM);
         formData.append('files.Jumlah_kajian_yang_mendukung_inovasi', jumlahKajian);
         formData.append('files.Roadmap_SIDa', roadmapSIDA);
         formData.append('files.Dukungan_anggaran', dukunganAnggaran);
@@ -1128,7 +748,7 @@ export default function AddInovasi() {
         formData.append('files.Pedoman_teknis_inovasi', pedomanTeknis);
 
         const data = {
-            Nama_opd:localStorage.getItem("nama_opd"),
+            Nama_opd: localStorage.getItem("nama_opd"),
             Nama_inovasi: state.nama_inovasi,
             Tahapan_inovasi: state.tahapan_inovasi,
             Inisiator_inovasi: state.inisiator_inovasi,
@@ -1156,22 +776,22 @@ export default function AddInovasi() {
         try {
             let response = await axios.post(url, formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
             // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
-         if(response.status === 200){
-            setLoading(false)
-           
-            toast.success('Inovasi berhasil di tambahkan', {
-                position: "top-right",
-                autoClose: 3000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            setTimeout(() => {
-                return navigate("/dashboard");
-            },3000);
-         }
+            if (response.status === 200) {
+                setLoading(false)
+
+                toast.success('Inovasi berhasil di tambahkan', {
+                    position: "top-right",
+                    autoClose: 3000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                setTimeout(() => {
+                    return navigate("/dashboard");
+                }, 3000);
+            }
         } catch (err) {
             setLoading(false)
             toast.warn('Inovasi gagal di tambahkan', {
@@ -1218,13 +838,13 @@ export default function AddInovasi() {
                             </Typography>
                         </div>
                         <ValidatorForm
-                        
+
                             onSubmit={addKajian}
-                         
+
                         >
                             <div className="form-inovasi">
                                 <div className="form-opd">
-                                    <InputLabel shrink htmlFor="Nama_OPD">
+                                    <InputLabel className="label" shrink htmlFor="Nama_OPD">
                                         Nama OPD
                                     </InputLabel>
                                     <TextValidator onChange={handleChange}
@@ -1236,7 +856,7 @@ export default function AddInovasi() {
                                     />
                                 </div>
                                 <div className="form-opd">
-                                    <InputLabel shrink htmlFor="Nama_Inovasi">
+                                    <InputLabel className="label" shrink htmlFor="Nama_Inovasi">
                                         Nama Inovasi
                                     </InputLabel>
                                     <TextValidator onChange={handleChange}
@@ -1247,7 +867,7 @@ export default function AddInovasi() {
                                     />
                                 </div>
                                 <div className="form-opd">
-                                  
+
                                     <FormControl fullWidth>
                                         <InputLabel id="demo-simple-select-label">  COVID 19</InputLabel>
                                         <Select
@@ -1265,7 +885,7 @@ export default function AddInovasi() {
                                             <MenuItem value="Pilih">Pilih </MenuItem>
                                             <MenuItem value="Covid19">COVID 19</MenuItem>
                                             <MenuItem value="Non_covid19">Non Covid 19</MenuItem>
-                                          
+
                                         </Select>
                                     </FormControl>
                                 </div>
@@ -1396,24 +1016,24 @@ export default function AddInovasi() {
 
                                 <div className="form-opd-grid-tanggal">
                                     <div>
-                                        <InputLabel shrink htmlFor="tanggal_pelaksanaan">
+                                        <InputLabel className="label" shrink htmlFor="tanggal_pelaksanaan">
                                             Waktu Uji Coba Inovasi Daerah*
                                         </InputLabel>
                                         <CustomInput aria-label="Waktu Uji coba" className="tanggal" type="date" placeholder="Contoh : Bappeda Litbang" id="tanggal_pelaksanaan" name="Waktu_uji_coba"
-                                            value={state.Waktu_uji_coba || ''} onChange={handleChange} required/>
+                                            value={state.Waktu_uji_coba || ''} onChange={handleChange} required />
                                     </div>
                                     <div>
-                                        <InputLabel shrink htmlFor="Nama_opd">
+                                        <InputLabel className="label" shrink htmlFor="Nama_opd">
                                             Waktu Implementasi Inovasi Daerah*
 
                                         </InputLabel>
                                         <CustomInput aria-label="Waktu Impelemntasi " className="tanggal" type="date" placeholder="Contoh : Bappeda Litbang" name="Waktu_implementasi"
-                                            value={state.Waktu_implementasi || ''} onChange={handleChange} required/>
+                                            value={state.Waktu_implementasi || ''} onChange={handleChange} required />
                                     </div>
 
                                 </div>
                                 <div className="form-opd">
-                                    <InputLabel shrink htmlFor="Nama_opd">
+                                    <InputLabel className="label" shrink htmlFor="Nama_opd">
                                         Rancang bangun dan pokok perubahan yang dilakukan*
 
                                     </InputLabel>
@@ -1436,7 +1056,7 @@ export default function AddInovasi() {
                                 </div>
 
                                 <div className="form-opd">
-                                    <InputLabel shrink htmlFor="Nama_opd">
+                                    <InputLabel className="label" shrink htmlFor="Nama_opd">
                                         Tujuan inovasi daerah*
 
                                     </InputLabel>
@@ -1457,7 +1077,7 @@ export default function AddInovasi() {
                                     />
                                 </div>
                                 <div className="form-opd">
-                                    <InputLabel shrink htmlFor="Nama_opd">
+                                    <InputLabel className="label" shrink htmlFor="Nama_opd">
                                         Manfaat yang diperoleh*
 
                                     </InputLabel>
@@ -1478,7 +1098,7 @@ export default function AddInovasi() {
                                     />
                                 </div>
                                 <div className="form-opd">
-                                    <InputLabel shrink htmlFor="Nama_opd">
+                                    <InputLabel className="label" shrink htmlFor="Nama_opd">
                                         Hasil Inovasi*
 
                                     </InputLabel>
@@ -1489,320 +1109,398 @@ export default function AddInovasi() {
                                         required
                                         onChange={(event, editor) => {
                                             const data = editor.getData();
+                                            console.log(data, data.length)
                                             setHasil(data)
 
                                         }}
+
                                         onReady={editor => {
                                             // You can store the "editor" and use when it is needed.
 
                                         }}
                                     />
                                 </div>
-                                <div className="form-opd-grid">
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Visi & Misi
+                                
+                                <h3 style={{margin:"20px 0 20px 0"}}>Indikator Inovasi Daerah</h3>
 
-                                        </InputLabel>
-                                    
-                                        <input type="file" required id="file" className="file" onChange={uploadVisiMisi} accept="image/*,.pdf" />
-                                    </div>
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Tingkat lembaga kelitbangan
-                                        </InputLabel>
-                                        <input type="file" required   id="file" className="file"  onChange={uploadtingkatLembaga} accept="image/*,.pdf"/>
-                                    </div>
-                                </div>
+                                <TableContainer component={Paper}>
+                                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                                        <TableHead>
+                                            <TableRow>
+                                                <TableCell>Indikator</TableCell>
+                                                <TableCell>Keterangan</TableCell>
 
-                                <div className="form-opd-grid">
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Apbd tepat waktu
+                                                <TableCell>Parameter</TableCell>
+                                                <TableCell>Data Pendukung</TableCell>
+                                                <TableCell >Jenis File</TableCell>
+                                            </TableRow>
+                                        </TableHead>
+                                        <TableBody>
+                                            {/* visi misi */}
+                                            <TableRow
 
-                                        </InputLabel>
-                                        <input type="file" required  id="file" className="file" onChange={uploadAPBD} accept="image/*,.pdf"/>
-                                    </div>
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Kualitas peningkatan perizinan
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    Regulasi Inovasi daerah
+                                                </TableCell>
+                                                <TableCell >Regulasi yang menetapkan nama-nama inovasi daerah yang menjadi landasan operasional penerapan Inovasi Daerah</TableCell>
 
-                                        </InputLabel>
-                                        <input type="file" required  id="file" className="file"  onChange={uploadkualitasPerizinan} accept="image/*,.pdf"/>
-                                    </div>
+                                                <TableCell></TableCell>
+                                                <TableCell>
+                                                    <input type="file" required id="file" className="file" accept="image/*,.pdf" onChange={uploadregulasiInovasi} />
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/* visi misi */}
+                                            {/*      Jumlah kajian yang mendukung inovasi */}
+                                            <TableRow
 
-                                </div>
-                                <div className="form-opd-grid">
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Jumlah peningkatan perkapita
-                                        </InputLabel>
-                                        <input type="file" required  id="file" className="file"  accept="image/*,.pdf" onChange={uploadjumlahPeningkatanKapita} />
-                                    </div>
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Tingkat pengangguran terbuka
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    Jumlah kajian yang mendukung inovasi
+                                                </TableCell>
+                                                <TableCell >Jumlah kajian yang mendukung terlaksananya inovasi</TableCell>
+                                                <TableCell></TableCell>
 
-                                        </InputLabel>
-                                        <input type="file" required id="file" className="file"  accept="image/*,.pdf" onChange={uploadtingkatPengangguran} />
-                                    </div>
+                                                <TableCell>
+                                                    <input type="file" required id="file" className="file" accept="image/*,.pdf" onChange={uploadjumlahKajian} />
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/*     Jumlah kajian yang mendukung inovasi */}
+                                            {/*     Roadmap SIDA */}
+                                            <TableRow
 
-                                </div>
-                                <div className="form-opd-grid">
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Jumlah peningkatan investasi
-                                        </InputLabel>
-                                        <input type="file" required id="file" className="file"  accept="image/*,.pdf"  onChange={uploadjumlah_peningkatan_investasi} />
-                                    </div>
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Jumlah peningkatan PAD
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    Roadmap SIDA
+                                                </TableCell>
+                                                <TableCell >Roadmap SIDA </TableCell>
+                                                <TableCell></TableCell>
 
-                                        </InputLabel>
-                                        <input type="file" required id="file" className="file"  accept="image/*,.pdf"  onChange={uploadjumlah_peningkatan_PAD} />
-                                    </div>
+                                                <TableCell>
+                                                    <input type="file" required id="file" className="file" accept="image/*,.pdf" onChange={uploadroadmapSIDA} />
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/*    Roadmap SIDA*/}
+                                            {/*      Dukungan anggaran */}
+                                            <TableRow
 
-                                </div>
-                                <div className="form-opd-grid">
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Opini BPK
-                                        </InputLabel>
-                                        <input type="file" required id="file" className="file"  accept="image/*,.pdf" onChange={uploadopini} />
-                                    </div>
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Nilai Capaian LAKIP
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    Dukungan anggaran
+                                                </TableCell>
+                                                <TableCell >  Anggaran inovasi daerah dalam APBD dengan tahapan inisiasi (penyampaian ide, rapat, proposal, penulisan kajian), uji coba (pilot project, perekayasaan, laboratorium lapangan, dan sejenisnya), dan penerapan (penyediaan sarana prasarana, sumber daya manusia dan layanan, bimtek, urusan jenis layanan) </TableCell>
+                                                <TableCell> </TableCell>
 
-                                        </InputLabel>
-                                        <input type="file" required  id="file" className="file"  accept="image/*,.pdf" onChange={uploadcapaianLAKIP} />
-                                    </div>
+                                                <TableCell>
+                                                    <input type="file" required id="file" className="file" accept="image/*,.pdf" onChange={uploaddukunganAnggaran} />
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/*     Dukungan anggaran */}
+                                            {/*    Penggunaan IT */}
+                                            <TableRow
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    Penggunaan IT
+                                                </TableCell>
+                                                <TableCell >  Penggunaan IT dalam pelaksanaan Inovasi yang diterapkan </TableCell>
+                                                <TableCell> </TableCell>
 
-                                </div>
-                                <div className="form-opd-grid">
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Penurunan angka kemiskinan
+                                                <TableCell>
+                                                    <input type="file" required id="file" className="file" accept="image/*,.pdf" onChange={uploadpenggunaanIT} />
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/*  Penggunaan IT */}
+                                            {/*     Bimtek inovasi*/}
+                                            <TableRow
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    Bimtek inovasi
+                                                </TableCell>
+                                                <TableCell >  Peningkatan kapasitas dan kompetensi pelaksana inovasi daerah </TableCell>
+                                                <TableCell> </TableCell>
 
-                                        </InputLabel>
-                                        <input type="file" required id="file" className="file"  accept="image/*,.pdf" onChange={uploadpenurunanAngkaMiskin} />
-                                    </div>
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Nilai IPM
+                                                <TableCell>
+                                                    <input type="file" required id="file" className="file" accept="image/*,.pdf" onChange={uploadbimtekInovasi} />
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/*    Bimtek inovasi */}
+                                            {/*    Program Inovasi perangkat RKPD*/}
+                                            <TableRow
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    Program Inovasi perangkat RKPD
+                                                </TableCell>
+                                                <TableCell > Inovasi Perangkat Daerah telah dituangkan dalam program pembangunan daerah </TableCell>
+                                                <TableCell> </TableCell>
 
-                                        </InputLabel>
-                                        <input type="file" required id="file" className="file"  accept="image/*,.pdf" onChange={uploadnilaiIPM} />
-                                    </div>
+                                                <TableCell>
+                                                    <input type="file" required id="file" className="file" accept="image/*,.pdf" onChange={uploadprogramInovasi} />
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/*    Program Inovasi perangkat RKPD  */}
+                                            {/*         Keterlibatan aktor inovasi */}
+                                            <TableRow
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    Keterlibatan aktor inovasi
+                                                </TableCell>
+                                                <TableCell >Keikutsertaan unsur Stakeholder dalam pelaksanaan inovasi daerah (T-1 dan T-2)</TableCell>
+                                                <TableCell> </TableCell>
 
-                                </div>
-                                <div className="form-opd-grid">
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Penghargaan bagi inovator
+                                                <TableCell>
+                                                    <input type="file" required id="file" className="file" accept="image/*,.pdf" onChange={uploadketerlibatanAktor} />
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/*      Keterlibatan aktor inovasi  */}
+                                            {/*      Pelaksana inovasi daerah  */}
+                                            <TableRow
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    Pelaksana inovasi daerah
+                                                </TableCell>
+                                                <TableCell >Penetapan tim pelaksana inovasi daerah</TableCell>
+                                                <TableCell> </TableCell>
 
-                                        </InputLabel>
-                                        <input type="file" required id="file" className="file"  accept="image/*,.pdf" onChange={uploadpenghargaanInovator} />
-                                    </div>
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Regulasi Inovasi daerah
+                                                <TableCell>
+                                                    <input type="file" required id="file" className="file" accept="image/*,.pdf" onChange={uploadpelaksanaInovasi} />
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/*          Pelaksana inovasi daerah   */}
+                                            {/*         Jejaring inovasi  */}
+                                            <TableRow
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    Jejaring inovasi
+                                                </TableCell>
+                                                <TableCell >Jumlah Perangkat Daerah yang terlibat dalam penerapan inovasi (dalam 2 tahun terakhir)</TableCell>
+                                                <TableCell> </TableCell>
 
-                                        </InputLabel>
-                                        <input type="file" required id="file" className="file"  accept="image/*,.pdf" onChange={uploadregulasiInovasi} />
-                                    </div>
+                                                <TableCell>
+                                                    <input type="file" required id="file" className="file" accept="image/*,.pdf" onChange={uploadjejaringInovasi} />
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/*            Jejaring inovasi  */}
+                                            {/*         Sosialisasi inovasi daerah  */}
+                                            <TableRow
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    Sosialisasi inovasi daerah
+                                                </TableCell>
+                                                <TableCell >Penyebarluasan informasi kebijakan inovasi daerah (2 Tahun Terakhir)</TableCell>
+                                                <TableCell> </TableCell>
 
-                                </div>
-                                <div className="form-opd-grid">
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Ketersediaan SDM inovasi daerah
-                                        </InputLabel>
-                                        <input type="file" required  id="file" className="file"  accept="image/*,.pdf" onChange={uploadketersediaanSDM} />
-                                    </div>
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Jumlah kajian yang mendukung inovasi
+                                                <TableCell>
+                                                    <input type="file" required id="file" className="file" accept="image/*,.pdf" onChange={uploadsosialisasiInovasi} />
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/*       Sosialisasi inovasi daerah  */}
+                                            {/*   Pedoman teknis inovasi */}
+                                            <TableRow
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    Pedoman teknis inovasi
+                                                </TableCell>
+                                                <TableCell >Ketentuan dasar penggunaan inovasi daerah berupa buku petunjuk/manual book</TableCell>
+                                                <TableCell> </TableCell>
 
-                                        </InputLabel>
-                                        <input type="file" required id="file" className="file"  accept="image/*,.pdf" onChange={uploadjumlahKajian} />
-                                    </div>
+                                                <TableCell>
+                                                    <input type="file" required id="file" className="file" accept="image/*,.pdf" onChange={uploadpedomanTeknis} />
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/*   Pedoman teknis inovasi */}
+                                            {/*    Kemudahan informasi layanan */}
+                                            <TableRow
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    Kemudahan informasi layanan
+                                                </TableCell>
+                                                <TableCell >Kemudahan mendapatkan informasi layanan</TableCell>
+                                                <TableCell> </TableCell>
 
-                                </div>
-                                <div className="form-opd-grid">
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Roadmap SIDA
+                                                <TableCell>
+                                                    <input type="file" required id="file" className="file" accept="image/*,.pdf" onChange={uploadkemudahanLayanan} />
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/*    Kemudahan informasi layanan */}
+                                            {/*      Kemudahan proses inovasi yang dihasilkan */}
+                                            <TableRow
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    Kemudahan proses inovasi yang dihasilkan
+                                                </TableCell>
+                                                <TableCell >Waktu yang diperlukan untuk memperoleh proses penggunaan hasil inovasi</TableCell>
+                                                <TableCell> </TableCell>
 
+                                                <TableCell>
+                                                    <input type="file" required id="file" className="file" accept="image/*,.pdf" onChange={uploadkemudahanProses} />
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/*       Kemudahan proses inovasi yang dihasilkan */}
+                                            {/*     Penyelesaian layanan pengaduan */}
+                                            <TableRow
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    Penyelesaian layanan pengaduan
+                                                </TableCell>
+                                                <TableCell >Rasio penyelesaian pengaduan dalam tahun terakhir (jumlah pengaduan yang di tindakalnajuti/ jumlah pengaduan keseluruhan x100%)</TableCell>
+                                                <TableCell> </TableCell>
 
-                                        </InputLabel>
-                                        <input type="file" required id="file" className="file"  accept="image/*,.pdf" onChange={uploadroadmapSIDA} />
-                                    </div>
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Dukungan anggaran
+                                                <TableCell>
+                                                    <input type="file" required id="file" className="file" accept="image/*,.pdf" onChange={uploadpenyelesaianLayanan} />
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/* Penyelesaian layanan pengaduan*/}
+                                            {/*     Online sistem */}
+                                            <TableRow
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    Online sistem
+                                                </TableCell>
+                                                <TableCell >
+                                                    Jaringan prosedur yang dibuat secara daring ( 2 Tahun Terakhir)
 
-                                        </InputLabel>
-                                        <input type="file" required id="file" className="file"  accept="image/*,.pdf" onChange={uploaddukunganAnggaran} />
-                                    </div>
+                                                </TableCell>
+                                                <TableCell> </TableCell>
 
-                                </div>
-                                <div className="form-opd-grid">
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Penggunaan IT
+                                                <TableCell>
+                                                    <input type="file" required id="file" className="file" accept="image/*,.pdf" onChange={uploadonlineSistem} />
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/*    Online sistem */}
+                                            {/*   Repikasi*/}
+                                            <TableRow
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                Repikasi
+                                                </TableCell>
+                                                <TableCell >
+                                                Inovasi Daerah telah direplikasi oleh daerah lain (T-2 sampai dengan T-1)
 
-                                        </InputLabel>
-                                        <input type="file" required id="file" className="file"  accept="image/*,.pdf" onChange={uploadpenggunaanIT} />
-                                    </div>
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Bimtek inovasi
+                                                </TableCell>
+                                                <TableCell> </TableCell>
 
-                                        </InputLabel>
-                                        <input type="file" required id="file" className="file"  accept="image/*,.pdf" onChange={uploadbimtekInovasi} />
-                                    </div>
+                                                <TableCell>
+                                                    <input type="file" required id="file" className="file" accept="image/*,.pdf" onChange={uploadrepikasi} />
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/*  Repikasi */}
+                                            {/*       Kecepatan inovasi*/}
+                                            <TableRow
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                Kecepatan inovasi
+                                                </TableCell>
+                                                <TableCell >
+                                                Satuan waktu yang digunakan untuk menciptakan inovasi daerah
 
-                                </div>
-                                <div className="form-opd-grid">
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Program Inovasi perangkat RKPD
+                                                </TableCell>
+                                                <TableCell> </TableCell>
 
-                                        </InputLabel>
-                                        <input type="file" required id="file" className="file"  accept="image/*,.pdf" onChange={uploadprogramInovasi} />
-                                    </div>
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Keterlibatan aktor inovasi
+                                                <TableCell>
+                                                    <input type="file" required id="file" className="file" accept="image/*,.pdf" onChange={uploadkecepatanInovasi} />
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/*      Kecepatan inovasi  */}
+                                             {/*      Kemanfaatan inovasi */}
+                                             <TableRow
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                Kemanfaatan inovasi
+                                                </TableCell>
+                                                <TableCell >
+                                                Jumlah pengguna atau penerima manfaat inovasi daerah (2 tahun terakhir)
+                                                </TableCell>
+                                                <TableCell> </TableCell>
 
-                                        </InputLabel>
-                                        <input type="file" required id="file" className="file"  accept="image/*,.pdf" onChange={uploadketerlibatanAktor} />
-                                    </div>
+                                                <TableCell>
+                                                    <input type="file" required id="file" className="file" accept="image/*,.pdf" onChange={uploadkemanfaatanInovasi} />
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/* Kemanfaatan inovasi */}
+                                             {/*      Monitoring dan evaluasi daerah  */}
+                                             <TableRow
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                Monitoring dan evaluasi daerah
+                                                </TableCell>
+                                                <TableCell >
+                                                Kepuasan pelaksanaan penggunaan inovasi daerah (2 Tahun Terakhir)
+                                                </TableCell>
+                                                <TableCell> </TableCell>
 
-                                </div>
-                                <div className="form-opd-grid">
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Pelaksana inovasi daerah
+                                                <TableCell>
+                                                    <input type="file" required id="file" className="file" accept="image/*,.pdf" onChange={uploadmonitoring} />
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/*    Monitoring dan evaluasi daerah */}
+                                              {/*       Kualitas inovasi daerah  */}
+                                              <TableRow
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                Kualitas inovasi daerah 
+                                                </TableCell>
+                                                <TableCell >
+                                                Kualitas inovasi daerah 
+                                                </TableCell>
+                                                <TableCell> </TableCell>
 
-                                        </InputLabel>
-                                        <input type="file" required id="file" className="file"  accept="image/*,.pdf" onChange={uploadpelaksanaInovasi} />
-                                    </div>
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Jejaring inovasi
+                                                <TableCell>
+                                                    <input type="file" required id="file" className="file" accept="image/*,.pdf" onChange={uploadkualitasInovasi} />
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/*      Kualitas inovasi daerah */}
+                                            
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
 
-                                        </InputLabel>
-                                        <input type="file" required id="file" className="file"  accept="image/*,.pdf" onChange={uploadjejaringInovasi} />
-                                    </div>
-
-                                </div>
-                                <div className="form-opd-grid">
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Sosialisasi inovasi daerah
-
-                                        </InputLabel>
-                                        <input type="file" required id="file" className="file"  accept="image/*,.pdf" onChange={uploadsosialisasiInovasi} />
-                                    </div>
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Pedoman teknis inovasi
-                                        </InputLabel>
-                                        <input type="file" required id="file" className="file"  accept="image/*,.pdf" onChange={uploadpedomanTeknis} />
-                                    </div>
-
-                                </div>
-                                <div className="form-opd-grid">
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Kemudahan informasi layanan
-
-                                        </InputLabel>
-                                        <input type="file" required id="file" className="file"  accept="image/*,.pdf" onChange={uploadkemudahanLayanan} />
-                                    </div>
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Kemudahan proses inovasi yang dihasilkan
-
-                                        </InputLabel>
-                                        <input type="file" required id="file" className="file"  accept="image/*,.pdf" onChange={uploadkemudahanProses} />
-                                    </div>
-
-                                </div>
-                                <div className="form-opd-grid">
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Penyelesaian layanan pengaduan
-
-                                        </InputLabel>
-                                        <input type="file" required  id="file" className="file"  accept="image/*,.pdf" onChange={uploadpenyelesaianLayanan} />
-                                    </div>
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Online sistem
-
-                                        </InputLabel>
-                                        <input type="file" required id="file" className="file"  accept="image/*,.pdf" onChange={uploadonlineSistem} />
-                                    </div>
-
-                                </div>
-                                <div className="form-opd-grid">
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Repikasi
-
-                                        </InputLabel>
-                                        <input type="file" required id="file" className="file"  accept="image/*,.pdf" onChange={uploadrepikasi} />
-                                    </div>
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Kecepatan inovasi
-
-                                        </InputLabel>
-                                        <input type="file" required id="file" className="file"  accept="image/*,.pdf" onChange={uploadkecepatanInovasi} />
-                                    </div>
-
-                                </div>
-                                <div className="form-opd-grid">
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Kemanfaatan inovasi
-
-                                        </InputLabel>
-                                        <input type="file" required id="file" className="file"  accept="image/*,.pdf" onChange={uploadkemanfaatanInovasi} />
-                                    </div>
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Monitoring dan evaluasi daerah
-
-                                        </InputLabel>
-                                        <input type="file" required id="file" className="file"  accept="image/*,.pdf" onChange={uploadmonitoring} />
-                                    </div>
-
-                                </div>
-                                <div className="form-opd-grid">
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Kualitas inovasi daerah
-
-                                        </InputLabel>
-                                        <input type="file" required id="file" className="file"  accept="image/*,.pdf" onChange={uploadkualitasInovasi} />
-                                    </div>
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Inovasi urusan
-
-                                        </InputLabel>
-                                        <input type="file" required id="file" className="file"  accept="image/*,.pdf" onChange={uploadinovasiUrusan} />
-                                    </div>
-
-                                </div>
                                 {loading === true ? <LoadingButton loading variant="outlined">
                                     Submit
-                                </LoadingButton> : <Button className="see-all-button" size="small" type="submit">Tambah Inovasi  </Button>}
+                                </LoadingButton> : <div className="submit-form">
+                                <Button className="see-all-button" size="small" type="submit">Tambah Inovasi  </Button>
+                                    </div>}
 
                             </div>
                         </ValidatorForm>

@@ -655,21 +655,22 @@ input:-webkit-autofill {
       .dashboard .list-inovasi .card-inovasi .heading-card .search-area {
         display: flex;
         grid-gap: 10px; }
+  .dashboard .list-inovasi .form-inovasi .label {
+    font-weight: 400;
+    line-height: 1.5;
+    color: #1A2027;
+    font-size: 20px; }
   .dashboard .list-inovasi .form-inovasi .form-opd {
     margin: 20px 10px  20px 10px; }
     .dashboard .list-inovasi .form-inovasi .form-opd .select-asik {
-      background: #E7EBF0;
-      border-radius: 8px;
-      border-color: #B2BAC2; }
+      border-radius: 8px; }
     .dashboard .list-inovasi .form-inovasi .form-opd input {
-      width: 1040px;
+      width: 1010px;
       font-size: 0.875rem;
       font-family: IBM Plex Sans,sans-serif;
       font-weight: 400;
       line-height: 1.5;
       color: #1A2027;
-      background: #F3F6F9;
-      border: 1px solid #CDD2D7;
       border-radius: 8px;
       padding: 12px 12px; }
   .dashboard .list-inovasi .form-inovasi .form-opd-grid {
@@ -677,9 +678,7 @@ input:-webkit-autofill {
     display: flex;
     grid-gap: 10px; }
     .dashboard .list-inovasi .form-inovasi .form-opd-grid .select-asik {
-      background: #E7EBF0;
-      border-radius: 8px;
-      border-color: #B2BAC2; }
+      border-radius: 8px; }
     .dashboard .list-inovasi .form-inovasi .form-opd-grid input {
       width: 500px;
       font-size: 0.875rem;
@@ -706,5 +705,11 @@ input:-webkit-autofill {
       width: 93%; }
   .dashboard .list-inovasi .table-inovasi {
     background: none !important; }
+
+a, svg {
+  color: #fff; }
+
+.submit-form {
+  margin: 20px 0 20px 0; }
 
 /*# sourceMappingURL=main.css.map */

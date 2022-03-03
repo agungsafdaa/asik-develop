@@ -9,7 +9,9 @@ import StrukturOrganisasi from "./screens/StrukturOrganisasi.jsx";
 import Definisi from "./screens/Definisi.jsx";
 import Event from "./screens/Event.jsx";
 import Landing from "./screens/Landing.jsx";
+import EditInovasi from './components/Dashboard/Page/editInovasi'
 import Dashboard from "./screens/Dashboard.jsx";
+import TambahInovasi from "./screens/TambahInovasi.jsx";
 // import CircularProgress from '@mui/material/CircularProgress';
 import Kajian from "./screens/Kajian.jsx";
 import DataPeneliti from "./screens/DataPeneliti.jsx";
@@ -33,8 +35,11 @@ export default function tree() {
           <Route path="/Definisi" element={<Definisi />}></Route>
           <Route path="/Selayang-pandang" element={<SelayangPandang/>}></Route>
           <Route path="/Struktur-organisasi" element={<StrukturOrganisasi/>}></Route>
-          
-          <Route path="/Dashboard" element={
+       
+       
+        </Route>
+        <Route path="/Login" element={<Login />}></Route>
+        <Route path="/Dashboard" element={
             <PrivateRoute>
               <Dashboard />
             </PrivateRoute>
@@ -42,18 +47,16 @@ export default function tree() {
           </Route>
           <Route path="/tambahInovasi" element={
             <PrivateRoute>
-              <Dashboard />
+              <TambahInovasi />
             </PrivateRoute>
           } token={isAuthenticated}>
           </Route>
           <Route path="/editInovasi" element={
             <PrivateRoute>
-              <Dashboard />
+              <EditInovasi />
             </PrivateRoute>
           } token={isAuthenticated}>
           </Route>
-          <Route path="/Login" element={<Login />}></Route>
-        </Route>
       </Routes>
     </>
 
@@ -74,16 +77,11 @@ function App() {
         <>
           <TopNavbar />
           <Landing />
-
           <Footer />
         </>
-        : location.pathname === '/Login' ?
+       :
 
-          <Login /> :
-
-          location.pathname === '/Dashboard' ?
-
-            <Dashboard /> : <>
+         <>
              <TopNavbar /><Outlet />   <Footer />
             </>
 

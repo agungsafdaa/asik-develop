@@ -7,7 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
-import Container from '@mui/material/Container';
+import { Link } from 'react-router-dom'
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -17,10 +17,29 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
+import CssBaseline from '@mui/material/CssBaseline';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Divider from '@mui/material/Divider';
+import InboxIcon from '@mui/icons-material/Inbox';
 
-export default function DashboardNavbar() {
-     let navigate = useNavigate();
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
+import { useLocation } from 'react-router-dom'
+
+
+
+// eslint-disable-next-line no-unused-vars
+import PropTypes from 'prop-types';
+import Drawer from '@mui/material/Drawer';
+
+export default function Sidebar(props) {
+    const drawerWidth = 240;
+    const location = useLocation();
+    const { window } = props;
+    const [mobileOpen, setMobileOpen] = React.useState(false);
+    let navigate = useNavigate();
+ 
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const [open, setOpen] = React.useState(false);
 
@@ -31,9 +50,7 @@ export default function DashboardNavbar() {
     const handleClose = () => {
         setOpen(false);
     };
-    const handleOpenNavMenu = (event) => {
-        setAnchorElNav(event.currentTarget);
-    };
+  
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
@@ -43,49 +60,65 @@ export default function DashboardNavbar() {
         return navigate("/");
     }
 
-    const handleCloseNavMenu = () => {
-        setAnchorElNav(null);
-    };
+   
 
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+    const handleDrawerToggle = () => {
+        setMobileOpen(!mobileOpen);
+    };
+
+    const drawer = (
+        <div className="dashboard-menu">
+            <Toolbar />
+            <div className="logo">
+                <img src="/assets/images/palembang.png" alt="Pemkot Palembang" />
+                <h6>Asik Bapeda Palembang</h6>
+            </div>
+            <Divider />
+            <ListItem disablePadding style={{ color: "#fff;" }} >
+                <Link to="/Dashboard">
+                <ListItemButton>
+                    <ListItemIcon>
+                        <InboxIcon />
+                    </ListItemIcon>
+                    <ListItemText primary="Dashboard" />
+                </ListItemButton>
+                </Link>
+               
+            </ListItem>
+            <Divider />
+
+        </div>
+    );
+
+    const container = window !== undefined ? () => window().document.body : undefined;
     return (
         <>
-            <AppBar position="static" className="dashboard-navbar">
-                <Container maxWidth="xl">
-                    <Toolbar disableGutters className="navbar">
-                        <Typography
-                            variant="h6"
-                            noWrap
-                            component="div"
-                            sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
+            <Box sx={{ display: 'flex' }}>
+                <CssBaseline />
+                <AppBar
+                    position="fixed"
+                    className="dashboard-navbar"
+                    sx={{
+                        width: { sm: `calc(100% - ${drawerWidth}px)` },
+                        ml: { sm: `${drawerWidth}px` },
+                    }}
+                >
+                    <Toolbar className="navbar">
+                        <IconButton
+                            color="inherit"
+                            aria-label="open drawer"
+                            edge="start"
+                            onClick={handleDrawerToggle}
+                            sx={{ mr: 2, display: { sm: 'none' } }}
                         >
-                            LOGO
+                            <MenuIcon />
+                        </IconButton>
+                        <Typography variant="h6" noWrap component="div">
+                            Responsive drawer
                         </Typography>
-
-                        <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-                            <IconButton
-                                size="large"
-                                aria-label="account of current user"
-                                aria-controls="menu-appbar"
-                                aria-haspopup="true"
-                                onClick={handleOpenNavMenu}
-                                color="inherit"
-                            >
-                                <MenuIcon />
-                            </IconButton>
-
-                        </Box>
-                        <Typography
-                            variant="h6"
-                            noWrap
-                            component="div"
-                            sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
-                        >
-                            LOGO
-                        </Typography>
-
 
                         <Box sx={{ flexGrow: 0 }}>
                             <Tooltip title="Open settings">
@@ -126,11 +159,11 @@ export default function DashboardNavbar() {
                                     aria-describedby="alert-dialog-description"
                                 >
                                     <DialogTitle id="alert-dialog-title">
-                                      Konfirmasi
+                                        Konfirmasi
                                     </DialogTitle>
                                     <DialogContent>
                                         <DialogContentText id="alert-dialog-description">
-                                        Apakah anda yakin ingin keluar?
+                                            Apakah anda yakin ingin keluar?
                                         </DialogContentText>
                                     </DialogContent>
                                     <DialogActions>
@@ -144,8 +177,40 @@ export default function DashboardNavbar() {
                             </Menu>
                         </Box>
                     </Toolbar>
-                </Container>
-            </AppBar>
+                </AppBar>
+            </Box>
+            <Box
+                component="nav"
+                sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+                aria-label="mailbox folders"
+            >
+                {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+                <Drawer
+                    container={container}
+                    variant="temporary"
+                    open={mobileOpen}
+                    onClose={handleDrawerToggle}
+                    ModalProps={{
+                        keepMounted: true, // Better open performance on mobile.
+                    }}
+                    sx={{
+                        display: { xs: 'block', sm: 'none' },
+                        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+                    }}
+                >
+                    {drawer}
+                </Drawer>
+                <Drawer
+                    variant="permanent"
+                    sx={{
+                        display: { xs: 'none', sm: 'block' },
+                        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+                    }}
+                    open
+                >
+                    {drawer}
+                </Drawer>
+            </Box>
 
 
 
