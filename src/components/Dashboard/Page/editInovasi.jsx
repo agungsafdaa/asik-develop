@@ -8,7 +8,7 @@ import Alert from '@mui/material/Alert';
 import axios from 'axios';
 import Chip from '@mui/material/Chip';
 import MenuItem from '@mui/material/MenuItem';
-import { useLocation , useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Typography from "@mui/material/Typography";
@@ -23,6 +23,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { CircularProgress } from '@mui/material';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
 export default function EditInovasi() {
     let navigate = useNavigate();
     const isAuthenticated = localStorage.getItem("token")
@@ -37,8 +43,8 @@ export default function EditInovasi() {
         },
     };
     const location = useLocation();
-    
-    
+
+
     function getStyles(name, personName, theme) {
         return {
             fontWeight:
@@ -55,18 +61,6 @@ export default function EditInovasi() {
         600: '#0072E5',
     };
 
-    const grey = {
-        50: '#F3F6F9',
-        100: '#E7EBF0',
-        200: '#E0E3E7',
-        300: '#CDD2D7',
-        400: '#B2BAC2',
-        500: '#A0AAB4',
-        600: '#6F7E8C',
-        700: '#3E5060',
-        800: '#2D3843',
-        900: '#1A2027',
-    };
 
 
 
@@ -77,15 +71,12 @@ export default function EditInovasi() {
         font-family: IBM Plex Sans, sans-serif;
         font-weight: 400;
         line-height: 1.5;
-        color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-        background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
-        border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[300]};
+    
         border-radius: 8px;
         padding: 12px 12px;
       
         &:hover {
-          background: ${theme.palette.mode === 'dark' ? '' : grey[100]};
-          border-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[400]};
+       
         }
       
         &:focus {
@@ -108,21 +99,7 @@ export default function EditInovasi() {
     const [tujuanInvoasi, setTujuanInovasi] = useState({});
     const [manfaat, setManfaat] = useState({});
     const [hasil, setHasil] = useState({});
-    const [visi, setVisi] = useState([]);
-    const [tingkat_lembaga, setTingkat_Lembaga] = useState([]);
-    const [apbd_tepatwaktu, setApbd_tepatwaktu] = useState([]);
-    const [kualitasPerizinan, setKualitasPerizinan] = useState([]);
-    const [jumlahPeningkatanKapita, setJumlahPeningkatanKapita] = useState([]);
-    const [tingkatPengangguran, setTingkatPengangguran] = useState([]);
-    const [jumlah_peningkatan_investasi, setJumlah_peningkatan_investasi] = useState([]);
-    const [jumlah_peningkatan_PAD, setJumlah_peningkatan_PAD] = useState([]);
-    const [opini, setOpini] = useState([]);
-    const [capaianLAKIP, setCapaianLAKIP] = useState([]);
-    const [penurunanAngkaMiskin, setPenurunanAngkaMiskin] = useState([]);
-    const [nilaiIPM, setNilaiIPM] = useState([]);
-    const [penghargaanInovator, setPenghargaanInovator] = useState([]);
     const [regulasiInovasi, setRegulasiInovasi] = useState([]);
-    const [ketersediaanSDM, setKetersediaanSDM] = useState([]);
     const [jumlahKajian, setJumlahKajian] = useState([]);
     const [roadmapSIDA, setRoadmapSIDA] = useState([]);
     const [dukunganAnggaran, setDukunganAnggaran] = useState([]);
@@ -143,7 +120,30 @@ export default function EditInovasi() {
     const [kemanfaatanInovasi, setKemanfaatanInovasi] = useState([]);
     const [monitoring, setMonitoring] = useState([]);
     const [kualitasInovasi, setKualitasInovasi] = useState([]);
-    const [show, setShow] = useState(false);
+    const [show, setShow] = useState({
+        regulasi: false,
+        jumlah_kajian: false,
+        roadmap_sida: false,
+        dukungan_anggaran: false,
+        bimtek_inovasi: false,
+        perangkat_rkpd: false,
+        keterlibatan_aktor: false,
+        pelaksana: false,
+        penggunaan_it: false,
+        jejaring: false,
+        sosialisasi: false,
+        pedoman_teknis: false,
+        kemudahan_informasi: false,
+        kemudahan_proses: false,
+        penyelesaian_layanan: false,
+        online_sistem: false,
+        repikasi: false,
+        kecepatan_inovasi: false,
+        kemanfaatan_inovasi: false,
+        monitoring_evaluasi: false,
+        kualitas_inovasi: false,
+    });
+
     // eslint-disable-next-line no-unused-vars
     const [inovasiUrusan, setinovasiUrusan] = useState([]);
 
@@ -156,620 +156,10 @@ export default function EditInovasi() {
     }
 
     const pathnameUpload = location.state.idInovasi.attributes;
-    const urlAsik = "https://asik.palembang.go.id" ;
-   
-
-    const uploadVisiMisi = async (event) => {
-        const fileInput =
-            document.querySelector('.file');
-        const target = (event.target.files[0]);
-        const cekExtensions = (event.target.value);
-        // Allowing file type
-        const allowedExtensions =
-            /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-        if (!allowedExtensions.exec(cekExtensions)) {
-            toast.warn('Hanya JPEG dan PDF yang bisa di upload', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            fileInput.value = '';
-            return false;
-        } else {
-            setVisi(target)
-        }
-    };
-
-    const DeleteVisi = async (event) => {
-        console.log("onclick", event.target.value)
-        setShow(true)
-        let url = "https://asik.palembang.go.id/api/upload/files/" +  event.target.value
-        try {
-            let response = await axios.delete(url, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
-            // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
-            setLoading(false)
-            console.log(response)
-            toast.success('Mohon upload ulang file anda !', {
-                position: "top-right",
-                
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-        } catch (err) {
-            alert(err);
-        }
-    };
-
-    const uploadtingkatLembaga = async (event) => {
-        const fileInput =
-            document.querySelector('.file');
-        const target = (event.target.files[0]);
-        const cekExtensions = (event.target.value);
-        // Allowing file type
-        const allowedExtensions =
-            /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-        if (!allowedExtensions.exec(cekExtensions)) {
-            toast.warn('Hanya JPEG dan PDF yang bisa di upload', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            fileInput.value = '';
-            return false;
-        } else {
-            setTingkat_Lembaga(target)
-        }
-    };
-
-     const DeletetingkatLembaga  = async (event) => {
-        console.log("onclick", event.target.value)
-        setShow(true)
-        let url = "https://asik.palembang.go.id/api/upload/files/" +  event.target.value
-        try {
-            let response = await axios.delete(url, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
-            // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
-            setLoading(false)
-            console.log(response)
-            toast.success('Mohon upload ulang file anda !', {
-                position: "top-right",
-                
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-        } catch (err) {
-            alert(err);
-        }
-    };
+    const urlAsik = "https://asik.palembang.go.id";
 
 
-     const uploadAPBD = async (event) => {
-        const fileInput =
-            document.querySelector('.file');
-        const target = (event.target.files[0]);
-        const cekExtensions = (event.target.value);
-        // Allowing file type
-        const allowedExtensions =
-            /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-        if (!allowedExtensions.exec(cekExtensions)) {
-            toast.warn('Hanya JPEG dan PDF yang bisa di upload', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            fileInput.value = '';
-            return false;
-        } else {
-            setApbd_tepatwaktu(target)
-        }
-    };
 
-    const DeleteAPBD  = async (event) => {
-        console.log("onclick", event.target.value)
-        setShow(true)
-        let url = "https://asik.palembang.go.id/api/upload/files/" +  event.target.value
-        try {
-            let response = await axios.delete(url, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
-            // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
-            setLoading(false)
-            console.log(response)
-            toast.success('Mohon upload ulang file anda !', {
-                position: "top-right",
-                
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-        } catch (err) {
-            alert(err);
-        }
-    };   
-    
-    const uploadkualitasPerizinan = async (event) => {
-        const fileInput =
-            document.querySelector('.file');
-        const target = (event.target.files[0]);
-        const cekExtensions = (event.target.value);
-        // Allowing file type
-        const allowedExtensions =
-            /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-        if (!allowedExtensions.exec(cekExtensions)) {
-            toast.warn('Hanya JPEG dan PDF yang bisa di upload', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            fileInput.value = '';
-            return false;
-        } else {
-            setKualitasPerizinan(target)
-        }
-    };
-
-    const DeletekualitasPerizinan  = async (event) => {
-        console.log("onclick", event.target.value)
-        setShow(true)
-        let url = "https://asik.palembang.go.id/api/upload/files/" +  event.target.value
-        try {
-            let response = await axios.delete(url, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
-            // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
-            setLoading(false)
-            console.log(response)
-            toast.success('Mohon upload ulang file anda !', {
-                position: "top-right",
-                
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-        } catch (err) {
-            alert(err);
-        }
-    };   
-
-    const uploadjumlahPeningkatanKapita = async (event) => {
-        const fileInput =
-            document.querySelector('.file');
-        const target = (event.target.files[0]);
-        const cekExtensions = (event.target.value);
-        // Allowing file type
-        const allowedExtensions =
-            /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-        if (!allowedExtensions.exec(cekExtensions)) {
-            toast.warn('Hanya JPEG dan PDF yang bisa di upload', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            fileInput.value = '';
-            return false;
-        } else {
-            setJumlahPeningkatanKapita(target)
-        }
-    };
-
-    const DeletejumlahPeningkatanKapita  = async (event) => {
-        console.log("onclick", event.target.value)
-        setShow(true)
-        let url = "https://asik.palembang.go.id/api/upload/files/" +  event.target.value
-        try {
-            let response = await axios.delete(url, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
-            // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
-            setLoading(false)
-            console.log(response)
-            toast.success('Mohon upload ulang file anda !', {
-                position: "top-right",
-                
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-        } catch (err) {
-            alert(err);
-        }
-    }; 
-
-    const uploadtingkatPengangguran = async (event) => {
-        const fileInput =
-            document.querySelector('.file');
-        const target = (event.target.files[0]);
-        const cekExtensions = (event.target.value);
-        // Allowing file type
-        const allowedExtensions =
-            /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-        if (!allowedExtensions.exec(cekExtensions)) {
-            toast.warn('Hanya JPEG dan PDF yang bisa di upload', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            fileInput.value = '';
-            return false;
-        } else {
-            setTingkatPengangguran(target)
-        }
-    };
-
-    const DeletetingkatPengangguran  = async (event) => {
-        console.log("onclick", event.target.value)
-        setShow(true)
-        let url = "https://asik.palembang.go.id/api/upload/files/" +  event.target.value
-        try {
-            let response = await axios.delete(url, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
-            // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
-            setLoading(false)
-            console.log(response)
-            toast.success('Mohon upload ulang file anda !', {
-                position: "top-right",
-                
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-        } catch (err) {
-            alert(err);
-        }
-    };
-
-    const uploadjumlah_peningkatan_investasi = async (event) => {
-        const fileInput =
-            document.querySelector('.file');
-        const target = (event.target.files[0]);
-        const cekExtensions = (event.target.value);
-        // Allowing file type
-        const allowedExtensions =
-            /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-        if (!allowedExtensions.exec(cekExtensions)) {
-            toast.warn('Hanya JPEG dan PDF yang bisa di upload', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            fileInput.value = '';
-            return false;
-        } else {
-            setJumlah_peningkatan_investasi(target)
-        }
-    };
-
-    const Deletejumlah_peningkatan_investasi  = async (event) => {
-        console.log("onclick", event.target.value)
-        setShow(true)
-        let url = "https://asik.palembang.go.id/api/upload/files/" +  event.target.value
-        try {
-            let response = await axios.delete(url, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
-            // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
-            setLoading(false)
-            console.log(response)
-            toast.success('Mohon upload ulang file anda !', {
-                position: "top-right",
-                
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-        } catch (err) {
-            alert(err);
-        }
-    };
-
-    const uploadjumlah_peningkatan_PAD = async (event) => {
-        const fileInput =
-            document.querySelector('.file');
-        const target = (event.target.files[0]);
-        const cekExtensions = (event.target.value);
-        // Allowing file type
-        const allowedExtensions =
-            /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-        if (!allowedExtensions.exec(cekExtensions)) {
-            toast.warn('Hanya JPEG dan PDF yang bisa di upload', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            fileInput.value = '';
-            return false;
-        } else {
-            setJumlah_peningkatan_PAD(target)
-        }
-    };
-
-    const Deletejumlah_peningkatan_PAD  = async (event) => {
-        console.log("onclick", event.target.value)
-        setShow(true)
-        let url = "https://asik.palembang.go.id/api/upload/files/" +  event.target.value
-        try {
-            let response = await axios.delete(url, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
-            // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
-            setLoading(false)
-            console.log(response)
-            toast.success('Mohon upload ulang file anda !', {
-                position: "top-right",
-                
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-        } catch (err) {
-            alert(err);
-        }
-    };
-
-    const uploadopini = async (event) => {
-        const fileInput =
-            document.querySelector('.file');
-        const target = (event.target.files[0]);
-        const cekExtensions = (event.target.value);
-        // Allowing file type
-        const allowedExtensions =
-            /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-        if (!allowedExtensions.exec(cekExtensions)) {
-            toast.warn('Hanya JPEG dan PDF yang bisa di upload', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            fileInput.value = '';
-            return false;
-        } else {
-            setOpini(target)
-        }
-    };
-
-    const Deleteopini  = async (event) => {
-        console.log("onclick", event.target.value)
-        setShow(true)
-        let url = "https://asik.palembang.go.id/api/upload/files/" +  event.target.value
-        try {
-            let response = await axios.delete(url, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
-            // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
-            setLoading(false)
-            console.log(response)
-            toast.success('Mohon upload ulang file anda !', {
-                position: "top-right",
-                
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-        } catch (err) {
-            alert(err);
-        }
-    };
-
-    const uploadcapaianLAKIP = async (event) => {
-        const fileInput =
-            document.querySelector('.file');
-        const target = (event.target.files[0]);
-        const cekExtensions = (event.target.value);
-        // Allowing file type
-        const allowedExtensions =
-            /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-        if (!allowedExtensions.exec(cekExtensions)) {
-            toast.warn('Hanya JPEG dan PDF yang bisa di upload', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            fileInput.value = '';
-            return false;
-        } else {
-            setCapaianLAKIP(target)
-        }
-    };
-    
-    const DeletecapaianLAKIP  = async (event) => {
-        console.log("onclick", event.target.value)
-        setShow(true)
-        let url = "https://asik.palembang.go.id/api/upload/files/" +  event.target.value
-        try {
-            let response = await axios.delete(url, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
-            // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
-            setLoading(false)
-            console.log(response)
-            toast.success('Mohon upload ulang file anda !', {
-                position: "top-right",
-                
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-        } catch (err) {
-            alert(err);
-        }
-    };
-
-    const uploadpenurunanAngkaMiskin = async (event) => {
-        const fileInput =
-            document.querySelector('.file');
-        const target = (event.target.files[0]);
-        const cekExtensions = (event.target.value);
-        // Allowing file type
-        const allowedExtensions =
-            /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-        if (!allowedExtensions.exec(cekExtensions)) {
-            toast.warn('Hanya JPEG dan PDF yang bisa di upload', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            fileInput.value = '';
-            return false;
-        } else {
-            setPenurunanAngkaMiskin(target)
-        }
-    };
-
-    const DeletepenurunanAngkaMiskin  = async (event) => {
-        console.log("onclick", event.target.value)
-        setShow(true)
-        let url = "https://asik.palembang.go.id/api/upload/files/" +  event.target.value
-        try {
-            let response = await axios.delete(url, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
-            // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
-            setLoading(false)
-            console.log(response)
-            toast.success('Mohon upload ulang file anda !', {
-                position: "top-right",
-                
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-        } catch (err) {
-            alert(err);
-        }
-    };
-
-    const uploadnilaiIPM = async (event) => {
-        const fileInput =
-            document.querySelector('.file');
-        const target = (event.target.files[0]);
-        const cekExtensions = (event.target.value);
-        // Allowing file type
-        const allowedExtensions =
-            /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-        if (!allowedExtensions.exec(cekExtensions)) {
-            toast.warn('Hanya JPEG dan PDF yang bisa di upload', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            fileInput.value = '';
-            return false;
-        } else {
-            setNilaiIPM(target)
-        }
-    };
-
-    const DeletenilaiIPM  = async (event) => {
-        console.log("onclick", event.target.value)
-        setShow(true)
-        let url = "https://asik.palembang.go.id/api/upload/files/" +  event.target.value
-        try {
-            let response = await axios.delete(url, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
-            // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
-            setLoading(false)
-            console.log(response)
-            toast.success('Mohon upload ulang file anda !', {
-                position: "top-right",
-                
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-        } catch (err) {
-            alert(err);
-        }
-    };
-
-    const uploadpenghargaanInovator = async (event) => {
-        const fileInput =
-            document.querySelector('.file');
-        const target = (event.target.files[0]);
-        const cekExtensions = (event.target.value);
-        // Allowing file type
-        const allowedExtensions =
-            /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-        if (!allowedExtensions.exec(cekExtensions)) {
-            toast.warn('Hanya JPEG dan PDF yang bisa di upload', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            fileInput.value = '';
-            return false;
-        } else {
-            setPenghargaanInovator(target)
-        }
-    };
-
-    const DeletepenghargaanInovator  = async (event) => {
-        console.log("onclick", event.target.value)
-        setShow(true)
-        let url = "https://asik.palembang.go.id/api/upload/files/" +  event.target.value
-        try {
-            let response = await axios.delete(url, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
-            // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
-            setLoading(false)
-            console.log(response)
-            toast.success('Mohon upload ulang file anda !', {
-                position: "top-right",
-                
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-        } catch (err) {
-            alert(err);
-        }
-    };
 
     const uploadregulasiInovasi = async (event) => {
         const fileInput =
@@ -796,10 +186,15 @@ export default function EditInovasi() {
         }
     };
 
-    const DeleteregulasiInovasi  = async (event) => {
-        console.log("onclick", event.target.value)
-        setShow(true)
-        let url = "https://asik.palembang.go.id/api/upload/files/" +  event.target.value
+    const DeleteregulasiInovasi = async (event) => {
+
+        setShow({
+            ...show,
+            [event.target.name]: true,
+        });
+       
+
+        let url = "https://asik.palembang.go.id/api/upload/files/" + event.target.value
         try {
             let response = await axios.delete(url, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
             // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
@@ -807,7 +202,7 @@ export default function EditInovasi() {
             console.log(response)
             toast.success('Mohon upload ulang file anda !', {
                 position: "top-right",
-                
+
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
@@ -818,52 +213,6 @@ export default function EditInovasi() {
         }
     };
 
-    const uploadketersediaanSDM = async (event) => {
-        const fileInput =
-            document.querySelector('.file');
-        const target = (event.target.files[0]);
-        const cekExtensions = (event.target.value);
-        // Allowing file type
-        const allowedExtensions =
-            /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-        if (!allowedExtensions.exec(cekExtensions)) {
-            toast.warn('Hanya JPEG dan PDF yang bisa di upload', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            fileInput.value = '';
-            return false;
-        } else {
-            setKetersediaanSDM(target)
-        }
-    };
-
-    const DeleteketersediaanSDM  = async (event) => {
-        console.log("onclick", event.target.value)
-        setShow(true)
-        let url = "https://asik.palembang.go.id/api/upload/files/" +  event.target.value
-        try {
-            let response = await axios.delete(url, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
-            // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
-            setLoading(false)
-            console.log(response)
-            toast.success('Mohon upload ulang file anda !', {
-                position: "top-right",
-                
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-        } catch (err) {
-            alert(err);
-        }
-    };
 
     const uploadjumlahKajian = async (event) => {
         const fileInput =
@@ -890,10 +239,12 @@ export default function EditInovasi() {
         }
     };
 
-    const DeletejumlahKajian  = async (event) => {
-        console.log("onclick", event.target.value)
-        setShow(true)
-        let url = "https://asik.palembang.go.id/api/upload/files/" +  event.target.value
+    const DeletejumlahKajian = async (event) => {
+        setShow({
+            ...show,
+            [event.target.name]: true,
+        });
+        let url = "https://asik.palembang.go.id/api/upload/files/" + event.target.value
         try {
             let response = await axios.delete(url, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
             // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
@@ -901,7 +252,7 @@ export default function EditInovasi() {
             console.log(response)
             toast.success('Mohon upload ulang file anda !', {
                 position: "top-right",
-                
+
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
@@ -937,10 +288,12 @@ export default function EditInovasi() {
         }
     };
 
-     const DeleteroadmapSIDA  = async (event) => {
-        console.log("onclick", event.target.value)
-        setShow(true)
-        let url = "https://asik.palembang.go.id/api/upload/files/" +  event.target.value
+    const DeleteroadmapSIDA = async (event) => {
+        setShow({
+            ...show,
+            [event.target.name]: true,
+        });
+        let url = "https://asik.palembang.go.id/api/upload/files/" + event.target.value
         try {
             let response = await axios.delete(url, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
             // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
@@ -948,7 +301,7 @@ export default function EditInovasi() {
             console.log(response)
             toast.success('Mohon upload ulang file anda !', {
                 position: "top-right",
-                
+
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
@@ -984,10 +337,12 @@ export default function EditInovasi() {
         }
     };
 
-    const DeletedukunganAnggaran  = async (event) => {
-        console.log("onclick", event.target.value)
-        setShow(true)
-        let url = "https://asik.palembang.go.id/api/upload/files/" +  event.target.value
+    const DeletedukunganAnggaran = async (event) => {
+        setShow({
+            ...show,
+            [event.target.name]: true,
+        });
+        let url = "https://asik.palembang.go.id/api/upload/files/" + event.target.value
         try {
             let response = await axios.delete(url, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
             // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
@@ -995,7 +350,7 @@ export default function EditInovasi() {
             console.log(response)
             toast.success('Mohon upload ulang file anda !', {
                 position: "top-right",
-                
+
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
@@ -1031,10 +386,12 @@ export default function EditInovasi() {
         }
     };
 
-    const DeletepenggunaanIT  = async (event) => {
-        console.log("onclick", event.target.value)
-        setShow(true)
-        let url = "https://asik.palembang.go.id/api/upload/files/" +  event.target.value
+    const DeletepenggunaanIT = async (event) => {
+        setShow({
+            ...show,
+            [event.target.name]: true,
+        });
+        let url = "https://asik.palembang.go.id/api/upload/files/" + event.target.value
         try {
             let response = await axios.delete(url, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
             // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
@@ -1042,7 +399,7 @@ export default function EditInovasi() {
             console.log(response)
             toast.success('Mohon upload ulang file anda !', {
                 position: "top-right",
-                
+
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
@@ -1079,10 +436,12 @@ export default function EditInovasi() {
         }
     };
 
-    const DeletebimtekInovasi  = async (event) => {
-        console.log("onclick", event.target.value)
-        setShow(true)
-        let url = "https://asik.palembang.go.id/api/upload/files/" +  event.target.value
+    const DeletebimtekInovasi = async (event) => {
+        setShow({
+            ...show,
+            [event.target.name]: true,
+        });
+        let url = "https://asik.palembang.go.id/api/upload/files/" + event.target.value
         try {
             let response = await axios.delete(url, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
             // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
@@ -1090,7 +449,7 @@ export default function EditInovasi() {
             console.log(response)
             toast.success('Mohon upload ulang file anda !', {
                 position: "top-right",
-                
+
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
@@ -1126,10 +485,12 @@ export default function EditInovasi() {
         }
     };
 
-    const DeleteprogramInovasi  = async (event) => {
-        console.log("onclick", event.target.value)
-        setShow(true)
-        let url = "https://asik.palembang.go.id/api/upload/files/" +  event.target.value
+    const DeleteprogramInovasi = async (event) => {
+        setShow({
+            ...show,
+            [event.target.name]: true,
+        });
+        let url = "https://asik.palembang.go.id/api/upload/files/" + event.target.value
         try {
             let response = await axios.delete(url, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
             // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
@@ -1137,7 +498,7 @@ export default function EditInovasi() {
             console.log(response)
             toast.success('Mohon upload ulang file anda !', {
                 position: "top-right",
-                
+
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
@@ -1173,10 +534,12 @@ export default function EditInovasi() {
         }
     };
 
-    const DeleteketerlibatanAktor  = async (event) => {
-        console.log("onclick", event.target.value)
-        setShow(true)
-        let url = "https://asik.palembang.go.id/api/upload/files/" +  event.target.value
+    const DeleteketerlibatanAktor = async (event) => {
+        setShow({
+            ...show,
+            [event.target.name]: true,
+        });
+        let url = "https://asik.palembang.go.id/api/upload/files/" + event.target.value
         try {
             let response = await axios.delete(url, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
             // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
@@ -1184,7 +547,7 @@ export default function EditInovasi() {
             console.log(response)
             toast.success('Mohon upload ulang file anda !', {
                 position: "top-right",
-                
+
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
@@ -1220,10 +583,12 @@ export default function EditInovasi() {
         }
     };
 
-    const DeletepelaksanaInovasi  = async (event) => {
-        console.log("onclick", event.target.value)
-        setShow(true)
-        let url = "https://asik.palembang.go.id/api/upload/files/" +  event.target.value
+    const DeletepelaksanaInovasi = async (event) => {
+        setShow({
+            ...show,
+            [event.target.name]: true,
+        });
+        let url = "https://asik.palembang.go.id/api/upload/files/" + event.target.value
         try {
             let response = await axios.delete(url, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
             // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
@@ -1231,7 +596,7 @@ export default function EditInovasi() {
             console.log(response)
             toast.success('Mohon upload ulang file anda !', {
                 position: "top-right",
-                
+
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
@@ -1267,10 +632,12 @@ export default function EditInovasi() {
         }
     };
 
-    const DeletejejaringInovasi  = async (event) => {
-        console.log("onclick", event.target.value)
-        setShow(true)
-        let url = "https://asik.palembang.go.id/api/upload/files/" +  event.target.value
+    const DeletejejaringInovasi = async (event) => {
+        setShow({
+            ...show,
+            [event.target.name]: true,
+        });
+        let url = "https://asik.palembang.go.id/api/upload/files/" + event.target.value
         try {
             let response = await axios.delete(url, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
             // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
@@ -1278,7 +645,7 @@ export default function EditInovasi() {
             console.log(response)
             toast.success('Mohon upload ulang file anda !', {
                 position: "top-right",
-                
+
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
@@ -1314,10 +681,12 @@ export default function EditInovasi() {
         }
     };
 
-    const DeletesosialisasiInovasi  = async (event) => {
-        console.log("onclick", event.target.value)
-        setShow(true)
-        let url = "https://asik.palembang.go.id/api/upload/files/" +  event.target.value
+    const DeletesosialisasiInovasi = async (event) => {
+        setShow({
+            ...show,
+            [event.target.name]: true,
+        });
+        let url = "https://asik.palembang.go.id/api/upload/files/" + event.target.value
         try {
             let response = await axios.delete(url, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
             // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
@@ -1325,7 +694,7 @@ export default function EditInovasi() {
             console.log(response)
             toast.success('Mohon upload ulang file anda !', {
                 position: "top-right",
-                
+
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
@@ -1361,10 +730,12 @@ export default function EditInovasi() {
         }
     };
 
-    const DeletepedomanTeknis  = async (event) => {
-        console.log("onclick", event.target.value)
-        setShow(true)
-        let url = "https://asik.palembang.go.id/api/upload/files/" +  event.target.value
+    const DeletepedomanTeknis = async (event) => {
+        setShow({
+            ...show,
+            [event.target.name]: true,
+        });
+        let url = "https://asik.palembang.go.id/api/upload/files/" + event.target.value
         try {
             let response = await axios.delete(url, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
             // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
@@ -1372,7 +743,7 @@ export default function EditInovasi() {
             console.log(response)
             toast.success('Mohon upload ulang file anda !', {
                 position: "top-right",
-                
+
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
@@ -1408,10 +779,12 @@ export default function EditInovasi() {
         }
     };
 
-    const DeletekemudahanLayanan  = async (event) => {
-        console.log("onclick", event.target.value)
-        setShow(true)
-        let url = "https://asik.palembang.go.id/api/upload/files/" +  event.target.value
+    const DeletekemudahanLayanan = async (event) => {
+        setShow({
+            ...show,
+            [event.target.name]: true,
+        });
+        let url = "https://asik.palembang.go.id/api/upload/files/" + event.target.value
         try {
             let response = await axios.delete(url, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
             // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
@@ -1419,7 +792,7 @@ export default function EditInovasi() {
             console.log(response)
             toast.success('Mohon upload ulang file anda !', {
                 position: "top-right",
-                
+
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
@@ -1455,10 +828,12 @@ export default function EditInovasi() {
         }
     };
 
-    const DeletekemudahanProses  = async (event) => {
-        console.log("onclick", event.target.value)
-        setShow(true)
-        let url = "https://asik.palembang.go.id/api/upload/files/" +  event.target.value
+    const DeletekemudahanProses = async (event) => {
+        setShow({
+            ...show,
+            [event.target.name]: true,
+        });
+        let url = "https://asik.palembang.go.id/api/upload/files/" + event.target.value
         try {
             let response = await axios.delete(url, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
             // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
@@ -1466,7 +841,7 @@ export default function EditInovasi() {
             console.log(response)
             toast.success('Mohon upload ulang file anda !', {
                 position: "top-right",
-                
+
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
@@ -1502,10 +877,12 @@ export default function EditInovasi() {
         }
     };
 
-    const DeletepenyelesaianLayanan  = async (event) => {
-        console.log("onclick", event.target.value)
-        setShow(true)
-        let url = "https://asik.palembang.go.id/api/upload/files/" +  event.target.value
+    const DeletepenyelesaianLayanan = async (event) => {
+        setShow({
+            ...show,
+            [event.target.name]: true,
+        });
+        let url = "https://asik.palembang.go.id/api/upload/files/" + event.target.value
         try {
             let response = await axios.delete(url, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
             // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
@@ -1513,7 +890,7 @@ export default function EditInovasi() {
             console.log(response)
             toast.success('Mohon upload ulang file anda !', {
                 position: "top-right",
-                
+
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
@@ -1549,10 +926,12 @@ export default function EditInovasi() {
         }
     };
 
-    const DeleteonlineSistem  = async (event) => {
-        console.log("onclick", event.target.value)
-        setShow(true)
-        let url = "https://asik.palembang.go.id/api/upload/files/" +  event.target.value
+    const DeleteonlineSistem = async (event) => {
+        setShow({
+            ...show,
+            [event.target.name]: true,
+        });
+        let url = "https://asik.palembang.go.id/api/upload/files/" + event.target.value
         try {
             let response = await axios.delete(url, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
             // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
@@ -1560,7 +939,7 @@ export default function EditInovasi() {
             console.log(response)
             toast.success('Mohon upload ulang file anda !', {
                 position: "top-right",
-                
+
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
@@ -1596,10 +975,12 @@ export default function EditInovasi() {
         }
     };
 
-    const Deleterepikasi  = async (event) => {
-        console.log("onclick", event.target.value)
-        setShow(true)
-        let url = "https://asik.palembang.go.id/api/upload/files/" +  event.target.value
+    const Deleterepikasi = async (event) => {
+        setShow({
+            ...show,
+            [event.target.name]: true,
+        });
+        let url = "https://asik.palembang.go.id/api/upload/files/" + event.target.value
         try {
             let response = await axios.delete(url, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
             // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
@@ -1607,7 +988,7 @@ export default function EditInovasi() {
             console.log(response)
             toast.success('Mohon upload ulang file anda !', {
                 position: "top-right",
-                
+
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
@@ -1643,10 +1024,12 @@ export default function EditInovasi() {
         }
     };
 
-    const DeletekecepatanInovasi  = async (event) => {
-        console.log("onclick", event.target.value)
-        setShow(true)
-        let url = "https://asik.palembang.go.id/api/upload/files/" +  event.target.value
+    const DeletekecepatanInovasi = async (event) => {
+        setShow({
+            ...show,
+            [event.target.name]: true,
+        });
+        let url = "https://asik.palembang.go.id/api/upload/files/" + event.target.value
         try {
             let response = await axios.delete(url, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
             // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
@@ -1654,7 +1037,7 @@ export default function EditInovasi() {
             console.log(response)
             toast.success('Mohon upload ulang file anda !', {
                 position: "top-right",
-                
+
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
@@ -1690,10 +1073,12 @@ export default function EditInovasi() {
         }
     };
 
-    const DeletekemanfaatanInovasi  = async (event) => {
-        console.log("onclick", event.target.value)
-        setShow(true)
-        let url = "https://asik.palembang.go.id/api/upload/files/" +  event.target.value
+    const DeletekemanfaatanInovasi = async (event) => {
+        setShow({
+            ...show,
+            [event.target.name]: true,
+        });
+        let url = "https://asik.palembang.go.id/api/upload/files/" + event.target.value
         try {
             let response = await axios.delete(url, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
             // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
@@ -1701,7 +1086,7 @@ export default function EditInovasi() {
             console.log(response)
             toast.success('Mohon upload ulang file anda !', {
                 position: "top-right",
-                
+
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
@@ -1737,10 +1122,12 @@ export default function EditInovasi() {
         }
     };
 
-    const Deletemonitoring  = async (event) => {
-        console.log("onclick", event.target.value)
-        setShow(true)
-        let url = "https://asik.palembang.go.id/api/upload/files/" +  event.target.value
+    const Deletemonitoring = async (event) => {
+        setShow({
+            ...show,
+            [event.target.name]: true,
+        });
+        let url = "https://asik.palembang.go.id/api/upload/files/" + event.target.value
         try {
             let response = await axios.delete(url, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
             // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
@@ -1748,7 +1135,7 @@ export default function EditInovasi() {
             console.log(response)
             toast.success('Mohon upload ulang file anda !', {
                 position: "top-right",
-                
+
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
@@ -1759,7 +1146,7 @@ export default function EditInovasi() {
         }
     };
 
-     const uploadkualitasInovasi = async (event) => {
+    const uploadkualitasInovasi = async (event) => {
         const fileInput =
             document.querySelector('.file');
         const target = (event.target.files[0]);
@@ -1784,10 +1171,12 @@ export default function EditInovasi() {
         }
     };
 
-    const DeletekualitasInovasi  = async (event) => {
-        console.log("onclick", event.target.value)
-        setShow(true)
-        let url = "https://asik.palembang.go.id/api/upload/files/" +  event.target.value
+    const DeletekualitasInovasi = async (event) => {
+        setShow({
+            ...show,
+            [event.target.name]: true,
+        });
+        let url = "https://asik.palembang.go.id/api/upload/files/" + event.target.value
         try {
             let response = await axios.delete(url, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
             // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
@@ -1795,7 +1184,7 @@ export default function EditInovasi() {
             console.log(response)
             toast.success('Mohon upload ulang file anda !', {
                 position: "top-right",
-                
+
                 closeOnClick: true,
                 pauseOnHover: true,
                 draggable: true,
@@ -1806,7 +1195,7 @@ export default function EditInovasi() {
         }
     };
 
-    
+
 
     const handleinovasi = (event) => {
         const {
@@ -1834,29 +1223,15 @@ export default function EditInovasi() {
         }
     };
 
- 
-  
-    const addKajian = async (event) => {
 
+
+    const addKajian = async (event) => {
+        setLoading(true)
 
         let url = "https://asik.palembang.go.id/api/inovasis/" + location.state.idInovasi.id
 
         let formData = new FormData();
-        formData.append('files.Visi_dan_misi_Pemda', visi);
-        formData.append('files.Tingkat_lembaga_kelitbangan', tingkat_lembaga);
-        formData.append('files.Apbd_tepat_waktu', apbd_tepatwaktu);
-        formData.append('files.Kualitas_peningkatan_perizinan', kualitasPerizinan);
-        formData.append('files.Jumlah_peningkatan_perkapita', jumlahPeningkatanKapita);
-        formData.append('files.Tingkat_pengangguran_terbuka', tingkatPengangguran);
-        formData.append('files.Jumlah_peningkatan_investasi', jumlah_peningkatan_investasi);
-        formData.append('files.Jumlah_peningkatan_PAD', jumlah_peningkatan_PAD);
-        formData.append('files.Opini_BPK', opini);
-        formData.append('files.Nilai_Capaian_LAKIP', capaianLAKIP);
-        formData.append('files.Penurunan_angka_kemiskinan', penurunanAngkaMiskin);
-        formData.append('files.Nilai_IPM', nilaiIPM);
-        formData.append('files.Penghargaan_bagi_inovator', penghargaanInovator);
         formData.append('files.Regulasi_Inovasi_daerah', regulasiInovasi);
-        formData.append('files.Ketersediaan_SDM_inovasi_daerah', ketersediaanSDM);
         formData.append('files.Jumlah_kajian_yang_mendukung_inovasi', jumlahKajian);
         formData.append('files.Roadmap_SIDa', roadmapSIDA);
         formData.append('files.Dukungan_anggaran', dukunganAnggaran);
@@ -1880,25 +1255,25 @@ export default function EditInovasi() {
         formData.append('files.Pedoman_teknis_inovasi', pedomanTeknis);
 
         const data = {
-            Nama_opd:localStorage.getItem("nama_opd"),
-            Nama_inovasi: state.nama_inovasi ? state.nama_inovasi : location.state.idInovasi.attributes.Nama_inovasi ,
+            Nama_opd: localStorage.getItem("nama_opd"),
+            Nama_inovasi: state.nama_inovasi ? state.nama_inovasi : location.state.idInovasi.attributes.Nama_inovasi,
             Tahapan_inovasi: state.tahapan_inovasi ? state.tahapan_inovasi : location.state.idInovasi.attributes.Tahapan_inovasi,
             Inisiator_inovasi: state.inisiator_inovasi ? state.inisiator_inovasi : location.state.idInovasi.attributes.Inisiator_inovasi,
-            Jenis_inovasi: state.jenis_inovasi ? state.jenis_inovasi  : location.state.idInovasi.attributes.Jenis_inovasi,
+            Jenis_inovasi: state.jenis_inovasi ? state.jenis_inovasi : location.state.idInovasi.attributes.Jenis_inovasi,
             Covid19: state.Covid19 ? state.Covid19 : location.state.idInovasi.attributes.Covid19,
             Urusan_inovasi: urusanInovasi.toString() ? urusanInovasi.toString() : state.Urusan_inovasi,
             Waktu_uji_coba: state.Waktu_uji_coba ? state.Waktu_uji_coba : location.state.idInovasi.attributes.Waktu_uji_coba,
             Bentuk_inovasi: state.Bentuk_inovasi ? state.Bentuk_inovasi : location.state.idInovasi.attributes.Bentuk_inovasi,
             Waktu_implementasi: state.Waktu_implementasi ? state.Waktu_implementasi : location.state.idInovasi.attributes.Waktu_implementasi,
             Rancang_bangun_pokok_inovasi: rancangBangun.length !== undefined ? rancangBangun : location.state.idInovasi.attributes.Rancang_bangun_pokok_inovasi,
-            Tujuan_inovasi: tujuanInvoasi.length !== undefined  ? tujuanInvoasi : state.Tujuan_inovasi,
+            Tujuan_inovasi: tujuanInvoasi.length !== undefined ? tujuanInvoasi : state.Tujuan_inovasi,
             Manfaat_inovasi: manfaat.length !== undefined ? manfaat : location.state.idInovasi.attributes.Manfaat_inovasi,
-            Hasil_inovasi: hasil.length !== undefined  ? hasil : location.state.idInovasi.attributes.Hasil_inovasi,
+            Hasil_inovasi: hasil.length !== undefined ? hasil : location.state.idInovasi.attributes.Hasil_inovasi,
 
 
         }
 
-     
+
 
         const myJSON = JSON.stringify(data);
 
@@ -1908,24 +1283,24 @@ export default function EditInovasi() {
         try {
             let response = await axios.put(url, formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
             // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
-           if(response.status === 200){
+            if (response.status === 200) {
 
-            setLoading(false)
-           
-            toast.success('Inovasi anda berhasil di edit!', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            setTimeout(() => {
-                return navigate("/dashboard");
-            },3000);
-           
-           }
+                setLoading(false)
+
+                toast.success('Inovasi anda berhasil di edit!', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                setTimeout(() => {
+                    return navigate("/dashboard");
+                }, 3000);
+
+            }
         } catch (err) {
             setLoading(false)
             toast.success(alert.err, {
@@ -1942,9 +1317,9 @@ export default function EditInovasi() {
     }
 
 
-    console.log(hasil.length, hasil)
+
     useEffect(() => {
-   
+
         getUrusanInovasi()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
@@ -1974,11 +1349,11 @@ export default function EditInovasi() {
                                 Edit Inovasi Pemerintah Daerah
                             </Typography>
                         </div>
-                        {loading === true ? <CircularProgress/> :   <ValidatorForm
+                        {loading === true ? <CircularProgress /> : <ValidatorForm
                             onSubmit={addKajian}
                         >
                             <div className="form-inovasi">
-                    
+
                                 <div className="form-opd">
                                     <InputLabel shrink htmlFor="Nama_OPD">
                                         Nama OPD
@@ -2003,14 +1378,14 @@ export default function EditInovasi() {
                                     />
                                 </div>
                                 <div className="form-opd">
-                                  
+
                                     <FormControl fullWidth>
                                         <InputLabel id="demo-simple-select-label">  COVID 19</InputLabel>
                                         <Select
                                             className="select-asik"
                                             labelId="demo-simple-select-label"
                                             id="demo-simple-select"
-                                            value={state.Covid19 ? state.Covid19 : location.state.idInovasi.attributes.Covid19 ? location.state.idInovasi.attributes.Covid19 :  ''}
+                                            value={state.Covid19 ? state.Covid19 : location.state.idInovasi.attributes.Covid19 ? location.state.idInovasi.attributes.Covid19 : ''}
                                             defaultValue={location.state.idInovasi.attributes.Covid19}
                                             name="Covid19"
                                             label="Tahapan Inovasi"
@@ -2021,7 +1396,7 @@ export default function EditInovasi() {
                                             <MenuItem value="Pilih">Pilih </MenuItem>
                                             <MenuItem value="Covid19">COVID 19</MenuItem>
                                             <MenuItem value="Non_covid19">Non Covid 19</MenuItem>
-                                          
+
                                         </Select>
                                     </FormControl>
                                 </div>
@@ -2035,7 +1410,7 @@ export default function EditInovasi() {
                                             className="select-asik"
                                             labelId="demo-simple-select-label"
                                             id="demo-simple-select"
-                                            value={state.tahapan_inovasi ? state.tahapan_inovasi : location.state.idInovasi.attributes.Tahapan_inovasi ? location.state.idInovasi.attributes.Tahapan_inovasi  : ''}
+                                            value={state.tahapan_inovasi ? state.tahapan_inovasi : location.state.idInovasi.attributes.Tahapan_inovasi ? location.state.idInovasi.attributes.Tahapan_inovasi : ''}
                                             defaultValue={location.state.idInovasi.attributes.Tahapan_inovasi}
                                             name="tahapan_inovasi"
                                             label="Tahapan Inovasi"
@@ -2123,10 +1498,10 @@ export default function EditInovasi() {
                                             id="demo-multiple-chip"
                                             multiple
                                             className="select-asik"
-                                          
+
                                             value={urusanInovasi}
                                             required
-                                         
+
                                             size="medium"
                                             onChange={handleinovasi}
                                             input={<OutlinedInput id="select-multiple-chip" label="Urusan Inovasi Daerah*" />}
@@ -2139,12 +1514,12 @@ export default function EditInovasi() {
                                             )}
                                             MenuProps={MenuProps}
                                         >
-                                            
+
                                             {listUrusan.map((name) => (
                                                 <MenuItem
                                                     key={name.id}
                                                     value={name.attributes.Urusan_inovasi}
-                                                  
+
                                                     style={getStyles(name.attributes.Urusan_inovasi, urusanInovasi, theme)}
                                                 >
                                                     {name.attributes.Urusan_inovasi}
@@ -2159,8 +1534,8 @@ export default function EditInovasi() {
                                         <InputLabel shrink htmlFor="tanggal_pelaksanaan">
                                             Waktu Uji Coba Inovasi Daerah*
                                         </InputLabel>
-                                        <CustomInput aria-label="Waktu Uji coba" defaultValue={location.state.idInovasi.attributes.Waktu_uji_coba}  className="tanggal" type="date" placeholder="Contoh : Bappeda Litbang" id="tanggal_pelaksanaan" name="Waktu_uji_coba"
-                                            value={state.Waktu_uji_coba } onChange={handleChange} required/>
+                                        <CustomInput aria-label="Waktu Uji coba" defaultValue={location.state.idInovasi.attributes.Waktu_uji_coba} className="tanggal" type="date" placeholder="Contoh : Bappeda Litbang" id="tanggal_pelaksanaan" name="Waktu_uji_coba"
+                                            value={state.Waktu_uji_coba} onChange={handleChange} required />
                                     </div>
                                     <div>
                                         <InputLabel shrink htmlFor="Nama_opd">
@@ -2168,7 +1543,7 @@ export default function EditInovasi() {
 
                                         </InputLabel>
                                         <CustomInput aria-label="Waktu Impelemntasi" defaultValue={location.state.idInovasi.attributes.Waktu_implementasi} className="tanggal" type="date" placeholder="Contoh : Bappeda Litbang" name="Waktu_implementasi"
-                                            value={state.Waktu_implementasi} onChange={handleChange} required/>
+                                            value={state.Waktu_implementasi} onChange={handleChange} required />
                                     </div>
 
                                 </div>
@@ -2182,7 +1557,7 @@ export default function EditInovasi() {
                                         editor={ClassicEditor}
 
                                         data={location.state.idInovasi.attributes.Rancang_bangun_pokok_inovasi ? location.state.idInovasi.attributes.Rancang_bangun_pokok_inovasi : ''}
-                                       
+
                                         onChange={(event, editor) => {
                                             const data = editor.getData();
                                             setRancangBangun(data)
@@ -2204,7 +1579,7 @@ export default function EditInovasi() {
                                     <CKEditor
                                         editor={ClassicEditor}
                                         data={location.state.idInovasi.attributes.Tujuan_inovasi ? location.state.idInovasi.attributes.Tujuan_inovasi : ''}
-                                      
+
                                         onChange={(event, editor) => {
                                             const data = editor.getData();
                                             setTujuanInovasi(data)
@@ -2246,7 +1621,7 @@ export default function EditInovasi() {
                                     <CKEditor
                                         editor={ClassicEditor}
                                         data={location.state.idInovasi.attributes.Hasil_inovasi ? location.state.idInovasi.attributes.Hasil_inovasi : ''}
-                                        
+
                                         onChange={(event, editor) => {
                                             const data = editor.getData();
                                             setHasil(data)
@@ -2258,456 +1633,581 @@ export default function EditInovasi() {
                                         }}
                                     />
                                 </div>
-                                <div className="form-opd-grid">
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Visi & Misi
 
-                                        </InputLabel>
-                                        {pathnameUpload.Visi_dan_misi_Pemda.data !== null ?  <> <a href={urlAsik + pathnameUpload.Visi_dan_misi_Pemda.data.attributes.url} target="_blank" rel="noreferrer">
-                                            Lihat File
-                                        </a>
-                                        <Button  onClick={DeleteVisi}     value={pathnameUpload.Visi_dan_misi_Pemda.data.id}>Edit File</Button>
-                                        <input type="file" id="file" className={show === true ? "file" : "display-none"} onChange={uploadVisiMisi} accept="image/*,.pdf" /> </> : <input type="file" id="file" className={show === true ? "file" : "display-none"} onChange={uploadVisiMisi} accept="image/*,.pdf" /> }
-                                       
-                                    </div>
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Tingkat lembaga kelitbangan
-                                        </InputLabel>
-                                        {pathnameUpload.Tingkat_lembaga_kelitbangan.data !== null ?   <>
-                                            <a href={pathnameUpload.Tingkat_lembaga_kelitbangan.data.attributes.url ?  urlAsik + pathnameUpload.Tingkat_lembaga_kelitbangan.data.attributes.url : ""} target="_blank" rel="noreferrer">
-                                            Lihat File
-                                        </a>
-                                        <Button  onClick={DeletetingkatLembaga}     value={pathnameUpload.Tingkat_lembaga_kelitbangan.data.id ? location.state.idInovasi.attributes.Tingkat_lembaga_kelitbangan.data.id : ""}>Edit File</Button>
-                                        <input type="file"   id="file" className={show === true ? "file" : "display-none"}   onChange={uploadtingkatLembaga} accept="image/*,.pdf"/> 
-                                        </>:   <input type="file"   id="file" className={show === true ? "file" : "display-none"}   onChange={uploadtingkatLembaga} accept="image/*,.pdf"/>}
-                                     
-                                    </div>
-                                </div>
+                                <h3 style={{ margin: "20px 0 20px 0" }}>Indikator Inovasi Daerah</h3>
 
-                                <div className="form-opd-grid">
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Apbd tepat waktu
-                                        </InputLabel>
-                                        {pathnameUpload.Apbd_tepat_waktu.data !== null ? <>
-                                            <a href={"https://asik.palembang.go.id" +location.state.idInovasi.attributes.Apbd_tepat_waktu.data.attributes.url} target="_blank" rel="noreferrer">
-                                            Lihat File
-                                        </a>
-                                        <Button  onClick={DeleteAPBD}     value={location.state.idInovasi.attributes.Apbd_tepat_waktu.data.id}>Edit File</Button>
-                                        <input type="file"  id="file" className={show === true ? "file" : "display-none"}  onChange={uploadAPBD} accept="image/*,.pdf"/>
-                                        </> : <input type="file"  id="file" className={show === true ? "file" : "display-none"}  onChange={uploadAPBD} accept="image/*,.pdf"/> }
-                                       
-                                    </div>
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Kualitas peningkatan perizinan
-                                        </InputLabel>
-                                        {pathnameUpload.Kualitas_peningkatan_perizinan.data !== null ?  <>
-                                            <a href={urlAsik + pathnameUpload.Kualitas_peningkatan_perizinan.data.attributes.url} target="_blank" rel="noreferrer">
-                                            Lihat File
-                                        </a>
-                                        <Button  onClick={DeletekualitasPerizinan}     value={pathnameUpload.Kualitas_peningkatan_perizinan.data.id}>Edit File</Button>
-                                        <input type="file"  id="file"  className={show === true ? "file" : "display-none"}  onChange={uploadkualitasPerizinan} accept="image/*,.pdf"/> 
-                                        </>:   <input type="file"  id="file"  className={show === true ? "file" : "display-none"}  onChange={uploadkualitasPerizinan} accept="image/*,.pdf"/>}
-                                      
-                                    </div>
+                                <TableContainer>
+                                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                                        <TableHead>
+                                            <TableRow>
+                                                <TableCell>Indikator</TableCell>
+                                                <TableCell>Keterangan</TableCell>
 
-                                </div>
-                                <div className="form-opd-grid">
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Jumlah peningkatan perkapita
-                                        </InputLabel>
-                                        {pathnameUpload.Jumlah_peningkatan_perkapita.data !== null ? <>
-                                        <a href={urlAsik + pathnameUpload.Jumlah_peningkatan_perkapita.data.attributes.url} target="_blank" rel="noreferrer">
-                                            Lihat File
-                                        </a>
-                                        <Button  onClick={DeletejumlahPeningkatanKapita}     value={pathnameUpload.Jumlah_peningkatan_perkapita.data.id}>Edit File</Button>
-                                        <input type="file"  id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf" onChange={uploadjumlahPeningkatanKapita} />  </> : <input type="file"  id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf" onChange={uploadjumlahPeningkatanKapita} />}
-                                    </div>
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Tingkat pengangguran terbuka
-                                        </InputLabel>
-                                        {pathnameUpload.Tingkat_pengangguran_terbuka.data !== null ? <> 
-                                        <a href={urlAsik + pathnameUpload.Tingkat_pengangguran_terbuka.data.attributes.url} target="_blank" rel="noreferrer">
-                                            Lihat File
-                                        </a>
-                                        <Button  onClick={DeletetingkatPengangguran}     value={pathnameUpload.Tingkat_pengangguran_terbuka.data.id}>Edit File</Button>
-                                        <input type="file" id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf" onChange={uploadtingkatPengangguran} /> </> :  <input type="file" id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf" onChange={uploadtingkatPengangguran} /> }
-                                    </div>
+                                                <TableCell>Parameter</TableCell>
+                                                <TableCell style={{ width: '15%' }}>File yang di upload</TableCell>
+                                                <TableCell style={{ width: '15%' }}>Action</TableCell>
+                                                <TableCell >Jenis File</TableCell>
+                                            </TableRow>
+                                        </TableHead>
+                                        <TableBody>
+                                            {/* Regulasi */}
+                                            <TableRow
 
-                                </div>
-                                <div className="form-opd-grid">
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Jumlah peningkatan investasi
-                                        </InputLabel>
-                                        {pathnameUpload.Jumlah_peningkatan_investasi.data !== null ? <>
-                                            <a href={urlAsik + pathnameUpload.Jumlah_peningkatan_investasi.data.attributes.url} target="_blank" rel="noreferrer">
-                                            Lihat File
-                                        </a>
-                                        <Button  onClick={Deletejumlah_peningkatan_investasi}     value={pathnameUpload.Jumlah_peningkatan_investasi.data.id}>Edit File</Button>
-                                        <input type="file" id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf"  onChange={uploadjumlah_peningkatan_investasi} />
-                                        </> :    <input type="file" id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf"  onChange={uploadjumlah_peningkatan_investasi} /> }
-                                     
-                                    </div>
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Jumlah peningkatan PAD
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    Regulasi Inovasi daerah
+                                                </TableCell>
+                                                <TableCell >Regulasi yang menetapkan nama-nama inovasi daerah yang menjadi landasan operasional penerapan Inovasi Daerah</TableCell>
 
-                                        </InputLabel>
-                                        {pathnameUpload.Jumlah_peningkatan_PAD.data !== null ?    <>
-                                            <a href={urlAsik + pathnameUpload.Jumlah_peningkatan_PAD.data.attributes.url} target="_blank" rel="noreferrer">
-                                            Lihat File
-                                        </a>
-                                        <Button  onClick={Deletejumlah_peningkatan_PAD}     value={pathnameUpload.Jumlah_peningkatan_PAD.data.id}>Edit File</Button>
-                                        <input type="file" id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf"  onChange={uploadjumlah_peningkatan_PAD} /> 
-                                        </>: <input type="file" id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf"  onChange={uploadjumlah_peningkatan_PAD} />}
-                                    
-                                    </div>
+                                                <TableCell></TableCell>
+                                                <TableCell>
+                                                    {pathnameUpload.Regulasi_Inovasi_daerah.data !== null ? <a className="button-asik" href={urlAsik + pathnameUpload.Regulasi_Inovasi_daerah.data.attributes.url} target="_blank" type="button" rel="noreferrer">
+                                                        Lihat File
+                                                    </a> : <h5>Anda belum mengupload file , Silahkan upload indikator inovasi daerah</h5> }
+                                                    
+                                                </TableCell>
+                                                <TableCell>
+                                                    {pathnameUpload.Regulasi_Inovasi_daerah.data !== null ? <> <Button onClick={DeleteregulasiInovasi} name="regulasi" className={show.regulasi === false ? "button-asik-edit" : "display-none"} value={pathnameUpload.Regulasi_Inovasi_daerah.data.id}>Edit File</Button>
+                                                    <input type="file" id="file" className={show.regulasi === true ? "file" : "display-none"} accept="image/*,.pdf" onChange={uploadregulasiInovasi} /></> : 
+                                                    <input type="file" id="file" className="file" accept="image/*,.pdf" onChange={uploadregulasiInovasi} /> }
+                                                   
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/*Regulasi */}
+                                            {/*      Jumlah kajian yang mendukung inovasi */}
+                                            <TableRow
 
-                                </div>
-                                <div className="form-opd-grid">
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Opini BPK
-                                        </InputLabel>
-                                        <a href={urlAsik + pathnameUpload.Opini_BPK.data.attributes.url} target="_blank" rel="noreferrer">
-                                            Lihat File
-                                        </a>
-                                        <Button  onClick={Deleteopini}     value={pathnameUpload.Opini_BPK.data.id}>Edit File</Button>
-                                        <input type="file" id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf" onChange={uploadopini} />
-                                    </div>
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Nilai Capaian LAKIP
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    Jumlah kajian yang mendukung inovasi
+                                                </TableCell>
+                                                <TableCell >Jumlah kajian yang mendukung terlaksananya inovasi</TableCell>
+                                                <TableCell></TableCell>
+                                                <TableCell>
+                                                {pathnameUpload.Jumlah_kajian_yang_mendukung_inovasi.data !== null ?   <a className="button-asik" href={urlAsik + pathnameUpload.Jumlah_kajian_yang_mendukung_inovasi.data.attributes.url} target="_blank" rel="noreferrer">
+                                                        Lihat File
+                                                    </a> :<h5>Anda belum mengupload file , Silahkan upload indikator inovasi daerah</h5> }
+                                                  
+                                                </TableCell>
+                                                <TableCell>
+                                                    {pathnameUpload.Jumlah_kajian_yang_mendukung_inovasi.data !== null ? 
+                                                    <>
+                                                    <Button onClick={DeletejumlahKajian} name="regulasi" className={show.jumlah_kajian === false ? "button-asik-edit" : "display-none"} value={pathnameUpload.Jumlah_kajian_yang_mendukung_inovasi.data.id}>Edit File</Button>
+                                                    <input type="file" id="file" className={show.jumlah_kajian === true ? "file" : "display-none"} accept="image/*,.pdf" onChange={uploadjumlahKajian} />
+                                                    </> :  <input type="file" id="file" className="file" accept="image/*,.pdf" onChange={uploadjumlahKajian} />}
+                                                  
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/*     Jumlah kajian yang mendukung inovasi */}
+                                            {/*     Roadmap SIDA */}
+                                            <TableRow
 
-                                        </InputLabel>
-                                        <a href={urlAsik + pathnameUpload.Nilai_Capaian_LAKIP.data.attributes.url} target="_blank" rel="noreferrer">
-                                            Lihat File
-                                        </a>
-                                        <Button  onClick={DeletecapaianLAKIP}     value={pathnameUpload.Nilai_Capaian_LAKIP.data.id}>Edit File</Button>
-                                        <input type="file"  id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf" onChange={uploadcapaianLAKIP} />
-                                    </div>
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    Roadmap SIDA
+                                                </TableCell>
+                                                <TableCell >Roadmap SIDA </TableCell>
+                                                <TableCell></TableCell>
+                                                <TableCell> 
+                                                    {pathnameUpload.Roadmap_SIDa.data !== null ?       <a className="button-asik" href={urlAsik + pathnameUpload.Roadmap_SIDa.data.attributes.url} target="_blank" rel="noreferrer">
+                                                    Lihat File
+                                                </a> : <h5>Anda belum mengupload file , Silahkan upload indikator inovasi daerah</h5> }
+                                                </TableCell>
 
-                                </div>
-                                <div className="form-opd-grid">
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Penurunan angka kemiskinan
+                                                <TableCell>
+                                                    {pathnameUpload.Roadmap_SIDa.data ? <>
+                                                        <Button name="roadmap_sida" className={show.roadmap_sida === false ? "button-asik-edit" : "display-none"} onClick={DeleteroadmapSIDA} value={pathnameUpload.Roadmap_SIDa.data.id}>Edit File</Button>
+                                                    <input type="file" id="file" className={show.roadmap_sida === true ? "file" : "display-none"} accept="image/*,.pdf" onChange={uploadroadmapSIDA} />
+                                                    </> :    <input type="file" id="file" className="file" accept="image/*,.pdf" onChange={uploadroadmapSIDA} />}
+                                                 
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/*    Roadmap SIDA*/}
+                                            {/*      Dukungan anggaran */}
+                                            <TableRow
 
-                                        </InputLabel>
-                                        <a href={urlAsik + pathnameUpload.Penurunan_angka_kemiskinan.data.attributes.url} target="_blank" rel="noreferrer">
-                                            Lihat File
-                                        </a>
-                                        <Button  onClick={DeletepenurunanAngkaMiskin}     value={pathnameUpload.Penurunan_angka_kemiskinan.data.id}>Edit File</Button>
-                                        <input type="file" id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf" onChange={uploadpenurunanAngkaMiskin} />
-                                    </div>
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Nilai IPM
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    Dukungan anggaran
+                                                </TableCell>
+                                                <TableCell >  Anggaran inovasi daerah dalam APBD dengan tahapan inisiasi (penyampaian ide, rapat, proposal, penulisan kajian), uji coba (pilot project, perekayasaan, laboratorium lapangan, dan sejenisnya), dan penerapan (penyediaan sarana prasarana, sumber daya manusia dan layanan, bimtek, urusan jenis layanan) </TableCell>
+                                                <TableCell> </TableCell>
+                                                <TableCell>
+                                                    {pathnameUpload.Dukungan_anggaran.data !== null ?   <a className="button-asik" href={urlAsik + pathnameUpload.Dukungan_anggaran.data.attributes.url} target="_blank" rel="noreferrer">
+                                                        Lihat File
+                                                    </a> : <h5>Anda belum mengupload file , Silahkan upload indikator inovasi daerah</h5>}
+                                                  
+                                                </TableCell>
+                                                <TableCell>
+                                                    {pathnameUpload.Dukungan_anggaran.data !== null ?  
+                                                    <>
+                                                     <Button name="dukungan_anggaran" className={show.dukungan_anggaran === false ? "button-asik-edit" : ""} onClick={DeletedukunganAnggaran} value={pathnameUpload.Dukungan_anggaran.data.id}>Edit File</Button>
+                                                    <input type="file" id="file" className={show.dukungan_anggaran === true ? "file" : "display-none"} accept="image/*,.pdf" onChange={uploaddukunganAnggaran} />
+                                                    </>
+                                                     :   <input type="file" id="file" className="file" accept="image/*,.pdf" onChange={uploaddukunganAnggaran} /> }
+                                                  
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/*     Dukungan anggaran */}
+                                            {/*    Penggunaan IT */}
+                                            <TableRow
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    Penggunaan IT
+                                                </TableCell>
+                                                <TableCell >  Penggunaan IT dalam pelaksanaan Inovasi yang diterapkan </TableCell>
+                                                <TableCell> </TableCell>
+                                                <TableCell>
+                                                    {pathnameUpload.Penggunaan_IT.data !== null ?   <a className="button-asik" href={urlAsik + pathnameUpload.Penggunaan_IT.data.attributes.url} target="_blank" rel="noreferrer">
+                                                    Lihat File
+                                                </a> : <h5>Anda belum mengupload file , Silahkan upload indikator inovasi daerah</h5>}
+                                                    </TableCell>
+                                                <TableCell>
+                                                    {pathnameUpload.Penggunaan_IT.data !== null ?  <>
+                                                        <Button name="penggunaan_it" className={show.penggunaan_it === false ? "button-asik-edit" : "display-none"} onClick={DeletepenggunaanIT} value={pathnameUpload.Penggunaan_IT.data.id}>Edit File</Button>
+                                                    <input type="file" id="file" className={show.penggunaan_it === true ? "file" : "display-none"} accept="image/*,.pdf" onChange={uploadpenggunaanIT} /> 
+                                                    </>
+                                                    :  <input type="file" id="file" className="file" accept="image/*,.pdf" onChange={uploadpenggunaanIT} />  }
+                                                   
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/*  Penggunaan IT */}
+                                            {/*     Bimtek inovasi*/}
+                                            <TableRow
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    Bimtek inovasi
+                                                </TableCell>
+                                                <TableCell >  Peningkatan kapasitas dan kompetensi pelaksana inovasi daerah </TableCell>
+                                                <TableCell> </TableCell>
+                                                <TableCell>
+                                                    {pathnameUpload.Penggunaan_IT.data !== null ?  <a className="button-asik" href={urlAsik + pathnameUpload.Penggunaan_IT.data.attributes.url} target="_blank" rel="noreferrer">
+                                                    Lihat File
+                                                </a>  : <h5>Anda belum mengupload file , Silahkan upload indikator inovasi daerah</h5>}
+                                                   </TableCell>
+                                                <TableCell>
+                                                    {pathnameUpload.Penggunaan_IT.data !== null ? <> 
+                                                        <Button name="bimtek_inovasi" className={show.bimtek_inovasi === false ? "button-asik-edit" : "display-none"} onClick={DeletebimtekInovasi} value={pathnameUpload.Penggunaan_IT.data.id}>Edit File</Button>
+                                                    <input type="file" id="file" className={show.bimtek_inovasi === true ? "file" : "display-none"} accept="image/*,.pdf" onChange={uploadbimtekInovasi} />
+                                                    </> :  <input type="file" id="file" className="file" accept="image/*,.pdf" onChange={uploadbimtekInovasi} />}
+                                                   
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/*    Bimtek inovasi */}
+                                            {/*    Program Inovasi perangkat RKPD*/}
+                                            <TableRow
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    Program Inovasi perangkat RKPD
+                                                </TableCell>
+                                                <TableCell > Inovasi Perangkat Daerah telah dituangkan dalam program pembangunan daerah </TableCell>
+                                                <TableCell> </TableCell>
+                                                <TableCell>
+                                                    {pathnameUpload.Program_Inovasi_perangkat_RKPD.data !== null ?   <a className="button-asik" href={urlAsik + pathnameUpload.Program_Inovasi_perangkat_RKPD.data.attributes.url} target="_blank" rel="noreferrer">
+                                                    Lihat File
+                                                </a> : <h5>Anda belum mengupload file , Silahkan upload indikator inovasi daerah</h5>}
+                                                   </TableCell>
+                                                <TableCell>
+                                                    {pathnameUpload.Program_Inovasi_perangkat_RKPD.data !== null ?
+                                                    <>
+                                                      <Button name="perangkat_rkpd" className={show.perangkat_rkpd === false ? "button-asik-edit" : "display-none"} onClick={DeleteprogramInovasi} value={pathnameUpload.Program_Inovasi_perangkat_RKPD.data.id}>Edit File</Button>
+                                                    <input type="file" id="file" className={show.perangkat_rkpd === true ? "file" : "display-none"} accept="image/*,.pdf" onChange={uploadprogramInovasi} />
+                                                    </>
+                                                    :     <input type="file" id="file" className="file" accept="image/*,.pdf" onChange={uploadprogramInovasi} />}
+                                                  
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/*    Program Inovasi perangkat RKPD  */}
+                                            {/*         Keterlibatan aktor inovasi */}
+                                            <TableRow
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    Keterlibatan aktor inovasi
+                                                </TableCell>
+                                                <TableCell >Keikutsertaan unsur Stakeholder dalam pelaksanaan inovasi daerah (T-1 dan T-2)</TableCell>
+                                                <TableCell> </TableCell>
+                                                <TableCell>
+                                                {pathnameUpload.Keterlibatan_aktor_inovasi.data !== null ?  <a className="button-asik" href={urlAsik + pathnameUpload.Keterlibatan_aktor_inovasi.data.attributes.url} target="_blank" rel="noreferrer">
+                                                    Lihat File
+                                                </a> : <h3>Anda belum mengupload file , Silahkan upload indikator keterlibatan aktor inovasi anda</h3>}    
+                                                   
+                                                </TableCell>
+                                                <TableCell>
+                                                {pathnameUpload.Keterlibatan_aktor_inovasi.data !== null ? 
+                                                <>
+                                                 <Button name="keterlibatan_aktor" onClick={DeleteketerlibatanAktor} className={show.keterlibatan_aktor === false ? "button-asik-edit" : "display-none"} value={pathnameUpload.Keterlibatan_aktor_inovasi.data.id}>Edit File</Button>
+                                                    <input type="file" id="file" className={show.keterlibatan_aktor === true ? "file" : "display-none"} accept="image/*,.pdf" onChange={uploadketerlibatanAktor} />
+                                                </>
+                                                : <input type="file" id="file" className="file" accept="image/*,.pdf" onChange={uploadketerlibatanAktor} />}    
+                                                   
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/*      Keterlibatan aktor inovasi  */}
+                                            {/*      Pelaksana inovasi daerah  */}
+                                            <TableRow
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    Pelaksana inovasi daerah
+                                                </TableCell>
+                                                <TableCell >Penetapan tim pelaksana inovasi daerah</TableCell>
+                                                <TableCell> </TableCell>
+                                                <TableCell> 
+                                                {pathnameUpload.Pelaksana_inovasi_daerah.data !== null ?  <a className="button-asik" href={urlAsik + pathnameUpload.Pelaksana_inovasi_daerah.data.attributes.url} target="_blank" rel="noreferrer">
+                                                    Lihat File
+                                                </a> :
+                                                <h5>Anda belum mengupload file , Silahkan upload indikator inovasi daerah</h5>
+                                                }
+                                               
+                                                </TableCell>
+                                                <TableCell>
+                                                    {pathnameUpload.Pelaksana_inovasi_daerah.data !== null ? <>
+                                                        <Button name="pelaksana" className={show.pelaksana === false ? "button-asik-edit" : "display-none"} onClick={DeletepelaksanaInovasi} value={pathnameUpload.Pelaksana_inovasi_daerah.data.id}>Edit File</Button>
+                                                    <input type="file" id="file" className={show.pelaksana === true ? "file" : "display-none"} accept="image/*,.pdf" onChange={uploadpelaksanaInovasi} />
+                                                    </> : 
+                                                     <input type="file" id="file" className="file" accept="image/*,.pdf" onChange={uploadpelaksanaInovasi} />
+                                                    }
+                                                    
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/*          Pelaksana inovasi daerah   */}
+                                            {/*         Jejaring inovasi  */}
+                                            <TableRow
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    Jejaring inovasi
+                                                </TableCell>
+                                                <TableCell >Jumlah Perangkat Daerah yang terlibat dalam penerapan inovasi (dalam 2 tahun terakhir)</TableCell>
+                                                <TableCell> </TableCell>
+                                                <TableCell>   
+                                                {pathnameUpload.Jejaring_inovasi.data !== null ?    <a className="button-asik" href={urlAsik + pathnameUpload.Jejaring_inovasi.data.attributes.url} target="_blank" rel="noreferrer">
+                                                    Lihat File
+                                                </a>  : <h5>Anda belum mengupload file , Silahkan upload indikator inovasi daerah</h5> }
+                                             
+                                                </TableCell>
+                                                <TableCell>
+                                                    {pathnameUpload.Jejaring_inovasi.data !== null ? <>
+                                                        <Button name="jejaring" className={show.jejaring === false ? "button-asik-edit" : "display-none"} onClick={DeletejejaringInovasi} value={pathnameUpload.Jejaring_inovasi.data.id}>Edit File</Button>
+                                                    <input type="file" id="file" className={show.jejaring === true ? "file" : "display-none"} accept="image/*,.pdf" onChange={uploadjejaringInovasi} />
+                                                    </> :     <input type="file" id="file" className="file" accept="image/*,.pdf" onChange={uploadjejaringInovasi} />}
+                                                    
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/*            Jejaring inovasi  */}
+                                            {/*         Sosialisasi inovasi daerah  */}
+                                            <TableRow
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    Sosialisasi inovasi daerah
+                                                </TableCell>
+                                                <TableCell >Penyebarluasan informasi kebijakan inovasi daerah (2 Tahun Terakhir)</TableCell>
+                                                <TableCell> </TableCell>
+                                                <TableCell> 
+                                                { pathnameUpload.Sosialisasi_inovasi_daerah.data !== null ?  <a className="button-asik" href={urlAsik + pathnameUpload.Sosialisasi_inovasi_daerah.data.attributes.url} target="_blank" rel="noreferrer">
+                                                    Lihat File
+                                                </a> : <h5>Anda belum mengupload file , Silahkan upload indikator inovasi daerah</h5>}
+                                                 
+                                                </TableCell>
+                                                <TableCell>
+                                                    {pathnameUpload.Sosialisasi_inovasi_daerah.data !== null ? <>
+                                                        <Button name="sosialisasi" className={show.sosialisasi === false ? "button-asik-edit" : "display-none"} onClick={DeletesosialisasiInovasi} value={pathnameUpload.Sosialisasi_inovasi_daerah.data.id}>Edit File</Button>
+                                                    <input type="file" id="file" className={show.sosialisasi === true ? "file" : "display-none"} accept="image/*,.pdf" onChange={uploadsosialisasiInovasi} />
+                                                    </> :  <input type="file" id="file" className="file"  accept="image/*,.pdf" onChange={uploadsosialisasiInovasi} /> }
+                                                 
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/*       Sosialisasi inovasi daerah  */}
+                                            {/*   Pedoman teknis inovasi */}
+                                            <TableRow
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    Pedoman teknis inovasi
+                                                </TableCell>
+                                                <TableCell >Ketentuan dasar penggunaan inovasi daerah berupa buku petunjuk/manual book</TableCell>
+                                                <TableCell> </TableCell>
+                                                <TableCell> 
+                                                { pathnameUpload.Pedoman_teknis_inovasi.data !== null ?  <a className="button-asik" href={urlAsik + pathnameUpload.Pedoman_teknis_inovasi.data.attributes.url} target="_blank" rel="noreferrer">
+                                                    Lihat File
+                                                </a>  : <h5>Anda belum mengupload file , Silahkan upload indikator inovasi daerah</h5>}
+                                               
+                                                </TableCell>
+                                                <TableCell>
+                                                    { pathnameUpload.Pedoman_teknis_inovasi.data !== null ?
+                                                    <>
+                                                          <Button name="pedoman_teknis" id="file" className={show.pedoman_teknis === false ? "button-asik-edit" : "display-none"} onClick={DeletepedomanTeknis} value={pathnameUpload.Pedoman_teknis_inovasi.data.id}>Edit File</Button>
+                                                    <input type="file" id="file" className={show.pedoman_teknis === true ? "file" : "display-none"} accept="image/*,.pdf" onChange={uploadpedomanTeknis} />
+                                                    </> :
+                                                          <input type="file" id="file" className="file" accept="image/*,.pdf" onChange={uploadpedomanTeknis} />
+                                                    }
+                                                  
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/*   Pedoman teknis inovasi */}
+                                            {/*    Kemudahan informasi layanan */}
+                                            <TableRow
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    Kemudahan informasi layanan
+                                                </TableCell>
+                                                <TableCell >Kemudahan mendapatkan informasi layanan</TableCell>
+                                                <TableCell> </TableCell>
+                                                <TableCell>
+                                                    {pathnameUpload.Kemudahan_informasi_layanan.data !== null ?   <a className="button-asik" href={urlAsik + pathnameUpload.Kemudahan_informasi_layanan.data.attributes.url} target="_blank" rel="noreferrer">
+                                                    Lihat File
+                                                    </a>  : <h5>Anda belum mengupload file , Silahkan upload indikator inovasi daerah</h5>}
+                                                  
+                                                </TableCell>
+                                                <TableCell>
+                                                    {pathnameUpload.Kemudahan_informasi_layanan.data !== null ? <>
+                                                        <Button name="kemudahan_informasi" className={show.kemudahan_informasi === false ? "button-asik-edit" : "display-none"} onClick={DeletekemudahanLayanan} value={pathnameUpload.Kemudahan_informasi_layanan.data.id}>Edit File</Button>
+                                                    <input type="file" id="file" className={show.kemudahan_informasi === true ? "file" : "display-none"} accept="image/*,.pdf" onChange={uploadkemudahanLayanan} />
+                                                    </> :  <input type="file" id="file" className="file" accept="image/*,.pdf" onChange={uploadkemudahanLayanan} />}
+                                                    
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/*    Kemudahan informasi layanan */}
+                                            {/*      Kemudahan proses inovasi yang dihasilkan */}
+                                            <TableRow
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    Kemudahan proses inovasi yang dihasilkan
+                                                </TableCell>
+                                                <TableCell >Waktu yang diperlukan untuk memperoleh proses penggunaan hasil inovasi</TableCell>
+                                                <TableCell> </TableCell>
+                                                <TableCell> 
+                                                    {pathnameUpload.Kemudahan_proses_inovasi_yang_dihasilkan.data !== null ?  <a className="button-asik" href={urlAsik + pathnameUpload.Kemudahan_proses_inovasi_yang_dihasilkan.data.attributes.url} target="_blank" rel="noreferrer">
+                                                        Lihat File
+                                                    </a>  : <h5>Anda belum mengupload file , Silahkan upload indikator inovasi daerah</h5>}
+                                                   
+                                                </TableCell>
+                                                <TableCell>
+                                                    {pathnameUpload.Kemudahan_proses_inovasi_yang_dihasilkan.data !== null  ? <>
+                                                        <Button name="kemudahan_proses" className={show.kemudahan_proses === false ? "button-asik-edit" : "display-none"} onClick={DeletekemudahanProses} value={pathnameUpload.Kemudahan_proses_inovasi_yang_dihasilkan.data.id}>Edit File</Button>
+                                                    <input type="file" id="file" className={show.kemudahan_proses === true ? "file" : "display-none"} accept="image/*,.pdf" onChange={uploadkemudahanProses} />
+                                                    </> 
+                                                    :   <input type="file" id="file" className="file" accept="image/*,.pdf" onChange={uploadkemudahanProses} /> }
+                                                    
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/*       Kemudahan proses inovasi yang dihasilkan */}
+                                            {/*     Penyelesaian layanan pengaduan */}
+                                            <TableRow
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    Penyelesaian layanan pengaduan
+                                                </TableCell>
+                                                <TableCell >Rasio penyelesaian pengaduan dalam tahun terakhir (jumlah pengaduan yang di tindakalnajuti/ jumlah pengaduan keseluruhan x100%)</TableCell>
+                                                <TableCell> </TableCell>
+                                                <TableCell>  
+                                                    {pathnameUpload.Penyelesaian_layanan_pengaduan.data !== null ?  <a className="button-asik" href={urlAsik + pathnameUpload.Penyelesaian_layanan_pengaduan.data.attributes.url} target="_blank" rel="noreferrer">
+                                                       Lihat File
+                                                    </a>   : <h5>Anda belum mengupload file , Silahkan upload indikator inovasi daerah</h5>}
+                                                   
+                                                </TableCell>
+                                                <TableCell>
+                                                    { 
+                                                     pathnameUpload.Penyelesaian_layanan_pengaduan.data !== null  ?
+                                                    <>
+                                                    <Button name="penyelesaian_layanan" className={show.penyelesaian_layanan === false ? "button-asik-edit" : "display-none"} onClick={DeletepenyelesaianLayanan} value={pathnameUpload.Penyelesaian_layanan_pengaduan.data.id}>Edit File</Button>
+                                                    <input type="file" id="file" className={show.penyelesaian_layanan === true ? "file" : "display-none"} accept="image/*,.pdf" onChange={uploadpenyelesaianLayanan} />
+                                                    </> 
+                                                     :     <input type="file" id="file" className="file" accept="image/*,.pdf" onChange={uploadpenyelesaianLayanan} />}
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/* Penyelesaian layanan pengaduan*/}
+                                            {/*     Online sistem */}
+                                            <TableRow
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    Online sistem
+                                                </TableCell>
+                                                <TableCell >
+                                                    Jaringan prosedur yang dibuat secara daring ( 2 Tahun Terakhir)
 
-                                        </InputLabel>
-                                        <a href={urlAsik + pathnameUpload.Nilai_IPM.data.attributes.url} target="_blank" rel="noreferrer">
-                                            Lihat File
-                                        </a>
-                                        <Button  onClick={DeletenilaiIPM}     value={pathnameUpload.Nilai_IPM.data.id}>Edit File</Button>
-                                        <input type="file" id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf" onChange={uploadnilaiIPM} />
-                                    </div>
+                                                </TableCell>
+                                                <TableCell> </TableCell>
+                                                <TableCell> 
+                                                    {pathnameUpload.Online_sistem.data !== null ?  <a className="button-asik" href={urlAsik + pathnameUpload.Online_sistem.data.attributes.url} target="_blank" rel="noreferrer">
+                                                    Lihat File
+                                                </a> : <h5>Anda belum mengupload file , Silahkan upload indikator inovasi daerah</h5>}
+                                                
+                                                </TableCell>
+                                                <TableCell>
+                                                    {pathnameUpload.Online_sistem.data !== null ?  <>
+                                                        <Button name="online_sistem" className={show.online_sistem === false ? "button-asik-edit" : "display-none"} onClick={DeleteonlineSistem} value={pathnameUpload.Online_sistem.data.id}>Edit File</Button>
+                                                    <input type="file" id="file" className={show.online_sistem === true ? "file" : "display-none"} accept="image/*,.pdf" onChange={uploadonlineSistem} />
+                                                    </> :    <input type="file" id="file" className="file" accept="image/*,.pdf" onChange={uploadonlineSistem} />}
+                                                    
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/*    Online sistem */}
+                                            {/*   Repikasi*/}
+                                            <TableRow
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    Repikasi
+                                                </TableCell>
+                                                <TableCell >
+                                                    Inovasi Daerah telah direplikasi oleh daerah lain (T-2 sampai dengan T-1)
 
-                                </div>
-                                <div className="form-opd-grid">
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Penghargaan bagi inovator
+                                                </TableCell>
+                                                <TableCell> </TableCell>
+                                                <TableCell>   
+                                                    {pathnameUpload.Repikasi.data !== null ?   <a className="button-asik" href={urlAsik + pathnameUpload.Repikasi.data.attributes.url} target="_blank" rel="noreferrer">
+                                                    Lihat File
+                                                </a> : <h5>Anda belum mengupload file , Silahkan upload indikator inovasi daerah</h5>}
+                                              
+                                                </TableCell>
+                                                <TableCell>
+                                                    {pathnameUpload.Repikasi.data !== null ?  <>
+                                                        <Button name="repikasi" onClick={Deleterepikasi} className={show.repikasi === false ? "button-asik-edit" : "display-none"} value={pathnameUpload.Repikasi.data.id}>Edit File</Button>
+                                                    <input type="file" id="file" className={show.repikasi === true ? "file" : "display-none"} accept="image/*,.pdf" onChange={uploadrepikasi} />
+                                                    </> :  <input type="file" id="file" className="file" accept="image/*,.pdf" onChange={uploadrepikasi} /> }
+                                                   
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/*  Repikasi */}
+                                            {/*       Kecepatan inovasi*/}
+                                            <TableRow
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    Kecepatan inovasi
+                                                </TableCell>
+                                                <TableCell >
+                                                    Satuan waktu yang digunakan untuk menciptakan inovasi daerah
 
-                                        </InputLabel>
-                                        <a href={urlAsik + pathnameUpload.Penghargaan_bagi_inovator.data.attributes.url} target="_blank" rel="noreferrer">
-                                            Lihat File
-                                        </a>
-                                        <Button  onClick={DeletepenghargaanInovator}     value={pathnameUpload.Penghargaan_bagi_inovator.data.id}>Edit File</Button>
-                                        <input type="file" id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf" onChange={uploadpenghargaanInovator} />
-                                    </div>
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Regulasi Inovasi daerah
+                                                </TableCell>
+                                                <TableCell> </TableCell>
+                                                <TableCell>  <a className="button-asik" href={pathnameUpload.Kecepatan_inovasi.data !== null ? urlAsik + pathnameUpload.Kecepatan_inovasi.data.attributes.url : ""} target="_blank" rel="noreferrer">
+                                                    Lihat File
+                                                </a></TableCell>
+                                                <TableCell>
+                                                    {pathnameUpload.Kecepatan_inovasi.data !== null ? <> 
+                                                        <Button name="kecepatan_inovasi" className={show.kecepatan_inovasi === false ? "button-asik-edit" : "display-none"} onClick={DeletekecepatanInovasi} value={pathnameUpload.Kecepatan_inovasi.data !== null ? pathnameUpload.Kecepatan_inovasi.data.id : ''}>Edit File</Button>
+                                                    <input type="file" id="file" className={show.kecepatan_inovasi === true ? "file" : "display-none"} accept="image/*,.pdf" onChange={uploadkecepatanInovasi} /> 
+                                                    </>:    <input type="file" id="file" className="file" accept="image/*,.pdf" onChange={uploadkecepatanInovasi} />}
+                                                    
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/*      Kecepatan inovasi  */}
+                                            {/*      Kemanfaatan inovasi */}
+                                            <TableRow
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    Kemanfaatan inovasi
+                                                </TableCell>
+                                                <TableCell >
+                                                    Jumlah pengguna atau penerima manfaat inovasi daerah (2 tahun terakhir)
+                                                </TableCell>
+                                                <TableCell> </TableCell>
+                                                <TableCell> 
+                                                    {pathnameUpload.Kemanfaatan_inovasi.data !== null ?   <a className="button-asik" href={urlAsik + pathnameUpload.Kemanfaatan_inovasi.data.attributes.url} target="_blank" rel="noreferrer">
+                                                    Lihat File
+                                                </a>  : <h5>Anda belum mengupload file , Silahkan upload indikator inovasi daerah</h5>}
+                                                   
+                                                </TableCell>
+                                                <TableCell>
+                                                    {pathnameUpload.Kemanfaatan_inovasi.data !== null ? <>
+                                                        <Button name="kemanfaatan_inovasi" className={show.kemanfaatan_inovasi === false ? "button-asik-edit" : "display-none"} onClick={DeletekemanfaatanInovasi} value={pathnameUpload.Kemanfaatan_inovasi.data.id}>Edit File</Button>
+                                                    <input type="file" id="file" className={show.kemanfaatan_inovasi === true ? "file" : "display-none"} accept="image/*,.pdf" onChange={uploadkemanfaatanInovasi} />
+                                                    </> :  <input type="file" id="file" className="file" accept="image/*,.pdf" onChange={uploadkemanfaatanInovasi} />}
+                                                   
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/* Kemanfaatan inovasi */}
+                                            {/*      Monitoring dan evaluasi daerah  */}
+                                            <TableRow
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    Monitoring dan evaluasi daerah
+                                                </TableCell>
+                                                <TableCell >
+                                                    Kepuasan pelaksanaan penggunaan inovasi daerah (2 Tahun Terakhir)
+                                                </TableCell>
+                                                <TableCell> </TableCell>
+                                                <TableCell>
+                                                    {pathnameUpload.Monitoring_dan_evaluasi_daerah.data !== null ?  <a className="button-asik" href={urlAsik + pathnameUpload.Monitoring_dan_evaluasi_daerah.data.attributes.url} target="_blank" rel="noreferrer">
+                                                    Lihat File
+                                                </a> : <h5>Anda belum mengupload file , Silahkan upload indikator inovasi daerah</h5>}
+                                                 </TableCell>
+                                                <TableCell>
+                                                    {pathnameUpload.Monitoring_dan_evaluasi_daerah.data !== null ?  <> 
+                                                        <Button name="monitoring_evaluasi" onClick={Deletemonitoring} className={show.monitoring_evaluasi === false ? "button-asik-edit" : "display-none"} value={pathnameUpload.Monitoring_dan_evaluasi_daerah.data.id}>Edit File</Button>
+                                                    <input type="file" id="file" className={show.monitoring_evaluasi === true ? "file" : "display-none"} accept="image/*,.pdf" onChange={uploadmonitoring} /> 
+                                                    </>:   <input type="file" id="file" className="file" accept="image/*,.pdf" onChange={uploadmonitoring} /> }
+                                                    
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/*    Monitoring dan evaluasi daerah */}
+                                            {/*       Kualitas inovasi daerah  */}
+                                            <TableRow
+                                                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                                            >
+                                                <TableCell component="th" scope="row">
+                                                    Kualitas inovasi daerah
+                                                </TableCell>
+                                                <TableCell >
+                                                    Kualitas inovasi daerah
+                                                </TableCell>
+                                                <TableCell> </TableCell>
+                                                <TableCell>{pathnameUpload.Kualitas_inovasi_daerah.data !== null ? <a className="button-asik" href={urlAsik + pathnameUpload.Kualitas_inovasi_daerah.data.attributes.url} target="_blank" rel="noreferrer">
+                                                    Lihat File
+                                                </a> : <h5>Anda belum mengupload file , Silahkan upload indikator inovasi daerah</h5>}  </TableCell>
+                                                <TableCell>
+                                                    {pathnameUpload.Kualitas_inovasi_daerah.data !== null  ? <>
+                                                        <Button name="kualitas_inovasi" className={show.kualitas_inovasi === false ? "button-asik-edit" : "display-none"} onClick={DeletekualitasInovasi} value={pathnameUpload.Kualitas_inovasi_daerah.data.id}>Edit File</Button>
+                                                    <input type="file" id="file" className={show.kualitas_inovasi === true ? "file" : "display-none"} accept="image/*,.pdf" onChange={uploadkualitasInovasi} />
+                                                    </> :   <input type="file" id="file" className="file"  accept="image/*,.pdf" onChange={uploadkualitasInovasi} /> }
+                                                  
+                                                </TableCell>
+                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                            </TableRow>
+                                            {/*      Kualitas inovasi daerah */}
 
-                                        </InputLabel>
-                                        <a href={urlAsik + pathnameUpload.Regulasi_Inovasi_daerah.data.attributes.url} target="_blank" rel="noreferrer">
-                                            Lihat File
-                                        </a>
-                                        <Button  onClick={DeleteregulasiInovasi}     value={pathnameUpload.Regulasi_Inovasi_daerah.data.id}>Edit File</Button>
-                                        <input type="file" id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf" onChange={uploadregulasiInovasi} />
-                                    </div>
-
-                                </div>
-                                <div className="form-opd-grid">
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Ketersediaan SDM inovasi daerah
-                                        </InputLabel>
-                                        <a href={urlAsik + pathnameUpload.Ketersediaan_SDM_inovasi_daerah.data.attributes.url} target="_blank" rel="noreferrer">
-                                            Lihat File
-                                        </a>
-                                        <Button  onClick={DeleteketersediaanSDM}     value={pathnameUpload.Ketersediaan_SDM_inovasi_daerah.data.id}>Edit File</Button>
-                                        <input type="file"  id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf" onChange={uploadketersediaanSDM} />
-                                    </div>
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Jumlah kajian yang mendukung inovasi
-
-                                        </InputLabel>
-                                        <a href={urlAsik + pathnameUpload.Jumlah_kajian_yang_mendukung_inovasi.data.attributes.url} target="_blank" rel="noreferrer">
-                                            Lihat File
-                                        </a>
-                                        <Button  onClick={DeletejumlahKajian}     value={pathnameUpload.Jumlah_kajian_yang_mendukung_inovasi.data.id}>Edit File</Button>
-                                        <input type="file" id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf" onChange={uploadjumlahKajian} />
-                                    </div>
-
-                                </div>
-                                <div className="form-opd-grid">
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Roadmap SIDA
+                                        </TableBody>
+                                    </Table>
+                                </TableContainer>
 
 
-                                        </InputLabel>
-                                        <a href={urlAsik + pathnameUpload.Roadmap_SIDa.data.attributes.url} target="_blank" rel="noreferrer">
-                                            Lihat File
-                                        </a>
-                                        <Button  onClick={DeleteroadmapSIDA}     value={pathnameUpload.Roadmap_SIDa.data.id}>Edit File</Button>
-                                        <input type="file" id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf" onChange={uploadroadmapSIDA} />
-                                    </div>
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Dukungan anggaran
-
-                                        </InputLabel>
-                                        <a href={urlAsik + pathnameUpload.Dukungan_anggaran.data.attributes.url} target="_blank" rel="noreferrer">
-                                            Lihat File
-                                        </a>
-                                        <Button  onClick={DeletedukunganAnggaran}     value={pathnameUpload.Dukungan_anggaran.data.id}>Edit File</Button>
-                                        <input type="file" id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf" onChange={uploaddukunganAnggaran} />
-                                    </div>
-
-                                </div>
-                                <div className="form-opd-grid">
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Penggunaan IT
-
-                                        </InputLabel>
-                                        <a href={urlAsik + pathnameUpload.Penggunaan_IT.data.attributes.url} target="_blank" rel="noreferrer">
-                                            Lihat File
-                                        </a>
-                                        <Button  onClick={DeletepenggunaanIT}     value={pathnameUpload.Penggunaan_IT.data.id}>Edit File</Button>
-                                        <input type="file" id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf" onChange={uploadpenggunaanIT} />
-                                    </div>
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Bimtek inovasi
-
-                                        </InputLabel>
-                                        <a href={urlAsik + pathnameUpload.Penggunaan_IT.data.attributes.url} target="_blank" rel="noreferrer">
-                                            Lihat File
-                                        </a>
-                                        <Button  onClick={DeletebimtekInovasi}     value={pathnameUpload.Penggunaan_IT.data.id}>Edit File</Button>
-                                        <input type="file" id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf" onChange={uploadbimtekInovasi} />
-                                    </div>
-
-                                </div>
-                                <div className="form-opd-grid">
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Program Inovasi perangkat RKPD
-
-                                        </InputLabel>
-                                        <a href={urlAsik + pathnameUpload.Program_Inovasi_perangkat_RKPD.data.attributes.url} target="_blank" rel="noreferrer">
-                                            Lihat File
-                                        </a>
-                                        <Button  onClick={DeleteprogramInovasi}     value={pathnameUpload.Program_Inovasi_perangkat_RKPD.data.id}>Edit File</Button>
-                                        <input type="file" id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf" onChange={uploadprogramInovasi} />
-                                    </div>
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Keterlibatan aktor inovasi
-
-                                        </InputLabel>
-                                        <a href={urlAsik + pathnameUpload.Keterlibatan_aktor_inovasi.data.attributes.url} target="_blank" rel="noreferrer">
-                                            Lihat File
-                                        </a>
-                                        <Button  onClick={DeleteketerlibatanAktor}     value={pathnameUpload.Keterlibatan_aktor_inovasi.data.id}>Edit File</Button>
-                                        <input type="file" id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf" onChange={uploadketerlibatanAktor} />
-                                    </div>
-
-                                </div>
-                                <div className="form-opd-grid">
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Pelaksana inovasi daerah
-
-                                        </InputLabel>
-                                        <a href={urlAsik + pathnameUpload.Pelaksana_inovasi_daerah.data.attributes.url} target="_blank" rel="noreferrer">
-                                            Lihat File
-                                        </a>
-                                        <Button  onClick={DeletepelaksanaInovasi}     value={pathnameUpload.Pelaksana_inovasi_daerah.data.id}>Edit File</Button>
-                                        <input type="file" id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf" onChange={uploadpelaksanaInovasi} />
-                                    </div>
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Jejaring inovasi
-
-                                        </InputLabel>
-                                        <a href={urlAsik + pathnameUpload.Jejaring_inovasi.data.attributes.url} target="_blank" rel="noreferrer">
-                                            Lihat File
-                                        </a>
-                                        <Button  onClick={DeletejejaringInovasi}     value={pathnameUpload.Jejaring_inovasi.data.id}>Edit File</Button>
-                                        <input type="file" id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf" onChange={uploadjejaringInovasi} />
-                                    </div>
-
-                                </div>
-                                <div className="form-opd-grid">
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Sosialisasi inovasi daerah
-
-                                        </InputLabel>
-                                        <a href={urlAsik + pathnameUpload.Sosialisasi_inovasi_daerah.data.attributes.url} target="_blank" rel="noreferrer">
-                                            Lihat File
-                                        </a>
-                                        <Button  onClick={DeletesosialisasiInovasi}     value={pathnameUpload.Sosialisasi_inovasi_daerah.data.id}>Edit File</Button>
-                                        <input type="file" id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf" onChange={uploadsosialisasiInovasi} />
-                                    </div>
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Pedoman teknis inovasi
-                                        </InputLabel>
-                                        <a href={urlAsik + pathnameUpload.Pedoman_teknis_inovasi.data.attributes.url} target="_blank" rel="noreferrer">
-                                            Lihat File
-                                        </a>
-                                        <Button  onClick={DeletepedomanTeknis}     value={pathnameUpload.Pedoman_teknis_inovasi.data.id}>Edit File</Button>
-                                        <input type="file" id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf" onChange={uploadpedomanTeknis} />
-                                    </div>
-
-                                </div>
-                                <div className="form-opd-grid">
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Kemudahan informasi layanan
-
-                                        </InputLabel>
-                                        <a href={urlAsik + pathnameUpload.Kemudahan_informasi_layanan.data.attributes.url} target="_blank" rel="noreferrer">
-                                            Lihat File
-                                        </a>
-                                        <Button  onClick={DeletekemudahanLayanan}     value={pathnameUpload.Kemudahan_informasi_layanan.data.id}>Edit File</Button>
-                                        <input type="file" id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf" onChange={uploadkemudahanLayanan} />
-                                    </div>
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Kemudahan proses inovasi yang dihasilkan
-
-                                        </InputLabel>
-                                        <a href={urlAsik + pathnameUpload.Kemudahan_proses_inovasi_yang_dihasilkan.data.attributes.url} target="_blank" rel="noreferrer">
-                                            Lihat File
-                                        </a>
-                                        <Button  onClick={DeletekemudahanProses}     value={pathnameUpload.Kemudahan_proses_inovasi_yang_dihasilkan.data.id}>Edit File</Button>
-                                        <input type="file" id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf" onChange={uploadkemudahanProses} />
-                                    </div>
-
-                                </div>
-                                <div className="form-opd-grid">
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Penyelesaian layanan pengaduan
-
-                                        </InputLabel>
-                                        <a href={urlAsik + pathnameUpload.Penyelesaian_layanan_pengaduan.data.attributes.url} target="_blank" rel="noreferrer">
-                                            Lihat File
-                                        </a>
-                                        <Button  onClick={DeletepenyelesaianLayanan}     value={pathnameUpload.Penyelesaian_layanan_pengaduan.data.id}>Edit File</Button>
-                                        <input type="file"  id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf" onChange={uploadpenyelesaianLayanan} />
-                                    </div>
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Online sistem
-
-                                        </InputLabel>
-                                        <a href={urlAsik + pathnameUpload.Online_sistem.data.attributes.url} target="_blank" rel="noreferrer">
-                                            Lihat File
-                                        </a>
-                                        <Button  onClick={DeleteonlineSistem}     value={pathnameUpload.Online_sistem.data.id}>Edit File</Button>
-                                        <input type="file" id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf" onChange={uploadonlineSistem} />
-                                    </div>
-
-                                </div>
-                                <div className="form-opd-grid">
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Repikasi
-
-                                        </InputLabel>
-                                        <a href={urlAsik + pathnameUpload.Repikasi.data.attributes.url} target="_blank" rel="noreferrer">
-                                            Lihat File
-                                        </a>
-                                        <Button  onClick={Deleterepikasi}     value={pathnameUpload.Repikasi.data.id}>Edit File</Button>
-                                        <input type="file" id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf" onChange={uploadrepikasi} />
-                                    </div>
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Kecepatan inovasi
-
-                                        </InputLabel>
-                                        <a href={pathnameUpload.Kecepatan_inovasi.data !== null ? urlAsik + pathnameUpload.Kecepatan_inovasi.data.attributes.url : "" } target="_blank" rel="noreferrer">
-                                            Lihat File
-                                        </a>
-                                        <Button  onClick={DeletekecepatanInovasi}     value={pathnameUpload.Kecepatan_inovasi.data !== null ? pathnameUpload.Kecepatan_inovasi.data.id : ''}>Edit File</Button>
-                                        <input type="file" id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf" onChange={uploadkecepatanInovasi} />
-                                    </div>
-
-                                </div>
-                                <div className="form-opd-grid">
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Kemanfaatan inovasi
-
-                                        </InputLabel>
-                                        <a href={urlAsik + pathnameUpload.Kemanfaatan_inovasi.data.attributes.url} target="_blank" rel="noreferrer">
-                                            Lihat File
-                                        </a>
-                                        <Button  onClick={DeletekemanfaatanInovasi}     value={pathnameUpload.Kemanfaatan_inovasi.data.id}>Edit File</Button>
-                                        <input type="file" id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf" onChange={uploadkemanfaatanInovasi} />
-                                    </div>
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Monitoring dan evaluasi daerah
-
-                                        </InputLabel>
-                                        <a href={urlAsik + pathnameUpload.Monitoring_dan_evaluasi_daerah.data.attributes.url} target="_blank" rel="noreferrer">
-                                            Lihat File
-                                        </a>
-                                        <Button  onClick={Deletemonitoring}     value={pathnameUpload.Monitoring_dan_evaluasi_daerah.data.id}>Edit File</Button>
-                                        <input type="file" id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf" onChange={uploadmonitoring} />
-                                    </div>
-
-                                </div>
-                                <div className="form-opd-grid">
-                                    <div className="upload">
-                                        <InputLabel shrink htmlFor="Nama_opd">
-                                            Kualitas inovasi daerah
-
-                                        </InputLabel>
-                                        <a href={urlAsik + pathnameUpload.Kualitas_inovasi_daerah.data.attributes.url} target="_blank" rel="noreferrer">
-                                            Lihat File
-                                        </a>
-                                        <Button  onClick={DeletekualitasInovasi}     value={pathnameUpload.Kualitas_inovasi_daerah.data.id}>Edit File</Button>
-                                        <input type="file" id="file" className={show === true ? "file" : "display-none"}  accept="image/*,.pdf" onChange={uploadkualitasInovasi} />
-                                    </div>
-                                    
-
-                                </div>
                                 {loading === true ? <LoadingButton loading variant="outlined">
                                     Submit
                                 </LoadingButton> : <Button className="see-all-button" size="small" type="submit">Tambah Inovasi  </Button>}

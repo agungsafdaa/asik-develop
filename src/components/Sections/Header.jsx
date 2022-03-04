@@ -1,12 +1,22 @@
 import React from "react";
+// ,{useEffect}
 import styled from "styled-components";
 // Components
 
 import Button from '@mui/material/Button';
 
 
-export default function Header(props) {
-  console.log(props)
+
+export default function Header() {
+  // const  vid = document.getElementById("myVideo");
+//   useEffect(() => {
+//    setTimeout(() => {
+//     vid.muted = true;
+//    }, 2000);
+  
+    
+//     // eslint-disable-next-line react-hooks/exhaustive-deps
+// }, [])
   return (
     <Wrapper id="home" className="hero-element">
       <video  loop autoPlay="autoplay" controls muted    id="myVideo"   className="video-asik">

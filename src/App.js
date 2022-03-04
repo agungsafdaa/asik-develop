@@ -9,9 +9,10 @@ import StrukturOrganisasi from "./screens/StrukturOrganisasi.jsx";
 import Definisi from "./screens/Definisi.jsx";
 import Event from "./screens/Event.jsx";
 import Landing from "./screens/Landing.jsx";
-import EditInovasi from './components/Dashboard/Page/editInovasi'
+
 import Dashboard from "./screens/Dashboard.jsx";
 import TambahInovasi from "./screens/TambahInovasi.jsx";
+import InovasiEdit from "./screens/EditInovsi.jsx";
 // import CircularProgress from '@mui/material/CircularProgress';
 import Kajian from "./screens/Kajian.jsx";
 import DataPeneliti from "./screens/DataPeneliti.jsx";
@@ -53,7 +54,7 @@ export default function tree() {
           </Route>
           <Route path="/editInovasi" element={
             <PrivateRoute>
-              <EditInovasi />
+              <InovasiEdit />
             </PrivateRoute>
           } token={isAuthenticated}>
           </Route>

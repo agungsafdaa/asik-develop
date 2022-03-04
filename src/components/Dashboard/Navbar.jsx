@@ -77,7 +77,7 @@ export default function Sidebar(props) {
                 <h6>Asik Bapeda Palembang</h6>
             </div>
             <Divider />
-            <ListItem disablePadding style={{ color: "#fff;" }} >
+            <ListItem disablePadding className="menu-sidebar">
                 <Link to="/Dashboard">
                 <ListItemButton>
                     <ListItemIcon>
