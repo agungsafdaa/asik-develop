@@ -717,6 +717,16 @@ export default function AddInovasi() {
 
 
 
+    const getTextLength = (html) => {
+        // This will never get added to the DOM.
+        const element = document.createElement("div")
+        element.innerHTML = html
+        return element.textContent.length
+    }
+    const outputs = [rancangBangun]
+
+    // Should ouput `9` for all test inputs.
+    console.log(outputs.map(getTextLength))
 
     const addKajian = async (event) => {
 
@@ -1046,13 +1056,21 @@ export default function AddInovasi() {
                                         onChange={(event, editor) => {
                                             const data = editor.getData();
                                             setRancangBangun(data)
-
+                                            console.log(data)
                                         }}
                                         onReady={editor => {
                                             // You can store the "editor" and use when it is needed.
 
                                         }}
                                     />
+
+                                    <p id="demo">{outputs.map(getTextLength) === 15 ? '0' : outputs.map(getTextLength)}</p>
+                                    <Alert className="info-rancangBangun" severity="warning">
+                                        <h5>   Catatan Rancang Bangun</h5>
+                                        - memuat 300 kata atau lebih<br />
+                                        - latar belakang inovasi baik input, output maupun proses<br />
+                                        - bahasa tepat sasaran, efektif dan efisien
+                                    </Alert>
                                 </div>
 
                                 <div className="form-opd">
@@ -1120,17 +1138,17 @@ export default function AddInovasi() {
                                         }}
                                     />
                                 </div>
-                                
-                                <h3 style={{margin:"20px 0 20px 0"}}>Indikator Inovasi Daerah</h3>
+
+                                <h3 style={{ margin: "20px 0 20px 0" }}>Indikator Inovasi Daerah</h3>
 
                                 <TableContainer component={Paper}>
                                     <Table sx={{ minWidth: 650 }} aria-label="simple table">
                                         <TableHead>
                                             <TableRow>
                                                 <TableCell>Indikator</TableCell>
-                                                <TableCell>Keterangan</TableCell>
+                                                <TableCell style={{ width: "15%" }}>Keterangan</TableCell>
 
-                                                <TableCell>Parameter</TableCell>
+                                                <TableCell style={{ width: "25%" }}>Parameter</TableCell>
                                                 <TableCell>Data Pendukung</TableCell>
                                                 <TableCell >Jenis File</TableCell>
                                             </TableRow>
@@ -1146,7 +1164,25 @@ export default function AddInovasi() {
                                                 </TableCell>
                                                 <TableCell >Regulasi yang menetapkan nama-nama inovasi daerah yang menjadi landasan operasional penerapan Inovasi Daerah</TableCell>
 
-                                                <TableCell></TableCell>
+                                                <TableCell>
+                                                    <FormControl fullWidth>
+                                                        <InputLabel id="demo-simple-select-label">Pilih Parameter</InputLabel>
+                                                        <Select
+                                                            labelId="demo-simple-select-label"
+                                                            id="demo-simple-select"
+                                                            name="indikator_regulasi"
+
+                                                            defaultValue="SK Kepala Perangkat Daerah"
+                                                            value={state.indikator_regulasi || ''}
+                                                            label="Age"
+                                                            onChange={handleChange}
+                                                        >
+                                                            <MenuItem value="SK Kepala Perangkat Daerah">SK Kepala Perangkat Daerah</MenuItem>
+                                                            <MenuItem value="SK Kepala Daerah">SK Kepala Daerah</MenuItem>
+                                                            <MenuItem value="Peraturan Kepala Daerah/Peraturan Daerah">Peraturan Kepala Daerah/Peraturan Daerah</MenuItem>
+                                                        </Select>
+                                                    </FormControl>
+                                                </TableCell>
                                                 <TableCell>
                                                     <input type="file" required id="file" className="file" accept="image/*,.pdf" onChange={uploadregulasiInovasi} />
                                                 </TableCell>
@@ -1162,7 +1198,9 @@ export default function AddInovasi() {
                                                     Jumlah kajian yang mendukung inovasi
                                                 </TableCell>
                                                 <TableCell >Jumlah kajian yang mendukung terlaksananya inovasi</TableCell>
-                                                <TableCell></TableCell>
+                                                <TableCell>
+
+                                                </TableCell>
 
                                                 <TableCell>
                                                     <input type="file" required id="file" className="file" accept="image/*,.pdf" onChange={uploadjumlahKajian} />
@@ -1196,7 +1234,25 @@ export default function AddInovasi() {
                                                     Dukungan anggaran
                                                 </TableCell>
                                                 <TableCell >  Anggaran inovasi daerah dalam APBD dengan tahapan inisiasi (penyampaian ide, rapat, proposal, penulisan kajian), uji coba (pilot project, perekayasaan, laboratorium lapangan, dan sejenisnya), dan penerapan (penyediaan sarana prasarana, sumber daya manusia dan layanan, bimtek, urusan jenis layanan) </TableCell>
-                                                <TableCell> </TableCell>
+                                                <TableCell>
+                                                    <FormControl fullWidth>
+                                                        <InputLabel id="demo-simple-select-label">Pilih Parameter</InputLabel>
+                                                        <Select
+                                                            labelId="demo-simple-select-label"
+                                                            id="demo-simple-select"
+                                                            name="indikator_dukungan_anggaran"
+
+                                                            defaultValue="Anggaran tersedia pada kegiatan inisiasi inovasi daerah"
+                                                            value={state.indikator_dukungan_anggaran || ''}
+                                                            label="Pilih Indikator"
+                                                            onChange={handleChange}
+                                                        >
+                                                            <MenuItem value="Anggaran tersedia pada kegiatan inisiasi inovasi daerah">Anggaran tersedia pada kegiatan inisiasi inovasi daerah </MenuItem>
+                                                            <MenuItem value="Anggaran tersedia pada kegiatan uji coba inovasi daerah">Anggaran tersedia pada kegiatan uji coba inovasi daerah</MenuItem>
+                                                            <MenuItem value="Anggaran tersedia pada kegiatan penerapan inovasi daerah">Anggaran tersedia pada kegiatan penerapan inovasi daerah</MenuItem>
+                                                        </Select>
+                                                    </FormControl>
+                                                </TableCell>
 
                                                 <TableCell>
                                                     <input type="file" required id="file" className="file" accept="image/*,.pdf" onChange={uploaddukunganAnggaran} />
@@ -1212,7 +1268,25 @@ export default function AddInovasi() {
                                                     Penggunaan IT
                                                 </TableCell>
                                                 <TableCell >  Penggunaan IT dalam pelaksanaan Inovasi yang diterapkan </TableCell>
-                                                <TableCell> </TableCell>
+                                                <TableCell>
+                                                    <FormControl fullWidth>
+                                                        <InputLabel id="demo-simple-select-label">Pilih Parameter</InputLabel>
+                                                        <Select
+                                                            labelId="demo-simple-select-label"
+                                                            id="demo-simple-select"
+                                                            name="indikator_penggunaan_it"
+
+                                                            defaultValue="Anggaran tersedia pada kegiatan inisiasi inovasi daerah"
+                                                            value={state.indikator_penggunaan_it || ''}
+                                                            label="Pilih Indikator"
+                                                            onChange={handleChange}
+                                                        >
+                                                            <MenuItem value="Anggaran tersedia pada kegiatan inisiasi inovasi daerah">Anggaran tersedia pada kegiatan inisiasi inovasi daerah </MenuItem>
+                                                            <MenuItem value="Anggaran tersedia pada kegiatan uji coba inovasi daerah">Anggaran tersedia pada kegiatan uji coba inovasi daerah</MenuItem>
+                                                            <MenuItem value="Anggaran tersedia pada kegiatan penerapan inovasi daerah">Anggaran tersedia pada kegiatan penerapan inovasi daerah</MenuItem>
+                                                        </Select>
+                                                    </FormControl>
+                                                </TableCell>
 
                                                 <TableCell>
                                                     <input type="file" required id="file" className="file" accept="image/*,.pdf" onChange={uploadpenggunaanIT} />
@@ -1228,7 +1302,25 @@ export default function AddInovasi() {
                                                     Bimtek inovasi
                                                 </TableCell>
                                                 <TableCell >  Peningkatan kapasitas dan kompetensi pelaksana inovasi daerah </TableCell>
-                                                <TableCell> </TableCell>
+                                                <TableCell>
+                                                    <FormControl fullWidth>
+                                                        <InputLabel id="demo-simple-select-label">Pilih Parameter</InputLabel>
+                                                        <Select
+                                                            labelId="demo-simple-select-label"
+                                                            id="demo-simple-select"
+                                                            name="indikator_bimtek_inovasi"
+
+                                                            defaultValue="Dalam 2 tahun terakhir pernah 1 kali bimtek"
+                                                            value={state.indikator_bimtek_inovasi || ''}
+                                                            label="Pilih Indikator"
+                                                            onChange={handleChange}
+                                                        >
+                                                            <MenuItem value="Dalam 2 tahun terakhir pernah 1 kali bimtek">Dalam 2 tahun terakhir pernah 1 kali bimtek </MenuItem>
+                                                            <MenuItem value="Dalam 2 tahun terakhir pernah 2 kali bimtek">Dalam 2 tahun terakhir pernah 2 kali bimtek</MenuItem>
+                                                            <MenuItem value="Dalam 2 tahun terakhir pernah 3 kali atau lebih ">Dalam 2 tahun terakhir pernah 3 kali atau lebih </MenuItem>
+                                                        </Select>
+                                                    </FormControl>
+                                                </TableCell>
 
                                                 <TableCell>
                                                     <input type="file" required id="file" className="file" accept="image/*,.pdf" onChange={uploadbimtekInovasi} />
@@ -1244,7 +1336,25 @@ export default function AddInovasi() {
                                                     Program Inovasi perangkat RKPD
                                                 </TableCell>
                                                 <TableCell > Inovasi Perangkat Daerah telah dituangkan dalam program pembangunan daerah </TableCell>
-                                                <TableCell> </TableCell>
+                                                <TableCell>
+                                                    <FormControl fullWidth>
+                                                        <InputLabel id="demo-simple-select-label">Pilih Parameter</InputLabel>
+                                                        <Select
+                                                            labelId="demo-simple-select-label"
+                                                            id="demo-simple-select"
+                                                            name="indikator_RKPD"
+
+                                                            defaultValue="Pemerintah daerah sudah menuangkan program inovasi daerah dalam RPJMD "
+                                                            value={state.indikator_RKPD || ''}
+                                                            label="Pilih Indikator"
+                                                            onChange={handleChange}
+                                                        >
+                                                            <MenuItem value="Pemerintah daerah sudah menuangkan program inovasi daerah dalam RPJMD ">Pemerintah daerah sudah menuangkan program inovasi daerah dalam RPJMD  </MenuItem>
+                                                            <MenuItem value="Pemerintah daerah sudah menuangkan program inovasi daerah dalam RKPD dan telah diterapkan dalam 1 tahun terakhir">Pemerintah daerah sudah menuangkan program inovasi daerah dalam RKPD dan telah diterapkan dalam 1 tahun terakhir</MenuItem>
+                                                            <MenuItem value="Pemerintah daerah sudah menuangkan program inovasi daerah dalam RKPD dan telah diterapkan dalam 2 tahun terakhir">Pemerintah daerah sudah menuangkan program inovasi daerah dalam RKPD dan telah diterapkan dalam 2 tahun terakhir </MenuItem>
+                                                        </Select>
+                                                    </FormControl>
+                                                </TableCell>
 
                                                 <TableCell>
                                                     <input type="file" required id="file" className="file" accept="image/*,.pdf" onChange={uploadprogramInovasi} />
@@ -1260,7 +1370,25 @@ export default function AddInovasi() {
                                                     Keterlibatan aktor inovasi
                                                 </TableCell>
                                                 <TableCell >Keikutsertaan unsur Stakeholder dalam pelaksanaan inovasi daerah (T-1 dan T-2)</TableCell>
-                                                <TableCell> </TableCell>
+                                                <TableCell>
+                                                <FormControl fullWidth>
+                                                        <InputLabel id="demo-simple-select-label">Pilih Parameter</InputLabel>
+                                                        <Select
+                                                            labelId="demo-simple-select-label"
+                                                            id="demo-simple-select"
+                                                            name="indikator_aktor_inovasi"
+
+                                                            defaultValue="Inovasi melibatkan 4 aktor"
+                                                            value={state.indikator_aktor_inovasi|| ''}
+                                                            label="Pilih Indikator"
+                                                            onChange={handleChange}
+                                                        >
+                                                            <MenuItem value="Inovasi melibatkan 4 aktor">Inovasi melibatkan 4 aktor</MenuItem>
+                                                            <MenuItem value="Inovasi melibatkan 5 aktor">Inovasi melibatkan 5 aktor</MenuItem>
+                                                            <MenuItem value="Inovasi melibatkan lebih dari 5 aktor">Inovasi melibatkan lebih dari 5 aktor</MenuItem>
+                                                        </Select>
+                                                    </FormControl>
+                                                </TableCell>
 
                                                 <TableCell>
                                                     <input type="file" required id="file" className="file" accept="image/*,.pdf" onChange={uploadketerlibatanAktor} />
@@ -1276,7 +1404,26 @@ export default function AddInovasi() {
                                                     Pelaksana inovasi daerah
                                                 </TableCell>
                                                 <TableCell >Penetapan tim pelaksana inovasi daerah</TableCell>
-                                                <TableCell> </TableCell>
+                                                <TableCell> 
+
+                                                <FormControl fullWidth>
+                                                        <InputLabel id="demo-simple-select-label">Pilih Parameter</InputLabel>
+                                                        <Select
+                                                            labelId="demo-simple-select-label"
+                                                            id="demo-simple-select"
+                                                            name="indikator_pelaksana_inovasi"
+
+                                                            defaultValue="Ada pelaksana namun tidak ditetapkan dengan SK Kepala Perangkat Daerah"
+                                                            value={state.indikator_pelaksana_inovasi|| ''}
+                                                            label="Pilih Indikator"
+                                                            onChange={handleChange}
+                                                        >
+                                                            <MenuItem value="Ada pelaksana namun tidak ditetapkan dengan SK Kepala Perangkat Daerah">Ada pelaksana namun tidak ditetapkan dengan SK Kepala Perangkat Daerah</MenuItem>
+                                                            <MenuItem value="Ada pelaksana dan ditetapkan dengan SK Kepala Perangkat Daerah">Ada pelaksana dan ditetapkan dengan SK Kepala Perangkat Daerah</MenuItem>
+                                                            <MenuItem value="Ada pelaksana dan ditetapkan dengan SK Kepala Daerah">Ada pelaksana dan ditetapkan dengan SK Kepala Daerah</MenuItem>
+                                                        </Select>
+                                                    </FormControl>
+                                                </TableCell>
 
                                                 <TableCell>
                                                     <input type="file" required id="file" className="file" accept="image/*,.pdf" onChange={uploadpelaksanaInovasi} />
@@ -1292,7 +1439,25 @@ export default function AddInovasi() {
                                                     Jejaring inovasi
                                                 </TableCell>
                                                 <TableCell >Jumlah Perangkat Daerah yang terlibat dalam penerapan inovasi (dalam 2 tahun terakhir)</TableCell>
-                                                <TableCell> </TableCell>
+                                                <TableCell> 
+                                                <FormControl fullWidth>
+                                                        <InputLabel id="demo-simple-select-label">Pilih Parameter</InputLabel>
+                                                        <Select
+                                                            labelId="demo-simple-select-label"
+                                                            id="demo-simple-select"
+                                                            name="indikator_jejaring_inovasi"
+
+                                                            defaultValue="Inovasi melibatkan 1-2 Perangkat Daerah"
+                                                            value={state.indikator_jejaring_inovasi|| ''}
+                                                            label="Pilih Indikator"
+                                                            onChange={handleChange}
+                                                        >
+                                                            <MenuItem value="Inovasi melibatkan 1-2 Perangkat Daerah">Inovasi melibatkan 1-2 Perangkat Daerah</MenuItem>
+                                                            <MenuItem value="Inovasi melibatkan 3-4 Perangkat Daerah">Inovasi melibatkan 3-4 Perangkat Daerah</MenuItem>
+                                                            <MenuItem value="inovasi melibatkan 5 Perangkat Daerah atau lebih">inovasi melibatkan 5 Perangkat Daerah atau lebih</MenuItem>
+                                                        </Select>
+                                                    </FormControl>
+                                                </TableCell>
 
                                                 <TableCell>
                                                     <input type="file" required id="file" className="file" accept="image/*,.pdf" onChange={uploadjejaringInovasi} />
@@ -1308,7 +1473,25 @@ export default function AddInovasi() {
                                                     Sosialisasi inovasi daerah
                                                 </TableCell>
                                                 <TableCell >Penyebarluasan informasi kebijakan inovasi daerah (2 Tahun Terakhir)</TableCell>
-                                                <TableCell> </TableCell>
+                                                <TableCell> 
+                                                <FormControl fullWidth>
+                                                        <InputLabel id="demo-simple-select-label">Pilih Parameter</InputLabel>
+                                                        <Select
+                                                            labelId="demo-simple-select-label"
+                                                            id="demo-simple-select"
+                                                            name="indikator_sosialisasi_inovasi"
+
+                                                            defaultValue="Foto kegiatan berspanduk"
+                                                            value={state.indikator_sosialisasi_inovasi|| ''}
+                                                            label="Pilih Indikator"
+                                                            onChange={handleChange}
+                                                        >
+                                                            <MenuItem value="Foto kegiatan berspanduk">Foto kegiatan berspanduk</MenuItem>
+                                                            <MenuItem value="URL Media Sosial">URL Media Sosial</MenuItem>
+                                                            <MenuItem value="Media Berita">Media Berita</MenuItem>
+                                                        </Select>
+                                                    </FormControl>
+                                                </TableCell>
 
                                                 <TableCell>
                                                     <input type="file" required id="file" className="file" accept="image/*,.pdf" onChange={uploadsosialisasiInovasi} />
@@ -1324,7 +1507,25 @@ export default function AddInovasi() {
                                                     Pedoman teknis inovasi
                                                 </TableCell>
                                                 <TableCell >Ketentuan dasar penggunaan inovasi daerah berupa buku petunjuk/manual book</TableCell>
-                                                <TableCell> </TableCell>
+                                                <TableCell>
+                                                <FormControl fullWidth>
+                                                        <InputLabel id="demo-simple-select-label">Pilih Parameter</InputLabel>
+                                                        <Select
+                                                            labelId="demo-simple-select-label"
+                                                            id="demo-simple-select"
+                                                            name="indikator_pedoman_inovasi"
+
+                                                            defaultValue="Telah terdapat Pedoman teknis berupa buku manual"
+                                                            value={state.indikator_pedoman_inovasi|| ''}
+                                                            label="Pilih Indikator"
+                                                            onChange={handleChange}
+                                                        >
+                                                            <MenuItem value="Telah terdapat Pedoman teknis berupa buku manual">Telah terdapat Pedoman teknis berupa buku manual</MenuItem>
+                                                            <MenuItem value="Telah terdapat Pedoman teknis berupa buku dalam bentuk elektronik">Telah terdapat Pedoman teknis berupa buku dalam bentuk elektronik</MenuItem>
+                                                            <MenuItem value="Telah terdapat Pedoman teknis berupa buku yang dapat diakses secara online">Telah terdapat Pedoman teknis berupa buku yang dapat diakses secara online</MenuItem>
+                                                        </Select>
+                                                    </FormControl>    
+                                                </TableCell>
 
                                                 <TableCell>
                                                     <input type="file" required id="file" className="file" accept="image/*,.pdf" onChange={uploadpedomanTeknis} />
@@ -1340,7 +1541,25 @@ export default function AddInovasi() {
                                                     Kemudahan informasi layanan
                                                 </TableCell>
                                                 <TableCell >Kemudahan mendapatkan informasi layanan</TableCell>
-                                                <TableCell> </TableCell>
+                                                <TableCell>
+                                                    <FormControl fullWidth>
+                                                        <InputLabel id="demo-simple-select-label">Pilih Parameter</InputLabel>
+                                                        <Select
+                                                            labelId="demo-simple-select-label"
+                                                            id="demo-simple-select"
+                                                            name="indikator_kemudahan_inovasi"
+
+                                                            defaultValue="Layanan Telp atau tatap muka langsung/noken"
+                                                            value={state.indikator_kemudahan_inovasi || ''}
+                                                            label="Pilih Indikator"
+                                                            onChange={handleChange}
+                                                        >
+                                                            <MenuItem value="Layanan Telp atau tatap muka langsung/noken">Layanan Telp atau tatap muka langsung/noken</MenuItem>
+                                                            <MenuItem value="Layanan Email/Media Sosial">Layanan Email/Media Sosial</MenuItem>
+                                                            <MenuItem value="Layanan melalui aplikasi online">Layanan melalui aplikasi online</MenuItem>
+                                                        </Select>
+                                                    </FormControl> 
+                                                     </TableCell>
 
                                                 <TableCell>
                                                     <input type="file" required id="file" className="file" accept="image/*,.pdf" onChange={uploadkemudahanLayanan} />
@@ -1404,10 +1623,10 @@ export default function AddInovasi() {
                                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                             >
                                                 <TableCell component="th" scope="row">
-                                                Repikasi
+                                                    Repikasi
                                                 </TableCell>
                                                 <TableCell >
-                                                Inovasi Daerah telah direplikasi oleh daerah lain (T-2 sampai dengan T-1)
+                                                    Inovasi Daerah telah direplikasi oleh daerah lain (T-2 sampai dengan T-1)
 
                                                 </TableCell>
                                                 <TableCell> </TableCell>
@@ -1423,10 +1642,10 @@ export default function AddInovasi() {
                                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                             >
                                                 <TableCell component="th" scope="row">
-                                                Kecepatan inovasi
+                                                    Kecepatan inovasi
                                                 </TableCell>
                                                 <TableCell >
-                                                Satuan waktu yang digunakan untuk menciptakan inovasi daerah
+                                                    Satuan waktu yang digunakan untuk menciptakan inovasi daerah
 
                                                 </TableCell>
                                                 <TableCell> </TableCell>
@@ -1437,15 +1656,15 @@ export default function AddInovasi() {
                                                 <TableCell>Dokumen PDF/JPG</TableCell>
                                             </TableRow>
                                             {/*      Kecepatan inovasi  */}
-                                             {/*      Kemanfaatan inovasi */}
-                                             <TableRow
+                                            {/*      Kemanfaatan inovasi */}
+                                            <TableRow
                                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                             >
                                                 <TableCell component="th" scope="row">
-                                                Kemanfaatan inovasi
+                                                    Kemanfaatan inovasi
                                                 </TableCell>
                                                 <TableCell >
-                                                Jumlah pengguna atau penerima manfaat inovasi daerah (2 tahun terakhir)
+                                                    Jumlah pengguna atau penerima manfaat inovasi daerah (2 tahun terakhir)
                                                 </TableCell>
                                                 <TableCell> </TableCell>
 
@@ -1455,15 +1674,15 @@ export default function AddInovasi() {
                                                 <TableCell>Dokumen PDF/JPG</TableCell>
                                             </TableRow>
                                             {/* Kemanfaatan inovasi */}
-                                             {/*      Monitoring dan evaluasi daerah  */}
-                                             <TableRow
+                                            {/*      Monitoring dan evaluasi daerah  */}
+                                            <TableRow
                                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                             >
                                                 <TableCell component="th" scope="row">
-                                                Monitoring dan evaluasi daerah
+                                                    Monitoring dan evaluasi daerah
                                                 </TableCell>
                                                 <TableCell >
-                                                Kepuasan pelaksanaan penggunaan inovasi daerah (2 Tahun Terakhir)
+                                                    Kepuasan pelaksanaan penggunaan inovasi daerah (2 Tahun Terakhir)
                                                 </TableCell>
                                                 <TableCell> </TableCell>
 
@@ -1473,15 +1692,15 @@ export default function AddInovasi() {
                                                 <TableCell>Dokumen PDF/JPG</TableCell>
                                             </TableRow>
                                             {/*    Monitoring dan evaluasi daerah */}
-                                              {/*       Kualitas inovasi daerah  */}
-                                              <TableRow
+                                            {/*       Kualitas inovasi daerah  */}
+                                            <TableRow
                                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                             >
                                                 <TableCell component="th" scope="row">
-                                                Kualitas inovasi daerah 
+                                                    Kualitas inovasi daerah
                                                 </TableCell>
                                                 <TableCell >
-                                                Kualitas inovasi daerah 
+                                                    Kualitas inovasi daerah
                                                 </TableCell>
                                                 <TableCell> </TableCell>
 
@@ -1491,7 +1710,7 @@ export default function AddInovasi() {
                                                 <TableCell>Dokumen PDF/JPG</TableCell>
                                             </TableRow>
                                             {/*      Kualitas inovasi daerah */}
-                                            
+
                                         </TableBody>
                                     </Table>
                                 </TableContainer>
@@ -1499,8 +1718,8 @@ export default function AddInovasi() {
                                 {loading === true ? <LoadingButton loading variant="outlined">
                                     Submit
                                 </LoadingButton> : <div className="submit-form">
-                                <Button className="see-all-button" size="small" type="submit">Tambah Inovasi  </Button>
-                                    </div>}
+                                    <Button className="see-all-button" size="small" type="submit">Tambah Inovasi  </Button>
+                                </div>}
 
                             </div>
                         </ValidatorForm>

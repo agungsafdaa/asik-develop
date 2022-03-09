@@ -248,6 +248,11 @@ input:-webkit-autofill {
 .display-none {
   display: none !important; }
 
+.info-rancangBangun {
+  display: flex;
+  align-items: center;
+  margin: 20px 0 20px 0; }
+
 .pagination-user {
   display: flex;
   justify-content: flex-end; }

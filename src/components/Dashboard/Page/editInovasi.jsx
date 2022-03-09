@@ -43,7 +43,7 @@ export default function EditInovasi() {
         },
     };
     const location = useLocation();
-
+    console.log(location)
 
     function getStyles(name, personName, theme) {
         return {
@@ -1844,7 +1844,7 @@ export default function EditInovasi() {
                                                 <TableCell>
                                                 {pathnameUpload.Keterlibatan_aktor_inovasi.data !== null ?  <a className="button-asik" href={urlAsik + pathnameUpload.Keterlibatan_aktor_inovasi.data.attributes.url} target="_blank" rel="noreferrer">
                                                     Lihat File
-                                                </a> : <h3>Anda belum mengupload file , Silahkan upload indikator keterlibatan aktor inovasi anda</h3>}    
+                                                </a> : <h6>Anda belum mengupload file , Silahkan upload indikator inovasi daerah</h6>}    
                                                    
                                                 </TableCell>
                                                 <TableCell>
@@ -2112,9 +2112,11 @@ export default function EditInovasi() {
 
                                                 </TableCell>
                                                 <TableCell> </TableCell>
-                                                <TableCell>  <a className="button-asik" href={pathnameUpload.Kecepatan_inovasi.data !== null ? urlAsik + pathnameUpload.Kecepatan_inovasi.data.attributes.url : ""} target="_blank" rel="noreferrer">
+                                                <TableCell>  
+                                                    {pathnameUpload.Kecepatan_inovasi.data !== null ?  <a className="button-asik" href={pathnameUpload.Kecepatan_inovasi.data !== null ? urlAsik + pathnameUpload.Kecepatan_inovasi.data.attributes.url : ""} target="_blank" rel="noreferrer">
                                                     Lihat File
-                                                </a></TableCell>
+                                                </a> : <h6>Anda belum mengupload file , Silahkan upload indikator inovasi daerah</h6>}
+                                                   </TableCell>
                                                 <TableCell>
                                                     {pathnameUpload.Kecepatan_inovasi.data !== null ? <> 
                                                         <Button name="kecepatan_inovasi" className={show.kecepatan_inovasi === false ? "button-asik-edit" : "display-none"} onClick={DeletekecepatanInovasi} value={pathnameUpload.Kecepatan_inovasi.data !== null ? pathnameUpload.Kecepatan_inovasi.data.id : ''}>Edit File</Button>
