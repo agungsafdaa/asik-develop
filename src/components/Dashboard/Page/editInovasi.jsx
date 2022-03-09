@@ -1224,6 +1224,13 @@ export default function EditInovasi() {
     };
 
 
+    const getTextLength = (html) => {
+        // This will never get added to the DOM.
+        const element = document.createElement("div")
+        element.innerHTML = html
+        return element.textContent.length
+    }
+    const outputs = [rancangBangun.length !== undefined ? rancangBangun : location.state.idInovasi.attributes.Rancang_bangun_pokok_inovasi ]
 
     const addKajian = async (event) => {
         setLoading(true)
@@ -1266,10 +1273,30 @@ export default function EditInovasi() {
             Bentuk_inovasi: state.Bentuk_inovasi ? state.Bentuk_inovasi : location.state.idInovasi.attributes.Bentuk_inovasi,
             Waktu_implementasi: state.Waktu_implementasi ? state.Waktu_implementasi : location.state.idInovasi.attributes.Waktu_implementasi,
             Rancang_bangun_pokok_inovasi: rancangBangun.length !== undefined ? rancangBangun : location.state.idInovasi.attributes.Rancang_bangun_pokok_inovasi,
-            Tujuan_inovasi: tujuanInvoasi.length !== undefined ? tujuanInvoasi : state.Tujuan_inovasi,
+            Tujuan_inovasi: tujuanInvoasi.length !== undefined ? tujuanInvoasi : location.state.Tujuan_inovasi,
             Manfaat_inovasi: manfaat.length !== undefined ? manfaat : location.state.idInovasi.attributes.Manfaat_inovasi,
             Hasil_inovasi: hasil.length !== undefined ? hasil : location.state.idInovasi.attributes.Hasil_inovasi,
-
+            desc_Regulasi_Inovasi_daerah: state.indikator_regulasi ? state.indikator_regulasi : location.state.indikator_regulasi,
+            desc_Jumlah_kajian_yang_mendukung_inovasi: state.jumlah_kajian ? state.jumlah_kajian : location.state.jumlah_kajian,
+            desc_Roadmap_SIDa: state.roadmap_Sida ?  state.roadmap_Sida :  state.roadmap_Sida,
+            desc_Dukungan_anggaran: state.indikator_dukungan_anggaran ? state.indikator_dukungan_anggaran : location.state.indikator_dukungan_anggaran,
+            desc_Penggunaan_IT: state.indikator_penggunaan_it ? state.indikator_penggunaan_it : location.state.indikator_penggunaan_it,
+            desc_Bimtek_inovasi: state.indikator_bimtek_inovasi ? state.indikator_bimtek_inovasi : location.state.indikator_bimtek_inovasi,
+            desc_Program_Inovasi_perangkat_RKPD: state.indikator_RKPD ? state.indikator_RKPD : location.state.indikator_RKPD,
+            desc_Keterlibatan_aktor_inovasi: state.indikator_aktor_inovasi ? state.indikator_aktor_inovasi : location.state.indikator_aktor_inovasi,
+            desc_Pelaksana_inovasi_daerah: state.indikator_pelaksana_inovasi ? state.indikator_pelaksana_inovasi : location.state.indikator_pelaksana_inovasi,
+            desc_Jejaring_inovasi: state.indikator_jejaring_inovasi ? state.indikator_jejaring_inovasi : location.state.indikator_jejaring_inovasi,
+            desc_Sosialisasi_inovasi_daerah: state.indikator_sosialisasi_inovasi ? state.indikator_sosialisasi_inovasi : location.state.indikator_sosialisasi_inovasi,
+            desc_Pedoman_teknis_inovasi: state.indikator_pedoman_inovasi ? state.indikator_pedoman_inovasi : location.state.indikator_pedoman_inovasi,
+            desc_Kemudahan_informasi_layanan: state.indikator_kemudahan_inovasi ?  state.indikator_kemudahan_inovasi :  location.state.indikator_kemudahan_inovasi,
+            desc_Kemudahan_proses_inovasi_yang_dihasilkan: state.indikator_kemudahanProses ? state.indikator_kemudahanProses : location.state.indikator_kemudahanProses,
+            desc_Penyelesaian_layanan_pengaduan: state.indikator_penyelesaianLayanan ? state.indikator_penyelesaianLayanan : location.state.indikator_penyelesaianLayanan,
+            desc_Online_sistem: state.indikator_onlineSistem ? state.indikator_onlineSistem : location.state.indikator_onlineSistem,
+            desc_Repikasi: state.indikator_repikasi ? state.indikator_repikasi : location.state.indikator_repikasi,
+            desc_Kecepatan_inovasi: state.indikator_kecepatanInovasi ? state.indikator_kecepatanInovasi : location.state.indikator_kecepatanInovasi,
+            desc_Kemanfaatan_inovasi: state.indikator_kemanfaatanInovasi ?  state.indikator_kemanfaatanInovasi :  location.state.indikator_kemanfaatanInovasi,
+            desc_Monitoring_dan_evaluasi_daerah: state.indikator_monitoringEvaluasi ? state.indikator_monitoringEvaluasi : location.state.indikator_monitoringEvaluasi,
+            desc_Kualitas_inovasi_daerah: state.indikator_kualitasInovasi ? state.indikator_kualitasInovasi : location.state.indikator_kualitasInovasi,
 
         }
 
@@ -1552,7 +1579,12 @@ export default function EditInovasi() {
                                         Rancang bangun dan pokok perubahan yang dilakukan*
 
                                     </InputLabel>
-
+                                    <Alert className="info-rancangBangun" severity="warning">
+                                        <h5>   Catatan Rancang Bangun</h5>
+                                        - memuat 300 kata atau lebih<br />
+                                        - latar belakang inovasi baik input, output maupun proses<br />
+                                        - bahasa tepat sasaran, efektif dan efisien
+                                    </Alert>
                                     <CKEditor
                                         editor={ClassicEditor}
 
@@ -1568,6 +1600,8 @@ export default function EditInovasi() {
 
                                         }}
                                     />
+                                     <p id="demo">{outputs.map(getTextLength)[0] === 15 ?   'Jumlah kata '  + 0 : 'Jumlah kata ' + outputs.map(getTextLength)[0]}</p>
+                                  
                                 </div>
 
                                 <div className="form-opd">
@@ -1641,12 +1675,12 @@ export default function EditInovasi() {
                                         <TableHead>
                                             <TableRow>
                                                 <TableCell>Indikator</TableCell>
-                                                <TableCell>Keterangan</TableCell>
+                                                <TableCell style={{ width: "15%" }}>Keterangan</TableCell>
 
-                                                <TableCell>Parameter</TableCell>
+                                                <TableCell style={{ width: "35%" }}>Parameter</TableCell>
                                                 <TableCell style={{ width: '15%' }}>File yang di upload</TableCell>
                                                 <TableCell style={{ width: '15%' }}>Action</TableCell>
-                                                <TableCell >Jenis File</TableCell>
+                                               
                                             </TableRow>
                                         </TableHead>
                                         <TableBody>
@@ -1660,7 +1694,25 @@ export default function EditInovasi() {
                                                 </TableCell>
                                                 <TableCell >Regulasi yang menetapkan nama-nama inovasi daerah yang menjadi landasan operasional penerapan Inovasi Daerah</TableCell>
 
-                                                <TableCell></TableCell>
+                                                <TableCell>
+                                                <FormControl fullWidth>
+                                                        <InputLabel id="demo-simple-select-label">{state.indikator_regulasi  ? 'Pilih Regulasi' : location.state.idInovasi.attributes.desc_Regulasi_Inovasi_daerah}</InputLabel>
+                                                        <Select
+                                                            labelId="demo-simple-select-label"
+                                                            id="demo-simple-select"
+                                                            name="indikator_regulasi"
+
+                                                            defaultValue={location.state.idInovasi.attributes.desc_Regulasi_Inovasi_daerah}
+                                                            value={state.indikator_regulasi || ''}
+                                                            label="Age"
+                                                            onChange={handleChange}
+                                                        >
+                                                            <MenuItem value="SK Kepala Perangkat Daerah">SK Kepala Perangkat Daerah</MenuItem>
+                                                            <MenuItem value="SK Kepala Daerah">SK Kepala Daerah</MenuItem>
+                                                            <MenuItem value="Peraturan Kepala Daerah/Peraturan Daerah">Peraturan Kepala Daerah/Peraturan Daerah</MenuItem>
+                                                        </Select>
+                                                    </FormControl>
+                                                </TableCell>
                                                 <TableCell>
                                                     {pathnameUpload.Regulasi_Inovasi_daerah.data !== null ? <a className="button-asik" href={urlAsik + pathnameUpload.Regulasi_Inovasi_daerah.data.attributes.url} target="_blank" type="button" rel="noreferrer">
                                                         Lihat File
@@ -1673,7 +1725,7 @@ export default function EditInovasi() {
                                                     <input type="file" id="file" className="file" accept="image/*,.pdf" onChange={uploadregulasiInovasi} /> }
                                                    
                                                 </TableCell>
-                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                              
                                             </TableRow>
                                             {/*Regulasi */}
                                             {/*      Jumlah kajian yang mendukung inovasi */}
@@ -1700,7 +1752,7 @@ export default function EditInovasi() {
                                                     </> :  <input type="file" id="file" className="file" accept="image/*,.pdf" onChange={uploadjumlahKajian} />}
                                                   
                                                 </TableCell>
-                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                              
                                             </TableRow>
                                             {/*     Jumlah kajian yang mendukung inovasi */}
                                             {/*     Roadmap SIDA */}
@@ -1726,7 +1778,7 @@ export default function EditInovasi() {
                                                     </> :    <input type="file" id="file" className="file" accept="image/*,.pdf" onChange={uploadroadmapSIDA} />}
                                                  
                                                 </TableCell>
-                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                              
                                             </TableRow>
                                             {/*    Roadmap SIDA*/}
                                             {/*      Dukungan anggaran */}
@@ -1754,7 +1806,7 @@ export default function EditInovasi() {
                                                      :   <input type="file" id="file" className="file" accept="image/*,.pdf" onChange={uploaddukunganAnggaran} /> }
                                                   
                                                 </TableCell>
-                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                              
                                             </TableRow>
                                             {/*     Dukungan anggaran */}
                                             {/*    Penggunaan IT */}
@@ -1779,7 +1831,7 @@ export default function EditInovasi() {
                                                     :  <input type="file" id="file" className="file" accept="image/*,.pdf" onChange={uploadpenggunaanIT} />  }
                                                    
                                                 </TableCell>
-                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                              
                                             </TableRow>
                                             {/*  Penggunaan IT */}
                                             {/*     Bimtek inovasi*/}
@@ -1803,7 +1855,7 @@ export default function EditInovasi() {
                                                     </> :  <input type="file" id="file" className="file" accept="image/*,.pdf" onChange={uploadbimtekInovasi} />}
                                                    
                                                 </TableCell>
-                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                              
                                             </TableRow>
                                             {/*    Bimtek inovasi */}
                                             {/*    Program Inovasi perangkat RKPD*/}
@@ -1829,7 +1881,7 @@ export default function EditInovasi() {
                                                     :     <input type="file" id="file" className="file" accept="image/*,.pdf" onChange={uploadprogramInovasi} />}
                                                   
                                                 </TableCell>
-                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                              
                                             </TableRow>
                                             {/*    Program Inovasi perangkat RKPD  */}
                                             {/*         Keterlibatan aktor inovasi */}
@@ -1856,7 +1908,7 @@ export default function EditInovasi() {
                                                 : <input type="file" id="file" className="file" accept="image/*,.pdf" onChange={uploadketerlibatanAktor} />}    
                                                    
                                                 </TableCell>
-                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                              
                                             </TableRow>
                                             {/*      Keterlibatan aktor inovasi  */}
                                             {/*      Pelaksana inovasi daerah  */}
@@ -1885,7 +1937,7 @@ export default function EditInovasi() {
                                                     }
                                                     
                                                 </TableCell>
-                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                              
                                             </TableRow>
                                             {/*          Pelaksana inovasi daerah   */}
                                             {/*         Jejaring inovasi  */}
@@ -1910,7 +1962,7 @@ export default function EditInovasi() {
                                                     </> :     <input type="file" id="file" className="file" accept="image/*,.pdf" onChange={uploadjejaringInovasi} />}
                                                     
                                                 </TableCell>
-                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                              
                                             </TableRow>
                                             {/*            Jejaring inovasi  */}
                                             {/*         Sosialisasi inovasi daerah  */}
@@ -1935,7 +1987,7 @@ export default function EditInovasi() {
                                                     </> :  <input type="file" id="file" className="file"  accept="image/*,.pdf" onChange={uploadsosialisasiInovasi} /> }
                                                  
                                                 </TableCell>
-                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                              
                                             </TableRow>
                                             {/*       Sosialisasi inovasi daerah  */}
                                             {/*   Pedoman teknis inovasi */}
@@ -1963,7 +2015,7 @@ export default function EditInovasi() {
                                                     }
                                                   
                                                 </TableCell>
-                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                              
                                             </TableRow>
                                             {/*   Pedoman teknis inovasi */}
                                             {/*    Kemudahan informasi layanan */}
@@ -1988,7 +2040,7 @@ export default function EditInovasi() {
                                                     </> :  <input type="file" id="file" className="file" accept="image/*,.pdf" onChange={uploadkemudahanLayanan} />}
                                                     
                                                 </TableCell>
-                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                              
                                             </TableRow>
                                             {/*    Kemudahan informasi layanan */}
                                             {/*      Kemudahan proses inovasi yang dihasilkan */}
@@ -2014,7 +2066,7 @@ export default function EditInovasi() {
                                                     :   <input type="file" id="file" className="file" accept="image/*,.pdf" onChange={uploadkemudahanProses} /> }
                                                     
                                                 </TableCell>
-                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                              
                                             </TableRow>
                                             {/*       Kemudahan proses inovasi yang dihasilkan */}
                                             {/*     Penyelesaian layanan pengaduan */}
@@ -2041,7 +2093,7 @@ export default function EditInovasi() {
                                                     </> 
                                                      :     <input type="file" id="file" className="file" accept="image/*,.pdf" onChange={uploadpenyelesaianLayanan} />}
                                                 </TableCell>
-                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                              
                                             </TableRow>
                                             {/* Penyelesaian layanan pengaduan*/}
                                             {/*     Online sistem */}
@@ -2069,7 +2121,7 @@ export default function EditInovasi() {
                                                     </> :    <input type="file" id="file" className="file" accept="image/*,.pdf" onChange={uploadonlineSistem} />}
                                                     
                                                 </TableCell>
-                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                              
                                             </TableRow>
                                             {/*    Online sistem */}
                                             {/*   Repikasi*/}
@@ -2097,7 +2149,7 @@ export default function EditInovasi() {
                                                     </> :  <input type="file" id="file" className="file" accept="image/*,.pdf" onChange={uploadrepikasi} /> }
                                                    
                                                 </TableCell>
-                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                              
                                             </TableRow>
                                             {/*  Repikasi */}
                                             {/*       Kecepatan inovasi*/}
@@ -2124,7 +2176,7 @@ export default function EditInovasi() {
                                                     </>:    <input type="file" id="file" className="file" accept="image/*,.pdf" onChange={uploadkecepatanInovasi} />}
                                                     
                                                 </TableCell>
-                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                              
                                             </TableRow>
                                             {/*      Kecepatan inovasi  */}
                                             {/*      Kemanfaatan inovasi */}
@@ -2151,7 +2203,7 @@ export default function EditInovasi() {
                                                     </> :  <input type="file" id="file" className="file" accept="image/*,.pdf" onChange={uploadkemanfaatanInovasi} />}
                                                    
                                                 </TableCell>
-                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                              
                                             </TableRow>
                                             {/* Kemanfaatan inovasi */}
                                             {/*      Monitoring dan evaluasi daerah  */}
@@ -2177,7 +2229,7 @@ export default function EditInovasi() {
                                                     </>:   <input type="file" id="file" className="file" accept="image/*,.pdf" onChange={uploadmonitoring} /> }
                                                     
                                                 </TableCell>
-                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                              
                                             </TableRow>
                                             {/*    Monitoring dan evaluasi daerah */}
                                             {/*       Kualitas inovasi daerah  */}
@@ -2201,7 +2253,7 @@ export default function EditInovasi() {
                                                     </> :   <input type="file" id="file" className="file"  accept="image/*,.pdf" onChange={uploadkualitasInovasi} /> }
                                                   
                                                 </TableCell>
-                                                <TableCell>Dokumen PDF/JPG</TableCell>
+                                              
                                             </TableRow>
                                             {/*      Kualitas inovasi daerah */}
 
