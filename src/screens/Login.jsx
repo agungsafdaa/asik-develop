@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import Card from '@mui/material/Card';
-
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { IconButton } from '@mui/material';
+import InputAdornment from '@mui/material/InputAdornment';
 import { ToastContainer, toast } from 'react-toastify';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
@@ -17,7 +20,13 @@ export default function Login(props) {
         'Login & Kegiatan'
     );
 
-    const [inovasi, setInovasi] = useState([])
+    const handleClickShowPassword = () => {
+        setState({ ...state, showPassword: !state.showPassword })
+    }
+
+    const handleMouseDownPassword = (event) => {
+        event.preventDefault()
+    }
     const [loading, setLoading] = useState(false)
     const handleChange = async ({ target: { name, value } }) => {
 
@@ -41,8 +50,8 @@ export default function Login(props) {
                 return navigate("/dashboard");
             }
         } catch (error) {
-         console.log(error.response.data.error.message)
-         const messageError = error.response.data.error.message === 'Invalid identifier or password'  ? 'Username/Password Salah' : error.response.data.error.message
+            console.log(error.response.data.error.message)
+            const messageError = error.response.data.error.message === 'Invalid identifier or password' ? 'Username/Password Salah' : error.response.data.error.message
             toast.error(messageError, {
                 position: "top-right",
                 autoClose: 3000,
@@ -98,9 +107,34 @@ export default function Login(props) {
                                                 placeholder='username' />
                                         </div>
                                         <div className="form">
-                                            <TextValidator type="password" onChange={handleChange} name="password"
+                                            <TextValidator type={
+                                                state.showPassword ? 'text' : 'password'
+                                            }
+                                                onChange={handleChange} name="password"
                                                 validators={['required']}
                                                 errorMessages={['Harap di isi']}
+
+                                                InputProps={{
+                                                    endAdornment: (
+                                                        <InputAdornment position="end">
+                                                            <IconButton
+                                                                aria-label="toggle password visibility"
+                                                                onClick={
+                                                                    handleClickShowPassword
+                                                                }
+                                                                onMouseDown={
+                                                                    handleMouseDownPassword
+                                                                }
+                                                            >
+                                                                {state.showPassword ? (
+                                                                    <VisibilityIcon />
+                                                                ) : (
+                                                                    <VisibilityOffIcon />
+                                                                )}
+                                                            </IconButton>
+                                                        </InputAdornment>
+                                                    ),
+                                                }}
                                                 value={state.password || ''} label="Password" variant="outlined" />
                                         </div>
                                         {loading === true ? <LoadingButton className="disabled-button" loading variant="outlined">

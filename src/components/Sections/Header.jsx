@@ -20,7 +20,7 @@ export default function Header() {
   return (
     <Wrapper id="home" className="hero-element">
       <video  loop autoPlay="autoplay" controls muted    id="myVideo"   className="video-asik">
-        <source src="/assets/video/landing.mp4" type="video/mp4"/>
+        <source src="/assets/video/asik.mp4" type="video/mp4"/>
         Your browser does not support HTML5 video.
       </video>
 

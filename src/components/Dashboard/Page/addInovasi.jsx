@@ -22,6 +22,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -111,7 +112,7 @@ export default function AddInovasi() {
             <InputUnstyled components={{ Input: StyledInputElement }} {...props} ref={ref} />
         );
     });
-
+  
 
     const theme = useTheme();
     let navigate = useNavigate();

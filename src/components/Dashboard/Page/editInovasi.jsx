@@ -1276,28 +1276,27 @@ export default function EditInovasi() {
             Tujuan_inovasi: tujuanInvoasi.length !== undefined ? tujuanInvoasi : location.state.Tujuan_inovasi,
             Manfaat_inovasi: manfaat.length !== undefined ? manfaat : location.state.idInovasi.attributes.Manfaat_inovasi,
             Hasil_inovasi: hasil.length !== undefined ? hasil : location.state.idInovasi.attributes.Hasil_inovasi,
-            desc_Regulasi_Inovasi_daerah: state.indikator_regulasi ? state.indikator_regulasi : location.state.indikator_regulasi,
-            desc_Jumlah_kajian_yang_mendukung_inovasi: state.jumlah_kajian ? state.jumlah_kajian : location.state.jumlah_kajian,
+            desc_Regulasi_Inovasi_daerah: state.indikator_regulasi ? state.indikator_regulasi : location.state.idInovasi.attributes.indikator_regulasi,
+            desc_Jumlah_kajian_yang_mendukung_inovasi: state.jumlah_kajian ? state.jumlah_kajian : location.state.idInovasi.attributes.jumlah_kajian,
             desc_Roadmap_SIDa: state.roadmap_Sida ?  state.roadmap_Sida :  state.roadmap_Sida,
-            desc_Dukungan_anggaran: state.indikator_dukungan_anggaran ? state.indikator_dukungan_anggaran : location.state.indikator_dukungan_anggaran,
-            desc_Penggunaan_IT: state.indikator_penggunaan_it ? state.indikator_penggunaan_it : location.state.indikator_penggunaan_it,
-            desc_Bimtek_inovasi: state.indikator_bimtek_inovasi ? state.indikator_bimtek_inovasi : location.state.indikator_bimtek_inovasi,
-            desc_Program_Inovasi_perangkat_RKPD: state.indikator_RKPD ? state.indikator_RKPD : location.state.indikator_RKPD,
-            desc_Keterlibatan_aktor_inovasi: state.indikator_aktor_inovasi ? state.indikator_aktor_inovasi : location.state.indikator_aktor_inovasi,
-            desc_Pelaksana_inovasi_daerah: state.indikator_pelaksana_inovasi ? state.indikator_pelaksana_inovasi : location.state.indikator_pelaksana_inovasi,
-            desc_Jejaring_inovasi: state.indikator_jejaring_inovasi ? state.indikator_jejaring_inovasi : location.state.indikator_jejaring_inovasi,
-            desc_Sosialisasi_inovasi_daerah: state.indikator_sosialisasi_inovasi ? state.indikator_sosialisasi_inovasi : location.state.indikator_sosialisasi_inovasi,
-            desc_Pedoman_teknis_inovasi: state.indikator_pedoman_inovasi ? state.indikator_pedoman_inovasi : location.state.indikator_pedoman_inovasi,
-            desc_Kemudahan_informasi_layanan: state.indikator_kemudahan_inovasi ?  state.indikator_kemudahan_inovasi :  location.state.indikator_kemudahan_inovasi,
-            desc_Kemudahan_proses_inovasi_yang_dihasilkan: state.indikator_kemudahanProses ? state.indikator_kemudahanProses : location.state.indikator_kemudahanProses,
-            desc_Penyelesaian_layanan_pengaduan: state.indikator_penyelesaianLayanan ? state.indikator_penyelesaianLayanan : location.state.indikator_penyelesaianLayanan,
-            desc_Online_sistem: state.indikator_onlineSistem ? state.indikator_onlineSistem : location.state.indikator_onlineSistem,
-            desc_Repikasi: state.indikator_repikasi ? state.indikator_repikasi : location.state.indikator_repikasi,
-            desc_Kecepatan_inovasi: state.indikator_kecepatanInovasi ? state.indikator_kecepatanInovasi : location.state.indikator_kecepatanInovasi,
-            desc_Kemanfaatan_inovasi: state.indikator_kemanfaatanInovasi ?  state.indikator_kemanfaatanInovasi :  location.state.indikator_kemanfaatanInovasi,
-            desc_Monitoring_dan_evaluasi_daerah: state.indikator_monitoringEvaluasi ? state.indikator_monitoringEvaluasi : location.state.indikator_monitoringEvaluasi,
-            desc_Kualitas_inovasi_daerah: state.indikator_kualitasInovasi ? state.indikator_kualitasInovasi : location.state.indikator_kualitasInovasi,
-
+            desc_Dukungan_anggaran: state.indikator_dukungan_anggaran ? state.indikator_dukungan_anggaran : location.state.idInovasi.attributes.indikator_dukungan_anggaran,
+            desc_Penggunaan_IT: state.indikator_penggunaan_it ? state.indikator_penggunaan_it : location.state.idInovasi.attributes.indikator_penggunaan_it,
+            desc_Bimtek_inovasi: state.indikator_bimtek_inovasi ? state.indikator_bimtek_inovasi : location.state.idInovasi.attributes.indikator_bimtek_inovasi,
+            desc_Program_Inovasi_perangkat_RKPD: state.indikator_RKPD ? state.indikator_RKPD : location.state.idInovasi.attributes.indikator_RKPD,
+            desc_Keterlibatan_aktor_inovasi: state.indikator_aktor_inovasi ? state.indikator_aktor_inovasi : location.state.idInovasi.attributes.indikator_aktor_inovasi,
+            desc_Pelaksana_inovasi_daerah: state.indikator_pelaksana_inovasi ? state.indikator_pelaksana_inovasi : location.state.idInovasi.attributes.indikator_pelaksana_inovasi,
+            desc_Jejaring_inovasi: state.indikator_jejaring_inovasi ? state.indikator_jejaring_inovasi : location.state.idInovasi.attributes.indikator_jejaring_inovasi,
+            desc_Sosialisasi_inovasi_daerah: state.indikator_sosialisasi_inovasi ? state.indikator_sosialisasi_inovasi : location.state.idInovasi.attributes.indikator_sosialisasi_inovasi,
+            desc_Pedoman_teknis_inovasi: state.indikator_pedoman_inovasi ? state.indikator_pedoman_inovasi : location.state.idInovasi.attributes.indikator_pedoman_inovasi,
+            desc_Kemudahan_informasi_layanan: state.indikator_kemudahan_inovasi ?  state.indikator_kemudahan_inovasi :  location.state.idInovasi.attributes.indikator_kemudahan_inovasi,
+            desc_Kemudahan_proses_inovasi_yang_dihasilkan: state.indikator_kemudahanProses ? state.indikator_kemudahanProses : location.state.idInovasi.attributes.indikator_kemudahanProses,
+            desc_Penyelesaian_layanan_pengaduan: state.indikator_penyelesaianLayanan ? state.indikator_penyelesaianLayanan : location.state.idInovasi.attributes.indikator_penyelesaianLayanan,
+            desc_Online_sistem: state.indikator_onlineSistem ? state.indikator_onlineSistem : location.state.idInovasi.attributes.indikator_onlineSistem,
+            desc_Repikasi: state.indikator_repikasi ? state.indikator_repikasi :location.state.idInovasi.attributes.indikator_repikasi,
+            desc_Kecepatan_inovasi: state.indikator_kecepatanInovasi ? state.indikator_kecepatanInovasi : location.state.idInovasi.attributes.indikator_kecepatanInovasi,
+            desc_Kemanfaatan_inovasi: state.indikator_kemanfaatanInovasi ?  state.indikator_kemanfaatanInovasi :  location.state.idInovasi.attributes.indikator_kemanfaatanInovasi,
+            desc_Monitoring_dan_evaluasi_daerah: state.indikator_monitoringEvaluasi ? state.indikator_monitoringEvaluasi : location.state.idInovasi.attributes.indikator_monitoringEvaluasi,
+            desc_Kualitas_inovasi_daerah: state.indikator_kualitasInovasi ? state.indikator_kualitasInovasi : location.state.idInovasi.attributes.indikator_kualitasInovasi,
         }
 
 
@@ -1678,7 +1677,7 @@ export default function EditInovasi() {
                                                 <TableCell style={{ width: "15%" }}>Keterangan</TableCell>
 
                                                 <TableCell style={{ width: "35%" }}>Parameter</TableCell>
-                                                <TableCell style={{ width: '15%' }}>File yang di upload</TableCell>
+                                                <TableCell style={{ width: '25%' }}>File yang di upload</TableCell>
                                                 <TableCell style={{ width: '15%' }}>Action</TableCell>
                                                
                                             </TableRow>
@@ -1790,7 +1789,26 @@ export default function EditInovasi() {
                                                     Dukungan anggaran
                                                 </TableCell>
                                                 <TableCell >  Anggaran inovasi daerah dalam APBD dengan tahapan inisiasi (penyampaian ide, rapat, proposal, penulisan kajian), uji coba (pilot project, perekayasaan, laboratorium lapangan, dan sejenisnya), dan penerapan (penyediaan sarana prasarana, sumber daya manusia dan layanan, bimtek, urusan jenis layanan) </TableCell>
-                                                <TableCell> </TableCell>
+                                                <TableCell> 
+                                                <FormControl fullWidth>
+                                                        <InputLabel id="demo-simple-select-label">{state.indikator_dukungan_anggaran  ? 'Pilih Regulasi' : location.state.idInovasi.attributes.desc_Dukungan_anggaran}</InputLabel>
+                                                        <Select
+                                                            labelId="demo-simple-select-label"
+                                                            id="demo-simple-select"
+                                                            name="indikator_dukungan_anggaran"
+
+                                                            defaultValue={location.state.idInovasi.attributes.desc_Regulasi_Inovasi_daerah}
+                                                            value={state.indikator_dukungan_anggaran || ''}
+                                                            label="Pilih Indikator"
+                                                            onChange={handleChange}
+                                                        >
+                                                            <MenuItem value="Anggaran tersedia pada kegiatan inisiasi inovasi daerah">Anggaran tersedia pada kegiatan <br/> inisiasi inovasi daerah </MenuItem>
+                                                            <MenuItem value="Anggaran tersedia pada kegiatan uji coba inovasi daerah">Anggaran tersedia pada kegiatan   <br/> uji coba inovasi daerah</MenuItem>
+                                                            <MenuItem value="Anggaran tersedia pada kegiatan penerapan inovasi daerah">Anggaran tersedia pada kegiatan   <br/>penerapan inovasi daerah</MenuItem>
+                                                        </Select>
+                                                    </FormControl>
+
+                                                </TableCell>
                                                 <TableCell>
                                                     {pathnameUpload.Dukungan_anggaran.data !== null ?   <a className="button-asik" href={urlAsik + pathnameUpload.Dukungan_anggaran.data.attributes.url} target="_blank" rel="noreferrer">
                                                         Lihat File
@@ -1817,7 +1835,25 @@ export default function EditInovasi() {
                                                     Penggunaan IT
                                                 </TableCell>
                                                 <TableCell >  Penggunaan IT dalam pelaksanaan Inovasi yang diterapkan </TableCell>
-                                                <TableCell> </TableCell>
+                                                <TableCell>
+                                                <FormControl fullWidth>
+                                                        <InputLabel id="demo-simple-select-label">{state.indikator_penggunaan_it  ? 'Pilih Regulasi' : location.state.idInovasi.attributes.desc_Penggunaan_IT ? location.state.idInovasi.attributes.desc_Penggunaan_IT : 'Pilih Regulasi'}</InputLabel>
+                                                        <Select
+                                                            labelId="demo-simple-select-label"
+                                                            id="demo-simple-select"
+                                                            name="indikator_penggunaan_it"
+
+                                                            defaultValue={location.state.idInovasi.attributes.desc_Penggunaan_IT}
+                                                            value={state.indikator_penggunaan_it || ''}
+                                                            label="Pilih Indikator"
+                                                            onChange={handleChange}
+                                                        >
+                                                            <MenuItem value="Anggaran tersedia pada kegiatan inisiasi inovasi daerah">Anggaran tersedia pada kegiatan <br/> inisiasi inovasi daerah </MenuItem>
+                                                            <MenuItem value="Anggaran tersedia pada kegiatan uji coba inovasi daerah">Anggaran tersedia pada kegiatan <br/> uji coba inovasi daerah</MenuItem>
+                                                            <MenuItem value="Anggaran tersedia pada kegiatan penerapan inovasi daerah">Anggaran tersedia pada kegiatan <br/> penerapan inovasi daerah</MenuItem>
+                                                        </Select>
+                                                    </FormControl>    
+                                                </TableCell>
                                                 <TableCell>
                                                     {pathnameUpload.Penggunaan_IT.data !== null ?   <a className="button-asik" href={urlAsik + pathnameUpload.Penggunaan_IT.data.attributes.url} target="_blank" rel="noreferrer">
                                                     Lihat File
@@ -1842,7 +1878,25 @@ export default function EditInovasi() {
                                                     Bimtek inovasi
                                                 </TableCell>
                                                 <TableCell >  Peningkatan kapasitas dan kompetensi pelaksana inovasi daerah </TableCell>
-                                                <TableCell> </TableCell>
+                                                <TableCell>
+                                                <FormControl fullWidth>
+                                                        <InputLabel id="demo-simple-select-label">{state.indikator_bimtek_inovasi  ? 'Pilih Regulasi' : location.state.idInovasi.attributes.desc_Bimtek_inovasi ? location.state.idInovasi.attributes.desc_Bimtek_inovasi :'Pilih Regulasi'}</InputLabel>
+                                                        <Select
+                                                            labelId="demo-simple-select-label"
+                                                            id="demo-simple-select"
+                                                            name="indikator_bimtek_inovasi"
+
+                                                            defaultValue={location.state.idInovasi.attributes.desc_Bimtek_inovasi}
+                                                            value={state.indikator_bimtek_inovasi || ''}
+                                                            label="Pilih Indikator"
+                                                            onChange={handleChange}
+                                                        >
+                                                             <MenuItem value="Dalam 2 tahun terakhir pernah 1 kali bimtek">Dalam 2 tahun terakhir pernah 1 kali bimtek </MenuItem>
+                                                            <MenuItem value="Dalam 2 tahun terakhir pernah 2 kali bimtek">Dalam 2 tahun terakhir pernah 2 kali bimtek</MenuItem>
+                                                            <MenuItem value="Dalam 2 tahun terakhir pernah 3 kali atau lebih ">Dalam 2 tahun terakhir pernah 3 kali atau lebih </MenuItem>
+                                                        </Select>
+                                                    </FormControl>   
+                                                </TableCell>
                                                 <TableCell>
                                                     {pathnameUpload.Penggunaan_IT.data !== null ?  <a className="button-asik" href={urlAsik + pathnameUpload.Penggunaan_IT.data.attributes.url} target="_blank" rel="noreferrer">
                                                     Lihat File
@@ -1866,7 +1920,25 @@ export default function EditInovasi() {
                                                     Program Inovasi perangkat RKPD
                                                 </TableCell>
                                                 <TableCell > Inovasi Perangkat Daerah telah dituangkan dalam program pembangunan daerah </TableCell>
-                                                <TableCell> </TableCell>
+                                                <TableCell> 
+                                                <FormControl fullWidth>
+                                                        <InputLabel id="demo-simple-select-label">{state.indikator_RKPD  ? 'Pilih Regulasi' : location.state.idInovasi.attributes.desc_Program_Inovasi_perangkat_RKPD ? location.state.idInovasi.attributes.desc_Program_Inovasi_perangkat_RKPD : 'Pilih Regulasi'}</InputLabel>
+                                                        <Select
+                                                            labelId="demo-simple-select-label"
+                                                            id="demo-simple-select"
+                                                            name="indikator_RKPD"
+
+                                                            defaultValue={location.state.idInovasi.attributes.desc_Program_Inovasi_perangkat_RKPD ? location.state.idInovasi.attributes.desc_Program_Inovasi_perangkat_RKPD : 'Pemerintah daerah sudah menuangkan program inovasi daerah dalam RPJMD'}
+                                                            value={state.indikator_RKPD || ''}
+                                                            label="Pilih Indikator"
+                                                            onChange={handleChange}
+                                                        >
+                                                            <MenuItem value="Pemerintah daerah sudah menuangkan program inovasi daerah dalam RPJMD">Pemerintah daerah sudah menuangkan program  <br/> inovasi daerah dalam RPJMD  </MenuItem>
+                                                            <MenuItem value="Pemerintah daerah sudah menuangkan program inovasi daerah dalam RKPD dan telah diterapkan dalam 1 tahun terakhir">Pemerintah daerah sudah menuangkan program  <br/> inovasi daerahdalam RKPD dan telah diterapkan dalam 1 tahun terakhir</MenuItem>
+                                                            <MenuItem value="Pemerintah daerah sudah menuangkan program inovasi daerah dalam RKPD dan telah diterapkan dalam 2 tahun terakhir">Pemerintah daerah sudah menuangkan program <br/> inovasi daerah  dalam RKPD dan telah diterapkan dalam 2 tahun terakhir </MenuItem>
+                                                        </Select>
+                                                    </FormControl>
+                                                </TableCell>
                                                 <TableCell>
                                                     {pathnameUpload.Program_Inovasi_perangkat_RKPD.data !== null ?   <a className="button-asik" href={urlAsik + pathnameUpload.Program_Inovasi_perangkat_RKPD.data.attributes.url} target="_blank" rel="noreferrer">
                                                     Lihat File
@@ -1892,7 +1964,25 @@ export default function EditInovasi() {
                                                     Keterlibatan aktor inovasi
                                                 </TableCell>
                                                 <TableCell >Keikutsertaan unsur Stakeholder dalam pelaksanaan inovasi daerah (T-1 dan T-2)</TableCell>
-                                                <TableCell> </TableCell>
+                                                <TableCell>
+                                                <FormControl fullWidth>
+                                                <InputLabel id="demo-simple-select-label">{state.indikator_aktor_inovasi  ? 'Pilih Regulasi' : location.state.idInovasi.attributes.desc_Keterlibatan_aktor_inovasi ? location.state.idInovasi.attributes.desc_Keterlibatan_aktor_inovasi : 'Pilih Regulasi'}</InputLabel>
+                                                        <Select
+                                                            labelId="demo-simple-select-label"
+                                                            id="demo-simple-select"
+                                                            name="indikator_aktor_inovasi"
+
+                                                            defaultValue={location.state.idInovasi.attributes.desc_Keterlibatan_aktor_inovasi ? location.state.idInovasi.attributes.desc_Keterlibatan_aktor_inovasi : 'Inovasi melibatkan 4 aktor'}
+                                                            value={state.indikator_aktor_inovasi || ''}
+                                                            label="Pilih Indikator"
+                                                            onChange={handleChange}
+                                                        >
+                                                            <MenuItem value="Inovasi melibatkan 4 aktor">Inovasi melibatkan 4 aktor</MenuItem>
+                                                            <MenuItem value="Inovasi melibatkan 5 aktor">Inovasi melibatkan 5 aktor</MenuItem>
+                                                            <MenuItem value="Inovasi melibatkan lebih dari 5 aktor">Inovasi melibatkan lebih dari 5 aktor</MenuItem>
+                                                        </Select>
+                                                    </FormControl>    
+                                                </TableCell>
                                                 <TableCell>
                                                 {pathnameUpload.Keterlibatan_aktor_inovasi.data !== null ?  <a className="button-asik" href={urlAsik + pathnameUpload.Keterlibatan_aktor_inovasi.data.attributes.url} target="_blank" rel="noreferrer">
                                                     Lihat File
@@ -1919,7 +2009,25 @@ export default function EditInovasi() {
                                                     Pelaksana inovasi daerah
                                                 </TableCell>
                                                 <TableCell >Penetapan tim pelaksana inovasi daerah</TableCell>
-                                                <TableCell> </TableCell>
+                                                <TableCell> 
+                                                <FormControl fullWidth>
+                                                        <InputLabel id="demo-simple-select-label">  <InputLabel id="demo-simple-select-label">{state.indikator_pelaksana_inovasi  ? 'Pilih Regulasi' : location.state.idInovasi.attributes.desc_Pelaksana_inovasi_daerah ? location.state.idInovasi.attributes.desc_Pelaksana_inovasi_daerah : 'Pilih Regulasi'}</InputLabel></InputLabel>
+                                                        <Select
+                                                            labelId="demo-simple-select-label"
+                                                            id="demo-simple-select"
+                                                            name="indikator_pelaksana_inovasi"
+                                                            defaultValue={location.state.idInovasi.attributes.desc_Pelaksana_inovasi_daerah ? location.state.idInovasi.attributes.desc_Pelaksana_inovasi_daerah : 'Ada pelaksana namun tidak ditetapkan dengan SK Kepala Perangkat Daerah'}
+                                                        
+                                                            value={state.indikator_pelaksana_inovasi || ''}
+                                                            label="Pilih Indikator"
+                                                            onChange={handleChange}
+                                                        >
+                                                            <MenuItem value="Ada pelaksana namun tidak ditetapkan dengan SK Kepala Perangkat Daerah">Ada pelaksana namun tidak ditetapkan dengan  <br/>SK Kepala Perangkat Daerah</MenuItem>
+                                                            <MenuItem value="Ada pelaksana dan ditetapkan dengan SK Kepala Perangkat Daerah">Ada pelaksana dan ditetapkan dengan  <br/> SK Kepala Perangkat Daerah</MenuItem>
+                                                            <MenuItem value="Ada pelaksana dan ditetapkan dengan SK Kepala Daerah">Ada pelaksana dan ditetapkan dengan   <br/> SK Kepala Daerah</MenuItem>
+                                                        </Select>
+                                                    </FormControl>
+                                                </TableCell>
                                                 <TableCell> 
                                                 {pathnameUpload.Pelaksana_inovasi_daerah.data !== null ?  <a className="button-asik" href={urlAsik + pathnameUpload.Pelaksana_inovasi_daerah.data.attributes.url} target="_blank" rel="noreferrer">
                                                     Lihat File
@@ -1948,7 +2056,25 @@ export default function EditInovasi() {
                                                     Jejaring inovasi
                                                 </TableCell>
                                                 <TableCell >Jumlah Perangkat Daerah yang terlibat dalam penerapan inovasi (dalam 2 tahun terakhir)</TableCell>
-                                                <TableCell> </TableCell>
+                                                <TableCell> 
+                                                <FormControl fullWidth>
+                                                     <InputLabel id="demo-simple-select-label">{state.indikator_jejaring_inovasi  ? 'Pilih Regulasi' : location.state.idInovasi.attributes.desc_Jejaring_inovasi ? location.state.idInovasi.attributes.desc_Jejaring_inovasi : 'Pilih Regulasi'}</InputLabel>
+                                                        <Select
+                                                            labelId="demo-simple-select-label"
+                                                            id="demo-simple-select"
+                                                            name="indikator_jejaring_inovasi"
+                                                            defaultValue={location.state.idInovasi.attributes.desc_Jejaring_inovasi ? location.state.idInovasi.attributes.desc_Jejaring_inovasi : 'Ada pelaksana namun tidak ditetapkan dengan SK Kepala Perangkat Daerah'}
+                                                        
+                                                            value={state.indikator_jejaring_inovasi || ''}
+                                                            label="Pilih Indikator"
+                                                            onChange={handleChange}
+                                                        >
+                                                              <MenuItem value="Inovasi melibatkan 1-2 Perangkat Daerah">Inovasi melibatkan 1-2 Perangkat Daerah</MenuItem>
+                                                            <MenuItem value="Inovasi melibatkan 3-4 Perangkat Daerah">Inovasi melibatkan 3-4 Perangkat Daerah</MenuItem>
+                                                            <MenuItem value="inovasi melibatkan 5 Perangkat Daerah atau lebih">inovasi melibatkan 5 Perangkat Daerah atau lebih</MenuItem>
+                                                        </Select>
+                                                    </FormControl>
+                                                </TableCell>
                                                 <TableCell>   
                                                 {pathnameUpload.Jejaring_inovasi.data !== null ?    <a className="button-asik" href={urlAsik + pathnameUpload.Jejaring_inovasi.data.attributes.url} target="_blank" rel="noreferrer">
                                                     Lihat File
@@ -1973,7 +2099,25 @@ export default function EditInovasi() {
                                                     Sosialisasi inovasi daerah
                                                 </TableCell>
                                                 <TableCell >Penyebarluasan informasi kebijakan inovasi daerah (2 Tahun Terakhir)</TableCell>
-                                                <TableCell> </TableCell>
+                                                <TableCell>
+                                                <FormControl fullWidth>
+                                                       <InputLabel id="demo-simple-select-label">{state.indikator_sosialisasi_inovasi  ? 'Pilih Regulasi' : location.state.idInovasi.attributes.desc_Sosialisasi_inovasi_daerah ? location.state.idInovasi.attributes.desc_Sosialisasi_inovasi_daerah : 'Pilih Regulasi'}</InputLabel>
+                                                        <Select
+                                                            labelId="demo-simple-select-label"
+                                                            id="demo-simple-select"
+                                                            name="indikator_sosialisasi_inovasi"
+                                                            defaultValue={location.state.idInovasi.attributes.desc_Sosialisasi_inovasi_daerah ? location.state.idInovasi.attributes.desc_Sosialisasi_inovasi_daerah : 'Foto kegiatan berspanduk'}
+
+                                                            value={state.indikator_sosialisasi_inovasi || ''}
+                                                            label="Pilih Indikator"
+                                                            onChange={handleChange}
+                                                        >
+                                                            <MenuItem value="Foto kegiatan berspanduk">Foto kegiatan berspanduk</MenuItem>
+                                                            <MenuItem value="URL Media Sosial">URL Media Sosial</MenuItem>
+                                                            <MenuItem value="Media Berita">Media Berita</MenuItem>
+                                                        </Select>
+                                                    </FormControl>
+                                                </TableCell>
                                                 <TableCell> 
                                                 { pathnameUpload.Sosialisasi_inovasi_daerah.data !== null ?  <a className="button-asik" href={urlAsik + pathnameUpload.Sosialisasi_inovasi_daerah.data.attributes.url} target="_blank" rel="noreferrer">
                                                     Lihat File
@@ -1998,7 +2142,25 @@ export default function EditInovasi() {
                                                     Pedoman teknis inovasi
                                                 </TableCell>
                                                 <TableCell >Ketentuan dasar penggunaan inovasi daerah berupa buku petunjuk/manual book</TableCell>
-                                                <TableCell> </TableCell>
+                                                <TableCell>
+                                                <FormControl fullWidth>
+                                                <InputLabel id="demo-simple-select-label">{state.indikator_pedoman_inovasi  ? 'Pilih Regulasi' : location.state.idInovasi.attributes.desc_Pedoman_teknis_inovasi ? location.state.idInovasi.attributes.desc_Pedoman_teknis_inovasi : 'Pilih Regulasi'}</InputLabel>
+                                                        <Select
+                                                            labelId="demo-simple-select-label"
+                                                            id="demo-simple-select"
+                                                            name="indikator_pedoman_inovasi"
+                                                          
+                                                            defaultValue={location.state.idInovasi.attributes.desc_Pedoman_teknis_inovasi ? location.state.idInovasi.attributes.desc_Pedoman_teknis_inovasi : 'Telah terdapat Pedoman teknis berupa buku manual'}
+                                                            value={state.indikator_pedoman_inovasi || ''}
+                                                            label="Pilih Indikator"
+                                                            onChange={handleChange}
+                                                        >
+                                                            <MenuItem value="Telah terdapat Pedoman teknis berupa buku manual">Telah terdapat Pedoman teknis berupa buku <br/> manual</MenuItem>
+                                                            <MenuItem value="Telah terdapat Pedoman teknis berupa buku dalam bentuk elektronik">Telah terdapat Pedoman teknis berupa buku <br/> dalam bentuk elektronik</MenuItem>
+                                                            <MenuItem value="Telah terdapat Pedoman teknis berupa buku yang dapat diakses secara online">Telah terdapat Pedoman teknis berupa buku <br/>  yang dapat diakses secara online</MenuItem>
+                                                        </Select>
+                                                    </FormControl>    
+                                                </TableCell>
                                                 <TableCell> 
                                                 { pathnameUpload.Pedoman_teknis_inovasi.data !== null ?  <a className="button-asik" href={urlAsik + pathnameUpload.Pedoman_teknis_inovasi.data.attributes.url} target="_blank" rel="noreferrer">
                                                     Lihat File
@@ -2026,7 +2188,26 @@ export default function EditInovasi() {
                                                     Kemudahan informasi layanan
                                                 </TableCell>
                                                 <TableCell >Kemudahan mendapatkan informasi layanan</TableCell>
-                                                <TableCell> </TableCell>
+                                                <TableCell>
+                                                <FormControl fullWidth>
+                                                        <InputLabel id="demo-simple-select-label">{  <InputLabel id="demo-simple-select-label">{state.indikator_kemudahan_inovasi  ? 'Pilih Regulasi' : location.state.idInovasi.attributes.desc_Kemudahan_informasi_layanan ? location.state.idInovasi.attributes.desc_Kemudahan_informasi_layanan : 'Pilih Regulasi'}</InputLabel>
+}</InputLabel>
+                                                        <Select
+                                                            labelId="demo-simple-select-label"
+                                                            id="demo-simple-select"
+                                                            name="indikator_kemudahan_inovasi"
+                                                            defaultValue={location.state.idInovasi.attributes.desc_Kemudahan_informasi_layanan ? location.state.idInovasi.attributes.desc_Kemudahan_informasi_layanan : 'Layanan Telp atau tatap muka langsung/noken'}
+                                                          
+                                                            value={state.indikator_kemudahan_inovasi || ''}
+                                                            label="Pilih Indikator"
+                                                            onChange={handleChange}
+                                                        >
+                                                            <MenuItem value="Layanan Telp atau tatap muka langsung/noken">Layanan Telp atau tatap muka langsung/noken</MenuItem>
+                                                            <MenuItem value="Layanan Email/Media Sosial">Layanan Email/Media Sosial</MenuItem>
+                                                            <MenuItem value="Layanan melalui aplikasi online">Layanan melalui aplikasi online</MenuItem>
+                                                        </Select>
+                                                    </FormControl>
+                                                </TableCell>
                                                 <TableCell>
                                                     {pathnameUpload.Kemudahan_informasi_layanan.data !== null ?   <a className="button-asik" href={urlAsik + pathnameUpload.Kemudahan_informasi_layanan.data.attributes.url} target="_blank" rel="noreferrer">
                                                     Lihat File
@@ -2051,7 +2232,26 @@ export default function EditInovasi() {
                                                     Kemudahan proses inovasi yang dihasilkan
                                                 </TableCell>
                                                 <TableCell >Waktu yang diperlukan untuk memperoleh proses penggunaan hasil inovasi</TableCell>
-                                                <TableCell> </TableCell>
+                                                <TableCell> 
+                                                <FormControl fullWidth>
+                                                <InputLabel id="demo-simple-select-label">{state.indikator_kemudahanProses  ? 'Pilih Regulasi' : location.state.idInovasi.attributes.desc_Kemudahan_proses_inovasi_yang_dihasilkan ? location.state.idInovasi.attributes.desc_Kemudahan_proses_inovasi_yang_dihasilkan : 'Pilih Regulasi'}</InputLabel>
+                                                        <Select
+                                                            labelId="demo-simple-select-label"
+                                                            id="demo-simple-select"
+                                                            name="indikator_kemudahanProses"
+                                                            
+   defaultValue={location.state.idInovasi.attributes.desc_Kemudahan_proses_inovasi_yang_dihasilkan ? location.state.idInovasi.attributes.desc_Kemudahan_proses_inovasi_yang_dihasilkan : 'Hasil inovasi diperoleh dalam waktu 6 hari keatas'}
+                                                       
+                                                            value={state.indikator_kemudahanProses || ''}
+                                                            label="Pilih Indikator"
+                                                            onChange={handleChange}
+                                                        >
+                                                            <MenuItem value="Hasil inovasi diperoleh dalam waktu 6 hari keatas">Hasil inovasi diperoleh dalam <br/> waktu 6 hari keatas</MenuItem>
+                                                            <MenuItem value="Hasil inovasi diperoleh dalam waktu 2-5 hari ">Hasil inovasi diperoleh dalam <br/> waktu 2-5 hari </MenuItem>
+                                                            <MenuItem value="Hasil inovasi diperoleh dalam waktu 1 hari">Hasil inovasi diperoleh dalam <br/> waktu 1 hari</MenuItem>
+                                                        </Select>
+                                                    </FormControl>
+                                                </TableCell>
                                                 <TableCell> 
                                                     {pathnameUpload.Kemudahan_proses_inovasi_yang_dihasilkan.data !== null ?  <a className="button-asik" href={urlAsik + pathnameUpload.Kemudahan_proses_inovasi_yang_dihasilkan.data.attributes.url} target="_blank" rel="noreferrer">
                                                         Lihat File
@@ -2077,7 +2277,26 @@ export default function EditInovasi() {
                                                     Penyelesaian layanan pengaduan
                                                 </TableCell>
                                                 <TableCell >Rasio penyelesaian pengaduan dalam tahun terakhir (jumlah pengaduan yang di tindakalnajuti/ jumlah pengaduan keseluruhan x100%)</TableCell>
-                                                <TableCell> </TableCell>
+                                                <TableCell> 
+                                                <FormControl fullWidth>
+                                                <InputLabel id="demo-simple-select-label">{state.indikator_penyelesaianLayanan  ? 'Pilih Regulasi' : location.state.idInovasi.attributes.desc_Penyelesaian_layanan_pengaduan ? location.state.idInovasi.attributes.desc_Penyelesaian_layanan_pengaduan : 'Pilih Regulasi'}</InputLabel>
+                                                        <Select
+                                                            labelId="demo-simple-select-label"
+                                                            id="demo-simple-select"
+                                                            name="indikator_penyelesaianLayanan"
+
+                                                            defaultValue={location.state.idInovasi.attributes.desc_Penyelesaian_layanan_pengaduan ? location.state.idInovasi.attributes.desc_Penyelesaian_layanan_pengaduan : 'dibawah 31%'}
+                                                        
+                                                            value={state.indikator_penyelesaianLayanan || ''}
+                                                            label="Pilih Indikator"
+                                                            onChange={handleChange}
+                                                        >
+                                                            <MenuItem value="dibawah 31%">dibawah 31%</MenuItem>
+                                                            <MenuItem value="31% s/d 60%">31% s/d 60% </MenuItem>
+                                                            <MenuItem value="diatas 60%">diatas 60%</MenuItem>
+                                                        </Select>
+                                                    </FormControl>
+                                                </TableCell>
                                                 <TableCell>  
                                                     {pathnameUpload.Penyelesaian_layanan_pengaduan.data !== null ?  <a className="button-asik" href={urlAsik + pathnameUpload.Penyelesaian_layanan_pengaduan.data.attributes.url} target="_blank" rel="noreferrer">
                                                        Lihat File
@@ -2107,7 +2326,25 @@ export default function EditInovasi() {
                                                     Jaringan prosedur yang dibuat secara daring ( 2 Tahun Terakhir)
 
                                                 </TableCell>
-                                                <TableCell> </TableCell>
+                                                <TableCell>
+                                                <FormControl fullWidth>
+                                                        <InputLabel id="demo-simple-select-label">{state.indikator_onlineSistem  ? 'Pilih Regulasi' : location.state.idInovasi.attributes.desc_Online_sistem ? location.state.idInovasi.attributes.desc_Online_sistem : 'Pilih Regulasi'}</InputLabel>
+                                                        <Select
+                                                            labelId="demo-simple-select-label"
+                                                            id="demo-simple-select"
+                                                            name="indikator_onlineSistem"
+
+                                                           
+                                                            value={state.indikator_onlineSistem || ''}
+                                                            defaultValue={location.state.idInovasi.attributes.desc_Program_Inovasi_perangkat_RKPD ? location.state.idInovasi.attributes.desc_Program_Inovasi_perangkat_RKPD : 'Pilih Indikator'}
+                                                            onChange={handleChange}
+                                                        >
+                                                            <MenuItem value="dibawah 31%">dibawah 31%</MenuItem>
+                                                            <MenuItem value="31% s/d 60%">31% s/d 60% </MenuItem>
+                                                            <MenuItem value="diatas 60%">diatas 60%</MenuItem>
+                                                        </Select>
+                                                    </FormControl>    
+                                                </TableCell>
                                                 <TableCell> 
                                                     {pathnameUpload.Online_sistem.data !== null ?  <a className="button-asik" href={urlAsik + pathnameUpload.Online_sistem.data.attributes.url} target="_blank" rel="noreferrer">
                                                     Lihat File
@@ -2135,7 +2372,25 @@ export default function EditInovasi() {
                                                     Inovasi Daerah telah direplikasi oleh daerah lain (T-2 sampai dengan T-1)
 
                                                 </TableCell>
-                                                <TableCell> </TableCell>
+                                                <TableCell>
+                                                <FormControl fullWidth>
+                                                <InputLabel id="demo-simple-select-label">{state.indikator_repikasi  ? 'Pilih Regulasi' : location.state.idInovasi.attributes.desc_Repikasi ? location.state.idInovasi.attributes.desc_Repikasi : 'Pilih Regulasi'}</InputLabel>
+                                                        <Select
+                                                            labelId="demo-simple-select-label"
+                                                            id="demo-simple-select"
+                                                            name="indikator_repikasi"
+
+                                                            defaultValue={location.state.idInovasi.attributes.desc_Repikasi ? location.state.idInovasi.attributes.desc_Repikasi :  "Pernah 1 Kali direplikasi di daerah lain"}
+                                                            value={state.indikator_repikasi || ''}
+                                                            label="Pilih Indikator"
+                                                            onChange={handleChange}
+                                                        >
+                                                            <MenuItem value="Pernah 1 Kali direplikasi di daerah lain">Pernah 1 Kali direplikasi di daerah lain</MenuItem>
+                                                            <MenuItem value="Pernah 2 Kali direplikasi di daerah lain">Pernah 2 Kali direplikasi di daerah lain</MenuItem>
+                                                            <MenuItem value="Pernah 3 Kali direplikasi di daerah lain">Pernah 3 Kali direplikasi di daerah lain</MenuItem>
+                                                        </Select>
+                                                    </FormControl>    
+                                                </TableCell>
                                                 <TableCell>   
                                                     {pathnameUpload.Repikasi.data !== null ?   <a className="button-asik" href={urlAsik + pathnameUpload.Repikasi.data.attributes.url} target="_blank" rel="noreferrer">
                                                     Lihat File
@@ -2163,7 +2418,24 @@ export default function EditInovasi() {
                                                     Satuan waktu yang digunakan untuk menciptakan inovasi daerah
 
                                                 </TableCell>
-                                                <TableCell> </TableCell>
+                                                <TableCell> 
+                                                <FormControl fullWidth>
+                                                <InputLabel id="demo-simple-select-label">{state.indikator_regulasi  ? 'Pilih Regulasi' : location.state.idInovasi.attributes.desc_Kecepatan_inovasi ? location.state.idInovasi.attributes.desc_Kecepatan_inovasi : 'Pilih Regulasi'}</InputLabel>
+                                                        <Select
+                                                            labelId="demo-simple-select-label"
+                                                            id="demo-simple-select"
+                                                            name="indikator_kecepatanInovasi"
+                                                            defaultValue={location.state.idInovasi.attributes.desc_Kecepatan_inovasi ? location.state.idInovasi.attributes.desc_Kecepatan_inovasi :  "Inovasi dapat diciptakan dalam waktu 9 bulan keatas"}
+                                                            value={state.indikator_kecepatanInovasi || ''}
+                                                            label="Pilih Indikator"
+                                                            onChange={handleChange}
+                                                        >
+                                                            <MenuItem value="Inovasi dapat diciptakan dalam waktu 9 bulan keatas">Inovasi dapat diciptakan dalam waktu 9 bulan keatas</MenuItem>
+                                                            <MenuItem value="Inovasi dapat diciptakan dalam waktu 5-8 bulan">Inovasi dapat diciptakan dalam waktu 5-8 bulan</MenuItem>
+                                                            <MenuItem value="Inovasi dapat diciptakan dalam waktu 1-4 bulan">Inovasi dapat diciptakan dalam waktu 1-4 bulan</MenuItem>
+                                                        </Select>
+                                                    </FormControl>
+                                                </TableCell>
                                                 <TableCell>  
                                                     {pathnameUpload.Kecepatan_inovasi.data !== null ?  <a className="button-asik" href={pathnameUpload.Kecepatan_inovasi.data !== null ? urlAsik + pathnameUpload.Kecepatan_inovasi.data.attributes.url : ""} target="_blank" rel="noreferrer">
                                                     Lihat File
@@ -2189,7 +2461,25 @@ export default function EditInovasi() {
                                                 <TableCell >
                                                     Jumlah pengguna atau penerima manfaat inovasi daerah (2 tahun terakhir)
                                                 </TableCell>
-                                                <TableCell> </TableCell>
+                                                <TableCell> 
+                                                <FormControl fullWidth>
+                                                <InputLabel id="demo-simple-select-label">{state.indikator_kemanfaatanInovasi  ? 'Pilih Regulasi' : location.state.idInovasi.attributes.desc_Kemanfaatan_inovasi ? location.state.idInovasi.attributes.desc_Kemanfaatan_inovasi : 'Pilih Regulasi'}</InputLabel>
+                                                        <Select
+                                                            labelId="demo-simple-select-label"
+                                                            id="demo-simple-select"
+                                                            name="indikator_kemanfaatanInovasi"
+
+                                                            defaultValue={location.state.idInovasi.attributes.desc_Kemanfaatan_inovasi ? location.state.idInovasi.attributes.desc_Kemanfaatan_inovasi :  "Jumlah pengguna atau penerima manfaat 1-100 orang"}
+                                                            value={state.indikator_kemanfaatanInovasi || ''}
+                                                            label="Pilih Indikator"
+                                                            onChange={handleChange}
+                                                        >
+                                                            <MenuItem value="Jumlah pengguna atau penerima manfaat 1-100 orang">Jumlah pengguna atau penerima <br/> manfaat 1-100 orang</MenuItem>
+                                                            <MenuItem value="Jumlah pengguna atau penerima manfaat 101-200 orang">Jumlah pengguna atau penerima   <br/>  manfaat 101-200 orang</MenuItem>
+                                                            <MenuItem value="Jumlah pengguna atau penerima manfaat 201 orang keatas">Jumlah pengguna atau penerima   <br/> manfaat 201 orang keatas</MenuItem>
+                                                        </Select>
+                                                    </FormControl>
+                                                </TableCell>
                                                 <TableCell> 
                                                     {pathnameUpload.Kemanfaatan_inovasi.data !== null ?   <a className="button-asik" href={urlAsik + pathnameUpload.Kemanfaatan_inovasi.data.attributes.url} target="_blank" rel="noreferrer">
                                                     Lihat File
@@ -2216,7 +2506,26 @@ export default function EditInovasi() {
                                                 <TableCell >
                                                     Kepuasan pelaksanaan penggunaan inovasi daerah (2 Tahun Terakhir)
                                                 </TableCell>
-                                                <TableCell> </TableCell>
+                                                <TableCell> 
+
+                                                <FormControl fullWidth>
+                                                <InputLabel id="demo-simple-select-label">{state.indikator_monitoringEvaluasi  ? 'Pilih Regulasi' : location.state.idInovasi.attributes.desc_Monitoring_dan_evaluasi_daerah ? location.state.idInovasi.attributes.desc_Monitoring_dan_evaluasi_daerah : 'Pilih Regulasi'}</InputLabel>
+                                                        <Select
+                                                            labelId="demo-simple-select-label"
+                                                            id="demo-simple-select"
+                                                            name="indikator_monitoringEvaluasi"
+
+                                                            defaultValue={location.state.idInovasi.attributes.desc_Monitoring_dan_evaluasi_daerah ? location.state.idInovasi.attributes.desc_Monitoring_dan_evaluasi_daerah : "Hasil laporan monev internal Perangkat Daerah"}
+                                                            value={state.indikator_monitoringEvaluasi || ''}
+                                                            label="Pilih Indikator"
+                                                            onChange={handleChange}
+                                                        >
+                                                            <MenuItem value="Hasil laporan monev internal Perangkat Daerah">Hasil laporan monev internal Perangkat Daerah</MenuItem>
+                                                            <MenuItem value="Hasil pengukuran kepuasaan pengguna dari evaluasi Survei Kepuasan Masyarakat">Hasil pengukuran kepuasaan pengguna dari <br/>  evaluasi Survei Kepuasan Masyarakat</MenuItem>
+                                                            <MenuItem value="Hasil laporan monev eksternal berdasarkan hasil penelitian">Hasil laporan monev eksternal berdasarkan hasil penelitian</MenuItem>
+                                                        </Select>
+                                                    </FormControl>
+                                                </TableCell>
                                                 <TableCell>
                                                     {pathnameUpload.Monitoring_dan_evaluasi_daerah.data !== null ?  <a className="button-asik" href={urlAsik + pathnameUpload.Monitoring_dan_evaluasi_daerah.data.attributes.url} target="_blank" rel="noreferrer">
                                                     Lihat File
@@ -2242,7 +2551,25 @@ export default function EditInovasi() {
                                                 <TableCell >
                                                     Kualitas inovasi daerah
                                                 </TableCell>
-                                                <TableCell> </TableCell>
+                                                <TableCell> 
+                                                <FormControl fullWidth>
+                                                <InputLabel id="demo-simple-select-label">{state.indikator_kualitasInovasi  ? 'Pilih Regulasi' : location.state.idInovasi.attributes.desc_Kualitas_inovasi_daerah ? location.state.idInovasi.attributes.desc_Kualitas_inovasi_daerah : 'Pilih Regulasi'}</InputLabel>
+                                                        <Select
+                                                            labelId="demo-simple-select-label"
+                                                            id="demo-simple-select"
+                                                            name="indikator_kualitasInovasi"
+
+                                                            defaultValue={location.state.idInovasi.attributes.desc_Kualitas_inovasi_daerah ? location.state.idInovasi.attributes.desc_Kualitas_inovasi_daerah :  "Memenuhi 1 atau 2 unsur substansi"}
+                                                            value={state.indikator_kualitasInovasi || ''}
+                                                            label="Pilih Indikator"
+                                                            onChange={handleChange}
+                                                        >
+                                                            <MenuItem value="Memenuhi 1 atau 2 unsur substansi">Hasil laporan monev internal Perangkat Daerah</MenuItem>
+                                                            <MenuItem value="Memenuhi 3 atau 4 unsur substansi">Memenuhi 3 atau 4 unsur substansi</MenuItem>
+                                                            <MenuItem value="Memenuhi 5 unsur substansi">Memenuhi 5 unsur substansi</MenuItem>
+                                                        </Select>
+                                                    </FormControl>
+                                                </TableCell>
                                                 <TableCell>{pathnameUpload.Kualitas_inovasi_daerah.data !== null ? <a className="button-asik" href={urlAsik + pathnameUpload.Kualitas_inovasi_daerah.data.attributes.url} target="_blank" rel="noreferrer">
                                                     Lihat File
                                                 </a> : <h5>Anda belum mengupload file , Silahkan upload indikator inovasi daerah</h5>}  </TableCell>

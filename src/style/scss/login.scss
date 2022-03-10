@@ -1,6 +1,6 @@
 .login-area{
     width: 100%;
-min-height: 697px;
+    min-height: 100vh;
 background-image:url('../../assets/img/hero.png');
 background-repeat: no-repeat;
 background-size: cover;
@@ -16,7 +16,7 @@ color:#fff;
         background-image:url('../../assets/img/login.png');
         background-size: cover;
         background-repeat: no-repeat;
-       height:760px;
+        min-height: 100vh;
         width: 50%;
         padding:10%;
         @include lt-sm{
