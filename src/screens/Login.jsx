@@ -6,6 +6,7 @@ import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import { IconButton } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
 import { ToastContainer, toast } from 'react-toastify';
+import PersonIcon from '@mui/icons-material/Person';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import Button from '@mui/material/Button';
@@ -14,6 +15,7 @@ import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
 export default function Login(props) {
     let navigate = useNavigate();
+   
     const [state, setState] = useState({});
     // eslint-disable-next-line no-unused-vars
     const [namaPage, setNamaPage] = useState(
@@ -68,8 +70,24 @@ export default function Login(props) {
     return (
         <>
             <div className="login-area">
+                <div className="ampera"></div>
                 <div className="login-page">
+                    <div className="screen-login">
+                    <div className="pemkot-logo">
+                            <img src="/assets/images/palembang.png" alt="Pemkot Palembang" />
+                            <h5>Litbang Kota Palembang
+                            </h5>
+                        </div>
+
+
+                        <img src="/assets/images/login.JPG" alt="Pemkot Palembang" />
+                        <Typography>
+                            Kajian & Inovasi
+                            Dikembangkan untuk memahami dan memecahkan masalah Kota Palembang secara ilmiah.
+                        </Typography>
+                    </div>
                     <div className="login-card">
+                 
                         <Card className="card-login">
                             <CardContent>
                                 <ToastContainer
@@ -102,6 +120,18 @@ export default function Login(props) {
                                                 type="text"
                                                 name="username"
                                                 value={state.username || ''}
+                                                InputProps={{
+                                                    endAdornment: (
+                                                        <InputAdornment position="end">
+                                                            <IconButton
+                                                                aria-label="toggle password visibility"
+                                                                
+                                                            >
+                                                               <PersonIcon/>
+                                                            </IconButton>
+                                                        </InputAdornment>
+                                                    ),
+                                                }}
                                                 validators={['required']}
                                                 errorMessages={['Harap di isi']}
                                                 placeholder='username' />
@@ -139,7 +169,12 @@ export default function Login(props) {
                                         </div>
                                         {loading === true ? <LoadingButton className="disabled-button" loading variant="outlined">
                                             Loading
-                                        </LoadingButton> : <Button className="login-button" variant="contained" type="submit">Login</Button>}
+                                        </LoadingButton> : <>
+                                      <div className="login-button-area">
+                                      <Button className="login-button" variant="contained" type="submit">Login</Button>
+                                        <Button onClick={() => navigate(-1)} className="see-all-button" variant="contained" type="submit">Kembali</Button>
+                                      </div>
+                                        </>}
                                     </div>
                                 </ValidatorForm>
                             </CardContent>

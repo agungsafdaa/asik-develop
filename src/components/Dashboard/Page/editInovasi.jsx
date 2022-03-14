@@ -43,8 +43,7 @@ export default function EditInovasi() {
         },
     };
     const location = useLocation();
-    console.log(location)
-
+ 
     function getStyles(name, personName, theme) {
         return {
             fontWeight:
@@ -119,7 +118,7 @@ export default function EditInovasi() {
     const [kecepatanInovasi, setKecepatanInovasi] = useState([]);
     const [kemanfaatanInovasi, setKemanfaatanInovasi] = useState([]);
     const [monitoring, setMonitoring] = useState([]);
-    const [kualitasInovasi, setKualitasInovasi] = useState([]);
+ 
     const [show, setShow] = useState({
         regulasi: false,
         jumlah_kajian: false,
@@ -1146,55 +1145,7 @@ export default function EditInovasi() {
         }
     };
 
-    const uploadkualitasInovasi = async (event) => {
-        const fileInput =
-            document.querySelector('.file');
-        const target = (event.target.files[0]);
-        const cekExtensions = (event.target.value);
-        // Allowing file type
-        const allowedExtensions =
-            /(\.jpg|\.jpeg|\.png|\.pdf)$/i;
-        if (!allowedExtensions.exec(cekExtensions)) {
-            toast.warn('Hanya JPEG dan PDF yang bisa di upload', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            fileInput.value = '';
-            return false;
-        } else {
-            setKualitasInovasi(target)
-        }
-    };
-
-    const DeletekualitasInovasi = async (event) => {
-        setShow({
-            ...show,
-            [event.target.name]: true,
-        });
-        let url = "https://asik.palembang.go.id/api/upload/files/" + event.target.value
-        try {
-            let response = await axios.delete(url, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
-            // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
-            setLoading(false)
-            console.log(response)
-            toast.success('Mohon upload ulang file anda !', {
-                position: "top-right",
-
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-        } catch (err) {
-            alert(err);
-        }
-    };
-
+  
 
 
     const handleinovasi = (event) => {
@@ -1223,7 +1174,7 @@ export default function EditInovasi() {
         }
     };
 
-
+   
     const getTextLength = (html) => {
         // This will never get added to the DOM.
         const element = document.createElement("div")
@@ -1258,7 +1209,7 @@ export default function EditInovasi() {
         formData.append('files.Kecepatan_inovasi', kecepatanInovasi);
         formData.append('files.Kemanfaatan_inovasi', kemanfaatanInovasi);
         formData.append('files.Monitoring_dan_evaluasi_daerah', monitoring);
-        formData.append('files.Kualitas_inovasi_daerah', kualitasInovasi);
+   
         formData.append('files.Pedoman_teknis_inovasi', pedomanTeknis);
 
         const data = {
@@ -1297,6 +1248,7 @@ export default function EditInovasi() {
             desc_Kemanfaatan_inovasi: state.indikator_kemanfaatanInovasi ?  state.indikator_kemanfaatanInovasi :  location.state.idInovasi.attributes.indikator_kemanfaatanInovasi,
             desc_Monitoring_dan_evaluasi_daerah: state.indikator_monitoringEvaluasi ? state.indikator_monitoringEvaluasi : location.state.idInovasi.attributes.indikator_monitoringEvaluasi,
             desc_Kualitas_inovasi_daerah: state.indikator_kualitasInovasi ? state.indikator_kualitasInovasi : location.state.idInovasi.attributes.indikator_kualitasInovasi,
+            Kualitas_inovasi_daerah: state.link_youtube ? state.link_youtube.slice(32, 46) : location.state.idInovasi.attributes.Kualitas_inovasi_daerah ,
         }
 
 
@@ -2548,9 +2500,7 @@ export default function EditInovasi() {
                                                 <TableCell component="th" scope="row">
                                                     Kualitas inovasi daerah
                                                 </TableCell>
-                                                <TableCell >
-                                                    Kualitas inovasi daerah
-                                                </TableCell>
+                                               
                                                 <TableCell> 
                                                 <FormControl fullWidth>
                                                 <InputLabel id="demo-simple-select-label">{state.indikator_kualitasInovasi  ? 'Pilih Regulasi' : location.state.idInovasi.attributes.desc_Kualitas_inovasi_daerah ? location.state.idInovasi.attributes.desc_Kualitas_inovasi_daerah : 'Pilih Regulasi'}</InputLabel>
@@ -2570,15 +2520,21 @@ export default function EditInovasi() {
                                                         </Select>
                                                     </FormControl>
                                                 </TableCell>
-                                                <TableCell>{pathnameUpload.Kualitas_inovasi_daerah.data !== null ? <a className="button-asik" href={urlAsik + pathnameUpload.Kualitas_inovasi_daerah.data.attributes.url} target="_blank" rel="noreferrer">
-                                                    Lihat File
-                                                </a> : <h5>Anda belum mengupload file , Silahkan upload indikator inovasi daerah</h5>}  </TableCell>
-                                                <TableCell>
-                                                    {pathnameUpload.Kualitas_inovasi_daerah.data !== null  ? <>
-                                                        <Button name="kualitas_inovasi" className={show.kualitas_inovasi === false ? "button-asik-edit" : "display-none"} onClick={DeletekualitasInovasi} value={pathnameUpload.Kualitas_inovasi_daerah.data.id}>Edit File</Button>
-                                                    <input type="file" id="file" className={show.kualitas_inovasi === true ? "file" : "display-none"} accept="image/*,.pdf" onChange={uploadkualitasInovasi} />
-                                                    </> :   <input type="file" id="file" className="file"  accept="image/*,.pdf" onChange={uploadkualitasInovasi} /> }
-                                                  
+                                                <TableCell> 
+                                                {location.state.idInovasi.attributes.Kualitas_inovasi_daerah ? <iframe width="250" height="215" src={"https://www.youtube.com/embed/" + location.state.idInovasi.attributes.Kualitas_inovasi_daerah} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> :  <h3 className="text-center">Anda belum mengupload link youtube</h3>
+                                                  }
+                                                </TableCell>
+                                                <TableCell colSpan={2}> 
+                                                <TextValidator onChange={handleChange}
+                                                        type="text"
+                                                        fullWidth
+                                                        validators={['required']}
+                                                        errorMessages={['Harap di isi']}
+
+                                                        placeholder="Contoh : https://www.youtube.com/watch?v=ejthPCbcPj0" id="tanggal_pelaksanaan" name="link_youtube"
+                                                        value={state.link_youtube || ''}
+                                                    />
+                                                 
                                                 </TableCell>
                                               
                                             </TableRow>

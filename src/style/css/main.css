@@ -528,23 +528,49 @@ input:-webkit-autofill {
 .login-area {
   width: 100%;
   min-height: 100vh;
-  background-image: url("../../assets/img/hero.png");
+  background: #c9bca4;
   background-repeat: no-repeat;
   background-size: cover;
   color: #fff; }
   .login-area .login-page {
     display: flex;
-    min-height: 697px;
     justify-content: flex-end;
     align-content: flex-end;
-    align-items: stretch; }
+    align-items: center; }
+    .login-area .login-page .screen-login {
+      width: 50%;
+      padding: 7%; }
+      .login-area .login-page .screen-login .pemkot-logo {
+        display: flex;
+        width: 100%;
+        margin: 20px 0;
+        align-content: flex-end;
+        align-items: center;
+        justify-content: center; }
+        .login-area .login-page .screen-login .pemkot-logo img {
+          width: 50px; }
+        .login-area .login-page .screen-login .pemkot-logo h5 {
+          font-weight: 500; }
+      .login-area .login-page .screen-login img {
+        width: 100%;
+        border-radius: 15px; }
+      .login-area .login-page .screen-login h5 {
+        margin: 20px 0;
+        text-align: center;
+        font-size: 20px; }
+      .login-area .login-page .screen-login p {
+        margin: 20px 0;
+        text-align: center; }
     .login-area .login-page .login-card {
-      background-image: url("../../assets/img/login.png");
-      background-size: cover;
-      background-repeat: no-repeat;
+      padding: 7%;
+      background: #fff;
+      /* background-size: cover; */
+      display: flex;
+      /* background-repeat: no-repeat; */
       min-height: 100vh;
       width: 50%;
-      padding: 10%; }
+      justify-content: center;
+      align-items: center; }
       @media screen and (max-width: 599px) {
         .login-area .login-page .login-card {
           width: 100%;
@@ -552,18 +578,23 @@ input:-webkit-autofill {
           align-items: center; } }
       .login-area .login-page .login-card .card-login {
         border-radius: 26px !important;
-        padding: 5%; }
+        padding: 5%;
+        box-shadow: none !important; }
         .login-area .login-page .login-card .card-login .form-login {
           display: flex;
           flex-direction: column; }
           .login-area .login-page .login-card .card-login .form-login .form {
             margin: 10px 0 10px 0; }
             .login-area .login-page .login-card .card-login .form-login .form input {
-              width: 330px; }
-          .login-area .login-page .login-card .card-login .form-login .login-button {
-            background: #DC3A3D !important;
-            color: #FFFFFF !important;
-            border-radius: 14px; }
+              width: 405px; }
+          .login-area .login-page .login-card .card-login .form-login .login-button-area {
+            margin: 20px 0;
+            display: flex;
+            grid-gap: 10px; }
+            .login-area .login-page .login-card .card-login .form-login .login-button-area .login-button {
+              background: #DC3A3D !important;
+              color: #FFFFFF !important;
+              border-radius: 14px; }
           .login-area .login-page .login-card .card-login .form-login .disabled-button {
             color: #000; }
 
