@@ -19,6 +19,7 @@ import DataPeneliti from "./screens/DataPeneliti.jsx";
 import Login from "./screens/Login.jsx";
 import TopNavbar from "./components/Nav/TopNavbar";
 import Footer from "./components/Sections/Footer";
+import Detailpaparan from "./screens/Detailpaparan.jsx";
 export default function tree() {
   const isAuthenticated = localStorage.getItem("token")
 
@@ -33,6 +34,7 @@ export default function tree() {
           <Route path="/Detail" element={<Kajian />}></Route>
           <Route path="/data-peneliti" element={<DataPeneliti />}></Route>
           <Route path="/detail-inovasi" element={<DetailInovasi />}></Route>
+          <Route path="/detail-paparan" element={<Detailpaparan />}></Route>
           <Route path="/Definisi" element={<Definisi />}></Route>
           <Route path="/Selayang-pandang" element={<SelayangPandang/>}></Route>
           <Route path="/Struktur-organisasi" element={<StrukturOrganisasi/>}></Route>
