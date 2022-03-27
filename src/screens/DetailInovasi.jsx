@@ -18,7 +18,7 @@ export default function SelayangPandang() {
     const { Nama_inovasi, Hasil_inovasi, Bentuk_inovasi, Tujuan_inovasi, Waktu_implementasi, Waktu_uji_coba,
         Inisiator_inovasi, Jenis_inovasi, Jejaring_inovasi, Jumlah_kajian_yang_mendukung_inovasi, Jumlah_peningkatan_PAD,
         Jumlah_peningkatan_investasi, Jumlah_peningkatan_perkapita, Kecepatan_inovasi, Kemanfaatan_inovasi, Kemudahan_informasi_layanan,
-        Kemudahan_proses_inovasi_yang_dihasilkan, Keterlibatan_aktor_inovasi, Ketersediaan_SDM_inovasi_daerah, Kualitas_inovasi_daerah,
+        Kemudahan_proses_inovasi_yang_dihasilkan, Keterlibatan_aktor_inovasi, Ketersediaan_SDM_inovasi_daerah, 
         Kualitas_peningkatan_perizinan, Monitoring_dan_evaluasi_daerah, Nama_opd, Nilai_Capaian_LAKIP, Nilai_IPM, Online_sistem, Opini_BPK,
         Pedoman_teknis_inovasi, Pelaksana_inovasi_daerah, Penggunaan_IT, Penghargaan_bagi_inovator, Penurunan_angka_kemiskinan, Penyelesaian_layanan_pengaduan,
         Program_Inovasi_perangkat_RKPD, Rancang_bangun_pokok_inovasi, Regulasi_Inovasi_daerah, Repikasi, Roadmap_SIDa, Sosialisasi_inovasi_daerah, Tahapan_inovasi,
@@ -722,7 +722,7 @@ export default function SelayangPandang() {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="hasil-inovasi">
+                                {/* <div className="hasil-inovasi">
                                     <div className="label-inovasi">
                                         <Typography>Kualitas inovasi daerah</Typography>
 
@@ -737,7 +737,7 @@ export default function SelayangPandang() {
                                             <Typography>Regulasi/kebijakan yang ditetapkan untuk mendukung Inovasi Daerah</Typography>
                                         </div>
                                     </div>
-                                </div>
+                                </div> */}
 
                             </div>
                         </div>

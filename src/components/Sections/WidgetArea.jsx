@@ -24,6 +24,7 @@ export default function WidgetArea(props) {
                                 spaceBetween={50}
                                 slidesPerView={1}
                                 navigation
+                                className="toko-asik"
                                 autoplay={{ delay: 3000 }}
                                 pagination={{ clickable: true }}
                                 scrollbar={{ draggable: true }}
@@ -33,12 +34,11 @@ export default function WidgetArea(props) {
                                     <img src="/assets/images/carousel/kadin.svg" alt="test" style={{ width: '100%' }} />
                                 </SwiperSlide>
                                 <SwiperSlide>
-                                    <img src="/assets/images/Media.png" alt="test" style={{ width: '100%' }} />
+                                    <img src="/assets/images/carousel/walikota.jpg" alt="test" style={{ width: '100%' }} />
                                 </SwiperSlide>
-                                <SwiperSlide>    <img src="/assets/images/Media.png" alt="test" style={{ width: '100%' }} /></SwiperSlide>
-                                <SwiperSlide>    <img src="/assets/images/Media.png" alt="test" style={{ width: '100%' }} /></SwiperSlide>
-                                <SwiperSlide>    <img src="/assets/images/Media.png" alt="test" style={{ width: '100%' }} /></SwiperSlide>
-
+                                <SwiperSlide>    <img src="/assets/images/carousel/wawako.jpg" alt="test" style={{ width: '100%' }} /></SwiperSlide>
+                                <SwiperSlide>    <img src="/assets/images/carousel/sekda.jpg" alt="test" style={{ width: '100%' }} /></SwiperSlide>
+                              
 
                             </Swiper>
                         </Grid>

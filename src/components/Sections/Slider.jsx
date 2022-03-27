@@ -31,7 +31,7 @@ export default function SliderArea(props) {
       throw error;
     }
   }
- console.log(paparan)
+ 
   useEffect(() => {
     getSelandang()
 
@@ -43,9 +43,10 @@ export default function SliderArea(props) {
         <div className="container">
           <Swiper
             // install Swiper modules
+            className="paparan"
             modules={[Navigation, Pagination, Scrollbar, A11y]}
             spaceBetween={50}
-            slidesPerView={3}
+            slidesPerView={2}
             navigation
             autoplay={{ delay: 3000 }}
             pagination={{ clickable: true }}
