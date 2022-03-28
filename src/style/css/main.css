@@ -420,7 +420,7 @@ input:-webkit-autofill {
   .widget-center .widget-area {
     display: grid;
     grid-gap: 10px;
-    grid-template-columns: 20% 20% 20% 20%; }
+    grid-template-columns: 25% 25% 25% 25%; }
     @media screen and (max-width: 599px) {
       .widget-center .widget-area {
         grid-template-columns: 23% 23% 23% 23%; } }
@@ -517,6 +517,33 @@ input:-webkit-autofill {
     .detail-inovasi .lampiran .lampiran-file {
       margin: 40px 0 20px; }
       .detail-inovasi .lampiran .lampiran-file .label {
+        margin: 20px 0 20px; }
+
+.informasi {
+  display: flex;
+  align-items: center; }
+
+.detail-berita {
+  margin: 20px 0 20px; }
+  .detail-berita .judul-inovasi {
+    font-weight: 500;
+    text-transform: capitalize;
+    margin: 20px 0 20px; }
+  .detail-berita .tanggal-pelaksanaan {
+    margin: 10px 0; }
+  .detail-berita .thumbnail-berita {
+    max-width: 100%;
+    width: 100%; }
+  .detail-berita .hasil-inovasi {
+    margin: 10px 0 10px;
+    display: grid;
+    grid-template-columns: 15% 1% 84%;
+    grid-gap: 10px; }
+  .detail-berita .lampiran {
+    margin: 20px 0 20px; }
+    .detail-berita .lampiran .lampiran-file {
+      margin: 40px 0 20px; }
+      .detail-berita .lampiran .lampiran-file .label {
         margin: 20px 0 20px; }
 
 .profil {

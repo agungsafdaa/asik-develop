@@ -18,8 +18,9 @@ export default function Landing(props) {
     <>
       {/* <TopNavbar /> */}
       <Header />
-       <SliderArea />
+   
       <WidgetArea />
+      <SliderArea />
       <Blog />
    
      

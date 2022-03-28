@@ -12,8 +12,10 @@ export default function Contact() {
   const location = useLocation();
 
   return (
-    <Wrapper className={location.pathname === '/login' || location.pathname === '/dashboard' || location.pathname === '/tambahInovasi'  || location.pathname === '/editInovasi'  ? 'display-none' : ''}>
+    <Wrapper className={location.pathname === '/login' || location.pathname === '/dashboard' || location.pathname === '/tambahInovasi' || location.pathname === '/editInovasi' ? 'display-none' : ''}>
+
       <div className="footer-bg">
+
         <div className="container">
           <div className="footer-section">
             <Grid container spacing={2}>
@@ -122,28 +124,30 @@ export default function Contact() {
                 </div>
               </Grid>
               <Grid item lg={9} xs={12} md={12}>
-              <div className="copyright">
-                 <div className="bappeda-litbang-copyright">
-                  <Typography>
-                    Bappeda Litbang Kota Palembang     © {getCurrentYear()}
-                  </Typography>
-                  <Typography>
-                    Jl. Merdeka No.74, 22 Ilir, Kota Palembang
-                  </Typography>
-                  <Typography>
-                    Sumatera Selatan 30131
-                  </Typography>
-                  <Typography>
-                  0711-353522
-                  </Typography>
+                <div className="copyright">
+                  <div className="bappeda-litbang-copyright">
+                    <Typography>
+                      Bappeda Litbang Kota Palembang     © {getCurrentYear()}
+                    </Typography>
+                    <Typography>
+                      Jl. Merdeka No.74, 22 Ilir, Kota Palembang
+                    </Typography>
+                    <Typography>
+                      Sumatera Selatan 30131
+                    </Typography>
+                    <Typography>
+                      0711-353522
+                    </Typography>
+                  </div>
                 </div>
-            </div>
               </Grid>
             </Grid>
-         
+
           </div>
         </div>
+
       </div>
+
     </Wrapper>
   );
 }

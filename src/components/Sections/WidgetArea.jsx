@@ -1,23 +1,57 @@
-import React from "react";
+import React, { useState, useEffect } from 'react';
 import styled from "styled-components";
-import Typography from "@mui/material/Typography";
+
+import axios from 'axios';
+import { CircularProgress } from '@mui/material';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import Grid from '@mui/material/Grid';
 import { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
-import Button from '@mui/material/Button';
+
 import 'swiper/css/pagination';
 import SwiperCore, { Autoplay } from 'swiper';
 export default function WidgetArea(props) {
     SwiperCore.use([Autoplay]);
+    const HeaderInfo = styled.div`
+  margin-bottom: 30px;
+  @media (max-width: 860px) {
+    text-align: center;
+  }
+`;
+    const [loading, setLoading] = useState(false)
+    const [paparan, setPaparan] = useState([])
+
+    const getSelandang = async () => {
+        setLoading(true)
+        try {
+            let url = "https://asik.palembang.go.id/api/paparan?populate=*&sort[0]=id%3Adesc"
+            const response = await axios.get(url);
+            if (response.status === 200) {
+
+                setPaparan(response.data.data.attributes)
+
+                setLoading(false)
+            }
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    useEffect(() => {
+        getSelandang()
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
     return (
         <Wrapper id="services">
             <div style={{ padding: "50px 0" }}>
 
                 <div className="container">
+
                     <Grid container spacing={10}>
 
-                        <Grid item lg={4} xs={12} md={12}>
+                        <Grid item lg={4} xs={12} md={12} className="informasi">
+
                             <Swiper
                                 // install Swiper modules
                                 modules={[Navigation, Pagination, Scrollbar, A11y]}
@@ -28,7 +62,7 @@ export default function WidgetArea(props) {
                                 autoplay={{ delay: 3000 }}
                                 pagination={{ clickable: true }}
                                 scrollbar={{ draggable: true }}
-                               
+
                             >
                                 <SwiperSlide>
                                     <img src="/assets/images/carousel/kadin.svg" alt="test" style={{ width: '100%' }} />
@@ -38,74 +72,46 @@ export default function WidgetArea(props) {
                                 </SwiperSlide>
                                 <SwiperSlide>    <img src="/assets/images/carousel/wawako.jpg" alt="test" style={{ width: '100%' }} /></SwiperSlide>
                                 <SwiperSlide>    <img src="/assets/images/carousel/sekda.jpg" alt="test" style={{ width: '100%' }} /></SwiperSlide>
-                              
+
 
                             </Swiper>
+
                         </Grid>
                         <Grid item lg={8} xs={12} md={12} className="widget-center">
+                            <div className="container">
+                                <HeaderInfo>
+                                    <h1 className="font40 extraBold">Paparan Bappeda Litbang Kota Palembang</h1>
+                                    <p className="desc-heading">Informasi mengenaik Litbang di kota Palembang</p>
+                                </HeaderInfo>
+                                <Grid container spacing={10}>
 
-                            <div className="widget-area">
-                                <Button className="widget-button">
-                                    <div className="border-widget">
-                                        <img src="/assets/images/widget/galeri.svg" alt="galeri icon" />
-                                    </div>
-                                    <Typography>galeri</Typography>
-                                </Button>
-                                <Button className="widget-button">
-                                    <div className="border-widget">
-                                        <img src="/assets/images/widget/biotech.svg" alt="Kajian" />
-                                    </div>
-                                    <Typography>Kajian</Typography>
-                                </Button>
-                                <Button className="widget-button">
-                                    <div className="border-widget">
-                                        <img src="/assets/images/widget/inovasi.svg" alt="inovasi" />
-                                    </div>
-                                    <Typography>inovasi</Typography>
-                                </Button>
-                                <Button className="widget-button">
-                                    <div className="border-widget">
-                                        <img src="/assets/images/widget/kontak.svg" alt="kontak" />
-                                    </div>
-                                    <Typography>kontak</Typography>
-                                </Button>
-                                <Button className="widget-button">
-                                    <div className="border-widget">
-                                        <img src="/assets/images/widget/idsd.svg" alt="idsd" />
-                                    </div>
-                                    <Typography>IDSD</Typography>
+                                    <Grid item lg={12} xs={12} md={12} className="paparan">
+                                        {/* <Link to={`/detail-paparan`} state={{ detailPaparan: paparan }}>
+                        <img src={'https://asik.palembang.go.id' + thumbnail.url} alt="test" style={{ width: '100%' }} />
+                    </Link> */} {paparan.length !== 0 ? loading === true ? <CircularProgress /> : <>
+                                            <iframe src={'https://view.officeapps.live.com/op/embed.aspx?src=https://asik.palembang.go.id' + paparan.ppt_file.data.attributes.url} width='100%' height='450px' frameborder='0' title="Paparan" />
+                                        </>
+                                            : "Tidak ada data"
+                                        }
+                                    </Grid>
+                                </Grid>
 
-
-                                </Button>
-                                <Button className="widget-button">
-                                    <div className="border-widget">
-                                        <img src="/assets/images/widget/ipkd.svg" alt="ipkd" />
-                                    </div>
-                                    <Typography>IPKD</Typography>
-
-
-                                </Button>
-                                <Button className="widget-button">
-                                    <div className="border-widget">
-                                        <img src="/assets/images/widget/iga.svg" alt="iga" />
-                                    </div>
-                                    <Typography>IGA</Typography>
-
-
-                                </Button>
-                                <Button className="widget-button">
-                                    <div className="border-widget">
-                                        <img src="/assets/images/widget/rinduk.svg" alt="rinduk" />
-                                    </div>
-                                    <Typography>RINDUK</Typography>
-
-
-
-                                </Button>
                             </div>
+
+                            {/* {paparan.map((row) =>     (
+
+<SwiperSlide>
+<img src="/assets/images/Media.png" alt="test" style={{width:'100%'}}/>
+</SwiperSlide>
+))}
+*/}
+
+
+                            {/* */}
 
                         </Grid>
                     </Grid>
+
 
                 </div>
             </div>
@@ -119,15 +125,6 @@ const Wrapper = styled.section`
  
   @media (max-width: 960px) {
     flex-direction: column;
-  }
-`;
-
-
-
-const BtnWrapper = styled.div`
-  max-width: 190px;
-  @media (max-width: 960px) {
-    margin: 0 auto;
   }
 `;
 

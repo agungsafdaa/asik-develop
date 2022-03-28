@@ -6,7 +6,7 @@
  
     background-image:url('../../assets/img/songket2.jpg'); 
    background-repeat: no-repeat;
-
+  
   color:#fff;
   background-size: 100%;
     background-position: 0 -197px;
@@ -112,7 +112,7 @@
     .widget-area{
         display: grid;
         grid-gap: 10px;
-        grid-template-columns: 20% 20% 20% 20% ;
+        grid-template-columns:25% 25% 25% 25%;
     
         @include lt-sm{
             grid-template-columns: 23% 23% 23% 23% ;
@@ -255,3 +255,46 @@
         }
     }
 }
+
+.informasi{
+    display: flex;
+    align-items: center;
+}
+
+.detail-berita{
+    margin:20px 0 20px;
+    .judul-inovasi{
+        font-weight: 500;
+        text-transform: capitalize;
+        margin:20px 0 20px;
+    }
+
+    .tanggal-pelaksanaan{
+        margin:10px 0;
+    }
+
+    .thumbnail-berita{
+        max-width:100%;
+        width:100%;
+    }
+    .hasil-inovasi{
+        margin:10px 0 10px;
+        display:grid;
+        grid-template-columns: 15% 1% 84%;
+        grid-gap:10px;
+    }
+
+    .lampiran{
+        margin:20px 0 20px;
+        .lampiran-file{
+            margin:40px 0 20px;
+
+            .label{
+                margin:20px 0 20px;
+            }
+        }
+    }
+}
+
+
+

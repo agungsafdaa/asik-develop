@@ -18,29 +18,27 @@ export default function Breadcumbs(page) {
 
   return (
     <>
-    <div className="container">
-      <div role="presentation" className="asik-breadcrumbs">
-        <Breadcrumbs aria-label="breadcrumb" >
-          <StyledBreadcrumb
-            component="a"
-            href="#"
-            className="no-button"
-            label="Beranda"
-            icon={<HomeIcon fontSize="small" />}
-          />
-          <StyledBreadcrumb component="a" className="no-button" href="#" label="Profil" />
-          <StyledBreadcrumb
-            label={location.pathname}
-            className="active-page"
-            deleteIcon={<ExpandMoreIcon />}
+      <div className="container">
+        <div role="presentation" className="asik-breadcrumbs">
+          <Breadcrumbs aria-label="breadcrumb" >
+            <StyledBreadcrumb
+              component="a"
+              href="#"
+              className="no-button"
+              label="Beranda"
+              icon={<HomeIcon fontSize="small" />}
+            />
+            <StyledBreadcrumb component="a" className="no-button" href="#" label="Profil" />
+            <StyledBreadcrumb
+              label={location.pathname}
+              className="active-page"
+              deleteIcon={<ExpandMoreIcon />}
 
-          />
-        </Breadcrumbs>
+            />
+          </Breadcrumbs>
+        </div>
       </div>
-    </div>
-      <div className="hero-element-media">
-      <div className="bg-gradient"></div>
-  </div>
+   
     </>
 
   );

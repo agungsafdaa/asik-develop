@@ -10,12 +10,14 @@ import Grid from "@mui/material/Grid";
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+
+
 export default function Blog() {
  
 
   const [loading, setLoading] = useState(false)
   const [paparan, setPaparan] = useState([])
-  const [thumbnail, setThumbnail] = useState([])
+
   const getBerita = async () => {
     setLoading(true)
     try {
@@ -24,7 +26,7 @@ export default function Blog() {
       if (response.status === 200) {
 
         setPaparan(response.data.data)
-        setThumbnail(response.data.data.attributes.thumbnail.data.attributes.formats.medium)
+     
         setLoading(false)
       }
     } catch (error) {
@@ -45,9 +47,11 @@ export default function Blog() {
             <p className="desc-heading">Kegitan & Event Terbaru</p>
           </HeaderInfo>
           <Grid container spacing={2}>
-           {paparan.map((item) => (
-            
+           {paparan.map((item) =>  (
+      
+         
             <Grid item lg={4} xs={12} md={4}>
+              <Link to={`/detail-berita/${item.attributes.judul_berita}`} state={{ detailBerita: item }}>
               <Card className="card-asik" sx={{ minWidth: 275 }}>
                 <CardContent>
                 <img src={'https://asik.palembang.go.id' + item.attributes.gambar_berita.data[0].attributes.formats.medium.url} alt="test" style={{ width: '100%' }} />
@@ -58,10 +62,8 @@ export default function Blog() {
                         <Typography component="div">
                         {item.attributes.tanggal_berita}
                       </Typography>
-                      <Typography> • </Typography>
-                      <Typography  color="text.secondary">
-                            Baru saja
-                      </Typography>
+                  
+                     
                 
                     </div>
                 </CardContent>
@@ -69,6 +71,7 @@ export default function Blog() {
                   <Button className="tag-button" size="small">Kegiatan & Event</Button>
                 </CardActions>
               </Card>
+              </Link>
             </Grid>
             ))}
           </Grid>
