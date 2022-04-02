@@ -19,13 +19,13 @@ import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 function convertDateDBtoIndo(string) {
     const bulanIndo = ['', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
-  
+
     const tanggal = string.split("-")[2];
     const bulan = string.split("-")[1];
     const tahun = string.split("-")[0];
-  
+
     return tanggal + " " + bulanIndo[Math.abs(bulan)] + " " + tahun;
-  }
+}
 export default function Event() {
     const [pagination, setPagination] = useState({})
     const [state, setState] = useState({});
@@ -38,8 +38,8 @@ export default function Event() {
     const [loading, setLoading] = useState(false)
     const handleChange = async ({ target: { name, value } }) => {
         setState({
-          ...state,
-          [name]: value,
+            ...state,
+            [name]: value,
         });
     }
     const getKajian = async () => {
@@ -48,7 +48,7 @@ export default function Event() {
             let url = "https://asik.palembang.go.id/api/inovasis?filters[Publish][$ne]=false&populate=*"
             const response = await axios.get(url, {
             });
-            if(response.status === 200){
+            if (response.status === 200) {
                 setInovasi(response.data.data)
                 setPagination(response.data.meta.pagination)
                 setLoading(false)
@@ -58,24 +58,24 @@ export default function Event() {
         }
     }
 
-    const opd  = state.opd ? state.opd : " "
-    const searchinovasi = state.nama_inovasi  ? state.nama_inovasi  : " "
+    const opd = state.opd ? state.opd : " "
+    const searchinovasi = state.nama_inovasi ? state.nama_inovasi : " "
     const getFilterKajian = async () => {
         setLoading(true)
         try {
-         
-            let url = "https://asik.palembang.go.id/api/inovasis?filters[Publish][$ne]=false&filters[Nama_opd][$contains]=" + opd  + "&filters[Nama_inovasi][$contains]=" + searchinovasi
+
+            let url = "https://asik.palembang.go.id/api/inovasis?filters[Publish][$ne]=false&filters[Nama_opd][$contains]=" + opd + "&filters[Nama_inovasi][$contains]=" + searchinovasi
             // http://103.138.143.35:1337/api/inovasis?filters[Nama_opd][$contains]=Kecamatan%20Sematang%20Borang&filters[Waktu_uji_coba][$contains]=2022-02-15
             const response = await axios.get(url, {
             });
-            if(response.status === 200){
+            if (response.status === 200) {
                 setInovasi(response.data.data)
                 setLoading(false)
             }
         } catch (error) {
             throw error;
         }
-     
+
     }
 
     const backPage = async () => {
@@ -83,7 +83,7 @@ export default function Event() {
         console.log(pagination.page)
         setLoading(true)
         try {
-            let url = "https://asik.palembang.go.id/api/inovasis?filters[Nama_opd][$contains]=" + state.opd  + "&populate=*&pagination[page]=" + page
+            let url = "https://asik.palembang.go.id/api/inovasis?filters[Nama_opd][$contains]=" + state.opd + "&populate=*&pagination[page]=" + page
             const response = await axios.get(url);
             setInovasi(response.data.data)
             setPagination(response.data.meta.pagination)
@@ -101,7 +101,7 @@ export default function Event() {
         setLoading(true)
 
         try {
-            let url = "https://asik.palembang.go.id/api/inovasis?filters[Nama_opd][$contains]=" + state.opd  + "&populate=*&pagination[page]=" + page
+            let url = "https://asik.palembang.go.id/api/inovasis?filters[Nama_opd][$contains]=" + state.opd + "&populate=*&pagination[page]=" + page
             const response = await axios.get(url);
 
             setInovasi(response.data.meta)
@@ -119,7 +119,7 @@ export default function Event() {
         setLoading(true)
 
         try {
-            let url = "https://asik.palembang.go.id/api/inovasis?filters[Nama_opd][$contains]=" + state.opd  + "&populate=*&pagination[page]=" + page
+            let url = "https://asik.palembang.go.id/api/inovasis?filters[Nama_opd][$contains]=" + state.opd + "&populate=*&pagination[page]=" + page
             const response = await axios.get(url);
 
             setInovasi(response.data.data)
@@ -138,7 +138,7 @@ export default function Event() {
         const page = pagination.page > pagination.pageCount ? parseInt(pagination.page) + 1 : parseInt(pagination.page) + 2
         try {
 
-            let url = "https://asik.palembang.go.id/api/inovasis?filters[Nama_opd][$contains]=" + state.opd  + "&pagination[page]=" + page + "&populate=*"
+            let url = "https://asik.palembang.go.id/api/inovasis?filters[Nama_opd][$contains]=" + state.opd + "&pagination[page]=" + page + "&populate=*"
 
 
             const response = await axios.get(url);
@@ -184,8 +184,8 @@ export default function Event() {
                                     <h3>Cari Berdasarkan</h3>
                                 </div>
                                 <div className="search-bar">
-                                    <TextField id="outlined-basic" name="opd" label="OPD" variant="outlined"  onChange={handleChange} value={state.opd || ''} />
-                                    <TextField id="outlined-basic" name="nama_inovasi" label="Temukan Kegiatan & Event" variant="outlined"  onChange={handleChange} value={state.nama_inovasi || ' '}/>
+                                    <TextField id="outlined-basic" name="opd" label="OPD" variant="outlined" onChange={handleChange} value={state.opd || ''} />
+                                    <TextField id="outlined-basic" name="nama_inovasi" label="Temukan Kegiatan & Event" variant="outlined" onChange={handleChange} value={state.nama_inovasi || ' '} />
                                     <button onClick={getFilterKajian} name="subject" className="see-all-button">
                                         Cari
                                     </button>
@@ -194,7 +194,7 @@ export default function Event() {
                         </div>
 
                         {loading === true ? <CircularProgress /> : <TableContainer component={Paper}>
-                            <Table sx={{ minWidth: 650 }} size="small"  aria-label="a dense table">
+                            <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
                                 <TableHead className="table-inovasi">
                                     <TableRow>
                                         <TableCell>Nama OPD</TableCell>
@@ -209,77 +209,77 @@ export default function Event() {
                                 </TableHead>
                                 <TableBody>
                                     {inovasi.map((row) => (
-                                       
+
                                         <TableRow
                                             key={row.id}
                                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                         >
-                                              <TableCell>{row.attributes.Nama_opd}</TableCell>
-                                              <TableCell component="th" scope="row">
+                                            <TableCell>{row.attributes.Nama_opd}</TableCell>
+                                            <TableCell component="th" scope="row">
                                                 {row.attributes.Nama_inovasi}
                                             </TableCell>
                                             <TableCell component="th" scope="row">
-                                               {row.attributes.Bentuk_inovasi}
+                                                {row.attributes.Bentuk_inovasi}
                                             </TableCell>
                                             <TableCell>{row.attributes.Inisiator_inovasi}</TableCell>
                                             <TableCell>{row.attributes.Jenis_inovasi}</TableCell>
                                             <TableCell>{convertDateDBtoIndo(row.attributes.Waktu_uji_coba)}</TableCell>
                                             <TableCell>{convertDateDBtoIndo(row.attributes.Waktu_implementasi)}</TableCell>
                                             <TableCell >  <Link to={`/detail-inovasi`} state={{ detailInovasi: row }}>
-                                             <button className='see-all-button'>   Lihat Inovasi</button>
-                                        </Link></TableCell>
-                                          
-                                           
+                                                <button className='see-all-button'>   Lihat Inovasi</button>
+                                            </Link></TableCell>
+
+
                                         </TableRow>
-                                        
+
                                     ))}
                                 </TableBody>
                             </Table>
                         </TableContainer>
                         }
-                    <Card className="pagination-card">
-                    <div className="pagination-user">
-                            <ul className='pagination-sidemang'>
-                                {pagination.page === 1 ? <button name="subject" className="disabled" type="submit" disabled>
-                                    <SkipPreviousIcon />
-                                </button>
-                                    : parseInt(pagination.page) - 1 === 1 ?
-                                        <button name="subject" className="disabled" type="submit" disabled>
-                                            <SkipPreviousIcon />
-                                        </button>
-                                        :
-                                        <button name="subject" onClick={backPage2x} type="submit" >
-                                            <SkipPreviousIcon />
+                        <Card className="pagination-card">
+                            <div className="pagination-user">
+                                <ul className='pagination-sidemang'>
+                                    {pagination.page === 1 ? <button name="subject" className="disabled" type="submit" disabled>
+                                        <SkipPreviousIcon />
+                                    </button>
+                                        : parseInt(pagination.page) - 1 === 1 ?
+                                            <button name="subject" className="disabled" type="submit" disabled>
+                                                <SkipPreviousIcon />
+                                            </button>
+                                            :
+                                            <button name="subject" onClick={backPage2x} type="submit" >
+                                                <SkipPreviousIcon />
 
-                                        </button>}
-                                {pagination.page === 1 ? <button name="subject" className="disabled" type="submit" disabled>
-                                    <ArrowBackIosIcon />
-                                </button> : <button name="subject" onClick={backPage} type="submit">
-                                    <ArrowBackIosIcon />
-                                </button>}
+                                            </button>}
+                                    {pagination.page === 1 ? <button name="subject" className="disabled" type="submit" disabled>
+                                        <ArrowBackIosIcon />
+                                    </button> : <button name="subject" onClick={backPage} type="submit">
+                                        <ArrowBackIosIcon />
+                                    </button>}
 
-                                {pagination.page >= pagination.pageCount ? <button name="subject" className="disabled" type="submit" disabled>
-                                    <ArrowForwardIosIcon />
-                                </button> : <button name="subject" onClick={nextPage} type="submit" >
-                                    <ArrowForwardIosIcon />
+                                    {pagination.page >= pagination.pageCount ? <button name="subject" className="disabled" type="submit" disabled>
+                                        <ArrowForwardIosIcon />
+                                    </button> : <button name="subject" onClick={nextPage} type="submit" >
+                                        <ArrowForwardIosIcon />
 
-                                </button>}
+                                    </button>}
 
-                                {pagination.page >= pagination.pageCount ? <button name="subject" className="disabled" type="submit" disabled>
-                                    <SkipNextIcon />
-                                </button> :
-                                    parseInt(pagination.pageCount) - 1 === pagination.page ?
+                                    {pagination.page >= pagination.pageCount ? <button name="subject" className="disabled" type="submit" disabled>
+                                        <SkipNextIcon />
+                                    </button> :
+                                        parseInt(pagination.pageCount) - 1 === pagination.page ?
 
-                                        <button name="subject" className="disabled" type="submit" disabled>
-                                            <SkipNextIcon />
-                                        </button> :
-                                        <button name="subject" onClick={nextPage2x} type="submit">
-                                            <SkipNextIcon />
-                                        </button>
-                                }
-                            </ul>
-                        </div>
-                    </Card>
+                                            <button name="subject" className="disabled" type="submit" disabled>
+                                                <SkipNextIcon />
+                                            </button> :
+                                            <button name="subject" onClick={nextPage2x} type="submit">
+                                                <SkipNextIcon />
+                                            </button>
+                                    }
+                                </ul>
+                            </div>
+                        </Card>
                     </div>
 
                 </div>

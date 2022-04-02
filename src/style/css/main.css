@@ -5,7 +5,8 @@
   src: url("../../assets/fonts/fonts/Manrope-Regular.ttf"); }
 body {
   font-family: "Inter", sans-serif !important;
-  background: #fafafa; }
+  background: #fafafa;
+  margin: 0; }
 
 .button-asik-border-white {
   background: none !important;
@@ -58,7 +59,8 @@ body {
 .card-asik {
   background: #FFFFFF;
   border-radius: 16px !important;
-  box-shadow: 0px 16px 24px #f8F8F8, 0px 2px 6px #f8F8F8, 0px 0rgba #f8F8F8 !important; }
+  box-shadow: 0px 16px 24px #c2c2c2, 0px 2px 6px #c2c2c2, 0px 0px #c2c2c2 !important;
+  height: 100%; }
   .card-asik .tittle-card {
     font-weight: 500;
     font-size: 16px;
@@ -357,10 +359,21 @@ input:-webkit-autofill {
     position: relative;
     opacity: 0.5; }
 
+@media screen and (max-width: 599px) {
+  .toko-asik img {
+    display: block;
+    width: 50% !important;
+    margin-left: auto;
+    margin-right: auto; } }
+
 .video-asik {
   z-index: -1;
   max-width: 100%;
   max-height: 100%; }
+  @media screen and (max-width: 599px) {
+    .video-asik {
+      display: block;
+      object-fit: cover; } }
 
 .hero-element {
   width: 100%;
@@ -378,10 +391,6 @@ input:-webkit-autofill {
     position: absolute;
     top: 64%;
     width: 100%; }
-    @media screen and (max-width: 599px) {
-      .hero-element .hero-content {
-        top: 11%;
-        background: #00000069; } }
     .hero-element .hero-content .welcome-text {
       z-index: 999;
       color: #fff;
@@ -402,6 +411,9 @@ input:-webkit-autofill {
       justify-content: center;
       text-align: center;
       margin: 10px; }
+      @media screen and (max-width: 599px) {
+        .hero-element .hero-content .counter-layanan {
+          flex-direction: column; } }
       .hero-element .hero-content .counter-layanan h4 {
         font-size: 60px; }
         @media screen and (max-width: 599px) {

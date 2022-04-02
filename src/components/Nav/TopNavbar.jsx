@@ -12,9 +12,9 @@ import { useLocation } from 'react-router-dom'
 export default function TopNavbar() {
   const [y, setY] = useState(window.scrollY);
   const [sidebarOpen, toggleSidebar] = useState(false);
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [litbang, setLitbang] = React.useState(null);
-  const [informasi, setInformasi] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [litbang, setLitbang] = useState(null);
+  const [informasi, setInformasi] = useState(null);
   const open = Boolean(anchorEl);
   const openInformasi = Boolean(informasi);
   const openLitbang = Boolean(litbang);
@@ -123,8 +123,8 @@ export default function TopNavbar() {
 
               </Menu>
               <Button
-                className="text-capitalize"
-                activeClass="active"
+                className="text-capitalize "
+                inputProps={{MenuProps: {disableScrollLock: true}}}
                 aria-controls={openLitbang ? 'basic-menu' : undefined}
                 aria-haspopup="true"
                 aria-expanded={openLitbang ? 'true' : undefined}
@@ -159,7 +159,7 @@ export default function TopNavbar() {
                 aria-haspopup="true"
                 aria-expanded={openInformasi ? 'true' : undefined}
                 onClick={handleClickInformasi}
-                style={{ padding: "10px 15px", color: "#fff", }} offset={-80}
+                style={{ padding: "10px 15px", color: "#fff", }}
               >
                 Informasi
               </Button>

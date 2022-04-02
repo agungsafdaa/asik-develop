@@ -1,6 +1,7 @@
 body{
     font-family:$primary-font!important;
     background:#fafafa;
+    margin:0;
 }
 
 .button-asik-border-white{
@@ -67,7 +68,8 @@ width:100%!important;
 .card-asik{
     background: #FFFFFF;
     border-radius: 16px!important;
-      box-shadow: 0px 16px 24px #f8F8F8, 0px 2px 6px #f8F8F8, 0px 0rgba#f8F8F8!important;
+      box-shadow: 0px 16px 24px #c2c2c2, 0px 2px 6px #c2c2c2, 0px 0px #c2c2c2!important;
+      height:100%;
     // box-shadow: 0px 16px 24px rgb(0 0 0 / 6%), 0px 2px 6px rgb(0 0 0 / 4%), 0px 0px 1px rgb(0 0 0 / 4%)!important;
     .tittle-card{
         font-weight: 500;

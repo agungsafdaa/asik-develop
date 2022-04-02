@@ -26,11 +26,29 @@
   }
 }
 
+  
+
+.toko-asik{
+   
+    img{
+        @include lt-sm{
+            display: block;
+            width: 50% !important;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+}
+
 .video-asik{
     
     z-index: -1;
     max-width: 100%;
     max-height: 100%;
+   @include lt-sm{
+    display: block;
+    object-fit: cover;
+   }
 
 }
 .hero-element{
@@ -53,11 +71,7 @@
     position: absolute;
     top: 64%;
     width: 100%;
-    @include lt-sm{
-        top: 11%;
- 
-    background: #00000069;
-    }
+   
     .welcome-text{
         z-index: 999;
         color:#fff;
@@ -88,6 +102,9 @@
         text-align: center;
      
         margin:10px;
+        @include lt-sm{
+            flex-direction: column;
+        }
         h4{
             font-size:60px;
             @include lt-sm{

@@ -10,13 +10,21 @@ import Grid from "@mui/material/Grid";
 import { Link } from 'react-router-dom'
 import axios from 'axios';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import { CircularProgress } from '@mui/material';
+function convertDateDBtoIndo(string) {
+  const bulanIndo = ['', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
 
+  const tanggal = string.split("-")[2];
+  const bulan = string.split("-")[1];
+  const tahun = string.split("-")[0];
 
+  return tanggal + " " + bulanIndo[Math.abs(bulan)] + " " + tahun;
+}
 export default function Blog() {
  
 
   const [loading, setLoading] = useState(false)
-  const [paparan, setPaparan] = useState([])
+  const [berita, setBerita] = useState([])
 
   const getBerita = async () => {
     setLoading(true)
@@ -25,7 +33,7 @@ export default function Blog() {
       const response = await axios.get(url);
       if (response.status === 200) {
 
-        setPaparan(response.data.data)
+        setBerita(response.data.data)
      
         setLoading(false)
       }
@@ -47,20 +55,20 @@ export default function Blog() {
             <p className="desc-heading">Kegitan & Event Terbaru</p>
           </HeaderInfo>
           <Grid container spacing={2}>
-           {paparan.map((item) =>  (
+           {loading === true ? <CircularProgress/> : berita.length >= 1 ?  berita.map((item) =>  (
       
          
-            <Grid item lg={4} xs={12} md={4}>
+            <Grid key={item.id} item lg={4} xs={12} md={4}>
               <Link to={`/detail-berita/${item.attributes.judul_berita}`} state={{ detailBerita: item }}>
               <Card className="card-asik" sx={{ minWidth: 275 }}>
                 <CardContent>
-                <img src={'https://asik.palembang.go.id' + item.attributes.gambar_berita.data[0].attributes.formats.medium.url} alt="test" style={{ width: '100%' }} />
+                <img src={'https://asik.palembang.go.id' + item.attributes.gambar_berita.data[0].attributes.formats.medium.url} loading="lazy" alt="test" style={{ width: '100%' }} />
                   <Typography className="tittle-card" gutterBottom>
                      {item.attributes.judul_berita}
                   </Typography>
                     <div className="card-posting">
                         <Typography component="div">
-                        {item.attributes.tanggal_berita}
+                        {convertDateDBtoIndo(item.attributes.tanggal_berita)}
                       </Typography>
                   
                      
@@ -73,7 +81,7 @@ export default function Blog() {
               </Card>
               </Link>
             </Grid>
-            ))}
+            )) : <h3 className="text-center">Belum ada berita</h3>}
           </Grid>
 
           <div className="see-all">
