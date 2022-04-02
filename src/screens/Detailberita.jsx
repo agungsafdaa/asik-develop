@@ -89,7 +89,7 @@ export default function DetailBerita() {
                         <img className="thumbnail-berita" src={thumbnail} loading="lazy" alt={judul_berita}/>
                         <div className="tanggal-pelaksanaan">
                             <h4>  Di upload : {convertDateDBtoIndo(tanggal_berita)}</h4>
-                            <FacebookShareButton url={"http://localhost:3000/detail-berita/Rapat%20Pematangan%20Sistem%20Informasi%20Kelitbangan%20(ASIK)%20Terkait%20Modul-Modul%20Yang%20Akan%20Dimasukkan%20Ke%20Dalam%20Pemeliharaan%20dan%20Peningkatan%20Website%20ASIK%20Melalui%20Zoom%20Meeting"}>Share</FacebookShareButton>
+                            <FacebookShareButton url={"https://asik-develop.vercel.app/detail-berita/Rapat%20Pematangan%20Sistem%20Informasi%20Kelitbangan%20(ASIK)%20Terkait%20Modul-Modul%20Yang%20Akan%20Dimasukkan%20Ke%20Dalam%20Pemeliharaan%20dan%20Peningkatan%20Website%20ASIK%20Melalui%20Zoom%20Meeting"}>Share</FacebookShareButton>
                         </div>
                         <div className="share-button">
                        
