@@ -39,8 +39,8 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
           
           <div class="dropdown">
             <button className="dropbtn whiteColor"     style={{ padding: "10px 15px" }}><Link
-            onClick={() => toggleSidebar(!sidebarOpen)}
-            activeClass="active"
+          
+      
             className="whiteColor"
             style={{ padding: "10px 15px" }}
             to="/"
