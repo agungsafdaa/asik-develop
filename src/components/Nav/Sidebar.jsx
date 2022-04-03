@@ -36,25 +36,31 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
           </Link>
         </li>
         <li className="semiBold font15 pointer">
-          
+
           <div class="dropdown">
-            <button className="dropbtn whiteColor"     style={{ padding: "10px 15px" }}><Link
-          
-      
-            className="whiteColor"
-            style={{ padding: "10px 15px" }}
-            to="/"
-            spy={true}
-            smooth={true}
-            offset={-60}
-          >
-            Profil
-          </Link>
+            <button className="dropbtn whiteColor" style={{ padding: "10px 15px" }}><Link
+
+
+              className="whiteColor"
+              style={{ padding: "10px 15px" }}
+              to="/"
+              spy={true}
+              smooth={true}
+              offset={-60}
+            >
+              Profil
+            </Link>
             </button>
             <div className="dropdown-content">
-              <Link to="#">Link 1</Link>
-              <Link to="#">Link 2</Link>
-              <Link to="#">Link 3</Link>
+              <Link  to="/Definisi" style={{ padding: "10px 15px", color: "#000" }} offset={-80}>
+                Definisi
+              </Link>
+              <Link  to="/Selayang-pandang" style={{ padding: "10px 15px", color: "#000" }} offset={-80}>
+                Selayang Pandang
+              </Link>
+              <Link  to="/Struktur-organisasi" style={{ padding: "10px 15px", color: "#000" }} offset={-80}>
+                Struktur Organisasi
+              </Link>
             </div>
           </div>
         </li>
