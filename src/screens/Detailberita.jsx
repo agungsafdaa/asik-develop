@@ -75,8 +75,7 @@ export default function DetailBerita() {
             <Helmet>
                 <title>{judul_berita}</title>
                 <meta name="og:title" content={judul_berita} />
-                <meta name="description" content={isi_berita} />
-
+       
                 <meta name="og:description" content={isi_berita} />
                 <meta name="og:image" content={thumbnail} />
             </Helmet>
