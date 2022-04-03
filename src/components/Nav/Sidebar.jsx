@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-scroll";
 // Assets
 import CloseIcon from "../../assets/svg/CloseIcon";
-
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export default function Sidebar({ sidebarOpen, toggleSidebar }) {
   return (
@@ -37,32 +37,24 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
         </li>
         <li className="semiBold font15 pointer">
 
-          <div class="dropdown">
-            <button className="dropbtn whiteColor" style={{ padding: "10px 15px" }}><Link
+        <div className="dropdown">
+                <button className="dropbtn whiteColor" style={{ padding: "10px 15px" }}>
+ 
+                  Profil <span><ExpandMoreIcon/></span>
 
-
-              className="whiteColor"
-              style={{ padding: "10px 15px" }}
-              to="/"
-              spy={true}
-              smooth={true}
-              offset={-60}
-            >
-              Profil
-            </Link>
-            </button>
-            <div className="dropdown-content">
-              <Link  to="/Definisi" style={{ padding: "10px 15px", color: "#000" }} offset={-80}>
-                Definisi
-              </Link>
-              <Link  to="/Selayang-pandang" style={{ padding: "10px 15px", color: "#000" }} offset={-80}>
-                Selayang Pandang
-              </Link>
-              <Link  to="/Struktur-organisasi" style={{ padding: "10px 15px", color: "#000" }} offset={-80}>
-                Struktur Organisasi
-              </Link>
-            </div>
-          </div>
+                </button>
+                <div className="dropdown-content">
+                  <Link to="/Definisi" style={{ padding: "10px 15px", color: "#000" }} >
+                    Definisi
+                  </Link>
+                  <Link to="/Selayang-pandang" style={{ padding: "10px 15px", color: "#000" }} >
+                    Selayang Pandang
+                  </Link>
+                  <Link to="/Struktur-organisasi" style={{ padding: "10px 15px", color: "#000" }} >
+                    Struktur Organisasi
+                  </Link>
+                </div>
+              </div>
         </li>
         <li className="semiBold font15 pointer">
           <Link

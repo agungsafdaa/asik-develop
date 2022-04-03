@@ -687,14 +687,18 @@ input:-webkit-autofill {
 
 /* Style the dropdown button to fit inside the topnav */
 .dropdown .dropbtn {
-  font-size: 17px;
+  display: flex;
+  align-items: center;
   border: none;
   outline: none;
   color: white;
   padding: 14px 16px;
   background-color: inherit;
-  font-family: inherit;
   margin: 0; }
+  .dropdown .dropbtn span {
+    display: flex; }
+    .dropdown .dropbtn span svg {
+      font-size: 25px; }
 
 /* Style the dropdown content (hidden by default) */
 .dropdown-content {
@@ -716,7 +720,6 @@ input:-webkit-autofill {
 
 /* Add a dark background on topnav links and the dropdown button on hover */
 .topnav a:hover, .dropdown:hover .dropbtn {
-  background-color: #555;
   color: white; }
 
 /* Add a grey background to dropdown links on hover */

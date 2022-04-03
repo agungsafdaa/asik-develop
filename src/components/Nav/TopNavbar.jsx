@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 // Components
 import Button from '@mui/material/Button';
 import Sidebar from "../Nav/Sidebar";
@@ -36,7 +37,7 @@ export default function TopNavbar() {
   };
 
 
-  
+
 
   const handleCloseLitbang = () => {
     setLitbang(null);
@@ -55,7 +56,7 @@ export default function TopNavbar() {
     <>
       <Sidebar sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
       {sidebarOpen && <Backdrop toggleSidebar={toggleSidebar} />}
-      <Wrapper className={location.pathname === '/login' || location.pathname === '/dashboard' || location.pathname === '/tambahInovasi' || location.pathname === '/editInovasi'  ? 'display-none' : "flexCenter animate whiteBg"} style={y > 100 ? { height: "60px", background: '#A70000' } : location.pathname !== '/'  ? { height: "80px", background: '#A70000' } : { display: "80px" }}>
+      <Wrapper className={location.pathname === '/login' || location.pathname === '/dashboard' || location.pathname === '/tambahInovasi' || location.pathname === '/editInovasi' ? 'display-none' : "flexCenter animate whiteBg"} style={y > 100 ? { height: "60px", background: '#A70000' } : location.pathname !== '/' ? { height: "80px", background: '#A70000' } : { display: "80px" }}>
         <NavInner className="container flexSpaceCenter">
           <Link to="/" className="pointer flexNullCenter" >
             {/* <LogoIcon /> */}
@@ -73,38 +74,26 @@ export default function TopNavbar() {
               </Link>
             </li>
             <li className="semiBold font15 pointer">
-              <Menu
-                id="basic-menu"
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                MenuListProps={{
-                  'aria-labelledby': 'basic-button',
-                }}
-              >
-               
-                <MenuItem >  <Link activeClass="active" to="/Definisi" style={{ padding: "10px 15px", color: "#000" }} offset={-80}>
-                  Definisi
-                </Link></MenuItem>
-                <MenuItem >  <Link activeClass="active" to="/Selayang-pandang" style={{ padding: "10px 15px", color: "#000" }} offset={-80}>
-                  Selayang Pandang
-                </Link></MenuItem>
-                <MenuItem >  <Link activeClass="active" to="/Struktur-organisasi" style={{ padding: "10px 15px", color: "#000" }} offset={-80}>
-                  Struktur Organisasi
-                </Link></MenuItem>
-           
-              </Menu>
-              <Button
-                className="text-capitalize"
-                activeClass="active"
-                aria-controls={open ? 'basic-menu' : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? 'true' : undefined}
-                onClick={handleClick}
-                style={{ padding: "10px 15px", color: "#fff", }} offset={-80}
-              >
-                Profil
-              </Button>
+              <div className="dropdown">
+                <button className="dropbtn whiteColor" style={{ padding: "10px 15px" }}>
+ 
+                  Profil <span><ExpandMoreIcon/></span>
+
+                </button>
+                <div className="dropdown-content">
+                  <Link to="/Definisi" style={{ padding: "10px 15px", color: "#000" }} >
+                    Definisi
+                  </Link>
+                  <Link to="/Selayang-pandang" style={{ padding: "10px 15px", color: "#000" }} >
+                    Selayang Pandang
+                  </Link>
+                  <Link to="/Struktur-organisasi" style={{ padding: "10px 15px", color: "#000" }} >
+                    Struktur Organisasi
+                  </Link>
+                </div>
+              </div>
+
+              
 
             </li>
             <li className="semiBold font15 pointer">
@@ -124,7 +113,7 @@ export default function TopNavbar() {
               </Menu>
               <Button
                 className="text-capitalize "
-                inputProps={{MenuProps: {disableScrollLock: true}}}
+                inputProps={{ MenuProps: { disableScrollLock: true } }}
                 aria-controls={openLitbang ? 'basic-menu' : undefined}
                 aria-haspopup="true"
                 aria-expanded={openLitbang ? 'true' : undefined}
@@ -136,7 +125,7 @@ export default function TopNavbar() {
 
             </li>
             <li className="semiBold font15 pointer">
-            <Menu
+              <Menu
                 id="basic-menu"
                 anchorEl={informasi}
                 open={openInformasi}
@@ -145,12 +134,12 @@ export default function TopNavbar() {
                   'aria-labelledby': 'basic-button',
                 }}
               >
-               
+
                 <MenuItem >  <Link activeClass="active" to="/Data-peneliti" style={{ padding: "10px 15px", color: "#000" }} offset={-80}>
-                 Data Peneliti
+                  Data Peneliti
                 </Link></MenuItem>
-             
-             
+
+
               </Menu>
               <Button
                 className="text-capitalize"
@@ -164,7 +153,7 @@ export default function TopNavbar() {
                 Informasi
               </Button>
             </li>
-        
+
             <li className="semiBold font15 pointer">
               <Link activeClass="active" style={{ padding: "10px 15px", color: "#fff" }} to="/Litbang" offset={-80}>
                 Forum
