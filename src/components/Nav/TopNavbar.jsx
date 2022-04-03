@@ -8,8 +8,8 @@ import Button from '@mui/material/Button';
 import Sidebar from "../Nav/Sidebar";
 import Backdrop from "../Elements/Backdrop";
 // Assets
-import { Link } from 'react-router-dom'
-import { useLocation } from 'react-router-dom'
+
+import { Link, useLocation } from 'react-router-dom'
 export default function TopNavbar() {
   const [y, setY] = useState(window.scrollY);
   const [sidebarOpen, toggleSidebar] = useState(false);
@@ -69,15 +69,20 @@ export default function TopNavbar() {
           </BurderWrapper>
           <UlWrapper className="flexNullCenter navbar-menu">
             <li className="semiBold font15 pointer">
-              <Link to="/" activeClass="active" style={{ padding: "10px 15px", color: "#fff" }} offset={-80}>
+            <div className="dropdown">
+                <button className="dropbtn whiteColor" style={{ padding: "10px 15px" }}>
+                <Link to="/" activeClass="active" style={{ padding: "10px 15px", color: "#fff" }} offset={-80}>
                 Beranda
               </Link>
+                </button>
+              </div>
+            
             </li>
             <li className="semiBold font15 pointer">
               <div className="dropdown">
                 <button className="dropbtn whiteColor" style={{ padding: "10px 15px" }}>
- 
-                  Profil <span><ExpandMoreIcon/></span>
+
+                  Profil <span><ExpandMoreIcon /></span>
 
                 </button>
                 <div className="dropdown-content">
@@ -93,77 +98,64 @@ export default function TopNavbar() {
                 </div>
               </div>
 
-              
+
 
             </li>
             <li className="semiBold font15 pointer">
-              <Menu
+              <div className="dropdown">
+                <button className="dropbtn whiteColor" style={{ padding: "10px 15px" }}>
 
-                anchorEl={litbang}
-                open={openLitbang}
-                onClose={handleCloseLitbang}
-                MenuListProps={{
-                  'aria-labelledby': 'basic-button',
-                }}
-              >
-                <MenuItem >  <Link activeClass="active" to="/Litbang" style={{ padding: "10px 15px", color: "#000" }} offset={-80}>
-                  Litbang
-                </Link></MenuItem>
+                  Kajian <span><ExpandMoreIcon /></span>
 
-              </Menu>
-              <Button
-                className="text-capitalize "
-                inputProps={{ MenuProps: { disableScrollLock: true } }}
-                aria-controls={openLitbang ? 'basic-menu' : undefined}
-                aria-haspopup="true"
-                aria-expanded={openLitbang ? 'true' : undefined}
-                onClick={handleClickLitbang}
-                style={{ padding: "10px 15px", color: "#fff", }} offset={-80}
-              >
-                Kajian
-              </Button>
+                </button>
+                <div className="dropdown-content">
+                  <Link to="/Litbang" style={{ padding: "10px 15px", color: "#000" }} >
+                    Litbang
+                  </Link>
 
+                </div>
+              </div>
             </li>
             <li className="semiBold font15 pointer">
-              <Menu
-                id="basic-menu"
-                anchorEl={informasi}
-                open={openInformasi}
-                onClose={handleCloseInformasi}
-                MenuListProps={{
-                  'aria-labelledby': 'basic-button',
-                }}
-              >
+              <div className="dropdown">
+                <button className="dropbtn whiteColor" style={{ padding: "10px 15px" }}>
 
-                <MenuItem >  <Link activeClass="active" to="/Data-peneliti" style={{ padding: "10px 15px", color: "#000" }} offset={-80}>
-                  Data Peneliti
-                </Link></MenuItem>
+                  Informasi <span><ExpandMoreIcon /></span>
 
+                </button>
+                <div className="dropdown-content">
+                  <Link to="/Data-peneliti" style={{ padding: "10px 15px", color: "#000" }} >
+                    Data Peneliti
+                  </Link>
 
-              </Menu>
-              <Button
-                className="text-capitalize"
-                activeClass="active"
-                aria-controls={openInformasi ? 'basic-menu' : undefined}
-                aria-haspopup="true"
-                aria-expanded={openInformasi ? 'true' : undefined}
-                onClick={handleClickInformasi}
-                style={{ padding: "10px 15px", color: "#fff", }}
-              >
-                Informasi
-              </Button>
+                </div>
+              </div>
+
             </li>
 
             <li className="semiBold font15 pointer">
-              <Link activeClass="active" style={{ padding: "10px 15px", color: "#fff" }} to="/Litbang" offset={-80}>
+            <div className="dropdown">
+                <button className="dropbtn whiteColor" style={{ padding: "10px 15px" }}>
+                <Link style={{ padding: "10px 15px", color: "#fff" }} to="/Litbang">
                 Forum
               </Link>
+
+                </button>
+              </div>
+            
             </li>
 
             <li className="semiBold font15 pointer">
-              <Link activeClass="active" style={{ padding: "10px 15px", color: "#fff" }} to="/Login" offset={-80}>
-                Login
-              </Link>
+              <div className="dropdown">
+                <button className="dropbtn whiteColor" style={{ padding: "10px 15px" }}>
+                  <Link style={{ padding: "10px 15px", color: "#fff" }} to="/Login">
+                    Login
+                  </Link>
+
+                </button>
+              </div>
+
+
             </li>
 
           </UlWrapper>

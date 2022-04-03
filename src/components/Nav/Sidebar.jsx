@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { Link } from "react-scroll";
+import { Link } from 'react-router-dom'
 // Assets
 import CloseIcon from "../../assets/svg/CloseIcon";
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
 
 export default function Sidebar({ sidebarOpen, toggleSidebar }) {
   return (
@@ -27,76 +27,84 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
             activeClass="active"
             className="whiteColor"
             style={{ padding: "10px 15px" }}
-            to="home"
+            to="/"
             spy={true}
             smooth={true}
             offset={-60}
           >
-            Home
+            Beranda
           </Link>
         </li>
         <li className="semiBold font15 pointer">
 
-        <div className="dropdown">
-                <button className="dropbtn whiteColor" style={{ padding: "10px 15px" }}>
- 
-                  Profil <span><ExpandMoreIcon/></span>
+          <div class="dropdown">
+            <button className="dropbtn whiteColor" style={{ padding: "10px 15px" }}>
 
-                </button>
-                <div className="dropdown-content">
-                  <Link to="/Definisi" style={{ padding: "10px 15px", color: "#000" }} >
-                    Definisi
-                  </Link>
-                  <Link to="/Selayang-pandang" style={{ padding: "10px 15px", color: "#000" }} >
-                    Selayang Pandang
-                  </Link>
-                  <Link to="/Struktur-organisasi" style={{ padding: "10px 15px", color: "#000" }} >
-                    Struktur Organisasi
-                  </Link>
-                </div>
-              </div>
+              Profil
+
+            </button>
+            <div className="dropdown-content">
+              <Link to="/Definisi" style={{ padding: "10px 15px", color: "#000" }} onClick={() => toggleSidebar(!sidebarOpen)} >
+                Definisi
+              </Link>
+              <Link to="/Selayang-pandang" style={{ padding: "10px 15px", color: "#000" }} onClick={() => toggleSidebar(!sidebarOpen)}>
+                Selayang Pandang
+              </Link>
+              <Link to="/Struktur-organisasi" style={{ padding: "10px 15px", color: "#000" }} onClick={() => toggleSidebar(!sidebarOpen)} >
+                Struktur Organisasi
+              </Link>
+            </div>
+          </div>
         </li>
         <li className="semiBold font15 pointer">
-          <Link
-            onClick={() => toggleSidebar(!sidebarOpen)}
-            activeClass="active"
-            className="whiteColor"
-            style={{ padding: "10px 15px" }}
-            to="projects"
-            spy={true}
-            smooth={true}
-            offset={-60}
-          >
-            Informasi
-          </Link>
+          <div className="dropdown">
+            <button className="dropbtn whiteColor" style={{ padding: "10px 15px" }}>
+
+              Kajian
+
+            </button>
+            <div className="dropdown-content">
+              <Link to="/Litbang"  onClick={() => toggleSidebar(!sidebarOpen)} style={{ padding: "10px 15px", color: "#000" }} >
+                Litbang
+              </Link>
+
+            </div>
+          </div>
         </li>
         <li className="semiBold font15 pointer">
-          <Link
-            onClick={() => toggleSidebar(!sidebarOpen)}
-            activeClass="active"
-            className="whiteColor"
-            style={{ padding: "10px 15px" }}
-            to="blog"
-            spy={true}
-            smooth={true}
-            offset={-60}
-          >
-            Litbang
-          </Link>
+          <div className="dropdown">
+            <button className="dropbtn whiteColor" style={{ padding: "10px 15px" }}>
+
+              Informasi
+
+            </button>
+            <div className="dropdown-content">
+              <Link to="/Data-peneliti"   onClick={() => toggleSidebar(!sidebarOpen)}style={{ padding: "10px 15px", color: "#000" }} >
+                Data Peneliti
+              </Link>
+
+            </div>
+          </div>
         </li>
         <li className="semiBold font15 pointer">
-          <Link
-            onClick={() => toggleSidebar(!sidebarOpen)}
-            activeClass="active"
-            className="whiteColor"
-            style={{ padding: "10px 15px" }}
-            to="pricing"
-            spy={true}
-            smooth={true}
-            offset={-60}
-          >
-            Forum
-          </Link>
+          <div className="dropdown">
+            <button className="dropbtn whiteColor" style={{ padding: "10px 15px" }}>
+              <Link style={{ padding: "10px 15px", color: "#fff" }} to="/Litbang"  onClick={() => toggleSidebar(!sidebarOpen)}>
+                Forum
+              </Link>
+
+            </button>
+          </div>
+        </li>
+        <li className="semiBold font15 pointer">
+          <div className="dropdown">
+            <button className="dropbtn whiteColor" style={{ padding: "10px 15px" }}>
+              <Link style={{ padding: "10px 15px", color: "#fff" }} to="/Login"  onClick={() => toggleSidebar(!sidebarOpen)}>
+                Login
+              </Link>
+
+            </button>
+          </div>
         </li>
 
       </UlStyle>

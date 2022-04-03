@@ -172,11 +172,12 @@ export default function Login(props) {
                                         </LoadingButton> : <>
                                       <div className="login-button-area">
                                       <Button className="login-button" variant="contained" type="submit">Login</Button>
-                                        <Button onClick={() => navigate(-1)} className="see-all-button" variant="contained" type="submit">Kembali</Button>
+                                    
                                       </div>
                                         </>}
                                     </div>
                                 </ValidatorForm>
+                                <Button onClick={() => navigate(-1)} className="see-all-button" variant="contained" type="submit">Kembali</Button>
                             </CardContent>
 
                         </Card>
