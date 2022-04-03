@@ -15,9 +15,11 @@ function convertDateDBtoIndo(string) {
 
 export default function SelayangPandang() {
     const location = useLocation();
+  
     const { Nama_inovasi, Hasil_inovasi, Bentuk_inovasi, Tujuan_inovasi, Waktu_implementasi, Waktu_uji_coba,
         Inisiator_inovasi, Jenis_inovasi, Jejaring_inovasi, Jumlah_kajian_yang_mendukung_inovasi, Jumlah_peningkatan_PAD,
         Jumlah_peningkatan_investasi, Jumlah_peningkatan_perkapita, Kecepatan_inovasi, Kemanfaatan_inovasi, Kemudahan_informasi_layanan,
+        Kualitas_inovasi_daerah,
         Kemudahan_proses_inovasi_yang_dihasilkan, Keterlibatan_aktor_inovasi, Ketersediaan_SDM_inovasi_daerah, 
         Kualitas_peningkatan_perizinan, Monitoring_dan_evaluasi_daerah, Nama_opd, Nilai_Capaian_LAKIP, Nilai_IPM, Online_sistem, Opini_BPK,
         Pedoman_teknis_inovasi, Pelaksana_inovasi_daerah, Penggunaan_IT, Penghargaan_bagi_inovator, Penurunan_angka_kemiskinan, Penyelesaian_layanan_pengaduan,
@@ -722,22 +724,20 @@ export default function SelayangPandang() {
                                         </div>
                                     </div>
                                 </div>
-                                {/* <div className="hasil-inovasi">
+                                <div className="hasil-inovasi">
                                     <div className="label-inovasi">
                                         <Typography>Kualitas inovasi daerah</Typography>
 
                                     </div>
                                     <div>:</div>
                                     <div>
-                                        {Kualitas_inovasi_daerah.data !== null ? <a type="button" href={Kualitas_inovasi_daerah.data !== null ? Kualitas_inovasi_daerah.data.attributes.url : ""} className="see-all-button see-file" target="_blank" rel="noreferrer">
-                                            Lihat File
-                                        </a> : "Tidak ada file"}
+                                        {Kualitas_inovasi_daerah !== null ? <iframe width="250" height="215" src={"https://www.youtube.com/embed/" + Kualitas_inovasi_daerah} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> :  <h3 className="text-center">  Tidak ada file </h3> }
 
                                         <div className="label">
                                             <Typography>Regulasi/kebijakan yang ditetapkan untuk mendukung Inovasi Daerah</Typography>
                                         </div>
                                     </div>
-                                </div> */}
+                                </div>
 
                             </div>
                         </div>

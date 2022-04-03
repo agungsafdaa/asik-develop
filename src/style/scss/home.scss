@@ -48,6 +48,7 @@
    @include lt-sm{
     display: block;
     object-fit: cover;
+    max-width: none;
    }
 
 }

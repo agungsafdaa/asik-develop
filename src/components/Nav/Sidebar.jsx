@@ -10,7 +10,7 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
     <Wrapper className="animate darkBg" sidebarOpen={sidebarOpen}>
       <SidebarHeader className="flexSpaceCenter">
         <div className="flexNullCenter">
-        
+
           <h1 className="whiteColor font20" style={{ marginLeft: "15px" }}>
             Asik
           </h1>
@@ -36,18 +36,27 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
           </Link>
         </li>
         <li className="semiBold font15 pointer">
-          <Link
+          
+          <div class="dropdown">
+            <button className="dropbtn whiteColor"     style={{ padding: "10px 15px" }}><Link
             onClick={() => toggleSidebar(!sidebarOpen)}
             activeClass="active"
             className="whiteColor"
             style={{ padding: "10px 15px" }}
-            to="services"
+            to="/"
             spy={true}
             smooth={true}
             offset={-60}
           >
             Profil
           </Link>
+            </button>
+            <div className="dropdown-content">
+              <Link to="#">Link 1</Link>
+              <Link to="#">Link 2</Link>
+              <Link to="#">Link 3</Link>
+            </div>
+          </div>
         </li>
         <li className="semiBold font15 pointer">
           <Link
@@ -91,18 +100,18 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
             Forum
           </Link>
         </li>
-      
+
       </UlStyle>
       {/* <UlStyle className="flexSpaceCenter">
         <li className="semiBold font15 pointer">
-          <a href="/" style={{ padding: "10px 30px 10px 0" }} className="whiteColor">
+          <Link to="/" style={{ padding: "10px 30px 10px 0" }} className="whiteColor">
             Log in
-          </a>
+          </Link>
         </li>
         <li className="semiBold font15 pointer flexCenter">
-          <a href="/" className="radius8 lightBg" style={{ padding: "10px 15px" }}>
+          <Link to="/" className="radius8 lightBg" style={{ padding: "10px 15px" }}>
             Get Started
-          </a>
+          </Link>
         </li>
       </UlStyle> */}
     </Wrapper>

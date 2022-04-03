@@ -18,8 +18,8 @@ export default function Landing(props) {
     <>
       {/* <TopNavbar /> */}
       <Helmet>
-        <title>Nested Title home</title>
-        <meta name="description" content="Nested component" />
+        <title>Asik Bappeda Litbang</title>
+        <meta name="description" content="Website asik bappeda litbang kota palembang" />
       </Helmet>
       <Header />
 
