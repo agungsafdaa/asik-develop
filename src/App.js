@@ -1,5 +1,5 @@
 import React from "react";
-import { Helmet } from "react-helmet";
+// import { Helmet } from "react-helmet";
 import { Routes, Route, Outlet, Navigate, } from 'react-router-dom';
 import { useLocation } from 'react-router-dom'
 import Profile from "./screens/Profile.jsx";
@@ -73,11 +73,11 @@ function App() {
 
   return (
     <>
-      <Helmet>
+      {/* <Helmet>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link href="https://fonts.googleapis.com/css2?family=Khula:wght@400;600;800&display=swap" rel="stylesheet" />
-      </Helmet>
+      </Helmet> */}
       {location.pathname === '/' ?
         <>
           <TopNavbar />

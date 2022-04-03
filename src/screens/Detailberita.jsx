@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { CircularProgress, Typography } from '@mui/material';
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import { Helmet } from "react-helmet";
 import Breadcumbs from "../components/Sections/Breadcumbs";
 import {
     EmailShareButton,
@@ -23,7 +24,7 @@ import {
     VKShareButton,
     WhatsappShareButton,
     WorkplaceShareButton
-  } from "react-share";
+} from "react-share";
 function convertDateDBtoIndo(string) {
     const bulanIndo = ['', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
 
@@ -40,7 +41,7 @@ export default function DetailBerita() {
     const [berita, setBerita] = useState([])
     const [share, setShare] = useState(false)
     let { id } = useParams();
-    console.log(location.state, id, berita)
+
 
     const getBerita = async () => {
         setLoading(true)
@@ -71,6 +72,14 @@ export default function DetailBerita() {
         <>
 
 
+            <Helmet>
+                <title>{judul_berita}</title>
+                <meta name="og:title" content={judul_berita} />
+                <meta name="description" content={isi_berita} />
+
+                <meta name="og:description" content={isi_berita} />
+                <meta name="og:image" content={thumbnail} />
+            </Helmet>
 
             <Breadcumbs />
 
@@ -86,13 +95,14 @@ export default function DetailBerita() {
                             </h2>
                         </div>
 
-                        <img className="thumbnail-berita" src={thumbnail} loading="lazy" alt={judul_berita}/>
+                        <img className="thumbnail-berita" src={thumbnail} loading="lazy" alt={judul_berita} />
                         <div className="tanggal-pelaksanaan">
                             <h4>  Di upload : {convertDateDBtoIndo(tanggal_berita)}</h4>
-                            <FacebookShareButton url={"https://asik-develop.vercel.app/detail-berita/Rapat%20Pematangan%20Sistem%20Informasi%20Kelitbangan%20(ASIK)%20Terkait%20Modul-Modul%20Yang%20Akan%20Dimasukkan%20Ke%20Dalam%20Pemeliharaan%20dan%20Peningkatan%20Website%20ASIK%20Melalui%20Zoom%20Meeting"}>Share</FacebookShareButton>
+                            <FacebookShareButton url={"https://asik-develop.vercel.app/detail-berita/" + id}>Share</FacebookShareButton>
+                            <WhatsappShareButton url={"https://asik-develop.vercel.app/detail-berita/Rapat%20Pematangan%20Sistem%20Informasi%20Kelitbangan%20(ASIK)%20Terkait%20Modul-Modul%20Yang%20Akan%20Dimasukkan%20Ke%20Dalam%20Pemeliharaan%20dan%20Peningkatan%20Website%20ASIK%20Melalui%20Zoom%20Meeting"}>Share</WhatsappShareButton>
                         </div>
                         <div className="share-button">
-                       
+
                         </div>
                         <div
                             dangerouslySetInnerHTML={{
