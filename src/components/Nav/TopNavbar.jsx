@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
+
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 // Components
-import Button from '@mui/material/Button';
+
 import Sidebar from "../Nav/Sidebar";
 import Backdrop from "../Elements/Backdrop";
 // Assets
@@ -13,35 +12,8 @@ import { Link, useLocation } from 'react-router-dom'
 export default function TopNavbar() {
   const [y, setY] = useState(window.scrollY);
   const [sidebarOpen, toggleSidebar] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [litbang, setLitbang] = useState(null);
-  const [informasi, setInformasi] = useState(null);
-  const open = Boolean(anchorEl);
-  const openInformasi = Boolean(informasi);
-  const openLitbang = Boolean(litbang);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClickInformasi = (event) => {
-    setInformasi(event.currentTarget);
-  };
-  const handleClickLitbang = (event) => {
-    setLitbang(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const handleCloseInformasi = () => {
-    setInformasi(null);
-  };
 
 
-
-
-  const handleCloseLitbang = () => {
-    setLitbang(null);
-  };
   useEffect(() => {
     window.addEventListener("scroll", () => setY(window.scrollY));
     return () => {

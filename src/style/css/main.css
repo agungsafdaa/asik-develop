@@ -6,7 +6,9 @@
 body {
   font-family: "Inter", sans-serif !important;
   background: #fafafa;
-  margin: 0; }
+  margin: 0;
+  padding: 0 !important;
+  overflow: scroll !important; }
 
 .button-asik-border-white {
   background: none !important;
@@ -335,6 +337,116 @@ input:-webkit-autofill {
     .pagination-user .pagination-sidemang svg {
       font-size: 16px; }
 
+.btn {
+  font-size: 13px;
+  margin: 0 10px 0 0;
+  -webkit-border-radius: 0.25rem;
+  -moz-border-radius: 0.25rem;
+  border-radius: 0.25rem;
+  font-weight: 600;
+  padding: 16px 22px;
+  outline: none;
+  border: none;
+  user-select: none;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.30s ease 0s;
+  top: 0; }
+  .btn:hover {
+    box-shadow: 0 7px 14px rgba(50, 50, 93, 0.1), 0 3px 6px rgba(0, 0, 0, 0.08);
+    top: -5px; }
+  .btn span {
+    font-size: 13px;
+    margin-left: 15px;
+    vertical-align: middle; }
+  .btn i {
+    font-size: 18px;
+    vertical-align: middle; }
+  .btn.btn-facebook {
+    background-color: rgba(59, 89, 151, 0.1);
+    color: #3b5998;
+    display: flex;
+    align-items: center; }
+    .btn.btn-facebook:active {
+      background-color: rgba(59, 89, 151, 0.1); }
+    .btn.btn-facebook:hover {
+      box-shadow: none;
+      top: 0; }
+  .btn.btn-twitter {
+    background-color: rgba(26, 139, 240, 0.1);
+    color: #1a8bf0; }
+    .btn.btn-twitter:active {
+      background-color: rgba(26, 139, 240, 0.1); }
+    .btn.btn-twitter:hover {
+      box-shadow: none;
+      top: 0; }
+  .btn.btn-instagram {
+    background-color: rgba(255, 108, 56, 0.1);
+    color: #ff6c38; }
+    .btn.btn-instagram:active {
+      background-color: rgba(255, 108, 56, 0.1); }
+    .btn.btn-instagram:hover {
+      box-shadow: none;
+      top: 0; }
+  .btn.btn-whatsaapp {
+    background-color: rgba(67, 243, 59, 0.1);
+    color: #30ef27;
+    display: flex;
+    align-items: center; }
+    .btn.btn-whatsaapp:active {
+      background-color: rgba(67, 243, 59, 0.1); }
+    .btn.btn-whatsaapp:hover {
+      box-shadow: none;
+      top: 0; }
+  .btn.btn-snapchat {
+    background-color: rgba(255, 223, 0, 0.1);
+    color: #ffdf00; }
+    .btn.btn-snapchat:active {
+      background-color: rgba(255, 223, 0, 0.1); }
+    .btn.btn-snapchat:hover {
+      box-shadow: none;
+      top: 0; }
+  .btn.btn-youtube {
+    background-color: rgba(248, 0, 49, 0.1);
+    color: #f80031; }
+    .btn.btn-youtube:active {
+      background-color: rgba(248, 0, 49, 0.1); }
+    .btn.btn-youtube:hover {
+      box-shadow: none;
+      top: 0; }
+  .btn.btn-pinterest {
+    background-color: rgba(240, 28, 28, 0.1);
+    color: #f01a1a; }
+    .btn.btn-pinterest:active {
+      background-color: rgba(240, 28, 28, 0.1); }
+    .btn.btn-pinterest:hover {
+      box-shadow: none;
+      top: 0; }
+  .btn.btn-dribbble {
+    background-color: rgba(253, 57, 138, 0.1);
+    color: #fd398a; }
+    .btn.btn-dribbble:active {
+      background-color: rgba(253, 57, 138, 0.1); }
+    .btn.btn-dribbble:hover {
+      box-shadow: none;
+      top: 0; }
+  .btn.btn-behance {
+    background-color: rgba(0, 87, 255, 0.1);
+    color: #0057ff; }
+    .btn.btn-behance:active {
+      background-color: rgba(0, 87, 255, 0.1); }
+    .btn.btn-behance:hover {
+      box-shadow: none;
+      top: 0; }
+  .btn.btn-linkedin {
+    background-color: rgba(0, 115, 177, 0.1);
+    color: #0073b1; }
+    .btn.btn-linkedin:active {
+      background-color: rgba(0, 115, 177, 0.1); }
+    .btn.btn-linkedin:hover {
+      box-shadow: none;
+      top: 0; }
+
 .hero-element-media {
   width: 100%;
   min-height: 330px;
@@ -542,6 +654,8 @@ input:-webkit-autofill {
     font-weight: 500;
     text-transform: capitalize;
     margin: 20px 0 20px; }
+  .detail-berita .share-button {
+    margin: 10px 0; }
   .detail-berita .tanggal-pelaksanaan {
     margin: 10px 0; }
   .detail-berita .thumbnail-berita {
@@ -752,7 +866,8 @@ input:-webkit-autofill {
       max-width: 100%;
       width: 50%; }
 .dashboard .dashboard-navbar {
-  background: #fff; }
+  background: #fff;
+  padding: 0 !important; }
   .dashboard .dashboard-navbar .navbar {
     justify-content: space-between; }
 .dashboard .info-home {

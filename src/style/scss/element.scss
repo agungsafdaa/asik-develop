@@ -2,6 +2,9 @@ body{
     font-family:$primary-font!important;
     background:#fafafa;
     margin:0;
+    padding: 0!important;
+
+    overflow: scroll!important;
 }
 
 .button-asik-border-white{
@@ -425,3 +428,180 @@ input:-webkit-autofill {
         }
     }
 }
+
+
+
+  $border-radius: .25rem;
+  $border-radius-6: 6px;
+  $white: #fff;
+  $blue: #5e72e4;
+  $brown: #4f5d75;
+  $red: #e45e5e;
+  $stabil-color: #8898aa;
+  $stabil-color-two: #ACB3C3;
+  $stabil-focus: #d9dada;
+  $stabil-wrap: #F4F5F7;
+  $fb: rgba(59, 89, 151, 0.1);
+  $fcolor: #3b5998;
+  $tw: rgba(26,139,240,0.1);
+  $tcolor: #1a8bf0;
+  $ins: rgba(255, 108, 56, 0.1);
+  $icolor: #ff6c38;
+  $wp: rgba(67, 243, 59, 0.1);
+  $wpcolor: #30ef27;
+  $snap: rgba(255, 223, 0, 0.1);
+  $snapcolor: #ffdf00;
+  $you: rgba(248, 0, 49, 0.1);
+  $youcolor: #f80031;
+  $pin: rgba(240, 28, 28, 0.1);
+  $pincolor: #f01a1a;
+  $dribbble: rgba(253, 57, 138, 0.1);
+  $dribbblecolor: #fd398a;
+  $behance: rgba(0, 87, 255, 0.1);
+  $behancecolor: #0057ff;
+  $linkedin: rgba(0, 115, 177, 0.1);
+  $linkedincolor: #0073b1;
+
+  .btn {
+      font-size: 13px;
+      margin:0 10px 0 0;
+      -webkit-border-radius: $border-radius;
+      -moz-border-radius: $border-radius;
+      border-radius: $border-radius;
+      font-weight: 600;
+      padding: 16px 22px;
+      outline: none;
+      border: none;
+      user-select: none;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.30s ease 0s;
+      top: 0;
+      &:hover {
+        box-shadow: 0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08);
+        top: -5px;
+      }
+      span {
+        font-size: 13px;
+        margin-left: 15px;
+        vertical-align: middle;
+      }
+      i {
+        font-size: 18px;
+        vertical-align: middle;
+      }
+      &.btn-facebook {
+        background-color: $fb;
+        color: $fcolor;
+        display: flex;
+        align-items: center;
+        &:active {
+          background-color: $fb;
+        }
+        &:hover {
+          box-shadow: none;
+          top: 0;
+        }
+      }
+      &.btn-twitter {
+        background-color: $tw;
+        color: $tcolor;
+        &:active {
+          background-color: $tw;
+        }
+        &:hover {
+          box-shadow: none;
+          top: 0;
+        }
+      }
+      &.btn-instagram {
+        background-color: $ins;
+        color: $icolor;
+        &:active {
+          background-color: $ins;
+        }
+        &:hover {
+          box-shadow: none;
+          top: 0;
+        }
+      }
+      &.btn-whatsaapp {
+        background-color: $wp;
+        color: $wpcolor;
+        display: flex;
+        align-items: center;
+        &:active {
+          background-color: $wp;
+        }
+        &:hover {
+          box-shadow: none;
+          top: 0;
+        }
+      }
+      &.btn-snapchat {
+        background-color: $snap;
+        color: $snapcolor;
+        &:active {
+          background-color: $snap;
+        }
+        &:hover {
+          box-shadow: none;
+          top: 0;
+        }
+      }
+      &.btn-youtube{
+        background-color: $you;
+        color: $youcolor;
+        &:active {
+          background-color: $you;
+        }
+        &:hover {
+          box-shadow: none;
+          top: 0;
+        }
+      }
+      &.btn-pinterest{
+        background-color: $pin;
+        color: $pincolor;
+        &:active {
+          background-color: $pin;
+        }
+        &:hover {
+          box-shadow: none;
+          top: 0;
+        }
+      }
+      &.btn-dribbble{
+        background-color: $dribbble;
+        color: $dribbblecolor;
+        &:active {
+          background-color: $dribbble;
+        }
+        &:hover {
+          box-shadow: none;
+          top: 0;
+        }
+      }
+      &.btn-behance{
+        background-color: $behance;
+        color: $behancecolor;
+        &:active {
+          background-color: $behance;
+        }
+        &:hover {
+          box-shadow: none;
+          top: 0;
+        }
+      }
+      &.btn-linkedin{
+        background-color: $linkedin;
+        color: $linkedincolor;
+        &:active {
+          background-color: $linkedin;
+        }
+        &:hover {
+          box-shadow: none;
+          top: 0;
+        }
+      }
+  }
