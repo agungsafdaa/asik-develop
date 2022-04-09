@@ -8,7 +8,7 @@ body {
   background: #fafafa;
   margin: 0;
   padding: 0 !important;
-  overflow: scroll !important; }
+  overflow-y: scroll !important; }
 
 .button-asik-border-white {
   background: none !important;
@@ -672,6 +672,12 @@ input:-webkit-autofill {
       margin: 40px 0 20px; }
       .detail-berita .lampiran .lampiran-file .label {
         margin: 20px 0 20px; }
+
+.tittle-kajian {
+  text-transform: lowercase;
+  font-weight: 400; }
+  .tittle-kajian::first-letter {
+    text-transform: uppercase; }
 
 .profil {
   padding: 10px 0 10px  0; }

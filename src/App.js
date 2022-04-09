@@ -21,6 +21,10 @@ import TopNavbar from "./components/Nav/TopNavbar";
 import Footer from "./components/Sections/Footer";
 import Detailpaparan from "./screens/Detailpaparan.jsx";
 import DetailBerita from "./screens/Detailberita.jsx";
+import Forum from "./screens/Forum.jsx";
+import DetailKajian from "./screens/Detailkajian.jsx";
+import Regulasi from "./screens/Regulasi.jsx";
+import DetailRegulasi from "./screens/Detailregulasi.jsx";
 export default function tree() {
   const isAuthenticated = localStorage.getItem("token")
 
@@ -31,11 +35,15 @@ export default function tree() {
         <Route path="/" element={<App />}>
           <Route path="/Profil" element={<Profile />}></Route>
           <Route path="/Event" element={<Event />}></Route>
-          <Route path="/Litbang" element={<Kajian />}></Route>
+          <Route path="/Kajian" element={<Kajian />}></Route>
+          <Route path="/Forum" element={<Forum />}></Route>
           <Route path="/Detail" element={<Kajian />}></Route>
           <Route path="/data-peneliti" element={<DataPeneliti />}></Route>
+          <Route path="/Regulasi" element={<Regulasi/>}></Route>
           <Route path="/detail-inovasi" element={<DetailInovasi />}></Route>
           <Route path="/detail-berita/:id" element={<DetailBerita />}></Route>
+          <Route path="/detail-kajian/:id" element={<DetailKajian />}></Route>
+          <Route path="/detail-regulasi/:id" element={<DetailRegulasi />}></Route>
           <Route path="/detail-paparan" element={<Detailpaparan />}></Route>
           <Route path="/Definisi" element={<Definisi />}></Route>
           <Route path="/Selayang-pandang" element={<SelayangPandang/>}></Route>

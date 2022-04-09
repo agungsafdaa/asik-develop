@@ -22,8 +22,8 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
-
-export default function Event() {
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+export default function Regulasi() {
     const [pagination, setPagination] = useState({})
     const [state, setState] = useState({});
     // eslint-disable-next-line no-unused-vars
@@ -42,7 +42,7 @@ export default function Event() {
     const getKajian = async () => {
         setLoading(true)
         try {
-            let url = "https://asik.palembang.go.id/api/kajians?sort[0]=id%3Adesc&populate=*"
+            let url = "https://asik.palembang.go.id/api/regulasis?populate=%2A"
             const response = await axios.get(url, {
             });
             if (response.status === 200) {
@@ -61,8 +61,8 @@ export default function Event() {
         setLoading(true)
         try {
 
-            let url = "https://asik.palembang.go.id/api/kajians?filters[Publish][$ne]=false&filters[Nama_opd][$contains]=" + opd + "&filters[Nama_inovasi][$contains]=" + searchinovasi
-            // http://103.138.143.35:1337/api/kajians?filters[Nama_opd][$contains]=Kecamatan%20Sematang%20Borang&filters[Waktu_uji_coba][$contains]=2022-02-15
+            let url = "https://asik.palembang.go.id/api/regulasis?filters[Publish][$ne]=false&filters[Nama_opd][$contains]=" + opd + "&filters[Nama_inovasi][$contains]=" + searchinovasi
+            // http://103.138.143.35:1337/api/regulasis?filters[Nama_opd][$contains]=Kecamatan%20Sematang%20Borang&filters[Waktu_uji_coba][$contains]=2022-02-15
             const response = await axios.get(url, {
             });
             if (response.status === 200) {
@@ -80,7 +80,7 @@ export default function Event() {
         
         setLoading(true)
         try {
-            let url = "https://asik.palembang.go.id/api/kajians?filters[Nama_opd][$contains]=" + state.opd + "&populate=*&pagination[page]=" + page
+            let url = "https://asik.palembang.go.id/api/regulasis?filters[Nama_opd][$contains]=" + state.opd + "&populate=*&pagination[page]=" + page
             const response = await axios.get(url);
             setInovasi(response.data.data)
             setPagination(response.data.meta.pagination)
@@ -98,7 +98,7 @@ export default function Event() {
         setLoading(true)
 
         try {
-            let url = "https://asik.palembang.go.id/api/kajians?filters[Nama_opd][$contains]=" + state.opd + "&populate=*&pagination[page]=" + page
+            let url = "https://asik.palembang.go.id/api/regulasis?filters[Nama_opd][$contains]=" + state.opd + "&populate=*&pagination[page]=" + page
             const response = await axios.get(url);
 
             setInovasi(response.data.meta)
@@ -116,7 +116,7 @@ export default function Event() {
         setLoading(true)
 
         try {
-            let url = "https://asik.palembang.go.id/api/kajians?filters[Nama_opd][$contains]=" + state.opd + "&populate=*&pagination[page]=" + page
+            let url = "https://asik.palembang.go.id/api/regulasis?filters[Nama_opd][$contains]=" + state.opd + "&populate=*&pagination[page]=" + page
             const response = await axios.get(url);
 
             setInovasi(response.data.data)
@@ -135,7 +135,7 @@ export default function Event() {
         const page = pagination.page > pagination.pageCount ? parseInt(pagination.page) + 1 : parseInt(pagination.page) + 2
         try {
 
-            let url = "https://asik.palembang.go.id/api/kajians?filters[Nama_opd][$contains]=" + state.opd + "&pagination[page]=" + page + "&populate=*"
+            let url = "https://asik.palembang.go.id/api/regulasis?filters[Nama_opd][$contains]=" + state.opd + "&pagination[page]=" + page + "&populate=*"
 
 
             const response = await axios.get(url);
@@ -201,7 +201,7 @@ export default function Event() {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {inovasi.map((row) => (
+                                    {inovasi.map((row) =>  (
 
                                         <TableRow
                                             key={row.id}
@@ -209,16 +209,16 @@ export default function Event() {
                                         >
                                             <TableCell component="th" scope="row">
                                                 <List>
-                                                    <Link to={`/detail-kajian/${row.attributes.judul}`} state={{ detailInovasi: row }}>
+                                                    <a href={`https://asik.palembang.go.id${row.attributes.file_regulasi.data.attributes.url}`} target="_blank" rel="noreferrer">
                                                         <ListItem>
                                                             <ListItemAvatar>
                                                                 <Avatar>
-                                                                <img src={'https://asik.palembang.go.id' + row.attributes.gambar.data.attributes.formats.medium.url} loading="lazy" alt="test" style={{ width: '100%' }} />
+                                                                <PictureAsPdfIcon/>
                                                                 </Avatar>
                                                             </ListItemAvatar>
                                                             <ListItemText
                                                                 className="tittle-kajian"
-                                                                primary={row.attributes.judul}
+                                                                primary={row.attributes.judul_regulasi}
 
                                                             />
 
@@ -226,7 +226,7 @@ export default function Event() {
 
 
 
-                                                    </Link>
+                                                    </a>
                                                 </List>
 
                                             </TableCell>

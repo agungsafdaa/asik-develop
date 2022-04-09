@@ -13,6 +13,7 @@ import {
     WhatsappShareButton,
 
 } from "react-share";
+
 function convertDateDBtoIndo(string) {
     const bulanIndo = ['', 'Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
 
@@ -23,18 +24,17 @@ function convertDateDBtoIndo(string) {
     return tanggal + " " + bulanIndo[Math.abs(bulan)] + " " + tahun;
 }
 
-export default function DetailBerita() {
+export default function DetailRegulasi() {
 
     const [loading, setLoading] = useState(false)
     const [berita, setBerita] = useState([])
 
     let { id } = useParams();
-
-
+   
     const getBerita = async () => {
         setLoading(true)
         try {
-            let url = "https://asik.palembang.go.id/api/beritas?filters[judul_berita][$contains]=" + id + "&populate=*"
+            let url = "https://asik.palembang.go.id/api/regulasis?filters[judul_regulasi][$contains]=" + id + "&populate=*"
             const response = await axios.get(url);
             if (response.status === 200) {
 
@@ -46,8 +46,9 @@ export default function DetailBerita() {
             throw error;
         }
     }
-    let { judul_berita, tanggal_berita, isi_berita } = berita.length !== 0 ? berita[0].attributes : ""
-    const thumbnail = berita.length !== 0 ? 'https://asik.palembang.go.id' + berita[0].attributes.gambar_berita.data[0].attributes.url : ""
+    let { judul_regulasi, tahun, abstrak } = berita.length !== 0 ? berita[0].attributes : ""
+    const pdf = berita.length !== 0 ? 'https://asik.palembang.go.id' + berita[0].attributes.file_regulasi.data.attributes.url : ""
+
     useEffect(() => {
 
         getBerita()
@@ -61,11 +62,11 @@ export default function DetailBerita() {
 
 
             <Helmet>
-                <title>{judul_berita}</title>
-                <meta name="og:title" content={judul_berita} />
+                <title>{judul_regulasi}</title>
+                <meta name="og:title" content={judul_regulasi} />
 
-                <meta name="og:description" content={isi_berita} />
-                <meta name="og:image" content={thumbnail} />
+                <meta name="og:description" content={judul_regulasi} />
+
             </Helmet>
 
             <Breadcumbs />
@@ -78,29 +79,34 @@ export default function DetailBerita() {
 
                         <div className="judul-inovasi">
                             <h2>
-                                {judul_berita}
+                                {judul_regulasi}
                             </h2>
                         </div>
 
-                        <img className="thumbnail-berita" src={thumbnail} loading="lazy" alt={judul_berita} />
-                        <div className="tanggal-pelaksanaan">
+
+                        {/* <div className="tanggal-pelaksanaan">
                             <h4>  Di upload : {convertDateDBtoIndo(tanggal_berita)}</h4>
 
-                        </div>
+                        </div> */}
                         <div className="share-button">
 
                             <FacebookShareButton url={"https://asik-develop.vercel.app/detail-berita/" + id}>
-                                <button className="btn btn-facebook"><FacebookIcon  /><span>Facebook</span></button>
+                                <button className="btn btn-facebook"><FacebookIcon /><span>Facebook</span></button>
                             </FacebookShareButton>
-                         
+
                             <WhatsappShareButton url={"https://asik-develop.vercel.app/detail-berita/" + id}>
-                            <button className="btn    btn-whatsaapp"><WhatsAppIcon  /><span>Whatsapp</span></button>   
+                                <button className="btn    btn-whatsaapp"><WhatsAppIcon /><span>Whatsapp</span></button>
                             </WhatsappShareButton>
                         </div>
-                        <div
-                            dangerouslySetInnerHTML={{
-                                __html: isi_berita
-                            }}></div>
+                        <embed src={"https://drive.google.com/viewerng/viewer?embedded=true&url="+ pdf } width="1000" height="575"/>
+                        <iframe src={pdf} title={judul_regulasi}/>
+                        <iframe
+          src='https://asik.palembang.go.id/uploads/11_f2270e63f6.pdf'
+          width="500"
+          height="678"          
+        />
+                        <a href={pdf}>download</a>
+                  
                     </div>
                 </> : ""}
 

@@ -23,7 +23,7 @@ function convertDateDBtoIndo(string) {
     return tanggal + " " + bulanIndo[Math.abs(bulan)] + " " + tahun;
 }
 
-export default function DetailBerita() {
+export default function DetailKajian() {
 
     const [loading, setLoading] = useState(false)
     const [berita, setBerita] = useState([])
@@ -34,7 +34,7 @@ export default function DetailBerita() {
     const getBerita = async () => {
         setLoading(true)
         try {
-            let url = "https://asik.palembang.go.id/api/beritas?filters[judul_berita][$contains]=" + id + "&populate=*"
+            let url = "https://asik.palembang.go.id/api/kajians?filters[judul][$contains]=" + id + "&populate=*"
             const response = await axios.get(url);
             if (response.status === 200) {
 
@@ -46,8 +46,9 @@ export default function DetailBerita() {
             throw error;
         }
     }
-    let { judul_berita, tanggal_berita, isi_berita } = berita.length !== 0 ? berita[0].attributes : ""
-    const thumbnail = berita.length !== 0 ? 'https://asik.palembang.go.id' + berita[0].attributes.gambar_berita.data[0].attributes.url : ""
+    let { judul, tahun, abstrak } = berita.length !== 0 ? berita[0].attributes : ""
+    const thumbnail = berita.length !== 0 ? 'https://asik.palembang.go.id' + berita[0].attributes.gambar.data.attributes.url : ""
+    console.log(thumbnail)
     useEffect(() => {
 
         getBerita()
@@ -59,14 +60,14 @@ export default function DetailBerita() {
     return (
         <>
 
-
+{/* 
             <Helmet>
                 <title>{judul_berita}</title>
                 <meta name="og:title" content={judul_berita} />
 
                 <meta name="og:description" content={isi_berita} />
                 <meta name="og:image" content={thumbnail} />
-            </Helmet>
+            </Helmet> */}
 
             <Breadcumbs />
 
@@ -78,15 +79,15 @@ export default function DetailBerita() {
 
                         <div className="judul-inovasi">
                             <h2>
-                                {judul_berita}
+                                {judul}
                             </h2>
                         </div>
 
-                        <img className="thumbnail-berita" src={thumbnail} loading="lazy" alt={judul_berita} />
-                        <div className="tanggal-pelaksanaan">
+                        <img className="thumbnail-berita" src={thumbnail} loading="lazy" alt={judul} />
+                        {/* <div className="tanggal-pelaksanaan">
                             <h4>  Di upload : {convertDateDBtoIndo(tanggal_berita)}</h4>
 
-                        </div>
+                        </div> */}
                         <div className="share-button">
 
                             <FacebookShareButton url={"https://asik-develop.vercel.app/detail-berita/" + id}>
@@ -99,7 +100,7 @@ export default function DetailBerita() {
                         </div>
                         <div
                             dangerouslySetInnerHTML={{
-                                __html: isi_berita
+                                __html: abstrak
                             }}></div>
                     </div>
                 </> : ""}

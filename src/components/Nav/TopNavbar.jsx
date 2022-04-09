@@ -77,12 +77,12 @@ export default function TopNavbar() {
               <div className="dropdown">
                 <button className="dropbtn whiteColor" style={{ padding: "10px 15px" }}>
 
-                  Kajian <span><ExpandMoreIcon /></span>
+                  Litbang <span><ExpandMoreIcon /></span>
 
                 </button>
                 <div className="dropdown-content">
-                  <Link to="/Litbang" style={{ padding: "10px 15px", color: "#000" }} >
-                    Litbang
+                  <Link to="/Kajian" style={{ padding: "10px 15px", color: "#000" }} >
+                    Kajian
                   </Link>
 
                 </div>
@@ -99,6 +99,9 @@ export default function TopNavbar() {
                   <Link to="/Data-peneliti" style={{ padding: "10px 15px", color: "#000" }} >
                     Data Peneliti
                   </Link>
+                  <Link to="/Regulasi" style={{ padding: "10px 15px", color: "#000" }} >
+                 Regulasi
+                  </Link>
 
                 </div>
               </div>
@@ -108,7 +111,7 @@ export default function TopNavbar() {
             <li className="semiBold font15 pointer">
             <div className="dropdown">
                 <button className="dropbtn whiteColor" style={{ padding: "10px 15px" }}>
-                <Link style={{ padding: "10px 15px", color: "#fff" }} to="/Litbang">
+                <Link style={{ padding: "10px 15px", color: "#fff" }} to="/Forum">
                 Forum
               </Link>
 

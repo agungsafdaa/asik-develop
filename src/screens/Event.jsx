@@ -44,11 +44,11 @@ export default function Event(props) {
   }
   const tanggal_berita = state.opd ? state.opd : " "
   const nama_berita = state.nama_inovasi ? state.nama_inovasi : " "
-  console.log(tanggal_berita.length, nama_berita.length)
+
   const getBerita = async () => {
     setLoading(true)
     try {
-      let url = "  https://asik.palembang.go.id/api/beritas?sort[0]=id%3Adesc&populate=*"
+      let url = "  https://asik.palembang.go.id/api/beritas?sort[0]=id%3Adesc&populate=*&pagination[pageSize]=9"
       const response = await axios.get(url);
       if (response.status === 200) {
 
@@ -86,7 +86,7 @@ export default function Event(props) {
 
     setLoading(true)
     try {
-      let url = "https://asik.palembang.go.id/api/beritas?sort[0]=id%3Adesc&populate=*&pagination[page]=" + page
+      let url = "https://asik.palembang.go.id/api/beritas?sort[0]=id%3Adesc&populate=*&pagination[pageSize]=9&pagination[page]=" + page
       const response = await axios.get(url);
       setBerita(response.data.data)
       setPagination(response.data.meta.pagination)
@@ -104,7 +104,7 @@ export default function Event(props) {
     setLoading(true)
 
     try {
-      let url = "https://asik.palembang.go.id/api/beritas?sort[0]=id%3Adesc&populate=*&pagination[page]=" + page
+      let url = "https://asik.palembang.go.id/api/beritas?sort[0]=id%3Adesc&populate=*&pagination[pageSize]=9&pagination[page]=" + page
       const response = await axios.get(url);
 
       setBerita(response.data.data)
@@ -122,7 +122,7 @@ export default function Event(props) {
     setLoading(true)
 
     try {
-      let url = "https://asik.palembang.go.id/api/beritas?sort[0]=id%3Adesc&populate=*&pagination[page]=" + page
+      let url = "https://asik.palembang.go.id/api/beritas?sort[0]=id%3Adesc&populate=*&pagination[pageSize]=9&pagination[page]=" + page
       const response = await axios.get(url);
 
       setBerita(response.data.data)
@@ -141,7 +141,7 @@ export default function Event(props) {
     const page = pagination.page > pagination.pageCount ? parseInt(pagination.page) + 1 : parseInt(pagination.page) + 2
     try {
 
-      let url = "https://asik.palembang.go.id/api/beritas?sort[0]=id%3Adesc&populate=*&pagination[page]=" + page
+      let url = "https://asik.palembang.go.id/api/beritas?sort[0]=id%3Adesc&populate=*&pagination[pageSize]=9&pagination[page]=" + page
 
 
       const response = await axios.get(url);
@@ -275,10 +275,5 @@ const Wrapper = styled.section`
   padding-top: 20px;
   padding-bottom:20px;
 `;
-const HeaderInfo = styled.div`
-  margin-bottom: 30px;
-  @media (max-width: 860px) {
-    text-align: center;
-  }
-`;
+
 

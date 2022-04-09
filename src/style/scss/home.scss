@@ -318,5 +318,14 @@
     }
 }
 
+.tittle-kajian{
+   
+        text-transform: lowercase;
+        font-weight: 400;
+        &::first-letter{
+            text-transform: uppercase;
+        }
+}
+
 
 

@@ -59,13 +59,13 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
         <li className="semiBold font15 pointer">
           <div className="dropdown">
             <button className="dropbtn whiteColor" style={{ padding: "10px 15px" }}>
-
-              Kajian
+            Litbang
+              
 
             </button>
             <div className="dropdown-content">
-              <Link to="/Litbang"  onClick={() => toggleSidebar(!sidebarOpen)} style={{ padding: "10px 15px", color: "#000" }} >
-                Litbang
+              <Link to="/Kajian"  onClick={() => toggleSidebar(!sidebarOpen)} style={{ padding: "10px 15px", color: "#000" }} >
+              Kajian
               </Link>
 
             </div>
@@ -89,7 +89,7 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
         <li className="semiBold font15 pointer">
           <div className="dropdown">
             <button className="dropbtn whiteColor" style={{ padding: "10px 15px" }}>
-              <Link style={{ padding: "10px 15px", color: "#fff" }} to="/Litbang"  onClick={() => toggleSidebar(!sidebarOpen)}>
+              <Link style={{ padding: "10px 15px", color: "#fff" }} to="/Forum"  onClick={() => toggleSidebar(!sidebarOpen)}>
                 Forum
               </Link>
 
