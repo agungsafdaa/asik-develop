@@ -19,8 +19,9 @@ export default function WidgetArea(props) {
   }
 `;
     const [loading, setLoading] = useState(false)
+    const [loadingQuote, setLoadingQuote] = useState(false)
     const [paparan, setPaparan] = useState([])
-
+    const [quote, setQuote] = useState([])
     const getSelandang = async () => {
         setLoading(true)
         try {
@@ -37,9 +38,32 @@ export default function WidgetArea(props) {
         }
     }
 
+    const getQuote = async () => {
+        setLoadingQuote(true)
+        try {
+            let url = "https://asik.palembang.go.id/api/quote-pimpinan?populate=*"
+            const response = await axios.get(url);
+            if (response.status === 200) {
+
+                setQuote(response.data.data.attributes)
+
+                setLoadingQuote(false)
+            }
+        } catch (error) {
+            throw error;
+        }
+    }
+
+
+  
     useEffect(() => {
         getSelandang()
-
+     
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+    useEffect(() => {
+   
+        getQuote()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     return (
@@ -51,8 +75,7 @@ export default function WidgetArea(props) {
                     <Grid container spacing={10}>
 
                         <Grid item lg={4} xs={12} md={12} className="informasi">
-
-                            <Swiper
+                            {quote.length !== 0 ? loadingQuote === true ? <CircularProgress /> : <>    <Swiper
                                 // install Swiper modules
                                 modules={[Navigation, Pagination, Scrollbar, A11y]}
                                 spaceBetween={50}
@@ -65,23 +88,25 @@ export default function WidgetArea(props) {
 
                             >
                                 <SwiperSlide>
-                                    <img src="/assets/images/carousel/kadin.svg" alt="test" style={{ width: '100%' }} />
+                                    <img src={`https://asik.palembang.go.id${quote.walikota.data.attributes.url}`} alt="test" style={{ width: '100%' }} />
                                 </SwiperSlide>
                                 <SwiperSlide>
-                                    <img src="/assets/images/carousel/walikota.jpg" alt="test" style={{ width: '100%' }} />
+                                    <img src={`https://asik.palembang.go.id${quote.wakil_walikota.data.attributes.url}`} alt="test" style={{ width: '100%' }} />
                                 </SwiperSlide>
-                                <SwiperSlide>    <img src="/assets/images/carousel/wawako.jpg" alt="test" style={{ width: '100%' }} /></SwiperSlide>
-                                <SwiperSlide>    <img src="/assets/images/carousel/sekda.jpg" alt="test" style={{ width: '100%' }} /></SwiperSlide>
+                                <SwiperSlide>    <img src={`https://asik.palembang.go.id${quote.sekretaris_kota.data.attributes.url}`} alt="test" style={{ width: '100%' }} /></SwiperSlide>
+                                <SwiperSlide>    <img src={`https://asik.palembang.go.id${quote.kepala_bappeda.data.attributes.url}`} alt="test" style={{ width: '100%' }} /></SwiperSlide>
+                                <SwiperSlide>    <img src={`https://asik.palembang.go.id${quote.kepala_bidang.data.attributes.url}`} alt="test" style={{ width: '100%' }} /></SwiperSlide>
 
 
-                            </Swiper>
+                            </Swiper> </> : <h3>Belum ada data</h3>}
+
 
                         </Grid>
                         <Grid item lg={8} xs={12} md={12} className="widget-center">
                             <div className="container">
                                 <HeaderInfo>
                                     <h1 className="font40 extraBold">Paparan Bappeda Litbang Kota Palembang</h1>
-                                    <p className="desc-heading">Informasi mengenaik Litbang di kota Palembang</p>
+                                    <p className="desc-heading">Informasi mengenai Litbang di kota Palembang</p>
                                 </HeaderInfo>
                                 <Grid container spacing={10}>
 
