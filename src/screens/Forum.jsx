@@ -34,6 +34,8 @@ export default function Forum() {
         'Event & Kegiatan'
     );
 
+ 
+
     const [inovasi, setInovasi] = useState([])
     const [loading, setLoading] = useState(false)
     const handleChange = async ({ target: { name, value } }) => {
@@ -57,7 +59,7 @@ export default function Forum() {
             throw error;
         }
     }
-
+ 
     const opd = state.opd ? state.opd : " "
     const searchinovasi = state.nama_inovasi ? state.nama_inovasi : " "
     const getFilterKajian = async () => {
@@ -80,11 +82,11 @@ export default function Forum() {
 
     const backPage = async () => {
         const page = parseInt(pagination.page) - 1
-        console.log(pagination.page)
+        const urlPagination = state.opd === undefined ? `https://asik.palembang.go.id/api/inovasis?filters[Publish][$ne]=false&populate=*&pagination[page]=${page}` : `https://asik.palembang.go.id/api/inovasis?filters[Publish][$ne]=false&filters[Nama_opd][$contains]=${state.opd}&populate=*&pagination[page]=${page}`
         setLoading(true)
         try {
-            let url = "https://asik.palembang.go.id/api/inovasis?filters[Nama_opd][$contains]=" + state.opd + "&populate=*&pagination[page]=" + page
-            const response = await axios.get(url);
+          
+            const response = await axios.get(urlPagination);
             setInovasi(response.data.data)
             setPagination(response.data.meta.pagination)
             setLoading(false)
@@ -99,10 +101,10 @@ export default function Forum() {
 
         const page = parseInt(pagination.page) - 2
         setLoading(true)
-
+        const urlPagination = state.opd === undefined ? `https://asik.palembang.go.id/api/inovasis?filters[Publish][$ne]=false&populate=*&pagination[page]=${page}` : `https://asik.palembang.go.id/api/inovasis?filters[Publish][$ne]=false&filters[Nama_opd][$contains]=${state.opd}&populate=*&pagination[page]=${page}`
         try {
-            let url = "https://asik.palembang.go.id/api/inovasis?filters[Nama_opd][$contains]=" + state.opd + "&populate=*&pagination[page]=" + page
-            const response = await axios.get(url);
+         
+            const response = await axios.get(urlPagination);
 
             setInovasi(response.data.meta)
             setPagination(response.data.meta.pagination)
@@ -115,12 +117,12 @@ export default function Forum() {
 
     const nextPage = async () => {
         const page = parseInt(pagination.page) + 1
-
+        const urlPagination = state.opd === undefined ? `https://asik.palembang.go.id/api/inovasis?filters[Publish][$ne]=false&populate=*&pagination[page]=${page}` : `https://asik.palembang.go.id/api/inovasis?filters[Publish][$ne]=false&filters[Nama_opd][$contains]=${state.opd}&populate=*&pagination[page]=${page}`
         setLoading(true)
 
         try {
-            let url = "https://asik.palembang.go.id/api/inovasis?filters[Nama_opd][$contains]=" + state.opd + "&populate=*&pagination[page]=" + page
-            const response = await axios.get(url);
+        
+            const response = await axios.get(urlPagination);
 
             setInovasi(response.data.data)
             setPagination(response.data.meta.pagination)
@@ -136,12 +138,13 @@ export default function Forum() {
 
         setLoading(true)
         const page = pagination.page > pagination.pageCount ? parseInt(pagination.page) + 1 : parseInt(pagination.page) + 2
+        const urlPagination = state.opd === undefined ? `https://asik.palembang.go.id/api/inovasis?filters[Publish][$ne]=false&populate=*&pagination[page]=${page}` : `https://asik.palembang.go.id/api/inovasis?filters[Publish][$ne]=false&filters[Nama_opd][$contains]=${state.opd}&populate=*&pagination[page]=${page}`
         try {
 
-            let url = "https://asik.palembang.go.id/api/inovasis?filters[Nama_opd][$contains]=" + state.opd + "&pagination[page]=" + page + "&populate=*"
+      
 
 
-            const response = await axios.get(url);
+            const response = await axios.get(urlPagination);
 
             setInovasi(response.data.data)
             setPagination(response.data.meta.pagination)
@@ -214,7 +217,7 @@ export default function Forum() {
                                             key={row.id}
                                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                                         >
-                                            <TableCell>{row.attributes.Nama_opd}</TableCell>
+                                            <TableCell    className="tittle-kajian">{row.attributes.Nama_opd}</TableCell>
                                             <TableCell component="th" scope="row">
                                                 {row.attributes.Nama_inovasi}
                                             </TableCell>
@@ -223,9 +226,9 @@ export default function Forum() {
                                             </TableCell>
                                             <TableCell>{row.attributes.Inisiator_inovasi}</TableCell>
                                             <TableCell>{row.attributes.Jenis_inovasi}</TableCell>
-                                            <TableCell>{convertDateDBtoIndo(row.attributes.Waktu_uji_coba)}</TableCell>
-                                            <TableCell>{convertDateDBtoIndo(row.attributes.Waktu_implementasi)}</TableCell>
-                                            <TableCell >  <Link to={`/detail-inovasi`} state={{ detailInovasi: row }}>
+                                            <TableCell>{row.attributes.Waktu_uji_coba ? convertDateDBtoIndo(row.attributes.Waktu_uji_coba) : ""}</TableCell>
+                                            <TableCell>{row.attributes.Waktu_implementasi ? convertDateDBtoIndo(row.attributes.Waktu_implementasi) : ""}</TableCell>
+                                            <TableCell > <Link to={`/detail-inovasi/${row.attributes.Nama_inovasi}`}> 
                                                 <button className='see-all-button'>   Lihat Inovasi</button>
                                             </Link></TableCell>
 

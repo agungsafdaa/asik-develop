@@ -12,9 +12,7 @@ const StyledBreadcrumb = styled(Chip)(({ theme }) => {
 
 });
 
-function hilang_spasi(string) {
-  return string.split(' ').join('');
-}
+
 export default function Breadcumbs(page) {
   const location = useLocation();
 
@@ -32,7 +30,7 @@ export default function Breadcumbs(page) {
             />
             <StyledBreadcrumb component="a" className="no-button" href="#" label="Profil" />
             <StyledBreadcrumb
-              label={location.pathname.slice(1, 14)}
+              label={location.pathname.replace(/%20/g, " ").slice(1)}
               className="active-page"
               deleteIcon={<ExpandMoreIcon />}
 

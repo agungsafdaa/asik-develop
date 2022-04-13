@@ -34,7 +34,7 @@ export default function DetailKajian() {
     const getBerita = async () => {
         setLoading(true)
         try {
-            let url = "https://asik.palembang.go.id/api/kajians?filters[judul][$contains]=" + id + "&populate=*"
+            let url = "https://asik.palembang.go.id/api/kajians?filters[Judul][$contains]=" + id + "&populate=*"
             const response = await axios.get(url);
             if (response.status === 200) {
 
@@ -46,9 +46,9 @@ export default function DetailKajian() {
             throw error;
         }
     }
-    let { judul, tahun, abstrak } = berita.length !== 0 ? berita[0].attributes : ""
-    const thumbnail = berita.length !== 0 ? 'https://asik.palembang.go.id' + berita[0].attributes.gambar.data.attributes.url : ""
-    console.log(thumbnail)
+    let { Judul, Tahun, Abstrak } = berita.length !== 0 ? berita[0].attributes : ""
+    const thumbnail = berita.length !== 0 ? 'https://asik.palembang.go.id' + berita[0].attributes.Gambar.data.attributes.url : ""
+    
     useEffect(() => {
 
         getBerita()
@@ -60,34 +60,31 @@ export default function DetailKajian() {
     return (
         <>
 
-{/* 
-            <Helmet>
-                <title>{judul_berita}</title>
-                <meta name="og:title" content={judul_berita} />
 
-                <meta name="og:description" content={isi_berita} />
+            <Helmet>
+                <title>{Judul}</title>
+                <meta name="og:title" content={Judul} />
+
+                <meta name="og:description" content={Abstrak} />
                 <meta name="og:image" content={thumbnail} />
-            </Helmet> */}
+            </Helmet>
 
             <Breadcumbs />
 
             <div className="container">
-                {berita.length !== 0 ? loading === true ? <CircularProgress /> : <>
+                {loading === true ? <div className="loading-center"><CircularProgress/> </div> : <>
                     <div className="detail-berita">
 
 
 
                         <div className="judul-inovasi">
                             <h2>
-                                {judul}
+                                {Judul}
                             </h2>
                         </div>
 
-                        <img className="thumbnail-berita" src={thumbnail} loading="lazy" alt={judul} />
-                        {/* <div className="tanggal-pelaksanaan">
-                            <h4>  Di upload : {convertDateDBtoIndo(tanggal_berita)}</h4>
-
-                        </div> */}
+                        <img className="thumbnail-berita" src={thumbnail} loading="lazy" alt={Judul} />
+                       
                         <div className="share-button">
 
                             <FacebookShareButton url={"https://asik-develop.vercel.app/detail-berita/" + id}>
@@ -98,12 +95,16 @@ export default function DetailKajian() {
                             <button className="btn    btn-whatsaapp"><WhatsAppIcon  /><span>Whatsapp</span></button>   
                             </WhatsappShareButton>
                         </div>
+                        <div className="tanggal-pelaksanaan">
+                            <h4> Tahun {Tahun}</h4>
+
+                        </div>
                         <div
                             dangerouslySetInnerHTML={{
-                                __html: abstrak
+                                __html: Abstrak
                             }}></div>
                     </div>
-                </> : ""}
+                </> }
 
             </div>
 

@@ -447,6 +447,10 @@ input:-webkit-autofill {
       box-shadow: none;
       top: 0; }
 
+.loading-center {
+  display: flex;
+  justify-content: space-around; }
+
 .hero-element-media {
   width: 100%;
   min-height: 330px;

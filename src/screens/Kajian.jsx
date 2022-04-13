@@ -22,16 +22,30 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
+import Autocomplete from '@mui/material/Autocomplete';
+
+
+function sleep(delay = 0) {
+    return new Promise((resolve) => {
+        setTimeout(resolve, delay);
+    });
+}
+
 
 export default function Event() {
     const [pagination, setPagination] = useState({})
     const [state, setState] = useState({});
+    const [kategori, setKategori] = useState({});
+    const [open, setOpen] = useState(false);
+    const [kajianKategori, setKajiankategori] = useState([])
+    const loadingKategori = open && kajianKategori.length === 0;
     // eslint-disable-next-line no-unused-vars
     const [namaPage, setNamaPage] = useState(
         'Event & Kegiatan'
     );
 
-    const [inovasi, setInovasi] = useState([])
+    const [kajian, setKajian] = useState([])
+
     const [loading, setLoading] = useState(false)
     const handleChange = async ({ target: { name, value } }) => {
         setState({
@@ -46,7 +60,7 @@ export default function Event() {
             const response = await axios.get(url, {
             });
             if (response.status === 200) {
-                setInovasi(response.data.data)
+                setKajian(response.data.data)
                 setPagination(response.data.meta.pagination)
                 setLoading(false)
             }
@@ -56,17 +70,17 @@ export default function Event() {
     }
 
     const opd = state.opd ? state.opd : " "
-    const searchinovasi = state.nama_inovasi ? state.nama_inovasi : " "
+    const searchkajian = state.nama_kajian ? state.nama_kajian : " "
     const getFilterKajian = async () => {
         setLoading(true)
         try {
 
-            let url = "https://asik.palembang.go.id/api/kajians?filters[Publish][$ne]=false&filters[Nama_opd][$contains]=" + opd + "&filters[Nama_inovasi][$contains]=" + searchinovasi
+            let url = "https://asik.palembang.go.id/api/kajians?filters[Publish][$ne]=false&filters[Nama_opd][$contains]=" + opd + "&filters[Nama_kajian][$contains]=" + searchkajian
             // http://103.138.143.35:1337/api/kajians?filters[Nama_opd][$contains]=Kecamatan%20Sematang%20Borang&filters[Waktu_uji_coba][$contains]=2022-02-15
             const response = await axios.get(url, {
             });
             if (response.status === 200) {
-                setInovasi(response.data.data)
+                setKajian(response.data.data)
                 setLoading(false)
             }
         } catch (error) {
@@ -77,12 +91,12 @@ export default function Event() {
 
     const backPage = async () => {
         const page = parseInt(pagination.page) - 1
-        
+
         setLoading(true)
         try {
             let url = "https://asik.palembang.go.id/api/kajians?filters[Nama_opd][$contains]=" + state.opd + "&populate=*&pagination[page]=" + page
             const response = await axios.get(url);
-            setInovasi(response.data.data)
+            setKajian(response.data.data)
             setPagination(response.data.meta.pagination)
             setLoading(false)
         } catch (error) {
@@ -101,7 +115,7 @@ export default function Event() {
             let url = "https://asik.palembang.go.id/api/kajians?filters[Nama_opd][$contains]=" + state.opd + "&populate=*&pagination[page]=" + page
             const response = await axios.get(url);
 
-            setInovasi(response.data.meta)
+            setKajian(response.data.meta)
             setPagination(response.data.meta.pagination)
             setLoading(false)
         } catch (error) {
@@ -112,14 +126,13 @@ export default function Event() {
 
     const nextPage = async () => {
         const page = parseInt(pagination.page) + 1
-
         setLoading(true)
-
         try {
-            let url = "https://asik.palembang.go.id/api/kajians?filters[Nama_opd][$contains]=" + state.opd + "&populate=*&pagination[page]=" + page
+            let url = "https://asik.palembang.go.id/api/kajians?filters[kajian_kategoris][nama_kategori][$eq]=Infrastruktur&populate=%2a&pagination[pageSize]=2&pagination[page]=" + page
+            // let url = "https://asik.palembang.go.id/api/kajians?filters[Nama_opd][$contains]=" + state.opd + "&populate=*&pagination[page]=" + page
             const response = await axios.get(url);
 
-            setInovasi(response.data.data)
+            setKajian(response.data.data)
             setPagination(response.data.meta.pagination)
             setLoading(false)
         } catch (error) {
@@ -140,7 +153,7 @@ export default function Event() {
 
             const response = await axios.get(url);
 
-            setInovasi(response.data.data)
+            setKajian(response.data.data)
             setPagination(response.data.meta.pagination)
             setLoading(false)
         } catch (error) {
@@ -148,12 +161,60 @@ export default function Event() {
         }
     }
 
+
+    const getKategori = (event, newKategori) => {
+        const kategori = newKategori;
+        setKategori(kategori);
+    };
+
+
+    console.log(kategori )
+
     useEffect(() => {
         getKajian()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    useEffect(() => {
+        let activeDistrict = true;
 
+        if (!setKajiankategori) {
+            return undefined;
+        }
+
+        (async () => {
+            await sleep(1e3);
+
+            if (activeDistrict) {
+                try {
+
+                    const url = 'https://asik.palembang.go.id/api/kajian-kategoris';
+                    let response = await axios.get(url)
+
+                    setKajiankategori(response.data.data)
+
+
+                } catch (err) {
+                    alert(err);
+                }
+            }
+        })();
+
+        return () => {
+            activeDistrict = false;
+        };
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [loadingKategori]);
+
+    useEffect(() => {
+        if (!open) {
+            setKajiankategori([]);
+        }
+    }, [open]);
+
+
+  
     return (
         <>
             <Breadcumbs page={namaPage} />
@@ -165,26 +226,49 @@ export default function Event() {
 
                         <div className="search-area">
                             <Card className="card-search">
-                                {/* <div className="heading-search">
-                                    <Typography>Pilih Kategori</Typography>
-                                </div>
-                                <div className="filter-area">
-                                    <button name="subject" className="button-active">
-                                        Kajian
-                                    </button>
-                                    <button name="subject" className="button-inactive">
-                                        Kegiatan & Event
-                                    </button>
-                                    <button name="subject" className="button-inactive">
-                                        Inovasi Daerah
-                                    </button>
-                                </div> */}
+
+
                                 <div className="heading-search">
                                     <h3>Cari Berdasarkan</h3>
                                 </div>
                                 <div className="search-bar">
-                                    <TextField id="outlined-basic" name="opd" label="OPD" variant="outlined" onChange={handleChange} value={state.opd || ''} />
-                                    <TextField id="outlined-basic" name="nama_inovasi" label="Temukan Kegiatan & Event" variant="outlined" onChange={handleChange} value={state.nama_inovasi || ' '} />
+                                    <Autocomplete
+                                        id="asynchronous-demo"
+
+                                        open={open}
+                                        onOpen={() => {
+                                            setOpen(true)
+                                        }}
+                                        onClose={() => {
+                                            setOpen(false)
+                                        }}
+
+                                        isOptionEqualToValue={(option, value) => option.attributes.nama_kategori === value.attributes.nama_kategori}
+                                        onChange={getKategori}
+                                        getOptionLabel={(option) => option.attributes.nama_kategori}
+
+                                        options={kajianKategori}
+                                        loading={loadingKategori}
+                                        renderInput={(params) => (
+                                            <TextField
+                                                {...params}
+                                               
+                                                key={params.id}
+                                                label={"Kategori"}
+                                                InputProps={{
+                                                    ...params.InputProps,
+                                                    endAdornment: (
+                                                        <React.Fragment>
+                                                            {loadingKategori ? <CircularProgress color="inherit" size={20} /> : null}
+                                                            {params.InputProps.endAdornment}
+                                                        </React.Fragment>
+                                                    ),
+                                                }}
+                                            />
+                                        )}
+                                    />
+
+                                    <TextField id="outlined-basic" name="nama_kajian" label="Temukan Kegiatan & Event" variant="outlined" onChange={handleChange} value={state.nama_kajian || ' '} />
                                     <button onClick={getFilterKajian} name="subject" className="see-all-button">
                                         Cari
                                     </button>
@@ -194,14 +278,14 @@ export default function Event() {
 
                         {loading === true ? <CircularProgress /> : <TableContainer component={Paper}>
                             <Table sx={{ minWidth: 650 }} size="small" aria-label="a dense table">
-                                <TableHead className="table-inovasi">
+                                <TableHead className="table-kajian">
                                     <TableRow>
                                         <TableCell align="left">Judul</TableCell>
                                         <TableCell>Tahun</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {inovasi.map((row) => (
+                                    {kajian.map((row) => (
 
                                         <TableRow
                                             key={row.id}
@@ -209,16 +293,16 @@ export default function Event() {
                                         >
                                             <TableCell component="th" scope="row">
                                                 <List>
-                                                    <Link to={`/detail-kajian/${row.attributes.judul}`} state={{ detailInovasi: row }}>
+                                                    <Link to={`/detail-kajian/${row.attributes.Judul}`}>
                                                         <ListItem>
                                                             <ListItemAvatar>
                                                                 <Avatar>
-                                                                <img src={'https://asik.palembang.go.id' + row.attributes.gambar.data.attributes.formats.medium.url} loading="lazy" alt="test" style={{ width: '100%' }} />
+                                                                    <img src={'https://asik.palembang.go.id' + row.attributes.Gambar.data.attributes.formats.medium.url} loading="lazy" alt="test" style={{ width: '100%' }} />
                                                                 </Avatar>
                                                             </ListItemAvatar>
                                                             <ListItemText
                                                                 className="tittle-kajian"
-                                                                primary={row.attributes.judul}
+                                                                primary={row.attributes.Judul}
 
                                                             />
 
@@ -230,7 +314,7 @@ export default function Event() {
                                                 </List>
 
                                             </TableCell>
-                                            <TableCell>{row.attributes.tahun}</TableCell>
+                                            <TableCell>{row.attributes.Tahun}</TableCell>
 
 
 

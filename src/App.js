@@ -40,9 +40,9 @@ export default function tree() {
           <Route path="/Detail" element={<Kajian />}></Route>
           <Route path="/data-peneliti" element={<DataPeneliti />}></Route>
           <Route path="/Regulasi" element={<Regulasi/>}></Route>
-          <Route path="/detail-inovasi" element={<DetailInovasi />}></Route>
+          <Route path="/detail-inovasi/:id" element={<DetailInovasi />}></Route>
           <Route path="/detail-berita/:id" element={<DetailBerita />}></Route>
-          <Route path="/detail-kajian/:id" element={<DetailKajian />}></Route>
+          <Route path={"/detail-kajian/:id"} element={<DetailKajian />}></Route>
           <Route path="/detail-regulasi/:id" element={<DetailRegulasi />}></Route>
           <Route path="/detail-paparan" element={<Detailpaparan />}></Route>
           <Route path="/Definisi" element={<Definisi />}></Route>
