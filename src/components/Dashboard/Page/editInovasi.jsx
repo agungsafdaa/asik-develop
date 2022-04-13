@@ -2528,8 +2528,7 @@ export default function EditInovasi() {
                                                 <TextValidator onChange={handleChange}
                                                         type="text"
                                                         fullWidth
-                                                        validators={['required']}
-                                                        errorMessages={['Harap di isi']}
+                                                     
 
                                                         placeholder="Contoh : https://www.youtube.com/watch?v=ejthPCbcPj0" id="tanggal_pelaksanaan" name="link_youtube"
                                                         value={state.link_youtube || ''}
