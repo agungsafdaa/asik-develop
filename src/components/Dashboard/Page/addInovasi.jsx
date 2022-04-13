@@ -703,9 +703,9 @@ export default function AddInovasi() {
     const outputs = [rancangBangun]
 
     // Should ouput `9` for all test inputs.
-
-
-    const addKajian = async (event) => {
+   
+  
+    const addKajian = async () => {
         if (outputs.map(getTextLength)[0] <= 300) {
             toast.warn('Rancang bangun kurang dari 300 kata', {
                 position: "top-right",
@@ -720,7 +720,6 @@ export default function AddInovasi() {
             setLoading(true)
             setOpen(true);
             let url = "https://asik.palembang.go.id/api/inovasis"
-
             let formData = new FormData();
             formData.append('files.Regulasi_Inovasi_daerah', regulasiInovasi);
             formData.append('files.Jumlah_kajian_yang_mendukung_inovasi', jumlahKajian);
@@ -742,9 +741,7 @@ export default function AddInovasi() {
             formData.append('files.Kecepatan_inovasi', kecepatanInovasi);
             formData.append('files.Kemanfaatan_inovasi', kemanfaatanInovasi);
             formData.append('files.Monitoring_dan_evaluasi_daerah', monitoring);
-
             formData.append('files.Pedoman_teknis_inovasi', pedomanTeknis);
-
             const data = {
                 Nama_opd: localStorage.getItem("nama_opd"),
                 Nama_inovasi: state.nama_inovasi,
@@ -780,7 +777,7 @@ export default function AddInovasi() {
                 desc_Kecepatan_inovasi: state.indikator_kecepatanInovasi,
                 desc_Kemanfaatan_inovasi: state.indikator_kemanfaatanInovasi,
                 desc_Monitoring_dan_evaluasi_daerah: state.indikator_monitoringEvaluasi,
-                Kualitas_inovasi_daerah: state.link_youtube.slice(32, 46),
+                Kualitas_inovasi_daerah: state.link_youtube ? state.link_youtube.slice(32, 46) : "",
                 desc_Kualitas_inovasi_daerah: state.indikator_kualitasInovasi,
             }
 
