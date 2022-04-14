@@ -707,7 +707,7 @@ export default function AddInovasi() {
   
     const addKajian = async () => {
         if (outputs.map(getTextLength)[0] <= 300) {
-            toast.warn('Rancang bangun kurang dari 300 kata', {
+            toast.warn('Rancang bangun kurang dari 300 huruf', {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -1057,7 +1057,7 @@ export default function AddInovasi() {
                                     </InputLabel>
                                     <Alert className="info-rancangBangun" severity="warning">
                                         <h5>   Catatan Rancang Bangun</h5>
-                                        - memuat 300 kata atau lebih<br />
+                                        - memuat 300 huruf atau lebih<br />
                                         - latar belakang inovasi baik input, output maupun proses<br />
                                         - bahasa tepat sasaran, efektif dan efisien
                                     </Alert>
@@ -1078,7 +1078,7 @@ export default function AddInovasi() {
                                         }}
                                     />
 
-                                    <p id="demo">{outputs.map(getTextLength)[0] === 15 ? 'Jumlah kata ' + 0 : 'Jumlah kata ' + outputs.map(getTextLength)[0]}</p>
+                                    <p id="demo">{outputs.map(getTextLength)[0] === 15 ? 'Jumlah huruf ' + 0 : 'Jumlah huruf ' + outputs.map(getTextLength)[0]}</p>
 
                                 </div>
 
@@ -1102,6 +1102,7 @@ export default function AddInovasi() {
 
                                         }}
                                     />
+                                    
                                 </div>
                                 <div className="form-opd">
                                     <InputLabel className="label" shrink htmlFor="Nama_opd">
@@ -1310,7 +1311,7 @@ export default function AddInovasi() {
                                                 <TableCell component="th" scope="row">
                                                     Bimtek inovasi
                                                 </TableCell>
-                                                <TableCell >  Peningkatan kapasitas dan kompetensi pelaksana inovasi daerah </TableCell>
+                                                <TableCell >  Peninghurufn kapasitas dan kompetensi pelaksana inovasi daerah </TableCell>
                                                 <TableCell>
                                                     <FormControl fullWidth>
                                                         <InputLabel id="demo-simple-select-label">Pilih Parameter</InputLabel>
