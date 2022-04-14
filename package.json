@@ -5,6 +5,7 @@
   "dependencies": {
     "@ckeditor/ckeditor5-alignment": "^33.0.0",
     "@ckeditor/ckeditor5-build-classic": "^32.0.0",
+    "@ckeditor/ckeditor5-list": "^34.0.0",
     "@ckeditor/ckeditor5-react": "^4.0.0",
     "@ckeditor/ckeditor5-word-count": "^32.0.0",
     "@date-io/date-fns": "^2.13.1",
