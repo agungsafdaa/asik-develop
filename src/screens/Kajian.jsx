@@ -78,7 +78,7 @@ export default function Event() {
         try {
             // "&filters[Nama_kajian][$contains]=" + searchkajian +
             // https://asik.palembang.go.id/api/kajians?filters[kajian_kategoris][nama_kategori][$eq]=Infrastruktur&populate=%2a
-            let url = "https://asik.palembang.go.id/api/kajians?filters[kajian_kategoris][nama_kategori][$eq]=" + opd.nama_kategori + "&filters[Judul][$contains]=" + searchkajian + "&populate=%2a&sort[0]=id%3Adesc"
+            let url = opd === undefined ? "https://asik.palembang.go.id/api/kajians?filters[Judul][$contains]=" + searchkajian + "&populate=%2a&sort[0]=id%3Adesc" : "https://asik.palembang.go.id/api/kajians?filters[kajian_kategoris][nama_kategori][$eq]=" + opd.nama_kategori + "&filters[Judul][$contains]=" + searchkajian + "&populate=%2a&sort[0]=id%3Adesc"
             // http://103.138.143.35:1337/api/kajians?filters[Nama_opd][$contains]=Kecamatan%20Sematang%20Borang&filters[Waktu_uji_coba][$contains]=2022-02-15
             const response = await axios.get(url, {
             });
