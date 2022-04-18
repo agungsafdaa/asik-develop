@@ -1,5 +1,6 @@
 .navbar-menu{
     text-transform:capitalize!important;
+    list-style: none;
     button{
         text-transform:capitalize!important; 
     }
@@ -7,6 +8,7 @@
 
 .footer-section{
     padding:30px 0 30px 0;
+    
     .heading-footer{
         background: $asik-bg2;
         border-radius: 14px;
@@ -24,12 +26,15 @@
     .content-footer{
         padding:20px 0 20px 0;
         color: #FFFFFF;
-      
+    
         font-weight: normal;
         font-size: 16px;
         line-height: 19px;
 
         color: #FFFFFF;
+        ul{
+          list-style: none;
+        }
     }
 
     .copyright{

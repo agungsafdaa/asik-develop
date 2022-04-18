@@ -23,7 +23,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemText from '@mui/material/ListItemText';
 import Autocomplete from '@mui/material/Autocomplete';
-
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 
 function sleep(delay = 0) {
     return new Promise((resolve) => {
@@ -69,18 +69,22 @@ export default function Event() {
         }
     }
 
-    const opd = state.opd ? state.opd : " "
+    const opd =  kategori ? kategori.attributes : " "
     const searchkajian = state.nama_kajian ? state.nama_kajian : " "
+ 
+    // const getKategori
     const getFilterKajian = async () => {
         setLoading(true)
         try {
-
-            let url = "https://asik.palembang.go.id/api/kajians?filters[Publish][$ne]=false&filters[Nama_opd][$contains]=" + opd + "&filters[Nama_kajian][$contains]=" + searchkajian
+            // "&filters[Nama_kajian][$contains]=" + searchkajian +
+            // https://asik.palembang.go.id/api/kajians?filters[kajian_kategoris][nama_kategori][$eq]=Infrastruktur&populate=%2a
+            let url = "https://asik.palembang.go.id/api/kajians?filters[kajian_kategoris][nama_kategori][$eq]=" + opd.nama_kategori + "&filters[Judul][$contains]=" + searchkajian + "&populate=%2a&sort[0]=id%3Adesc"
             // http://103.138.143.35:1337/api/kajians?filters[Nama_opd][$contains]=Kecamatan%20Sematang%20Borang&filters[Waktu_uji_coba][$contains]=2022-02-15
             const response = await axios.get(url, {
             });
             if (response.status === 200) {
                 setKajian(response.data.data)
+                setPagination(response.data.meta.pagination)
                 setLoading(false)
             }
         } catch (error) {
@@ -94,7 +98,7 @@ export default function Event() {
 
         setLoading(true)
         try {
-            let url = "https://asik.palembang.go.id/api/kajians?filters[Nama_opd][$contains]=" + state.opd + "&populate=*&pagination[page]=" + page
+            let url = opd === undefined  ||  searchkajian === ' ' ?    "https://asik.palembang.go.id/api/kajians?populate=*&pagination[page]=" + page   + "&sort[0]=id%3Adesc"  :  "https://asik.palembang.go.id/api/kajians?filters[kajian_kategoris][nama_kategori][$eq]=" + opd.nama_kategori   + "&filters[Judul][$contains]=" + searchkajian +  "&populate=*&pagination[page]=" + page  + "&sort[0]=id%3Adesc"
             const response = await axios.get(url);
             setKajian(response.data.data)
             setPagination(response.data.meta.pagination)
@@ -112,10 +116,10 @@ export default function Event() {
         setLoading(true)
 
         try {
-            let url = "https://asik.palembang.go.id/api/kajians?filters[Nama_opd][$contains]=" + state.opd + "&populate=*&pagination[page]=" + page
+            let url = opd === undefined  ||  searchkajian === ' ' ?    "https://asik.palembang.go.id/api/kajians?populate=*&pagination[page]=" + page   + "&sort[0]=id%3Adesc"  :  "https://asik.palembang.go.id/api/kajians?filters[kajian_kategoris][nama_kategori][$eq]=" + opd.nama_kategori   + "&filters[Judul][$contains]=" + searchkajian +  "&populate=*&pagination[page]=" + page  + "&sort[0]=id%3Adesc"
             const response = await axios.get(url);
 
-            setKajian(response.data.meta)
+            setKajian(response.data.data)
             setPagination(response.data.meta.pagination)
             setLoading(false)
         } catch (error) {
@@ -128,7 +132,7 @@ export default function Event() {
         const page = parseInt(pagination.page) + 1
         setLoading(true)
         try {
-            let url = "https://asik.palembang.go.id/api/kajians?filters[kajian_kategoris][nama_kategori][$eq]=Infrastruktur&populate=%2a&pagination[pageSize]=2&pagination[page]=" + page
+            let url = opd === undefined  ||  searchkajian === ' ' ?    "https://asik.palembang.go.id/api/kajians?populate=*&pagination[page]=" + page   + "&sort[0]=id%3Adesc"  :  "https://asik.palembang.go.id/api/kajians?filters[kajian_kategoris][nama_kategori][$eq]=" + opd.nama_kategori   + "&filters[Judul][$contains]=" + searchkajian +  "&populate=*&pagination[page]=" + page  + "&sort[0]=id%3Adesc"
             // let url = "https://asik.palembang.go.id/api/kajians?filters[Nama_opd][$contains]=" + state.opd + "&populate=*&pagination[page]=" + page
             const response = await axios.get(url);
 
@@ -148,7 +152,7 @@ export default function Event() {
         const page = pagination.page > pagination.pageCount ? parseInt(pagination.page) + 1 : parseInt(pagination.page) + 2
         try {
 
-            let url = "https://asik.palembang.go.id/api/kajians?filters[Nama_opd][$contains]=" + state.opd + "&pagination[page]=" + page + "&populate=*"
+            let url = opd === undefined  ||  searchkajian === ' ' ?    "https://asik.palembang.go.id/api/kajians?populate=*&pagination[page]=" + page   + "&sort[0]=id%3Adesc"  :  "https://asik.palembang.go.id/api/kajians?filters[kajian_kategoris][nama_kategori][$eq]=" + opd.nama_kategori   + "&filters[Judul][$contains]=" + searchkajian +  "&populate=*&pagination[page]=" + page  + "&sort[0]=id%3Adesc"
 
 
             const response = await axios.get(url);
@@ -167,8 +171,7 @@ export default function Event() {
         setKategori(kategori);
     };
 
-
-    console.log(kategori )
+  
 
     useEffect(() => {
         getKajian()
@@ -188,7 +191,7 @@ export default function Event() {
             if (activeDistrict) {
                 try {
 
-                    const url = 'https://asik.palembang.go.id/api/kajian-kategoris';
+                    const url = 'https://asik.palembang.go.id/api/kajian-kategoris?pagination[pageSize]=100';
                     let response = await axios.get(url)
 
                     setKajiankategori(response.data.data)
@@ -285,8 +288,8 @@ export default function Event() {
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
-                                    {kajian.map((row) => (
-
+                                    {kajian.map((row)  =>  (
+                                    
                                         <TableRow
                                             key={row.id}
                                             sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
@@ -297,7 +300,10 @@ export default function Event() {
                                                         <ListItem>
                                                             <ListItemAvatar>
                                                                 <Avatar>
-                                                                    <img src={'https://asik.palembang.go.id' + row.attributes.Gambar.data.attributes.formats.medium.url} loading="lazy" alt="test" style={{ width: '100%' }} />
+                                                                    {row.attributes.Gambar.data.attributes.formats.medium ?    <img src={'https://asik.palembang.go.id' + row.attributes.Gambar.data.attributes.formats.medium.url} loading="lazy" alt="test" style={{ width: '100%' }} /> :     <Avatar>
+                                                                <PictureAsPdfIcon/>
+                                                                </Avatar>}
+                                                                 
                                                                 </Avatar>
                                                             </ListItemAvatar>
                                                             <ListItemText

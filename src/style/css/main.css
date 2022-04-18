@@ -769,7 +769,8 @@ input:-webkit-autofill {
             color: #000; }
 
 .navbar-menu {
-  text-transform: capitalize !important; }
+  text-transform: capitalize !important;
+  list-style: none; }
   .navbar-menu button {
     text-transform: capitalize !important; }
 
@@ -792,6 +793,8 @@ input:-webkit-autofill {
     font-size: 16px;
     line-height: 19px;
     color: #FFFFFF; }
+    .footer-section .content-footer ul {
+      list-style: none; }
   .footer-section .copyright {
     display: flex;
     justify-content: flex-end; }
