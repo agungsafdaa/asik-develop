@@ -53,10 +53,11 @@ export default function Event() {
             [name]: value,
         });
     }
+
     const getKajian = async () => {
         setLoading(true)
         try {
-            let url = "https://asik.palembang.go.id/api/kajians?sort[0]=id%3Adesc&populate=*"
+            let url = `${process.env.REACT_APP_ASIK_API}kajians?sort[0]=id%3Adesc&populate=*`
             const response = await axios.get(url, {
             });
             if (response.status === 200) {
@@ -191,7 +192,7 @@ export default function Event() {
             if (activeDistrict) {
                 try {
 
-                    const url = 'https://asik.palembang.go.id/api/kajian-kategoris?pagination[pageSize]=100';
+                    const url = `${process.env.REACT_APP_ASIK_API}kajian-kategoris?pagination[pageSize]=100`;
                     let response = await axios.get(url)
 
                     setKajiankategori(response.data.data)

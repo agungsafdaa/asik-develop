@@ -703,11 +703,11 @@ export default function AddInovasi() {
     const outputs = [rancangBangun]
 
     // Should ouput `9` for all test inputs.
-   
-  
+
+
     const addKajian = async () => {
         if (outputs.map(getTextLength)[0] <= 300) {
-            toast.warn('Rancang bangun kurang dari 300 kata', {
+            toast.warn('Rancang bangun kurang dari 300 huruf', {
                 position: "top-right",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -1057,14 +1057,14 @@ export default function AddInovasi() {
                                     </InputLabel>
                                     <Alert className="info-rancangBangun" severity="warning">
                                         <h5>   Catatan Rancang Bangun</h5>
-                                        - memuat 300 kata atau lebih<br />
+                                        - memuat 300 huruf atau lebih<br />
                                         - latar belakang inovasi baik input, output maupun proses<br />
                                         - bahasa tepat sasaran, efektif dan efisien
                                     </Alert>
 
                                     <CKEditor
                                         editor={ClassicEditor}
-                               
+
                                         data=""
                                         required
                                         onChange={(event, editor) => {
@@ -1078,7 +1078,7 @@ export default function AddInovasi() {
                                         }}
                                     />
 
-                                    <p id="demo">{outputs.map(getTextLength)[0] === 15 ? 'Jumlah kata ' + 0 : 'Jumlah kata ' + outputs.map(getTextLength)[0]}</p>
+                                    <p id="demo">{outputs.map(getTextLength)[0] === 15 ? 'Jumlah huruf ' + 0 : 'Jumlah huruf ' + outputs.map(getTextLength)[0]}</p>
 
                                 </div>
 
@@ -1860,7 +1860,7 @@ export default function AddInovasi() {
                                                     <TextValidator onChange={handleChange}
                                                         type="text"
                                                         fullWidth
-                                                     
+
 
                                                         placeholder="Contoh : https://www.youtube.com/watch?v=ejthPCbcPj0" id="tanggal_pelaksanaan" name="link_youtube"
                                                         value={state.link_youtube || ''}
@@ -1882,13 +1882,21 @@ export default function AddInovasi() {
 
                                                 </TableCell>
 
+
                                             </TableRow>
 
 
                                         </TableBody>
                                     </Table>
                                 </TableContainer>
-
+                                <Alert className="info-rancangBangun" severity="warning">
+                                    <h5>   Catatan Kualitas Inovasi daerah</h5>
+                                    Mengunggah video penerapan inovasi dengan durasi maksimal 5 menit (mp4/MOV) atau link google drive/ youtube, dengan ketentuan video memvisualisasikan 5 substansi:
+                                    1. Latar belakang inovasi                  4. Manfaat inovasi
+                                    2. Penjaringan ide                              5. Dampak inovasi
+                                    3. Pemilihan ide
+                                    Video inovasi dilengkapi dengan cover thumbnail dengan format jpg/jpeg/png
+                                </Alert>
                                 {loading === true ? <LoadingButton loading variant="outlined">
                                     Submit
                                 </LoadingButton> : <div className="submit-form">
