@@ -1479,7 +1479,6 @@ export default function EditInovasi() {
                                             id="demo-multiple-chip"
                                             multiple
                                             className="select-asik"
-                                            defaultValue={splits}
                                             value={urusanInovasi}
                                             
 
