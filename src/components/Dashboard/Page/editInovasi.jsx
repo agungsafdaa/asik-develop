@@ -1164,7 +1164,7 @@ export default function EditInovasi() {
 
         setLoading(true)
         try {
-            let url = "  https://asik.palembang.go.id/api/urusan-inovasis"
+            let url = "  https://asik.palembang.go.id/api/urusan-inovasis?pagination[pageSize]=100"
             const response = await axios.get(url, {
             });
             if (response.status === 200) {
