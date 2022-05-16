@@ -298,10 +298,7 @@ export default function Home() {
                                         <TableCell>Bentuk Inovasi</TableCell>
                                         <TableCell>Nama Inovasi</TableCell>
 
-                                        <TableCell>Hasil Inovasi</TableCell>
-                                        <TableCell>Inisiator Inovasi</TableCell>
-                                        <TableCell>Jenis Inovasi</TableCell>
-                                        <TableCell>Manfaat Inovasi</TableCell>
+                                     
                                         <TableCell>Status</TableCell>
                                         <TableCell>Catatan</TableCell>
                                         <TableCell>Action</TableCell>
@@ -322,15 +319,13 @@ export default function Home() {
                                                 <Link to="/">  {row.attributes.Nama_inovasi}</Link>
                                             </TableCell>
 
-                                            <TableCell >{convertToPlain(row.attributes.Hasil_inovasi)}</TableCell>
-                                            <TableCell>{row.attributes.Inisiator_inovasi}</TableCell>
-                                            <TableCell>{row.attributes.Jenis_inovasi}</TableCell>
-                                            <TableCell>{convertToPlain(row.attributes.Manfaat_inovasi)}</TableCell>
+                                        
                                             <TableCell>{row.attributes.Publish === false ? 'Belum disetujui' : 'disetujui'}</TableCell>
                                             <TableCell>{row.attributes.Catatan === null ? 'Belum ada tanggapan' : row.attributes.Catatan}</TableCell>
                                             <TableCell>
                                                 {row.attributes.Publish === false ? <Link to={`/editInovasi`} state={{ idInovasi: row }}>
                                                     <EditIcon />
+                                                    <Link to="/">Tambah Indikator</Link>
                                                 </Link> : <>
                                                     <Typography>Inovasi telah disetujui anda tidak bisa lagi mengubah inovasi yang telah di ajukan</Typography></>}
 

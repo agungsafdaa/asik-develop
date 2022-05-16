@@ -1700,7 +1700,7 @@ export default function EditInovasi() {
                                                 <TableCell>
                                                     {pathnameUpload.Jumlah_kajian_yang_mendukung_inovasi.data !== null ?
                                                         <>
-                                                            <Button onClick={DeletejumlahKajian} name="regulasi" className={show.jumlah_kajian === false ? "button-asik-edit" : "display-none"} value={pathnameUpload.Jumlah_kajian_yang_mendukung_inovasi.data.id}>Edit File</Button>
+                                                            <Button onClick={DeletejumlahKajian} name="jumlah_kajian" className={show.jumlah_kajian === false ? "button-asik-edit" : "display-none"} value={pathnameUpload.Jumlah_kajian_yang_mendukung_inovasi.data.id}>Edit File</Button>
                                                             <input type="file" id="file" className={show.jumlah_kajian === true ? "file" : "display-none"} accept="image/*,.pdf" onChange={uploadjumlahKajian} />
                                                         </> : <input type="file" id="file" className="file" accept="image/*,.pdf" onChange={uploadjumlahKajian} />}
 
