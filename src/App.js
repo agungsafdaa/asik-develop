@@ -12,6 +12,7 @@ import Landing from "./screens/Landing.jsx";
 
 import Dashboard from "./screens/Dashboard.jsx";
 import TambahInovasi from "./screens/TambahInovasi.jsx";
+import TambahIndikator from "./screens/TambahIndikator.jsx";
 import InovasiEdit from "./screens/EditInovsi.jsx";
 // import CircularProgress from '@mui/material/CircularProgress';
 import Kajian from "./screens/Kajian.jsx";
@@ -25,6 +26,8 @@ import Forum from "./screens/Forum.jsx";
 import DetailKajian from "./screens/Detailkajian.jsx";
 import Regulasi from "./screens/Regulasi.jsx";
 import DetailRegulasi from "./screens/Detailregulasi.jsx";
+import KompetisiInovasi from "./screens/KompetisiInovasi.jsx";
+
 export default function tree() {
   const isAuthenticated = localStorage.getItem("token")
 
@@ -48,7 +51,7 @@ export default function tree() {
           <Route path="/Definisi" element={<Definisi />}></Route>
           <Route path="/Selayang-pandang" element={<SelayangPandang/>}></Route>
           <Route path="/Struktur-organisasi" element={<StrukturOrganisasi/>}></Route>
-       
+          <Route path="/Kompetisi-Inovasi" element={<KompetisiInovasi/>}></Route>
        
         </Route>
         <Route path="/Login" element={<Login />}></Route>
@@ -61,6 +64,12 @@ export default function tree() {
           <Route path="/tambahInovasi" element={
             <PrivateRoute>
               <TambahInovasi />
+            </PrivateRoute>
+          } token={isAuthenticated}>
+          </Route>
+          <Route path="/tambahIndikator/:id" element={
+            <PrivateRoute>
+              <TambahIndikator />
             </PrivateRoute>
           } token={isAuthenticated}>
           </Route>

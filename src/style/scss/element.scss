@@ -7,6 +7,10 @@ body{
     overflow-y: scroll!important;
 }
 
+.text-center{
+  text-align:center;
+}
+
 .button-asik-border-white{
     background:none!important;
     border: 1px solid #FFFFFF!important;
@@ -98,6 +102,7 @@ width:100%!important;
 }
 
 .button-asik{
+  text-align: center;
     color:#fff!important; 
     background:#D94148!important;
     border: 1px solid #D94148!important;
@@ -610,4 +615,14 @@ input:-webkit-autofill {
   .loading-center{
     display:flex;
     justify-content: space-around;
+  }
+
+  .aksi{
+    display:flex;
+    grid-gap: 20px;
+  }
+
+  .frame-youtube{
+    width:100%;
+    height:215px;
   }

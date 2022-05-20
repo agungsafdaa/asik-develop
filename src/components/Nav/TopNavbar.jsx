@@ -84,6 +84,9 @@ export default function TopNavbar() {
                   <Link to="/Kajian" style={{ padding: "10px 15px", color: "#000" }} >
                     Kajian
                   </Link>
+                  <Link to="/Forum" style={{ padding: "10px 15px", color: "#000" }} >
+                    Inovasi
+                  </Link>
 
                 </div>
               </div>
@@ -107,11 +110,23 @@ export default function TopNavbar() {
               </div>
 
             </li>
+            <li className="semiBold font15 pointer">
+              <div className="dropdown">
+                <button className="dropbtn whiteColor" style={{ padding: "10px 15px" }}>
+                  <Link style={{ padding: "10px 15px", color: "#fff" }} to="/Kompetisi-inovasi">
+                    Kompetisi Inovasi
+                  </Link>
+
+                </button>
+              </div>
+
+
+            </li>
 
             <li className="semiBold font15 pointer">
             <div className="dropdown">
                 <button className="dropbtn whiteColor" style={{ padding: "10px 15px" }}>
-                <Link style={{ padding: "10px 15px", color: "#fff" }} to="/Forum">
+                <Link style={{ padding: "10px 15px", color: "#fff" }} to="/Login">
                 Forum
               </Link>
 
@@ -120,18 +135,7 @@ export default function TopNavbar() {
             
             </li>
 
-            <li className="semiBold font15 pointer">
-              <div className="dropdown">
-                <button className="dropbtn whiteColor" style={{ padding: "10px 15px" }}>
-                  <Link style={{ padding: "10px 15px", color: "#fff" }} to="/Login">
-                    Login
-                  </Link>
-
-                </button>
-              </div>
-
-
-            </li>
+            
 
           </UlWrapper>
           {/* <UlWrapperRight className="flexNullCenter">
