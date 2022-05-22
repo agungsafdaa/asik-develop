@@ -13,6 +13,7 @@ import Button from '@mui/material/Button';
 import axios from 'axios';
 import Typography from '@mui/material/Typography';
 import CardContent from '@mui/material/CardContent';
+import { Link } from 'react-router-dom';
 export default function Login(props) {
     let navigate = useNavigate();
    
@@ -177,7 +178,7 @@ export default function Login(props) {
                                         </>}
                                     </div>
                                 </ValidatorForm>
-                                <Button onClick={() => navigate(-1)} className="see-all-button" variant="contained" type="submit">Kembali</Button>
+                                <Link to="/"  className="text-center" >Kembali ke beranda</Link>
                             </CardContent>
 
                         </Card>

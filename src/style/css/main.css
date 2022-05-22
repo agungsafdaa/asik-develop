@@ -10,6 +10,13 @@ body {
   padding: 0 !important;
   overflow-y: scroll !important; }
 
+.aksi-indikator {
+  display: flex;
+  grid-gap: 20px;
+  flex-direction: column; }
+  .aksi-indikator button {
+    text-transform: capitalize; }
+
 .text-center {
   text-align: center; }
 
@@ -460,8 +467,8 @@ input:-webkit-autofill {
   grid-gap: 20px; }
 
 .frame-youtube {
-  width: 100%;
-  height: 215px; }
+  width: 100% !important;
+  height: 415px; }
 
 .hero-element-media {
   width: 100%;

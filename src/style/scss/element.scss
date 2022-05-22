@@ -7,6 +7,16 @@ body{
     overflow-y: scroll!important;
 }
 
+.aksi-indikator{
+  display: flex;
+  grid-gap: 20px;
+  flex-direction: column;
+  button{
+    
+    text-transform: capitalize;
+  }
+}
+
 .text-center{
   text-align:center;
 }
@@ -623,6 +633,6 @@ input:-webkit-autofill {
   }
 
   .frame-youtube{
-    width:100%;
-    height:215px;
+    width:100%!important;
+    height:415px;
   }

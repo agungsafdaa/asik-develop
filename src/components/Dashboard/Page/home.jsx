@@ -22,18 +22,7 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import SkipNextIcon from '@mui/icons-material/SkipNext';
 import EditIcon from '@mui/icons-material/Edit';
-function convertToPlain(html) {
-
-    // Create a new div element
-    var tempDivElement = document.createElement("div");
-
-    // Set the HTML content with the given value
-    tempDivElement.innerHTML = html;
-
-    // Retrieve the text property of the element 
-    return tempDivElement.textContent || tempDivElement.innerText || "";
-}
-
+import FolderIcon from '@mui/icons-material/Folder';
 export default function Home() {
     const blue = {
         100: '#DAECFF',
@@ -301,7 +290,7 @@ export default function Home() {
                                      
                                         <TableCell>Status</TableCell>
                                         <TableCell>Catatan</TableCell>
-                                        <TableCell>Action</TableCell>
+                                        <TableCell>Aksi</TableCell>
                                     </TableRow>
                                 </TableHead>
                                 <TableBody>
@@ -323,10 +312,18 @@ export default function Home() {
                                             <TableCell>{row.attributes.Publish === false ? 'Belum disetujui' : 'disetujui'}</TableCell>
                                             <TableCell>{row.attributes.Catatan === null ? 'Belum ada tanggapan' : row.attributes.Catatan}</TableCell>
                                             <TableCell>
-                                                {row.attributes.Publish === false ? <Link to={`/editInovasi`} state={{ idInovasi: row }}>
-                                                    <EditIcon />
-                                                    <Link to="/">Tambah Indikator</Link>
-                                                </Link> : <>
+                                                {row.attributes.Publish === false ? 
+                                                <>
+                                                    <div className="aksi">
+                                                        <Link to={`/editInovasi`} state={{ idInovasi: row }}>
+                                                            <EditIcon />
+                                                        </Link>
+                                                        <Link to={`/tambahIndikator/${row.id}`} state={{ idInovasi: row }} alt="indikator">
+                                                            <FolderIcon/>
+                                                        </Link>
+                                                    </div>
+                                                </>
+                                                 : <>
                                                     <Typography>Inovasi telah disetujui anda tidak bisa lagi mengubah inovasi yang telah di ajukan</Typography></>}
 
                                             </TableCell>
