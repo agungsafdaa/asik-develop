@@ -112,7 +112,7 @@ export default function WidgetArea(props) {
 
                                     <Grid item lg={12} xs={12} md={12} className="paparan">
                                       {paparan.length !== 0 ? loading === true ? <CircularProgress /> : <>
-                                            <iframe src={'https://view.officeapps.live.com/op/embed.aspx?src=https://asik.palembang.go.id' + paparan.ppt_file.data.attributes.url} width='100%' height='450px' frameborder='0' title="Paparan" />
+                                            <iframe src={'https://view.officeapps.live.com/op/embed.aspx?src=https://asik.palembang.go.id' + paparan.ppt_file.data.attributes.url} width='100%' height='450px' frameBorder='0' title="Paparan" />
                                         </>
                                             : "Tidak ada data"
                                         }

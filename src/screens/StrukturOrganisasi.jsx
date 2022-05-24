@@ -5,17 +5,17 @@ import { CircularProgress } from '@mui/material';
 import Breadcumbs from "../components/Sections/Breadcumbs";
 
 export default function StrukturOrganisasi() {
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
     const [strukturOrganisasi, setStrukturOrganisasi] = useState([])
     // console.log(strukturOrganisasi)
     const getSelandang = async () => {
         setLoading(true)
         try {
-            let url = "https://asik.palembang.go.id/api/struktur-organisasi/"
+            let url = "https://asik.palembang.go.id/api/struktur-organisasi?populate=*"
             const response = await axios.get(url);
             if (response.status === 200) {
 
-                setStrukturOrganisasi(response.data.data.attributes.Deskripsi)
+                setStrukturOrganisasi(response.data.data.attributes)
 
                 setLoading(false)
             }
@@ -45,9 +45,9 @@ export default function StrukturOrganisasi() {
                         <>
                          <div
                                 dangerouslySetInnerHTML={{
-                                    __html: strukturOrganisasi
+                                    __html: strukturOrganisasi.Deskripsi
                                 }}></div>
-                           
+                            <img className="img-fluid" src={strukturOrganisasi.Gambar.data.attributes.url} alt="struktur organisasi"/>
                             {/* <div className="list-pegawai">
                                 <iframe src="https://asik.palembang.go.id/uploads/struktur_litbang_c46251b164.pdf" title="komposisi pegawai" />
 

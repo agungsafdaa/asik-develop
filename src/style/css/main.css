@@ -266,6 +266,9 @@ input:-webkit-autofill {
 .paparan img {
   border-radius: 15px; }
 
+.img-fluid {
+  max-width: 100%; }
+
 .display-none {
   display: none !important; }
 

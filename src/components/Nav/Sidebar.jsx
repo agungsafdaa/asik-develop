@@ -24,12 +24,11 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
         <li className="semiBold font15 pointer">
           <Link
             onClick={() => toggleSidebar(!sidebarOpen)}
-            activeClass="active"
+         
             className="whiteColor"
             style={{ padding: "10px 15px" }}
             to="/"
-            spy={true}
-            smooth={true}
+         
             offset={-60}
           >
             Beranda
@@ -37,7 +36,7 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
         </li>
         <li className="semiBold font15 pointer">
 
-          <div class="dropdown">
+          <div className="dropdown">
             <button className="dropbtn whiteColor" style={{ padding: "10px 15px" }}>
 
               Profil

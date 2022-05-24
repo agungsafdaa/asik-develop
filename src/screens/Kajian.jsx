@@ -297,7 +297,7 @@ export default function Event() {
                                         >
                                             <TableCell component="th" scope="row">
                                                 <List>
-                                                    <Link to={`/detail-kajian/${row.attributes.Judul}`}>
+                                                    <Link to={`/detail-kajian/${row.attributes.Judul.replace(/[' '`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '-')}`}>
                                                         <ListItem>
                                                             <ListItemAvatar>
                                                                 <Avatar>
@@ -309,7 +309,7 @@ export default function Event() {
                                                             </ListItemAvatar>
                                                             <ListItemText
                                                                 className="tittle-kajian"
-                                                                primary={row.attributes.Judul}
+                                                                primary={row.attributes.Judul.replace("/", '-')}
 
                                                             />
 
