@@ -2990,7 +2990,8 @@ export default function Inovasi() {
                             <a className={show.jumlah_kajian === false ? "button-asik" : "display-none"} href={pathnameUpload.attributes.Kecepatan_inovasi.data !== null ? urlAsik + pathnameUpload.attributes.Kecepatan_inovasi.data.attributes.url : ""} target="_blank" rel="noreferrer">
                                 Lihat File
                             </a>
-                            <Button name="kecepatan_inovasi" className={show.kecepatan_inovasi === false ? "button-asik-edit" : "display-none"} onClick={DeletekecepatanInovasi} value={pathnameUpload.attributes.Kecepatan_inovasi.data !== null ? pathnameUpload.Kecepatan_inovasi.data.id : ''}>Hapus File</Button>
+   
+                            <Button name="kecepatan_inovasi" className={show.kecepatan_inovasi === false ? "button-asik-edit" : "display-none"} onClick={DeletekecepatanInovasi} value={pathnameUpload.attributes.Kecepatan_inovasi.data.id }>Hapus File</Button>
                             <input type="file" id="file" className={show.kecepatan_inovasi === true ? "file" : "display-none"} accept="image/*,.pdf" onChange={uploadkecepatanInovasi} />
                         </div>
 
