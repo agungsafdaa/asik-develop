@@ -50,6 +50,7 @@ export default function Inovasi() {
         penyelesaian_layanan: false,
         online_sistem: false,
         repikasi: false,
+        ketersediaan_sdm:false,
         kecepatan_inovasi: false,
         kemanfaatan_inovasi: false,
         monitoring_evaluasi: false,
@@ -81,6 +82,62 @@ export default function Inovasi() {
             ...state,
             [name]: value,
         });
+     
+    }
+
+    const uploadKualitasInovasi = async (event) => {
+        setLoading(true)
+
+        let url = "https://asik.palembang.go.id/api/inovasis/" + id
+
+        let formData = new FormData();
+ 
+        const data = {
+            Kualitas_inovasi_daerah: state.link_youtube,
+
+        }
+
+
+
+        const myJSON = JSON.stringify(data);
+
+
+        formData.append('data', myJSON)
+
+        try {
+            let response = await axios.put(url, formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer ' + isAuthenticated } })
+            // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
+            if (response.status === 200) {
+
+                setLoading(false)
+
+                toast.success('Kualitas Inovasi daerah berhasil di tambahkan!', {
+                    position: "top-right",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                });
+                window.location.reload(false);
+                // setTimeout(() => {
+                //     return navigate("/dashboard");
+                // }, 3000);
+
+            }
+        } catch (err) {
+            setLoading(false)
+            toast.success(err.error.message, {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
 
     }
 
@@ -1863,7 +1920,7 @@ export default function Inovasi() {
                 // let response = await axios.post(url,  formData, { headers: { 'content-type': 'multipart/form-data', Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTkxZGEzYjJjYmQ0MjYwYWJlNDc4MTMiLCJ1c2VybmFtZSI6InRlc3RlciIsImVtYWlsIjoiYWd1bmdzYWZkYWFAZ21haWwuY29tIiwiaXNTdXBlckFkbWluIjpmYWxzZSwiaXNBZG1pbiI6ZmFsc2UsImlzT3BlcmF0b3IiOmZhbHNlLCJpc0FwcHJvdmVyIjpmYWxzZSwiaXNTaWduZXIiOmZhbHNlLCJpc0VtcGxveWVlIjpmYWxzZSwiaWF0IjoxNjQ1NzUzNjk1LCJleHAiOjE2NDU3ODI0OTV9.RZHdhzzlzU61EpDdj4YsVJv5O47YT8CHSnnc92yEfjU' } })
                 if (response.status === 200) {
                     setLoading(false)
-                    toast.success('Kecepatan Inovasi berhasil di tambahkan!', {
+                    toast.success('Ketersediaan SDM Inovasi Daerah  berhasil di tambahkan!', {
                         position: "top-right",
                         autoClose: 5000,
                         hideProgressBar: false,
@@ -3116,13 +3173,13 @@ export default function Inovasi() {
                 <TableCell>
 
                     <FormControl fullWidth>
-                        <InputLabel id="demo-simple-select-label">{state.indikator_Ketersediaan_SDM_inovasi_daerah ? 'Pilih Regulasi' : pathnameUpload.attributes.desc_Monitoring_dan_evaluasi_daerah ? pathnameUpload.attributes.desc_Monitoring_dan_evaluasi_daerah : 'Pilih Regulasi'}</InputLabel>
+                        <InputLabel id="demo-simple-select-label">{state.indikator_Ketersediaan_SDM_inovasi_daerah ? 'Pilih Regulasi' : pathnameUpload.attributes.desc_Ketersediaan_SDM_inovasi_daerah ? pathnameUpload.attributes.desc_Ketersediaan_SDM_inovasi_daerah : 'Pilih Regulasi'}</InputLabel>
                         <Select
                             labelId="demo-simple-select-label"
                             id="demo-simple-select"
                             name="indikator_Ketersediaan_SDM_inovasi_daerah"
 
-                            defaultValue={pathnameUpload.attributes.desc_Monitoring_dan_evaluasi_daerah ? pathnameUpload.attributes.desc_Monitoring_dan_evaluasi_daerah : "Hasil laporan monev internal Perangkat Daerah"}
+                            defaultValue={pathnameUpload.attributes.desc_Ketersediaan_SDM_inovasi_daerah ? pathnameUpload.attributes.desc_Ketersediaan_SDM_inovasi_daerah : "Hasil laporan monev internal Perangkat Daerah"}
                             value={state.indikator_Ketersediaan_SDM_inovasi_daerah || ''}
                             label="Pilih Indikator"
                             onChange={handleChange}
@@ -3135,13 +3192,14 @@ export default function Inovasi() {
                 </TableCell>
 
                 <TableCell>
-                    {pathnameUpload.attributes.desc_Monitoring_dan_evaluasi_daerah !== null ? <>
+                    {pathnameUpload.attributes.Ketersediaan_SDM_inovasi_daerah !== null ? <>
                         <div className="aksi-indikator">
-                            <a className={show.monitoring_evaluasi === false ? "button-asik" : "display-none"} href={urlAsik + pathnameUpload.attributes.Monitoring_dan_evaluasi_daerah.url} target="_blank" rel="noreferrer">
+                            <a className={show.ketersediaan_sdm === false ? "button-asik" : "display-none"} href={urlAsik + pathnameUpload.attributes.Ketersediaan_SDM_inovasi_daerah.data.attributes.url} target="_blank" rel="noreferrer">
                                 Lihat File
                             </a>
-                            <Button name="monitoring_evaluasi" onClick={DeleteKetersediaanSDM} className={show.monitoring_evaluasi === false ? "button-asik-edit" : "display-none"} value={pathnameUpload.attributes.Monitoring_dan_evaluasi_daerah.id}>Hapus File</Button>
-                            <input type="file" id="file" className={show.monitoring_evaluasi === true ? "file" : "display-none"} accept="image/*,.pdf" onChange={uploadKetersediaanSDM} />
+                          
+                            <Button name="ketersediaan_sdm" onClick={DeleteKetersediaanSDM} className={show.ketersediaan_sdm === false ? "button-asik-edit" : "display-none"} value={pathnameUpload.attributes.Ketersediaan_SDM_inovasi_daerah.data.id}>Hapus File</Button>
+                            <input type="file" id="file" className={show.ketersediaan_sdm === true ? "file" : "display-none"} accept="image/*,.pdf" onChange={uploadKetersediaanSDM} />
                         </div>
 
                     </> : <input type="file" id="file" className="file" accept="image/*,.pdf" onChange={uploadKetersediaanSDM} />}
@@ -3162,7 +3220,7 @@ export default function Inovasi() {
 
 
 
-                <TableCell colSpan={4}>
+                <TableCell colSpan={3}>
                     <TextValidator onChange={handleChange}
                         type="text"
                         fullWidth
@@ -3174,10 +3232,14 @@ export default function Inovasi() {
 
                 </TableCell>
 
+                <TableCell>
+                  <Button className="button-asik" onClick={uploadKualitasInovasi}>Simpan Kualitas</Button>
+                </TableCell>
+
             </TableRow>
             <TableRow>
                 <TableCell colSpan={5}>
-                    {state.link_youtube ? <iframe className="frame-youtube" src={"https://www.youtube.com/embed/" + state.link_youtube.slice(32)} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe> : pathnameUpload.attributes.Kualitas_inovasi_daerah ? <iframe className="frame-youtube" src={"https://www.youtube.com/embed/" + pathnameUpload.attributes.Kualitas_inovasi_daerah} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe> : <h3 className="text-center">Anda belum mengupload link youtube</h3>
+                    {state.link_youtube ? <iframe className="frame-youtube" src={"https://www.youtube.com/embed/" + state.link_youtube.slice(32)} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe> : pathnameUpload.attributes.Kualitas_inovasi_daerah ? <iframe className="frame-youtube" src={"https://www.youtube.com/embed/" + pathnameUpload.attributes.Kualitas_inovasi_daerah.slice(32)} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe> : <h3 className="text-center">Anda belum mengupload link youtube</h3>
                     }
                 </TableCell>
             </TableRow>
@@ -3199,9 +3261,7 @@ export default function Inovasi() {
     Video inovasi dilengkapi dengan cover thumbnail dengan format jpg/jpeg/png
 </Alert>
 
-{loading === true ? <LoadingButton loading variant="outlined">
-    Submit
-</LoadingButton> : <Button className="see-all-button" size="small" type="submit">Tambah Inovasi  </Button>}
+
 
 </div>
                         </ValidatorForm>
