@@ -107,7 +107,7 @@ export default function EditInovasi() {
             ...state,
             [name]: value,
         });
-        console.log(state.nama_inovasi)
+    
     }
 
   
@@ -139,12 +139,7 @@ export default function EditInovasi() {
     };
 
 
-    const getTextLength = (html) => {
-        // This will never get added to the DOM.
-        const element = document.createElement("div")
-        element.innerHTML = html
-        return element.textContent.length
-    }
+ 
     const outputs = [rancangBangun.length !== undefined ? rancangBangun : location.state.idInovasi.attributes.Rancang_bangun_pokok_inovasi]
 
 
@@ -155,7 +150,7 @@ export default function EditInovasi() {
    }
 
     const addKajian = async (event) => {
-        if (getWordCount(outputs) <= 300) {
+        if (getWordCount(rancangBangun.length  === undefined ? location.state.idInovasi.attributes.Rancang_bangun_pokok_inovasi :  rancangBangun) <= 300) {
             toast.warn('Rancang bangun kurang dari 300 kata', {
                 position: "top-right",
                 autoClose: 5000,
