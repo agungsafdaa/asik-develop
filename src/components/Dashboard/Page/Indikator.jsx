@@ -3192,7 +3192,8 @@ export default function Inovasi() {
                 </TableCell>
 
                 <TableCell>
-                    {pathnameUpload.attributes.Ketersediaan_SDM_inovasi_daerah !== null ? <>
+                    
+                    {pathnameUpload.attributes.Ketersediaan_SDM_inovasi_daerah.data !== null ? <>
                         <div className="aksi-indikator">
                             <a className={show.ketersediaan_sdm === false ? "button-asik" : "display-none"} href={urlAsik + pathnameUpload.attributes.Ketersediaan_SDM_inovasi_daerah.data.attributes.url} target="_blank" rel="noreferrer">
                                 Lihat File
